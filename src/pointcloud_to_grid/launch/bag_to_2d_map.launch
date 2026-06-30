@@ -27,10 +27,10 @@
     <param name="range_max"           value="25.0"/>
   </node>
 
-  <!-- hector_slam: 2D SLAM without odometry, 0.10 m/cell matches original map -->
-  <node pkg="hector_slam" type="hector_mapping" name="hector_mapping" output="screen">
+  <!-- hector_slam: use a smaller canvas so the occupied map fills the frame better -->
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
     <param name="map_resolution"              value="0.05"/>
-    <param name="map_size"                    value="2048"/>
+    <param name="map_size"                    value="512"/>
     <param name="map_start_x"                value="0.5"/>
     <param name="map_start_y"                value="0.5"/>
     <param name="map_frame"                  value="map"/>
