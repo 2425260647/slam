@@ -1,0 +1,52 @@
+<launch>
+  <!-- Bag file to replay. Pass bag:=/path/to/your.bag when launching. -->
+  <arg name="bag"  default="$(env HOME)/scout_0_ws/mapping.bag"/>
+  <arg name="rate" default="0.5"/>
+
+  <!-- Use simulation time from the bag -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Static TF: base_link -> laser_link (0.4 m above, -90 deg yaw) -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser"
+        args="0 0 0.4 -1.5708 0 0 base_link laser_link"/>
+
+  <!-- Project VLP-16 point cloud to 2D laser scan -->
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
+        name="cloud_to_scan" output="screen">
+    <remap from="cloud_in" to="/velodyne_points"/>
+    <remap from="scan"     to="/scan"/>
+    <param name="target_frame"        value="laser_link"/>
+    <param name="transform_tolerance" value="0.05"/>
+    <param name="min_height"          value="-0.35"/>
+    <param name="max_height"          value="1.6"/>
+    <param name="angle_min"           value="-3.14159"/>
+    <param name="angle_max"           value="3.14159"/>
+    <param name="angle_increment"     value="0.00436"/>
+    <param name="scan_time"           value="0.1"/>
+    <param name="range_min"           value="0.30"/>
+    <param name="range_max"           value="25.0"/>
+  </node>
+
+  <!-- hector_slam: 2D SLAM without odometry, 0.10 m/cell matches original map -->
+  <node pkg="hector_slam" type="hector_mapping" name="hector_mapping" output="screen">
+    <param name="map_resolution"              value="0.05"/>
+    <param name="map_size"                    value="2048"/>
+    <param name="map_start_x"                value="0.5"/>
+    <param name="map_start_y"                value="0.5"/>
+    <param name="map_frame"                  value="map"/>
+    <param name="base_frame"                 value="base_link"/>
+    <param name="odom_frame"                 value="odom"/>
+    <param name="scan_topic"                 value="/scan"/>
+    <param name="use_tf_scan_transformation" value="true"/>
+    <param name="use_tf_pose_start_estimate" value="false"/>
+    <param name="pub_map_odom_transform"     value="true"/>
+    <param name="map_update_distance_thresh" value="0.10"/>
+    <param name="map_update_angle_thresh"    value="0.08"/>
+    <param name="laser_min_dist"             value="0.30"/>
+    <param name="laser_max_dist"             value="25.0"/>
+  </node>
+
+  <!-- Replay only the point cloud topic; skip stored TF to avoid conflicts -->
+  <node pkg="rosbag" type="play" name="bag_play" output="screen"
+        args="--clock -r $(arg rate) $(arg bag) --topics /velodyne_points /tf /tf_static"/>
+</launch>

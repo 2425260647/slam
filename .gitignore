@@ -1,0 +1,32 @@
+# Catkin build outputs
+build/
+devel/
+install/
+log/
+cmake-build-*/
+Testing/
+
+# Large runtime data
+bags/
+*.bag
+*.db3
+*.mcap
+
+# Third-party repositories kept as independent Git checkouts
+src/navigation/
+src/ugv_sdk/
+
+# Python/cache artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Editor and local runtime files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ROS logs and generated maps outside source control unless added explicitly
+.ros/
+*.log

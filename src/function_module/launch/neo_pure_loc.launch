@@ -1,0 +1,21 @@
+<launch>
+	<!--INPUT : /MAP(must be a static map),/tf(must represent the trans between odom and base_link)-->
+	<!--INPUT : /scan(must sub the laser_scan topic)-->
+  <master auto="start"/>
+  <arg name="map" value="pro"/>
+  <param name="/use_sim_time" value="false" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/xcy/Downloads/$(arg map).yaml" respawn="false" />
+
+  <!-- NEO -->
+  <!--include file="$(find neo_localization)/launch/test_setup.launch" /-->
+  <node pkg="neo_localization" type="neo_localization_node" name="neo_localization_node" output="screen" />
+
+  <rosparam file="$(find function_module)/launch/common/neo_localization.yaml" command="load" />
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find function_module)/rviz/pure_loc.rviz" />
+
+</launch>
+

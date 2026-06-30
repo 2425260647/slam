@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="newscan2base" args="0 0 0.17 -1.57 0 0 /base_link /laser_link"/>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera2base" args="0.08 0 0.12 0 -0.087 0 /base_link /camera_link"/>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="laserscan2lasercenter" args="0 0 0 -1.57 3.14 0 /laser_link /scan_link"/>
+
+</launch>

@@ -1,0 +1,53 @@
+<launch>
+  <master auto="start"/>
+  <arg name="map" value="104"/>
+  <param name="/use_sim_time" value="false" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/xcy/Downloads/$(arg map).yaml" respawn="false" />
+
+  <!-- NEO -->
+  <include file="$(find neo_localization)/launch/test_setup.launch" />
+
+<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+    <!-- Costmaps -->
+    <rosparam file="$(find function_module)/launch/neo_common/costmap_common.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find function_module)/launch/neo_common/costmap_common.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find function_module)/launch/neo_common/costmap_local.yaml" command="load" />
+    <rosparam file="$(find function_module)/launch/neo_common/costmap_global.yaml" command="load" />
+
+    <!-- Global Planner -->
+
+    <!-- NavfnROS -->
+    <param name="base_global_planner" value="navfn/NavfnROS"/>
+    <rosparam file="$(find function_module)/launch/neo_common/navfnros_planner.yaml" command="load" />
+
+    <!-- Local Planner -->
+
+    <!-- EBand -->
+    <!-- param name="base_local_planner" value="eband_local_planner/EBandPlannerROS"/-->
+    <!-- rosparam file="$(find neo_simulation)/config/mpo_700/move_base/local_planner/eband_local_planner/eband_planner.yaml" command="load" /-->
+
+    <!-- Teb -->
+    <!--param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+    <rosparam file="$(find neo_mpo_500)/configs/navigation/move_base/local_planner/teb_local_planner/teb_planner.yaml" command="load" /-->
+
+    <!-- LOAD COSTMAP_CONVERTER PARAMETERS HERE -->
+    <!--rosparam file="$(find neo_mpo_500)/configs/navigation/move_base/local_planner/teb_local_planner/costmap_converter_params.yaml" command="load" /-->
+
+    <!-- NeoLocalPlanner -->
+    <param name="base_local_planner" value="neo_local_planner/NeoLocalPlanner"/>
+    <rosparam file="$(find function_module)/launch/neo_common/neo_local_planner/neo_planner.yaml" command="load" />
+
+    <!-- Common -->
+    <rosparam file="$(find function_module)/launch/neo_common/move_base.yaml" command="load" />
+
+  </node>
+
+
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find function_module)/rviz/nav.rviz" />
+
+</launch>

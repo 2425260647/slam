@@ -1,0 +1,8 @@
+<launch>
+  <param name="/use_sim_time" value="false" />
+
+  <include file="$(find function_module)/launch/common/gmapping_config.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find function_module)/rviz/gmapping.rviz" />
+</launch>

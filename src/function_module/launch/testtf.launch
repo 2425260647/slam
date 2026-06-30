@@ -1,0 +1,6 @@
+<launch>
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find function_module)/rviz/test.rviz" />
+
+</launch>

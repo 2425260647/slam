@@ -1,0 +1,22 @@
+<launch>
+  <master auto="start"/>
+  <arg name="map" value="map"/>
+  <param name="/use_sim_time" value="false" />
+
+  <!-- Run the map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="/home/xcy/Downloads/$(arg map).yaml" respawn="false" />
+  
+  <!-- AMCL -->
+  <include file="$(find function_module)/launch/common/amcl.launch"/>
+
+  <!-- NEO -->
+  <!--include file="$(find neo_localization)/launch/test_setup.launch" /-->
+
+  <!-- move_base -->
+  <include file="$(find function_module)/launch/common/nav_common/move_base.launch" />
+
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"
+      args="-d $(find function_module)/rviz/nav.rviz" />
+
+</launch>

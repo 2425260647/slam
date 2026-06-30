@@ -1,0 +1,12 @@
+footprint: [[0.3,0.3],[-0.3,0.3],[-0.3,-0.3],[0.3,-0.3]]
+
+inflation_layer:
+  inflation_radius: 0.6
+  cost_scaling_factor: 5
+
+observation_sources: scan
+map_type: costmap
+lidar_1: {sensor_frame: laser_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+
+

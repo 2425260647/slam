@@ -1,0 +1,20 @@
+<launch>
+  <!-- Publishes /object_direction (deg) and /object_x (pixel center-x) -->
+
+  <node pkg="function_module" type="object_detection_pub.py" name="object_detection_pub" output="screen">
+    <param name="camera_index" value="0" />
+    <param name="hfov_deg" value="66.1" />
+
+    <!-- Optional overrides:
+         ultralytics_repo_dir: ultralytics source tree (if not pip-installed)
+         weights:              YOLO weights path
+         If omitted, the node defaults to <ws>/src/ultralytics-8.4.47/... based on its own location.
+    -->
+    <!-- <param name="ultralytics_repo_dir" value="/abs/path/to/ultralytics-8.4.47" /> -->
+    <!-- <param name="weights" value="/abs/path/to/best.pt" /> -->
+
+    <param name="rate" value="15.0" />
+    <param name="topic_object_direction" value="/object_direction" />
+    <param name="topic_object_x" value="/object_x" />
+  </node>
+</launch>
