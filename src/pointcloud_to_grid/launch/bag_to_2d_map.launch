@@ -10,10 +10,26 @@
   <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_laser"
         args="0 0 0.4 -1.5708 0 0 base_link laser_link"/>
 
+  <!-- Source-side projection optimization: filter raw 3D cloud before 2D scan projection -->
+  <node pkg="pointcloud_to_grid" type="pointcloud_projection_optimizer.py"
+        name="pointcloud_projection_optimizer" output="screen">
+    <remap from="/velodyne_points" to="/velodyne_points"/>
+    <remap from="/velodyne_points_optimized" to="/velodyne_points_optimized"/>
+    <param name="input_topic" value="/velodyne_points"/>
+    <param name="output_topic" value="/velodyne_points_optimized"/>
+    <param name="z_ground_band" value="0.06"/>
+    <param name="z_obstacle_min" value="0.08"/>
+    <param name="z_obstacle_max" value="1.60"/>
+    <param name="z_ground_percentile" value="10.0"/>
+    <param name="voxel_leaf_xy" value="0.05"/>
+    <param name="voxel_leaf_z" value="0.10"/>
+    <param name="min_points_per_voxel" value="2"/>
+  </node>
+
   <!-- Project VLP-16 point cloud to 2D laser scan -->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
         name="cloud_to_scan" output="screen">
-    <remap from="cloud_in" to="/velodyne_points"/>
+    <remap from="cloud_in" to="/velodyne_points_optimized"/>
     <remap from="scan"     to="/scan"/>
     <param name="target_frame"        value="laser_link"/>
     <param name="transform_tolerance" value="0.05"/>

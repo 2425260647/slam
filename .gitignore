@@ -26,6 +26,7 @@ __pycache__/
 .idea/
 *.swp
 *.swo
+.~lock.*
 
 # ROS logs and generated maps outside source control unless added explicitly
 .ros/

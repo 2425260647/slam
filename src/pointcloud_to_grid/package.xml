@@ -10,6 +10,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
   <exec_depend>rospy</exec_depend>
+  <exec_depend>nav_msgs</exec_depend>
   <exec_depend>python-numpy</exec_depend>
 
   <test_depend>rostest</test_depend>

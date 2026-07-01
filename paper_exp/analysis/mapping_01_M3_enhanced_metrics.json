@@ -1,0 +1,14 @@
+{
+  "boundary_sharpness": 237.4563751220703,
+  "free_cells": 16310,
+  "free_connectivity": 0.996811771919068,
+  "image": "/home/slam/slam_ws/paper_exp/maps/mapping_01/M3_enhanced/my_map.pgm",
+  "map_cells": 262144,
+  "noise_density": 0.0,
+  "occupied_cells": 2050,
+  "resolution": 0.05,
+  "unknown_cells": 243784,
+  "unknown_ratio": 0.929962158203125,
+  "wall_continuity": 1.0,
+  "yaml": "/home/slam/slam_ws/paper_exp/maps/mapping_01/M3_enhanced/my_map.yaml"
+}

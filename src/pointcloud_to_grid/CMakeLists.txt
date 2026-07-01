@@ -8,8 +8,10 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package()
 
 catkin_install_python(PROGRAMS
+  scripts/pointcloud_projection_optimizer.py
   scripts/pcd_to_nav_map.py
-  scripts/crop_roi_map.py
-  scripts/manual_wall_connect_map.py
+  scripts/compute_map_metrics.py
+  scripts/enhance_map.py
+  scripts/save_stable_map.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
