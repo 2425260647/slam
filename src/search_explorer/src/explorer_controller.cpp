@@ -1283,7 +1283,7 @@ ExplorerController::ExplorerController()
     coverage_marker_pub_ = nh_.advertise<visualization_msgs::MarkerArray>("/coverage_markers", 1);
 
     map_sub_ = nh_.subscribe("/map", 1, &ExplorerController::mapCallback, this);
-    pose_sub_ = nh_.subscribe("/amcl_pose", 5, &ExplorerController::poseCallback, this);
+    pose_sub_ = nh_.subscribe("/aloam_pose", 5, &ExplorerController::poseCallback, this);
     scan_sub_ = nh_.subscribe("/scan", 1, &ExplorerController::scanCallback, this);
     if (!phase1_static_global_only_) {
         warning_sub_ = nh_.subscribe("/obstacle_warning", 5, &ExplorerController::warningCallback, this);
@@ -1327,11 +1327,11 @@ ExplorerController::ExplorerController()
              edge_reachable_search_window_);
     ROS_INFO("[EXPLORER] Input topics: %s",
              phase1_static_global_only_
-                 ? "/map /amcl_pose /scan"
-                 : "/map /local_dynamic_map /amcl_pose /obstacle_warning /dynamic_obstacles /object_goal");
+                 ? "/map /aloam_pose /scan"
+                 : "/map /local_dynamic_map /aloam_pose /obstacle_warning /dynamic_obstacles /object_goal");
     ROS_INFO("[EXPLORER] Goal tolerance=%.2fm lookahead=%.2fm inflation=%.2fm",
              goal_tol_, lookahead_, inflation_radius_);
-    ROS_INFO("[EXPLORER] Startup gate=%s stable=%.1fs pose_source=map->base_link TF scan_age<=%.1fs local_age<=%.1fs min_amcl_msgs=%d diagnostic_only clear_warning=%s",
+    ROS_INFO("[EXPLORER] Startup gate=%s stable=%.1fs pose_source=map->base_link TF scan_age<=%.1fs local_age<=%.1fs min_pose_msgs=%d diagnostic_only clear_warning=%s",
              startup_gate_enabled_ ? "ON" : "OFF",
              startup_stable_duration_,
              startup_scan_max_age_,
@@ -1431,14 +1431,14 @@ void ExplorerController::poseCallback(const geometry_msgs::PoseWithCovarianceSta
                                           msg->pose.pose.position.x, msg->pose.pose.position.y);
         total_dist_ += jump;
         if (jump > 0.60) {
-            ROS_WARN("[POSE] Large AMCL jump detected: %.2fm -> (%.2f, %.2f, yaw=%.2fdeg)",
+            ROS_WARN("[POSE] Large A-LOAM pose jump detected: %.2fm -> (%.2f, %.2f, yaw=%.2fdeg)",
                      jump,
                      msg->pose.pose.position.x,
                      msg->pose.pose.position.y,
                      new_yaw * 180.0 / M_PI);
         }
     } else {
-        ROS_INFO("[POSE] First AMCL pose: (%.2f, %.2f, %.1fdeg)",
+        ROS_INFO("[POSE] First A-LOAM pose: (%.2f, %.2f, %.1fdeg)",
                  msg->pose.pose.position.x,
                  msg->pose.pose.position.y,
                  new_yaw * 180.0 / M_PI);
@@ -1544,7 +1544,7 @@ bool ExplorerController::updateStartupGate() {
             missing.push_back("map->base_link TF pose");
         } else if (pose_msg_ct_ < startup_min_pose_messages_) {
             ROS_INFO_THROTTLE(5.0,
-                              "[STARTUP-GATE] AMCL messages=%d/%d, but current TF pose is valid; startup is not blocked",
+                              "[STARTUP-GATE] Pose messages=%d/%d, but current TF pose is valid; startup is not blocked",
                               pose_msg_ct_, startup_min_pose_messages_);
         }
     }
@@ -1828,8 +1828,8 @@ void ExplorerController::controlLoop(const ros::TimerEvent&) {
 
     if ((ros::Time::now() - last_pose_msg_time_).toSec() > POSE_STALE_TIMEOUT) {
         const double stale_age = (ros::Time::now() - last_pose_msg_time_).toSec();
-        if (!refreshPoseFromTf("stale AMCL pose")) {
-            ROS_WARN_THROTTLE(2.0, "[POSE] AMCL pose is stale for %.1fs and TF fallback failed",
+        if (!refreshPoseFromTf("stale A-LOAM pose")) {
+            ROS_WARN_THROTTLE(2.0, "[POSE] A-LOAM pose is stale for %.1fs and TF fallback failed",
                               stale_age);
             eStop();
             return;

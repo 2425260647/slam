@@ -32,15 +32,15 @@ target_link_libraries(obstacle_detector
   ${catkin_LIBRARIES}
 )
 
-# ===== AMCL 矫正节点 =====
-add_executable(amcl_corrector
-  src/amcl_corrector.cpp
+# ===== A-LOAM 位姿桥接节点 =====
+add_executable(aloam_pose_bridge
+  src/aloam_pose_bridge.cpp
 )
-target_link_libraries(amcl_corrector
+target_link_libraries(aloam_pose_bridge
   ${catkin_LIBRARIES}
 )
 
 # ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
-install(TARGETS obstacle_detector amcl_corrector
+install(TARGETS obstacle_detector aloam_pose_bridge
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

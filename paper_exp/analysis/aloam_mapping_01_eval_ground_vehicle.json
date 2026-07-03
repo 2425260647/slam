@@ -1,0 +1,107 @@
+{
+  "aft_mapped_to_init": {
+    "count": 2496,
+    "duration_s": 249.50012302398682,
+    "end_xyz_m": [
+      73.5556,
+      -329.9877,
+      -165.1589
+    ],
+    "jump_xy_count_gt_1m": 1526,
+    "jump_yaw_count_gt_20deg": 1228,
+    "jump_z_count_gt_0p3m": 1594,
+    "max_speed_xy_mps": 122.52696456793151,
+    "max_speed_z_mps": 153.84933474383553,
+    "max_step_xy_m": 12.250493818851691,
+    "max_step_z_m": 15.372594140799762,
+    "max_yaw_rate_degps": 1802.4222239315925,
+    "p95_speed_xy_mps": 54.02150843332829,
+    "p95_speed_z_mps": 41.90212869941885,
+    "p95_yaw_rate_degps": 1660.195676318147,
+    "path_length_3d_m": 6290.063045201943,
+    "path_length_xy_m": 4879.812596780584,
+    "pitch_max_abs_deg": 87.10518984429306,
+    "pitch_mean_deg": 3.8305501253468357,
+    "pitch_std_deg": 38.91672469720259,
+    "roll_max_abs_deg": 179.87609320072661,
+    "roll_mean_deg": 6.551695331402394,
+    "roll_std_deg": 92.47848684695607,
+    "start_xyz_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "yaw_range_deg": 3822.6740598880947,
+    "z_final_minus_start_m": -165.1588756868297,
+    "z_range_m": 211.16344386789868,
+    "z_std_m": 52.119176464282305
+  },
+  "bag": "paper_exp/bags/aloam_mapping_01_eval_ground_vehicle.bag",
+  "final_laser_cloud_map": {
+    "dense_cell_ratio_ge3": 0.30042808438645513,
+    "median_points_per_0p2m_cell": 2.0,
+    "occupied_xy_cells_0p2m": 117033,
+    "p95_points_per_0p2m_cell": 5.0,
+    "point_count": 276492,
+    "x_range_m": 238.6992416381836,
+    "y_range_m": 532.7985687255859,
+    "z_p01_m": -199.19868041992186,
+    "z_p99_m": 0.5619304633140689,
+    "z_range_m": 217.24377727508545
+  },
+  "judgement": {
+    "issues": [
+      "trajectory has discontinuous jumps",
+      "large Z drift for a ground robot",
+      "large roll/pitch variation",
+      "revisited positions are inconsistent in height"
+    ],
+    "verdict": "fail_or_needs_calibration"
+  },
+  "laser_odom_to_init": {
+    "count": 2496,
+    "duration_s": 249.50012302398682,
+    "end_xyz_m": [
+      -1036.2207,
+      -806.7788,
+      0.0
+    ],
+    "jump_xy_count_gt_1m": 1807,
+    "jump_yaw_count_gt_20deg": 1368,
+    "jump_z_count_gt_0p3m": 0,
+    "max_speed_xy_mps": 73.04176777064842,
+    "max_speed_z_mps": 0.0,
+    "max_step_xy_m": 7.308558268909757,
+    "max_step_z_m": 0.0,
+    "max_yaw_rate_degps": 1800.4887703675074,
+    "p95_speed_xy_mps": 59.378899486904444,
+    "p95_speed_z_mps": 0.0,
+    "p95_yaw_rate_degps": 1317.907291351621,
+    "path_length_3d_m": 6311.379928277664,
+    "path_length_xy_m": 6311.379928277664,
+    "pitch_max_abs_deg": 0.0,
+    "pitch_mean_deg": 0.0,
+    "pitch_std_deg": 0.0,
+    "roll_max_abs_deg": 0.0,
+    "roll_mean_deg": 0.0,
+    "roll_std_deg": 0.0,
+    "start_xyz_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "yaw_range_deg": 179.93333823906076,
+    "z_final_minus_start_m": 0.0,
+    "z_range_m": 0.0,
+    "z_std_m": 0.0
+  },
+  "revisit_consistency": {
+    "pair_count": 5,
+    "xy_offset_m_median": 0.30251376414413017,
+    "xy_offset_m_p95": 0.7179139793097149,
+    "yaw_offset_deg_median": 169.3754454418281,
+    "yaw_offset_deg_p95": 169.73368577575036,
+    "z_offset_m_median": 9.941100171922535,
+    "z_offset_m_p95": 19.43555393094699
+  }
+}

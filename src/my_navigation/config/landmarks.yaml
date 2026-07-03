@@ -1,5 +1,5 @@
 # 定位矫正地标点
-# 格式: 机器人停在目标位置, RViz 或 `rostopic echo /amcl_pose` 读取坐标填入
+# 格式: 机器人停在目标位置, RViz 或 `rostopic echo /aloam_pose` 读取坐标填入
 landmarks:
   - {x: -2.912, y: 1.050, yaw: 0.00}
   - {x: -0.212, y: 3.150, yaw: 0.00}

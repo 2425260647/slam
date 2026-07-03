@@ -1,0 +1,54 @@
+<launch>
+    <arg name="cloud_topic" default="/velodyne_points" />
+    <arg name="use_cloud_frame_transform" default="true" />
+    <arg name="transformed_cloud_topic" default="/aloam/velodyne_points_base" />
+    <arg name="target_frame" default="base_link" />
+    <arg name="prefer_tf" default="true" />
+    <arg name="use_scan_context" default="true" />
+    <arg name="sc_save_directory" default="$(env HOME)/slam_ws/paper_exp/sc_aloam/live/" />
+    <arg name="rviz" default="false" />
+
+    <param name="scan_line" type="int" value="16" />
+    <param name="mapping_skip_frame" type="int" value="1" />
+    <param name="minimum_range" type="double" value="0.3"/>
+    <param name="mapping_line_resolution" type="double" value="0.2"/>
+    <param name="mapping_plane_resolution" type="double" value="0.4"/>
+    <param name="mapviz_filter_size" type="double" value="0.2"/>
+    <param name="keyframe_meter_gap" type="double" value="1.0"/>
+    <param name="keyframe_deg_gap" type="double" value="10.0"/>
+    <param name="sc_dist_thres" type="double" value="0.15"/>
+    <param name="sc_max_radius" type="double" value="25.0"/>
+    <param name="use_gps" type="bool" value="false"/>
+    <param name="save_directory" type="string" value="$(arg sc_save_directory)"/>
+
+    <group if="$(arg use_cloud_frame_transform)">
+        <node pkg="aloam_velodyne" type="aloam_cloud_frame_transformer"
+              name="aloam_cloud_frame_transformer" output="screen">
+            <param name="input_topic" value="$(arg cloud_topic)" />
+            <param name="output_topic" value="$(arg transformed_cloud_topic)" />
+            <param name="target_frame" value="$(arg target_frame)" />
+            <param name="prefer_tf" value="$(arg prefer_tf)" />
+            <param name="use_static_fallback" value="true" />
+            <param name="static_x" value="0.0" />
+            <param name="static_y" value="0.0" />
+            <param name="static_z" value="0.17" />
+            <param name="static_roll" value="0.0" />
+            <param name="static_pitch" value="0.0" />
+            <param name="static_yaw" value="-1.57079632679" />
+        </node>
+    </group>
+
+    <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen">
+        <remap if="$(arg use_cloud_frame_transform)" from="/velodyne_points" to="$(arg transformed_cloud_topic)"/>
+        <remap unless="$(arg use_cloud_frame_transform)" from="/velodyne_points" to="$(arg cloud_topic)"/>
+    </node>
+
+    <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />
+    <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />
+    <node if="$(arg use_scan_context)" pkg="aloam_velodyne" type="alaserPGO" name="alaserPGO" output="screen" />
+
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz"
+              args="-d $(find aloam_velodyne)/rviz_cfg/aloam_velodyne.rviz" />
+    </group>
+</launch>

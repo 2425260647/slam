@@ -12,6 +12,8 @@ catkin_install_python(PROGRAMS
   scripts/pcd_to_nav_map.py
   scripts/compute_map_metrics.py
   scripts/enhance_map.py
+  scripts/fuse_projection_maps.py
+  scripts/repair_projection_wall.py
   scripts/save_stable_map.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
