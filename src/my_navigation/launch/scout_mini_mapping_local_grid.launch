@@ -1,0 +1,32 @@
+<launch>
+  <arg name="gui" default="false"/>
+  <arg name="rviz" default="true"/>
+  <arg name="world_name" default="$(find scout_gazebo_sim)/worlds/clearpath_playpen.world"/>
+  <arg name="cartographer_config_dir" default="$(find my_navigation)/config"/>
+  <arg name="cartographer_config" default="cartographer_scout_2d.lua"/>
+
+  <!-- Gazebo + Scout Mini + /velodyne_points + /scan + Cartographer 2D. -->
+  <include file="$(find scout_gazebo_sim)/launch/scout_mini_cartographer_2d.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="rviz" value="false"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="cartographer_config_dir" value="$(arg cartographer_config_dir)"/>
+    <arg name="cartographer_config" value="$(arg cartographer_config)"/>
+  </include>
+
+  <!-- Rebuild a robot-centered local occupancy grid directly from the latest laser scan. -->
+  <node pkg="my_navigation" type="local_grid_mapper"
+        name="local_grid_mapper" output="screen">
+    <param name="scan_topic" value="/scan"/>
+    <param name="output_topic" value="/local_occupancy_grid"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="map_size" value="5.0"/>
+    <param name="resolution" value="0.05"/>
+    <param name="max_range" value="5.0"/>
+    <param name="tf_timeout" value="0.10"/>
+    <param name="obstacle_dilation_cells" value="1"/>
+  </node>
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find my_navigation)/rviz/mapping_local_grid.rviz"/>
+</launch>

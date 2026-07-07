@@ -7,16 +7,10 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   nav_msgs
   geometry_msgs
-  std_msgs
   tf2
   tf2_ros
   tf2_geometry_msgs
-  angles
-  visualization_msgs
 )
-
-# 如果使用了 PCL 或其他库，自行添加，但要注意是否真的需要
-# find_package(PCL REQUIRED)
 
 catkin_package()
 
@@ -24,23 +18,19 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-# ===== 障碍物检测节点 =====
-add_executable(obstacle_detector
-  src/obstacle_detector.cpp
+# ===== 实时局部栅格地图节点 =====
+add_executable(local_grid_mapper
+  src/local_grid_mapper.cpp
 )
-target_link_libraries(obstacle_detector
-  ${catkin_LIBRARIES}
-)
-
-# ===== A-LOAM 位姿桥接节点 =====
-add_executable(aloam_pose_bridge
-  src/aloam_pose_bridge.cpp
-)
-target_link_libraries(aloam_pose_bridge
+target_link_libraries(local_grid_mapper
   ${catkin_LIBRARIES}
 )
 
 # ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
-install(TARGETS obstacle_detector aloam_pose_bridge
+install(TARGETS local_grid_mapper
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch config rviz
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

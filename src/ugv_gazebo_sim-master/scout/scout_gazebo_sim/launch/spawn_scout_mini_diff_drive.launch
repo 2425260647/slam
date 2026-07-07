@@ -1,0 +1,23 @@
+<launch>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.05"/>
+  <arg name="yaw" default="0.0"/>
+  <arg name="robot_namespace" default="/"/>
+  <arg name="urdf_extras" default="$(find scout_gazebo_sim)/urdf/scout_mini_sim_extras.xacro"/>
+
+  <include file="$(find scout_description)/launch/scout_mini_stock.launch">
+    <arg name="robot_namespace" value="$(arg robot_namespace)"/>
+    <arg name="urdf_extras" value="$(arg urdf_extras)"/>
+  </include>
+
+  <node name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -unpause -urdf -param robot_description -model scout_mini"/>
+
+  <rosparam file="$(find scout_control)/config/scout_mini_control.yaml" command="load"/>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="scout_mini_joint_publisher scout_mini_velocity_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+</launch>

@@ -2,6 +2,9 @@
 build/
 devel/
 install/
+build_isolated/
+devel_isolated/
+install_isolated/
 log/
 cmake-build-*/
 Testing/
@@ -11,10 +14,29 @@ bags/
 *.bag
 *.db3
 *.mcap
+src/worlds.zip
 
 # Third-party repositories kept as independent Git checkouts
 src/navigation/
 src/ugv_sdk/
+
+# Keep only the Scout Mini simulation pieces used by this project.
+src/ugv_gazebo_sim-master/autokit/
+src/ugv_gazebo_sim-master/bunker/
+src/ugv_gazebo_sim-master/hunter/
+src/ugv_gazebo_sim-master/hunter_se/
+src/ugv_gazebo_sim-master/limo/
+src/ugv_gazebo_sim-master/limo_s2/
+src/ugv_gazebo_sim-master/ranger/
+src/ugv_gazebo_sim-master/ranger_air/
+src/ugv_gazebo_sim-master/ranger_delta/
+src/ugv_gazebo_sim-master/ranger_mini/
+src/ugv_gazebo_sim-master/tracer/
+src/ugv_gazebo_sim-master/tracer_mini/
+src/ugv_gazebo_sim-master/scout/pro/
+src/ugv_gazebo_sim-master/scout/scout_description/
+src/ugv_gazebo_sim-master/scout/image/
+src/ugv_gazebo_sim-master/scout/.vscode/
 
 # Python/cache artifacts
 __pycache__/

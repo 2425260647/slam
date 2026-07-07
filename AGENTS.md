@@ -1,87 +1,85 @@
+## Codex 专用提示词：Cartographer 2D 建图定位与局部地图系统
 
-## 项目开发提示词（优化版）
+### 一、当前项目目标
+你是一个资深机器人算法工程师。当前项目主线已经收敛为：
 
-### 一、项目总体目标
-完成一辆**Scout Mini**小车在已知静态全局地图（凸多边形区域）内的**自主搜索与目标物品定位**任务。小车需实时定位、建图、避障，并按规划路径遍历整个可行驶区域，直到视觉模块识别到目标物品，最终趋近并停止。
+基于 ROS、Gazebo、Scout Mini 和 Cartographer 2D，完成小车的实时建图定位，并额外生成一个以小车为中心的实时局部占据栅格地图。
 
-### 二、硬件与系统环境
-- **操作系统**：Ubuntu 18.04，ROS Melodic
-- **小车**：Scout Mini，尺寸：宽≈0.57m，长≈0.64m，高≈0.56m（至雷达），自转直径约1m
-- **激光雷达**：16线，0°方向指向小车**正右方**（需在驱动或TF中校准）
-- **摄像头**：安装于车头短边中心，有效识别区域为半径2m、圆心角60°的扇形（左右各30°）
-- **无IMU**，定位依赖激光雷达里程计
+当前阶段不做自动路径规划、不做 Frontier 探索、不做 move_base/DWA/TEB 导航、不做目标搜索控制。小车是否移动由人工速度指令或后续单独模块控制。
 
-### 三、模块划分与功能要求
+### 二、当前主数据流
+1. Gazebo 启动 Scout Mini 和 `clearpath_playpen.world` 场景。
+2. 仿真 16 线雷达发布 `/velodyne_points_raw`。
+3. `pointcloud_to_pointcloud2.py` 转换为 `/velodyne_points`。
+4. `pointcloud_to_laserscan` 将点云投影为 `/scan`。
+5. Cartographer 2D 订阅 `/scan`，发布 `/map` 和 `map -> base_link` 位姿。
+6. `local_grid_mapper` 订阅 `/scan`，发布以 `base_link` 为中心的 `/local_occupancy_grid`。
+7. RViz 显示 `/map`、`/local_occupancy_grid`、`/scan`、TF 和 RobotModel。
 
-#### 1. 检测模块（文件夹：`my_navigation`）
-- **输入**：
-  - 预训练的静态全局地图（`my_map.pgm/.yaml`，存有噪点、墙壁不连续）
-  - 实时16线点云（`/velodyne_points`）
-- **处理**：
-  - 采用**A-LOAM**（仅里程计）实现实时定位，发布`/aft_mapped`（map→base_link位姿）
-  - 实时生成**以小车为中心、2m×2m的局部占据栅格地图**（代价地图），用于避障
-  - **动态物体滤除**：利用静态地图比对，剔除动态点云，仅将“干净点云”发布给局部代价地图
-- **输出**（每2秒更新一次）：
-  - 小车在全局地图中的精确坐标 `(x, y)`
-  - 小车头部朝向角（base_link相对map坐标系，范围 -π~π）
-  - 全局地图（静态）和局部地图（动态）
-- **附加**：接收物品识别模块发来的“物品相对小车坐标”，转换为全局坐标后发布给路径规划模块
+### 三、当前保留模块
+- `my_navigation`
+  - 当前只保留 Cartographer 配置、局部地图节点、仿真启动文件和 RViz 配置。
+  - 主要入口：`my_navigation/launch/scout_mini_mapping_local_grid.launch`
+  - 主要节点：`my_navigation/src/local_grid_mapper.cpp`
+- `cartographer`
+  - Cartographer 核心算法库。
+- `cartographer_ros`
+  - Cartographer ROS 接口。
+- `ugv_gazebo_sim-master`
+  - 保留整个仿真包目录。
+  - 当前主要使用 `scout/scout_gazebo_sim` 和 `scout/scout_control`。
+- `scout_ros-master`
+  - 当前主要使用 `scout_description` 作为小车模型来源。
+- `navigation`
+  - 用户要求保留，但当前主线不启动其中的 move_base/DWA/Navfn。
+- `lslidar_ros`
+  - 用户要求保留，真实雷达驱动后续可能使用。
+- `ugv_sdk`
+  - 用户要求保留，真实 Scout Mini 底盘通信后续可能使用。
+- `function_module`
+  - 用户要求保留。
+- `pointcloud_to_grid`
+  - 保留实验代码，尤其 hector/gmapping 相关历史实验文件，不作为当前主线。
 
-#### 2. 路径规划与驱动模块（文件夹：`search_explorer`）
-- **输入**：
-  - 全局静态地图（只读）
-  - 局部2m×2m实时地图（来自检测模块）
-  - 小车实时位姿 `(x, y, yaw)`
-  - 目标物品全局坐标（监听自检测模块）
-- **核心策略**：
-  - **主路径优先**：沿全局地图的**凸多边形轮廓内边缘**行驶，保持小车中心距障碍/地图边界 **0.6~0.8m**
-  - **禁止后退**：规划路径尽可能只前进和转向，避免倒车
-  - **全局搜索**：优先沿外圈遍历，外圈不可行时走安全中间路线绕过，再回到外圈，避免原地徘徊
-  - **目标趋近**：一旦收到目标物品坐标，立即规划路径驶向该点，使车头（摄像头）尽量靠近物品
-- **避障**：基于局部代价地图，采用DWA或TEB局部规划器
-- **要求**：路径规划算法需考虑地图的凸包轮廓，忽略内部噪点，提取外边界作为导航参考
+### 四、当前不再使用的内容
+- 不再使用 A-LOAM、SC-A-LOAM、LeGO-LOAM、SC-LeGO-LOAM。
+- 不再维护三维 LOAM 点云累计地图、OctoMap、`/laser_cloud_surround`、`/aft_mapped` 等链路。
+- 不再使用 `search_explorer`。
+- 不再启动 Frontier Exploration、move_base、DWA、TEB、Navfn 或 global/local costmap。
+- 不再保留旧的 `obstacle_detector` 动态障碍检测链路作为当前主线。
 
-#### 3. 物品识别模块（文件夹：`ultralytics-8.4.47`）
-- 使用YOLO/Ultralytics模型识别目标物品
-- 检测到物品后，**发布物品相对于小车坐标系的位置（距离+角度）**，供检测模块转换
+### 五、当前运行方式
+推荐启动命令：
 
-### 四、核心算法需求（重点）
-- **实时定位与建图**：采用**A-LOAM**（启动完整 A-LOAM 建图链路），为检测模块提供高频位姿
-- **动态点云滤除**：需实现自定义节点（见此前Prompt1），利用静态地图进行多帧验证，过滤行人/车辆等动态障碍
-- **地图轮廓提取**：针对存在噪点、墙壁不连续的`.pgm`地图，使用**凸包检测**或**形态学滤波**提取最大连通域的外轮廓，作为导航边界
-- **路径规划**：建议采用**A*全局规划**（基于轮廓内缩） + **DWA局部规划**，确保始终沿边缘行驶
+```bash
+source /opt/ros/noetic/setup.bash
+source install_isolated/setup.bash
+roslaunch my_navigation scout_mini_mapping_local_grid.launch gui:=false rviz:=true
+```
 
-### 五、文件修改与版本管理约束
-- **可修改的文件夹**：
-  - `pointcloud_to_grid`（实验代码）
-  - `my_navigation`（检测模块）
-  - `A-LOAM-devel`（修改配置，不改变核心算法逻辑）
-- **不可修改**：其他所有文件（除非另有说明）
-- **可新增文件**：在上述允许文件夹内增加新节点、脚本、配置文件
-- **远程仓库**：`git@github.com:2425260647/slam.git`，使用SSH（若22端口不通，改用`ssh.github.com:443`）
-- **提交规范**：先`git status`，再`git add`允许范围内文件，编写清晰commit message，推送到当前分支（默认master）
+如果要观察局部地图变化，需要另行向小车速度控制话题发布速度：
 
-### 六、实验与小论文支持
-- 论文方案（见`小论文完成方案_hectorSLAM地图质量增强定位_格式统一版.docx`）涉及`pointcloud_to_grid`文件夹中的算法
-- 实验运行后，需将生成的结果（地图、轨迹、日志、图表等）**自动归档至专属子文件夹**，按实验日期/版本命名，便于查阅
+```bash
+rostopic pub /scout_mini_velocity_controller/cmd_vel geometry_msgs/Twist ...
+```
 
-### 七、执行流程
-1. **先整体通读所有相关源码和文档**，理清现有架构和数据流
-2. **识别现有错误或缺失组件**（如无动态滤除节点、无轮廓提取工具等）
-3. **提出具体修改方案**，待我确认后再实施
-4. 实施过程中，**对每处修改解释原因**，并确保不破坏未涉及模块
+### 六、验证标准
+- `roslaunch my_navigation scout_mini_mapping_local_grid.launch --nodes` 中不应出现：
+  - `move_base`
+  - `explorer_controller`
+  - DWA/TEB/Frontier 相关节点
+- 运行时应能看到：
+  - `/scan`
+  - `/map`
+  - `/local_occupancy_grid`
+  - `map -> odom -> base_link` 或等价 TF 链
+- RViz 固定坐标系使用 `map`。
+- `/local_occupancy_grid` 的 `frame_id` 应为 `base_link`，表示它是跟随小车移动的局部实时地图。
 
-### 八、交互要求
-- 所有回复**避免无关说明**，聚焦行动：查看文件、编写代码、运行命令、验证结果
-- 每次回答末尾附带**每日总结**，记录完成事项、待办风险，写入`每日总结.md`
-
----
-
-**请根据以上提示，开始分析项目现状，并给出修改方案与实施步骤。**
-
----
-
-## 每日总结
-- **完成**：将用户原始需求优化为结构化专业提示词，明确模块划分、核心算法、文件约束和实验要求。
-- **待办**：等待用户确认后，开始通读代码，识别缺失功能，提出具体实现计划。
-- **风险**：地图噪点处理、轮廓提取算法效果需实测验证；A-LOAM与无IMU适配需调参。
+### 七、执行流程与协作规则
+1. 所有后续任务必须先给出方案、风险和验证标准，等待用户明确同意后才能实施代码修改、参数修改、launch 修改、删除文件或长时间实验。
+2. 用户明确说“开始”“确认执行”“可以改”等才可执行。
+3. 修改前先 `git status`，确认已有脏文件，不回退用户改动。
+4. 删除或大范围重构前必须列清单并获得用户确认。
+5. 每次修改后尽量运行 `catkin_make` 或 `roslaunch --nodes` 做最小验证。
+6. 每次回答末尾附带“每日总结”，并写入 `每日总结.md`。
