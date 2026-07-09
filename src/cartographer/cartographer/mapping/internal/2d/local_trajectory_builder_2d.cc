@@ -52,6 +52,10 @@ sensor::RangeData
 LocalTrajectoryBuilder2D::TransformToGravityAlignedFrameAndFilter(
     const transform::Rigid3f& transform_to_gravity_aligned_frame,
     const sensor::RangeData& range_data) const {
+  // 2D SLAM 假设激光点云位于近似水平平面。这里先把每个点变换到“重力对齐”
+  // 坐标系，再按 min_z/max_z 裁掉过高或过低的点，最后做体素滤波降采样。
+  // 对 ROS /scan 来说 z 通常接近 0；对由 3D 雷达投影来的 scan，这一步能过滤
+  // 地面、车体或高处噪声，保证后续 scan matcher 只看 2D 障碍轮廓。
   const sensor::RangeData cropped =
       sensor::CropRangeData(sensor::TransformRangeData(
                                 range_data, transform_to_gravity_aligned_frame),
@@ -66,18 +70,28 @@ std::unique_ptr<transform::Rigid2d> LocalTrajectoryBuilder2D::ScanMatch(
     const common::Time time, const transform::Rigid2d& pose_prediction,
     const sensor::PointCloud& filtered_gravity_aligned_point_cloud) {
   if (active_submaps_.submaps().empty()) {
+    // 第一帧还没有可匹配的局部地图，只能相信外推位姿；之后插入 submap 后，
+    // scan-to-map 才开始真正校正位姿。
     return absl::make_unique<transform::Rigid2d>(pose_prediction);
   }
   std::shared_ptr<const Submap2D> matching_submap =
       active_submaps_.submaps().front();
   // The online correlative scan matcher will refine the initial estimate for
   // the Ceres scan matcher.
+  // 这里分两级匹配：
+  //   1. RealTimeCorrelativeScanMatcher2D 在离散窗口内粗搜，能把初值从外推误差中
+  //      拉回到地图附近；
+  //   2. CeresScanMatcher2D 在连续空间里最小化残差，输出更平滑的最终位姿。
   transform::Rigid2d initial_ceres_pose = pose_prediction;
+  // [Innovation 1] Keep the real-time correlative score for diagnostics.
+  // [Innovation 1] If disabled, 0 means "not observed", not a failed score.
+  double real_time_correlative_score = 0.;
 
   if (options_.use_online_correlative_scan_matching()) {
     const double score = real_time_correlative_scan_matcher_.Match(
         pose_prediction, filtered_gravity_aligned_point_cloud,
         *matching_submap->grid(), &initial_ceres_pose);
+    real_time_correlative_score = score;
     kRealTimeCorrelativeScanMatcherScoreMetric->Observe(score);
   }
 
@@ -86,7 +100,7 @@ std::unique_ptr<transform::Rigid2d> LocalTrajectoryBuilder2D::ScanMatch(
   ceres_scan_matcher_.Match(pose_prediction.translation(), initial_ceres_pose,
                             filtered_gravity_aligned_point_cloud,
                             *matching_submap->grid(), pose_observation.get(),
-                            &summary);
+                            &summary, real_time_correlative_score);
   if (pose_observation) {
     kCeresScanMatcherCostMetric->Observe(summary.final_cost);
     const double residual_distance =
@@ -108,12 +122,16 @@ LocalTrajectoryBuilder2D::AddRangeData(
   auto synchronized_data =
       range_data_collator_.AddRangeData(sensor_id, unsynchronized_data);
   if (synchronized_data.ranges.empty()) {
+    // 多雷达或分包数据还没有凑齐同一时间片时会先缓存。单 /scan 场景通常很快
+    // 就能继续向下处理。
     LOG(INFO) << "Range data collator filling buffer.";
     return nullptr;
   }
 
   const common::Time& time = synchronized_data.time;
   // Initialize extrapolator now if we do not ever use an IMU.
+  // 不使用 IMU 时，用第一帧激光时间初始化恒速外推器。之后每个点的时间戳都会
+  // 查询它来做运动补偿。
   if (!options_.use_imu_data()) {
     InitializeExtrapolator(time);
   }
@@ -139,6 +157,8 @@ LocalTrajectoryBuilder2D::AddRangeData(
   std::vector<transform::Rigid3f> range_data_poses;
   range_data_poses.reserve(synchronized_data.ranges.size());
   bool warned = false;
+  // 一帧激光不是同一瞬间完成的。TimedRangefinderPoint 记录了每个点相对帧尾的
+  // 时间，下面逐点外推位姿，把扫描期间小车运动造成的“扭曲”补偿掉。
   for (const auto& range : synchronized_data.ranges) {
     common::Time time_point = time + common::FromSeconds(range.point_time.time);
     if (time_point < extrapolator_->GetLastExtrapolatedTime()) {
@@ -162,6 +182,9 @@ LocalTrajectoryBuilder2D::AddRangeData(
 
   // Drop any returns below the minimum range and convert returns beyond the
   // maximum range into misses.
+  // returns 表示真实打到障碍物的点；misses 表示射线方向上没有在最大有效距离内
+  // 看到障碍。后续概率栅格插入时，returns 会让末端栅格占用概率升高变黑，
+  // misses/射线经过的格子会让空闲概率升高，显示上逐渐变白。
   for (size_t i = 0; i < synchronized_data.ranges.size(); ++i) {
     const sensor::TimedRangefinderPoint& hit =
         synchronized_data.ranges[i].point_time;
@@ -197,6 +220,8 @@ LocalTrajectoryBuilder2D::AddRangeData(
         extrapolator_->EstimateGravityOrientation(time));
     // TODO(gaschler): This assumes that 'range_data_poses.back()' is at time
     // 'time'.
+    // 累计结束后，以最后一个点的传感器位姿作为本批 scan 的原点，并把整批数据
+    // 转到重力对齐坐标系，交给 AddAccumulatedRangeData() 做前端匹配。
     accumulated_range_data_.origin = range_data_poses.back().translation();
     return AddAccumulatedRangeData(
         time,
@@ -220,6 +245,8 @@ LocalTrajectoryBuilder2D::AddAccumulatedRangeData(
   }
 
   // Computes a gravity aligned pose prediction.
+  // 先用外推器给出“没看地图时小车大概在哪”的预测位姿。它可能来自恒速模型、
+  // IMU 或里程计，是 scan matching 的初值，而不是最终定位结果。
   const transform::Rigid3d non_gravity_aligned_pose_prediction =
       extrapolator_->ExtrapolatePose(time);
   const transform::Rigid2d pose_prediction = transform::Project2D(
@@ -233,6 +260,8 @@ LocalTrajectoryBuilder2D::AddAccumulatedRangeData(
   }
 
   // local map frame <- gravity-aligned frame
+  // 核心步骤：把当前 scan 和已有 submap 对齐，得到 local map frame 下的
+  // pose_estimate_2d。也就是 /scan 到局部位姿估计的关键转换。
   std::unique_ptr<transform::Rigid2d> pose_estimate_2d =
       ScanMatch(time, pose_prediction, filtered_gravity_aligned_point_cloud);
   if (pose_estimate_2d == nullptr) {
@@ -243,6 +272,8 @@ LocalTrajectoryBuilder2D::AddAccumulatedRangeData(
       transform::Embed3D(*pose_estimate_2d) * gravity_alignment;
   extrapolator_->AddPose(time, pose_estimate);
 
+  // 用校正后的位姿把本批激光点变到 local frame。注意：submap 插入使用的是
+  // 已匹配后的点云，不是原始外推位姿下的点云，因此局部地图会跟随匹配结果变稳。
   sensor::RangeData range_data_in_local =
       TransformRangeData(gravity_aligned_range_data,
                          transform::Embed3D(pose_estimate_2d->cast<float>()));
@@ -283,8 +314,12 @@ LocalTrajectoryBuilder2D::InsertIntoSubmap(
     const transform::Rigid3d& pose_estimate,
     const Eigen::Quaterniond& gravity_alignment) {
   if (motion_filter_.IsSimilar(time, pose_estimate)) {
+    // 运动不明显时不插入 submap，也不生成后端节点。这样可防止小车静止时同一束
+    // 激光反复更新同一批栅格，导致概率过快饱和。
     return nullptr;
   }
+  // ActiveSubmaps2D 会维护“最多两个活跃 submap”的滚动窗口：当前 scan 会同时
+  // 插入老 submap 和新 submap，让 scan matching 的参考地图连续过渡。
   std::vector<std::shared_ptr<const Submap2D>> insertion_submaps =
       active_submaps_.InsertRangeData(range_data_in_local);
   return absl::make_unique<InsertionResult>(InsertionResult{

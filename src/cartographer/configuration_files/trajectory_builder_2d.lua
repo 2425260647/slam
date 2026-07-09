@@ -46,6 +46,21 @@ TRAJECTORY_BUILDER_2D = {
     occupied_space_weight = 1.,
     translation_weight = 10.,
     rotation_weight = 40.,
+    -- [Innovation 1: Directional Adaptive Fusion Parameters]
+    -- Disabled by default for upstream-compatible pure laser Cartographer.
+    -- Project-specific Lua files can enable this when use_odometry = true.
+    directional_adaptive_fusion_enabled = false,
+    directional_degeneracy_condition_number_threshold = 8.,
+    directional_degeneracy_sigmoid_slope = 0.5,
+    directional_degeneracy_smoothing_alpha = 0.2,
+    directional_degeneracy_min_num_points = 10,
+    directional_degeneracy_eigenvalue_epsilon = 1e-4,
+    directional_adaptive_odom_longitudinal_alpha = 1.0,
+    directional_adaptive_odom_lateral_alpha = 0.0,
+    directional_adaptive_scan_longitudinal_beta = 0.5,
+    directional_adaptive_scan_lateral_beta = 0.0,
+    directional_adaptive_min_scan_weight_scale = 0.2,
+    directional_adaptive_log_scale_change_threshold = 0.25,
     ceres_solver_options = {
       use_nonmonotonic_steps = false,
       max_num_iterations = 20,

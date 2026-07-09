@@ -18,12 +18,28 @@ package cartographer.mapping.scan_matching.proto;
 
 import "cartographer/common/proto/ceres_solver_options.proto";
 
-// NEXT ID: 10
+// NEXT ID: 22
 message CeresScanMatcherOptions2D {
   // Scaling parameters for each cost functor.
   double occupied_space_weight = 1;
   double translation_weight = 2;
   double rotation_weight = 3;
+
+  // [Innovation 1] Directional adaptive laser-odometry fusion parameters for
+  // 2D corridor-like degeneracy. When disabled, CeresScanMatcher2D keeps the
+  // original isotropic translation prior.
+  bool directional_adaptive_fusion_enabled = 10;
+  double directional_degeneracy_condition_number_threshold = 11;
+  double directional_degeneracy_sigmoid_slope = 12;
+  double directional_degeneracy_smoothing_alpha = 13;
+  int32 directional_degeneracy_min_num_points = 14;
+  double directional_degeneracy_eigenvalue_epsilon = 15;
+  double directional_adaptive_odom_longitudinal_alpha = 16;
+  double directional_adaptive_odom_lateral_alpha = 17;
+  double directional_adaptive_scan_longitudinal_beta = 18;
+  double directional_adaptive_scan_lateral_beta = 19;
+  double directional_adaptive_min_scan_weight_scale = 20;
+  double directional_adaptive_log_scale_change_threshold = 21;
 
   // Configure the Ceres solver. See the Ceres documentation for more
   // information: https://code.google.com/p/ceres-solver/

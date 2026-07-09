@@ -11,7 +11,7 @@ options = {
   provide_odom_frame = true,
   publish_frame_projected_to_2d = true,
   use_pose_extrapolator = true,
-  use_odometry = false,
+  use_odometry = true,
   use_nav_sat = false,
   use_landmarks = false,
   num_laser_scans = 1,
@@ -55,6 +55,21 @@ TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.rotation_delta_cost_wei
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.occupied_space_weight = 1.
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 10.
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.rotation_weight = 40.
+-- [Innovation 1: Directional Adaptive Fusion Parameters]
+-- Enables 2D scan covariance based corridor degeneracy detection. This module
+-- is automatically disabled by cartographer_ros when use_odometry = false.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_fusion_enabled = true
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_condition_number_threshold = 8.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_sigmoid_slope = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_smoothing_alpha = 0.2
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_min_num_points = 10
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_eigenvalue_epsilon = 1e-4
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_odom_longitudinal_alpha = 1.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_odom_lateral_alpha = 0.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_longitudinal_beta = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_lateral_beta = 0.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_min_scan_weight_scale = 0.2
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_log_scale_change_threshold = 0.25
 
 TRAJECTORY_BUILDER_2D.motion_filter.max_time_seconds = 0.5
 TRAJECTORY_BUILDER_2D.motion_filter.max_distance_meters = 0.08

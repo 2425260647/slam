@@ -82,6 +82,19 @@ TrajectoryOptions CreateTrajectoryOptions(
   } else {
     options.ignore_out_of_order_messages = false;
   }
+  // [Innovation 1] The adaptive fusion module is an odometry-aided prior.
+  // [Innovation 1] If use_odometry=false, force it to sleep for pure laser.
+  if (!options.use_odometry &&
+      options.trajectory_builder_options.has_trajectory_builder_2d_options()) {
+    auto* ceres_options = options.trajectory_builder_options
+                              .mutable_trajectory_builder_2d_options()
+                              ->mutable_ceres_scan_matcher_options();
+    if (ceres_options->directional_adaptive_fusion_enabled()) {
+      LOG(INFO) << "[Innovation1] use_odometry=false; disabling directional "
+                   "adaptive fusion.";
+      ceres_options->set_directional_adaptive_fusion_enabled(false);
+    }
+  }
   CheckTrajectoryOptions(options);
   return options;
 }
