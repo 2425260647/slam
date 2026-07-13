@@ -19,17 +19,24 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <limits>
 #include <map>
 #include <memory>
+#include <mutex>
 #include <string>
 #include <vector>
 
-#include "cartographer/common/internal/ceres_solver_options.h"
+#include "absl/types/optional.h"
 #include "cartographer/common/histogram.h"
+#include "cartographer/common/internal/ceres_solver_options.h"
 #include "cartographer/common/math.h"
+#include "cartographer/common/time.h"
+#include "cartographer/mapping/directional_degeneracy_metric.h"
 #include "cartographer/mapping/internal/optimization/ceres_pose.h"
 #include "cartographer/mapping/internal/optimization/cost_functions/landmark_cost_function_2d.h"
 #include "cartographer/mapping/internal/optimization/cost_functions/spa_cost_function_2d.h"
+#include "cartographer/mapping/internal/optimization/slip_detector.h"
+#include "cartographer/mapping/slip_metric.h"
 #include "cartographer/sensor/odometry_data.h"
 #include "cartographer/transform/transform.h"
 #include "ceres/ceres.h"
@@ -37,6 +44,35 @@
 
 namespace cartographer {
 namespace mapping {
+namespace {
+
+// [Innovation 2] 保存最新一致性异常诊断指标，供 cartographer_ros 发布话题使用。
+// [Innovation 2] 后端 pose-graph 优化线程写入，ROS timer 回调读取，因此用
+// [Innovation 2] 一个简单 mutex 避免 data race。
+std::mutex* LatestSlipMetricMutex() {
+  static auto* mutex = new std::mutex;
+  return mutex;
+}
+
+// [Innovation 2] 函数内 static 避免跨编译单元初始化顺序问题。
+SlipMetric* LatestSlipMetric() {
+  static auto* metric = new SlipMetric;
+  return metric;
+}
+
+// [Innovation 2] 写入一份线程安全的一致性异常指标快照，供 ROS 层读取。
+void SetLatestSlipMetric(const SlipMetric& metric) {
+  std::lock_guard<std::mutex> lock(*LatestSlipMetricMutex());
+  *LatestSlipMetric() = metric;
+}
+
+}  // namespace
+
+SlipMetric GetLatestSlipMetric() {
+  std::lock_guard<std::mutex> lock(*LatestSlipMetricMutex());
+  return *LatestSlipMetric();
+}
+
 namespace optimization {
 namespace {
 
@@ -44,6 +80,29 @@ using ::cartographer::mapping::optimization::CeresPose;
 using LandmarkNode = ::cartographer::mapping::PoseGraphInterface::LandmarkNode;
 using TrajectoryData =
     ::cartographer::mapping::PoseGraphInterface::TrajectoryData;
+
+// [Innovation 2] 将单条边的检测结果转换成公开诊断快照。
+// [Innovation 2] translation_weight/rotation_weight 是这条 odometry 边真正
+// [Innovation 2] 注入 Ceres residual 的动态权重。
+SlipMetric ToSlipMetric(const SlipDetectorResult& result,
+                        const common::Time time,
+                        const double translation_weight,
+                        const double rotation_weight) {
+  SlipMetric metric;
+  metric.enabled = result.enabled;
+  metric.slipping = result.slipping;
+  metric.slip_score = result.slip_score;
+  metric.gated_slip_score = result.gated_slip_score;
+  metric.lateral_error = result.lateral_error;
+  metric.yaw_error = result.yaw_error;
+  metric.lidar_reliability_available = result.lidar_reliability_available;
+  metric.lidar_reliability = result.lidar_reliability;
+  metric.weight_scale = result.weight_scale;
+  metric.translation_weight = translation_weight;
+  metric.rotation_weight = rotation_weight;
+  metric.time = time;
+  return metric;
+}
 
 // For fixed frame pose.
 std::unique_ptr<transform::Rigid3d> Interpolate(
@@ -192,7 +251,22 @@ void OptimizationProblem2D::AddFixedFramePoseData(
 
 void OptimizationProblem2D::AddTrajectoryNode(const int trajectory_id,
                                               const NodeSpec2D& node_data) {
-  node_data_.Append(trajectory_id, node_data);
+  // [Innovation 2] 在节点进入后端时只做一次时间对齐，并把指标副本固化到
+  // [Innovation 2] NodeId。Query 函数内部持锁且返回值拷贝，因此这里不会与
+  // [Innovation 2] 前端 scan matcher 写缓存产生 data race。
+  const NodeId node_id = node_data_.Append(trajectory_id, node_data);
+  if (options_.slip_adaptive_odometry_weight_enabled() &&
+      options_.slip_lidar_reliability_gate_enabled()) {
+    const absl::optional<DirectionalDegeneracyMetric> degeneracy_metric =
+        QueryDirectionalDegeneracyMetric(
+            node_data.time,
+            common::FromSeconds(std::max(
+                0., options_.slip_degeneracy_metric_max_time_delta_sec())));
+    if (degeneracy_metric.has_value()) {
+      directional_degeneracy_metrics_by_node_.emplace(node_id,
+                                                      *degeneracy_metric);
+    }
+  }
   trajectory_data_[trajectory_id];
 }
 
@@ -203,11 +277,15 @@ void OptimizationProblem2D::SetTrajectoryData(
 
 void OptimizationProblem2D::InsertTrajectoryNode(const NodeId& node_id,
                                                  const NodeSpec2D& node_data) {
+  // [Innovation 2] 反序列化节点没有与当前进程前端指标一一对应的可靠来源，
+  // [Innovation 2] 因此不伪造绑定；可靠性门控会把这类节点视为 unknown。
   node_data_.Insert(node_id, node_data);
   trajectory_data_[node_id.trajectory_id];
 }
 
 void OptimizationProblem2D::TrimTrajectoryNode(const NodeId& node_id) {
+  // [Innovation 2] 节点裁剪时同步删除绑定指标，避免长期运行时诊断数据累积。
+  directional_degeneracy_metrics_by_node_.erase(node_id);
   empty_imu_data_.Trim(node_data_, node_id);
   odometry_data_.Trim(node_data_, node_id);
   fixed_frame_pose_data_.Trim(node_data_, node_id);
@@ -301,6 +379,17 @@ void OptimizationProblem2D::Solve(
                            &problem, options_.huber_scale());
   // Add penalties for violating odometry or changes between consecutive nodes
   // if odometry is not available.
+  // [Innovation 2] 汇总本次 Solve() 的诊断结果。后端会反复重放历史边，
+  // [Innovation 2] 所以这里按单次 Solve() 统计，避免将同一异常重复计数。
+  SlipMetric solve_slip_metric;
+  bool has_slip_metric = false;
+  std::uint32_t anomaly_trigger_count = 0;
+  double minimum_weight_scale = std::numeric_limits<double>::infinity();
+  int latest_anomaly_trajectory_id = -1;
+  int latest_anomaly_node_index = -1;
+  common::Time latest_anomaly_time = common::FromUniversal(0);
+  double latest_anomaly_raw_score = 0.;
+  double latest_anomaly_gated_score = 0.;
   for (auto node_it = node_data_.begin(); node_it != node_data_.end();) {
     const int trajectory_id = node_it->id.trajectory_id;
     const auto trajectory_end = node_data_.EndOfTrajectory(trajectory_id);
@@ -308,6 +397,14 @@ void OptimizationProblem2D::Solve(
       node_it = trajectory_end;
       continue;
     }
+
+    // [Innovation 2] 每条 trajectory 在一次 Solve() 中使用一个确定性的滑移
+    // [Innovation 2] 状态机，并按节点时间顺序更新。这样每条 odometry 边都有
+    // [Innovation 2] 自己的动态权重，而不是把“最新状态”错误套到全部历史边。
+    SlipDetector slip_detector(options_);
+    // [Innovation 2] 用状态上升沿统计“进入异常”的次数，而不是统计处于异常的
+    // [Innovation 2] 边数；中间迟滞区保持异常时不会反复增加计数。
+    bool previous_anomaly_state = false;
 
     auto prev_node_it = node_it;
     for (++node_it; node_it != trajectory_end; ++node_it) {
@@ -321,23 +418,90 @@ void OptimizationProblem2D::Solve(
         continue;
       }
 
+      // [Innovation 2] 相邻节点之间的 LiDAR 前端 local SLAM 相对位姿。
+      // [Innovation 2] 它既作为原本的 local SLAM 后端约束，也作为抗打滑检测中
+      // [Innovation 2] 与轮式里程计相对位姿对比的参考。
+      const transform::Rigid3d relative_local_slam_pose =
+          transform::Embed3D(first_node_data.local_pose_2d.inverse() *
+                             second_node_data.local_pose_2d);
+
       // Add a relative pose constraint based on the odometry (if available).
       std::unique_ptr<transform::Rigid3d> relative_odometry =
           CalculateOdometryBetweenNodes(trajectory_id, first_node_data,
                                         second_node_data);
       if (relative_odometry != nullptr) {
+        // [Innovation 2] 第二版按 NodeId 读取节点创建时固化的退化指标。
+        // [Innovation 2] 即使前端缓存继续写入或淘汰旧帧，历史边的门控输入也
+        // [Innovation 2] 保持不变；map 只在 pose graph 串行上下文中访问。
+        const auto degeneracy_metric_it =
+            directional_degeneracy_metrics_by_node_.find(second_node_id);
+        const bool lidar_reliability_available =
+            degeneracy_metric_it !=
+                directional_degeneracy_metrics_by_node_.end() &&
+            degeneracy_metric_it->second.enabled;
+        const double lidar_reliability =
+            lidar_reliability_available
+                ? std::min(
+                      1., std::max(0., degeneracy_metric_it->second.confidence))
+                : 0.;
+        // [Innovation 2] 单边 per-edge 抗打滑 odometry 动态权重。
+        // [Innovation 2] 检测器在 2D 平面比较 T_scan_ij 与 T_odom_ij，重点观察
+        // [Innovation 2] 横向 lateral 和航向 yaw 不一致。若判定打滑，则本条
+        // [Innovation 2] odometry residual 立即降权；若正常，则平滑恢复。
+        const SlipDetectorResult slip_result = slip_detector.Update(
+            transform::Project2D(relative_local_slam_pose),
+            transform::Project2D(*relative_odometry),
+            lidar_reliability_available, lidar_reliability);
+        const double dynamic_odometry_translation_weight =
+            options_.odometry_translation_weight() * slip_result.weight_scale;
+        const double dynamic_odometry_rotation_weight =
+            options_.odometry_rotation_weight() * slip_result.weight_scale;
+        has_slip_metric = true;
+        minimum_weight_scale =
+            std::min(minimum_weight_scale, slip_result.weight_scale);
+        if (slip_result.slipping && !previous_anomaly_state) {
+          ++anomaly_trigger_count;
+          latest_anomaly_trajectory_id = second_node_id.trajectory_id;
+          latest_anomaly_node_index = second_node_id.node_index;
+          latest_anomaly_time = second_node_data.time;
+          latest_anomaly_raw_score = slip_result.slip_score;
+          latest_anomaly_gated_score = slip_result.gated_slip_score;
+        }
+        previous_anomaly_state = slip_result.slipping;
+        solve_slip_metric = ToSlipMetric(slip_result, second_node_data.time,
+                                         dynamic_odometry_translation_weight,
+                                         dynamic_odometry_rotation_weight);
+        solve_slip_metric.anomaly_trigger_count = anomaly_trigger_count;
+        solve_slip_metric.minimum_weight_scale = minimum_weight_scale;
+        solve_slip_metric.latest_anomaly_trajectory_id =
+            latest_anomaly_trajectory_id;
+        solve_slip_metric.latest_anomaly_node_index = latest_anomaly_node_index;
+        solve_slip_metric.latest_anomaly_time = latest_anomaly_time;
+        solve_slip_metric.latest_anomaly_raw_score = latest_anomaly_raw_score;
+        solve_slip_metric.latest_anomaly_gated_score =
+            latest_anomaly_gated_score;
+        if (slip_result.enabled && slip_result.slipping) {
+          LOG_EVERY_N(INFO, 50)
+              << "[Innovation2] Consistency anomaly detected at NodeId("
+              << second_node_id.trajectory_id << ", "
+              << second_node_id.node_index
+              << "). score=" << slip_result.slip_score
+              << ", gated_score=" << slip_result.gated_slip_score
+              << ", lateral_error=" << slip_result.lateral_error
+              << ", yaw_error=" << slip_result.yaw_error
+              << ", lidar_reliability=" << slip_result.lidar_reliability
+              << ", odometry weight scaled by " << slip_result.weight_scale
+              << ".";
+        }
         problem.AddResidualBlock(
             CreateAutoDiffSpaCostFunction(Constraint::Pose{
-                *relative_odometry, options_.odometry_translation_weight(),
-                options_.odometry_rotation_weight()}),
+                *relative_odometry, dynamic_odometry_translation_weight,
+                dynamic_odometry_rotation_weight}),
             nullptr /* loss function */, C_nodes.at(first_node_id).data(),
             C_nodes.at(second_node_id).data());
       }
 
       // Add a relative pose constraint based on consecutive local SLAM poses.
-      const transform::Rigid3d relative_local_slam_pose =
-          transform::Embed3D(first_node_data.local_pose_2d.inverse() *
-                             second_node_data.local_pose_2d);
       problem.AddResidualBlock(
           CreateAutoDiffSpaCostFunction(
               Constraint::Pose{relative_local_slam_pose,
@@ -347,6 +511,9 @@ void OptimizationProblem2D::Solve(
           C_nodes.at(second_node_id).data());
     }
   }
+  // [Innovation 2] 完整重放完成后一次性发布稳定快照，避免 ROS 线程读到
+  // [Innovation 2] 只处理了一半历史边的中间统计值。
+  SetLatestSlipMetric(has_slip_metric ? solve_slip_metric : SlipMetric{});
 
   std::map<int, std::array<double, 3>> C_fixed_frames;
   for (auto node_it = node_data_.begin(); node_it != node_data_.end();) {

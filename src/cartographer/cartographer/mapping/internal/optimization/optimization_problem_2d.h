@@ -27,6 +27,7 @@
 #include "Eigen/Geometry"
 #include "cartographer/common/port.h"
 #include "cartographer/common/time.h"
+#include "cartographer/mapping/directional_degeneracy_metric.h"
 #include "cartographer/mapping/id.h"
 #include "cartographer/mapping/internal/optimization/optimization_problem_interface.h"
 #include "cartographer/mapping/pose_graph_interface.h"
@@ -126,6 +127,10 @@ class OptimizationProblem2D
 
   optimization::proto::OptimizationProblemOptions options_;
   MapById<NodeId, NodeSpec2D> node_data_;
+  // [Innovation 2] 前端指标在节点创建时按时间对齐并绑定到 NodeId。历史边在
+  // [Innovation 2] 后续 Solve() 中读取该稳定副本，不再依赖有限长度的全局缓存。
+  std::map<NodeId, DirectionalDegeneracyMetric>
+      directional_degeneracy_metrics_by_node_;
   MapById<SubmapId, SubmapSpec2D> submap_data_;
   std::map<std::string, transform::Rigid3d> landmark_data_;
   sensor::MapByTime<sensor::ImuData> empty_imu_data_;

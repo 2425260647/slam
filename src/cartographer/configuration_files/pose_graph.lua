@@ -69,6 +69,23 @@ POSE_GRAPH = {
     local_slam_pose_rotation_weight = 1e5,
     odometry_translation_weight = 1e5,
     odometry_rotation_weight = 1e5,
+    -- [Innovation 2: IMU-free Slip-Adaptive Backend Odometry Parameters]
+    -- Disabled by default for upstream-compatible Cartographer behavior.
+    slip_adaptive_odometry_weight_enabled = false,
+    slip_lateral_error_weight = 1.0,
+    slip_yaw_error_weight = 1.0,
+    slip_high_threshold = 0.15,
+    slip_low_threshold = 0.05,
+    slip_min_weight_scale = 0.1,
+    slip_max_weight_scale = 1.0,
+    slip_recovery_alpha = 0.05,
+    slip_min_motion_distance = 0.02,
+    slip_min_motion_angle = 0.01,
+    -- [Innovation 2] Time-aligned LiDAR reliability gate from Innovation 1.
+    slip_lidar_reliability_gate_enabled = false,
+    slip_lidar_reliability_min = 0.6,
+    slip_degeneracy_metric_max_time_delta_sec = 0.25,
+    slip_unknown_keep_previous_weight = true,
     fixed_frame_pose_translation_weight = 1e1,
     fixed_frame_pose_rotation_weight = 1e2,
     fixed_frame_pose_use_tolerant_loss = false,

@@ -18,7 +18,7 @@ package cartographer.mapping.optimization.proto;
 
 import "cartographer/common/proto/ceres_solver_options.proto";
 
-// NEXT ID: 26
+// NEXT ID: 40
 message OptimizationProblemOptions {
   reserved 20 to 22; // For visual constraints.
   // Scaling parameter for Huber loss function.
@@ -45,6 +45,25 @@ message OptimizationProblemOptions {
   // Scaling parameter for rotation between consecutive nodes based on the
   // odometry.
   double odometry_rotation_weight = 17;
+
+  // [Innovation 2] IMU-free slip-adaptive backend odometry weighting.
+  // [Innovation 2] The detector compares consecutive local SLAM and wheel
+  // [Innovation 2] odometry relative poses, mainly in lateral and yaw
+  // [Innovation 2] components, then scales each odometry edge independently.
+  bool slip_adaptive_odometry_weight_enabled = 26;
+  double slip_lateral_error_weight = 27;
+  double slip_yaw_error_weight = 28;
+  double slip_high_threshold = 29;
+  double slip_low_threshold = 30;
+  double slip_min_weight_scale = 31;
+  double slip_max_weight_scale = 32;
+  double slip_recovery_alpha = 33;
+  double slip_min_motion_distance = 34;
+  double slip_min_motion_angle = 35;
+  bool slip_lidar_reliability_gate_enabled = 36;
+  double slip_lidar_reliability_min = 37;
+  double slip_degeneracy_metric_max_time_delta_sec = 38;
+  bool slip_unknown_keep_previous_weight = 39;
 
   // Scaling parameter for the FixedFramePose translation. Unit: 1/meters.
   double fixed_frame_pose_translation_weight = 11;

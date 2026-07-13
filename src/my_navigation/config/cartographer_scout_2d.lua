@@ -92,6 +92,25 @@ POSE_GRAPH.global_constraint_search_after_n_seconds = 10.
 POSE_GRAPH.optimization_problem.huber_scale = 1e1
 POSE_GRAPH.optimization_problem.local_slam_pose_translation_weight = 1e5
 POSE_GRAPH.optimization_problem.local_slam_pose_rotation_weight = 1e5
+-- [Innovation 2: IMU-free Slip-Adaptive Backend Odometry Parameters]
+-- Uses local LiDAR-SLAM lateral/yaw consistency to down-weight wheel odometry
+-- edges when slip is detected. No IMU data is used.
+POSE_GRAPH.optimization_problem.slip_adaptive_odometry_weight_enabled = true
+POSE_GRAPH.optimization_problem.slip_lateral_error_weight = 1.0
+POSE_GRAPH.optimization_problem.slip_yaw_error_weight = 1.0
+POSE_GRAPH.optimization_problem.slip_high_threshold = 0.03
+POSE_GRAPH.optimization_problem.slip_low_threshold = 0.012
+POSE_GRAPH.optimization_problem.slip_min_weight_scale = 0.1
+POSE_GRAPH.optimization_problem.slip_max_weight_scale = 1.0
+POSE_GRAPH.optimization_problem.slip_recovery_alpha = 0.05
+POSE_GRAPH.optimization_problem.slip_min_motion_distance = 0.02
+POSE_GRAPH.optimization_problem.slip_min_motion_angle = 0.01
+-- [Innovation 2] 第二版：使用创新点一的时间对齐退化指标做 LiDAR 可靠性门控。
+-- 只有在 LiDAR 非退化方向可靠时，才允许 LiDAR-odom 残差触发后端 odom 降权。
+POSE_GRAPH.optimization_problem.slip_lidar_reliability_gate_enabled = true
+POSE_GRAPH.optimization_problem.slip_lidar_reliability_min = 0.5
+POSE_GRAPH.optimization_problem.slip_degeneracy_metric_max_time_delta_sec = 0.25
+POSE_GRAPH.optimization_problem.slip_unknown_keep_previous_weight = true
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 50
 POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 4
 
