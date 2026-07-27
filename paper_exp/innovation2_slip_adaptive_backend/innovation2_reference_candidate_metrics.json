@@ -1,0 +1,28 @@
+{
+  "ref_scan_r050_h0030": {
+    "map_area_m2": 932.5575277939438,
+    "log_slip_trigger_count": 0,
+    "slip_score_max": 0.0226135216653347,
+    "slip_score_mean": 0.007230090593781575,
+    "slip_score_p90": 0.015337169170379639,
+    "weight_scale_min": 1.0,
+    "weight_scale_mean": 1.0,
+    "slip_state_true_count": 0,
+    "slip_state_true_ratio": 0.0,
+    "lidar_reliability_mean": 0.35261642879137656,
+    "lidar_reliability_p90": 0.6209616661071777
+  },
+  "ref_scan_r055_h0025": {
+    "map_area_m2": 932.5575277939438,
+    "log_slip_trigger_count": 0,
+    "slip_score_max": 0.0226135216653347,
+    "slip_score_mean": 0.00725596735199454,
+    "slip_score_p90": 0.015337169170379639,
+    "weight_scale_min": 1.0,
+    "weight_scale_mean": 1.0,
+    "slip_state_true_count": 0,
+    "slip_state_true_ratio": 0.0,
+    "lidar_reliability_mean": 0.3530705057859977,
+    "lidar_reliability_p90": 0.6209616661071777
+  }
+}

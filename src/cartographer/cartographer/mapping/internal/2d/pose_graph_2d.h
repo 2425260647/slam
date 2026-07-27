@@ -61,6 +61,15 @@ namespace mapping {
 // Each node has been matched against one or more submaps (adding a constraint
 // for each match), both poses of nodes and of submaps are to be optimized.
 // All constraints are between a submap i and a node j.
+//
+// 中文导读：
+// PoseGraph2D 是 Cartographer 2D 的“后端”。LocalTrajectoryBuilder2D 已经把
+// /scan 匹配成 local_pose，并插入 active submaps；PoseGraph2D 在此基础上：
+//   1. 把每次有效 scan 保存为 trajectory node；
+//   2. 记录 node 与插入 submap 之间的 INTRA_SUBMAP 约束；
+//   3. 对 finished submap 和历史 node 做 scan matching，寻找 INTER_SUBMAP 约束；
+//   4. 用 OptimizationProblem2D 联合优化所有 node/submap/landmark 位姿；
+//   5. 一旦发现跨时间或跨轨迹约束，就相当于完成回环，把历史轨迹整体拉正。
 class PoseGraph2D : public PoseGraph {
  public:
   PoseGraph2D(
@@ -77,6 +86,10 @@ class PoseGraph2D : public PoseGraph {
   // node data was inserted into the 'insertion_submaps'. If
   // 'insertion_submaps.front().finished()' is 'true', data was inserted into
   // this submap for the last time.
+  //
+  // 这里接收的是前端已经算好的局部结果，不重新处理原始 /scan。后端只关心：
+  // 这个节点在 local frame 的位姿、它被插入了哪些 submap，以及是否有 submap
+  // 因为这一帧而完成。
   NodeId AddNode(
       std::shared_ptr<const TrajectoryNode::Data> constant_data,
       int trajectory_id,
@@ -187,12 +200,16 @@ class PoseGraph2D : public PoseGraph {
       EXCLUSIVE_LOCKS_REQUIRED(mutex_);
 
   // Adds constraints for a node, and starts scan matching in the background.
+  // 一个新 node 到来后，会立即添加它和 insertion_submaps 的内部约束；同时对
+  // 所有已完成 submap 发起后台约束搜索，用于发现局部闭环和全局回环。
   WorkItem::Result ComputeConstraintsForNode(
       const NodeId& node_id,
       std::vector<std::shared_ptr<const Submap2D>> insertion_submaps,
       bool newly_finished_submap) LOCKS_EXCLUDED(mutex_);
 
   // Computes constraints for a node and submap pair.
+  // 根据轨迹连通关系决定做局部窗口匹配还是全局 submap 匹配。匹配成功后产生的
+  // INTER_SUBMAP 约束会进入优化问题，是回环校正的关键。
   void ComputeConstraint(const NodeId& node_id, const SubmapId& submap_id)
       LOCKS_EXCLUDED(mutex_);
 
@@ -255,6 +272,8 @@ class PoseGraph2D : public PoseGraph {
   int num_nodes_since_last_loop_closure_ GUARDED_BY(mutex_) = 0;
 
   // Current optimization problem.
+  // optimization_problem_ 保存待优化的 submap/node 初值和传感器约束；
+  // constraint_builder_ 负责异步 scan matching，产出可加入后端的约束。
   std::unique_ptr<optimization::OptimizationProblem2D> optimization_problem_;
   constraints::ConstraintBuilder2D constraint_builder_;
 

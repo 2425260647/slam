@@ -62,6 +62,8 @@ float ComputeCandidateScore(const ProbabilityGrid& probability_grid,
                             const DiscreteScan2D& discrete_scan,
                             int x_index_offset, int y_index_offset) {
   float candidate_score = 0.f;
+  // 对概率栅格的候选打分很直观：把离散后的 scan 平移到候选格子上，
+  // 逐点读取占用概率并求平均。点越多落在墙/障碍物格子上，分数越高。
   for (const Eigen::Array2i& xy_index : discrete_scan) {
     const Eigen::Array2i proposed_xy_index(xy_index.x() + x_index_offset,
                                            xy_index.y() + y_index_offset);
@@ -84,6 +86,8 @@ std::vector<Candidate2D>
 RealTimeCorrelativeScanMatcher2D::GenerateExhaustiveSearchCandidates(
     const SearchParameters& search_parameters) const {
   int num_candidates = 0;
+  // SearchParameters 已经根据线速度窗口、角度窗口和分辨率算出了每个旋转 scan
+  // 允许的 x/y 栅格偏移范围。这里把窗口内所有候选都枚举出来。
   for (int scan_index = 0; scan_index != search_parameters.num_scans;
        ++scan_index) {
     const int num_linear_x_candidates =
@@ -121,6 +125,8 @@ double RealTimeCorrelativeScanMatcher2D::Match(
   CHECK(pose_estimate != nullptr);
 
   const Eigen::Rotation2Dd initial_rotation = initial_pose_estimate.rotation();
+  // 先把点云旋转到初始角度附近。后续 GenerateRotatedScans() 只枚举相对初始角的
+  // 小角度扰动，减少重复计算。
   const sensor::PointCloud rotated_point_cloud = sensor::TransformPointCloud(
       point_cloud,
       transform::Rigid3f::Rotation(Eigen::AngleAxisf(
@@ -135,12 +141,16 @@ double RealTimeCorrelativeScanMatcher2D::Match(
       grid.limits(), rotated_scans,
       Eigen::Translation2f(initial_pose_estimate.translation().x(),
                            initial_pose_estimate.translation().y()));
+  // 生成所有候选、逐个打分，再选择最高分。这个过程是“相关匹配”：不求梯度，
+  // 直接比较 scan 和地图在不同偏移下的重合程度。
   std::vector<Candidate2D> candidates =
       GenerateExhaustiveSearchCandidates(search_parameters);
   ScoreCandidates(grid, discrete_scans, search_parameters, &candidates);
 
   const Candidate2D& best_candidate =
       *std::max_element(candidates.begin(), candidates.end());
+  // 候选内部记录的是相对 initial_pose_estimate 的平移和角度修正，返回时组合成
+  // 粗校正后的位姿，供 Ceres 继续精修。
   *pose_estimate = transform::Rigid2d(
       {initial_pose_estimate.translation().x() + best_candidate.x,
        initial_pose_estimate.translation().y() + best_candidate.y},
@@ -168,6 +178,8 @@ void RealTimeCorrelativeScanMatcher2D::ScoreCandidates(
         break;
     }
     candidate.score *=
+        // 评分中额外加入“离初值越远惩罚越大”的先验。否则在重复结构场景里，
+        // 一个远处但看起来相似的位置可能获得过高分数。
         std::exp(-common::Pow2(std::hypot(candidate.x, candidate.y) *
                                    options_.translation_delta_cost_weight() +
                                std::abs(candidate.orientation) *

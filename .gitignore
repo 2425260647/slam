@@ -42,6 +42,7 @@ src/ugv_gazebo_sim-master/scout/.vscode/
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.docx_deps/
 
 # Editor and local runtime files
 .vscode/
@@ -53,3 +54,19 @@ __pycache__/
 # ROS logs and generated maps outside source control unless added explicitly
 .ros/
 *.log
+*.pbstream
+
+# Reproducible experiment run products. Keep scripts, aggregate metrics,
+# reports, and comparison figures at each experiment directory's top level.
+paper_exp/**/runs/
+paper_exp/**/runs_valid/
+paper_exp/**/parameter_scan_runs/
+paper_exp/**/reference_candidate_runs/
+paper_exp/**/scan_configs/
+paper_exp/formal_corridor_*/partial_precheck/
+paper_exp/formal_corridor_*/missing_wall_stage_check/
+paper_exp/formal_corridor_*/repeat_*_clean_baseline/
+
+# Large manuscript figure exports; PNG/SVG sources remain versioned.
+docs/paper_assets/*.pdf
+docs/paper_assets/*.tiff

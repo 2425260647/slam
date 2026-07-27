@@ -139,6 +139,8 @@ void Submap2D::InsertRangeData(
     const RangeDataInserterInterface* range_data_inserter) {
   CHECK(grid_);
   CHECK(!insertion_finished());
+  // 真正的“建图写栅格”发生在 range_data_inserter->Insert()。对概率栅格而言，
+  // returns 末端会增加占用概率，射线经过和 misses 会增加空闲概率。
   range_data_inserter->Insert(range_data, grid_.get());
   set_num_range_data(num_range_data() + 1);
 }
@@ -146,6 +148,8 @@ void Submap2D::InsertRangeData(
 void Submap2D::Finish() {
   CHECK(grid_);
   CHECK(!insertion_finished());
+  // submap 完成后裁掉外围未知区域，减少后端保存和 scan matching 预计算的负担。
+  // Finish 后该 submap 内容固定，才能作为稳定的回环匹配目标。
   grid_ = grid_->ComputeCroppedGrid();
   set_insertion_finished(true);
 }
@@ -160,14 +164,21 @@ std::vector<std::shared_ptr<const Submap2D>> ActiveSubmaps2D::submaps() const {
 
 std::vector<std::shared_ptr<const Submap2D>> ActiveSubmaps2D::InsertRangeData(
     const sensor::RangeData& range_data) {
+  // 第一次插入或最新 submap 已经收满 num_range_data 帧时，新建一个 submap。
+  // 新 submap 的原点取当前 scan 原点附近，这样局部地图总是围绕机器人当前区域
+  // 展开，而不是一开始就创建一张无限大地图。
   if (submaps_.empty() ||
       submaps_.back()->num_range_data() == options_.num_range_data()) {
     AddSubmap(range_data.origin.head<2>());
   }
+  // 同一帧 scan 同时插入所有 active submap。这个重叠期是 Cartographer submap
+  // 平滑接力的关键：老图负责当前匹配稳定性，新图负责积累下一阶段地图。
   for (auto& submap : submaps_) {
     submap->InsertRangeData(range_data, range_data_inserter_.get());
   }
   if (submaps_.front()->num_range_data() == 2 * options_.num_range_data()) {
+    // 老 submap 经过完整生命周期后固定下来。之后 LocalTrajectoryBuilder2D 不再
+    // 修改它，PoseGraph2D 可以用它做跨时间、跨轨迹的约束搜索。
     submaps_.front()->Finish();
   }
   return submaps();
@@ -226,6 +237,8 @@ void ActiveSubmaps2D::AddSubmap(const Eigen::Vector2f& origin) {
     // This will crop the finished Submap before inserting a new Submap to
     // reduce peak memory usage a bit.
     CHECK(submaps_.front()->insertion_finished());
+    // ActiveSubmaps2D 只保留前端还需要插入的 submap。被 erase 的 finished submap
+    // 不会丢失：PoseGraph2D 已经持有 shared_ptr，用于后端优化和回环检测。
     submaps_.erase(submaps_.begin());
   }
   submaps_.push_back(absl::make_unique<Submap2D>(

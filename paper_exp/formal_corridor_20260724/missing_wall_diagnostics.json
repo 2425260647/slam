@@ -1,0 +1,262 @@
+{
+  "gap_far_end": {
+    "box": [
+      70.5,
+      77.8,
+      3.25,
+      4.35
+    ],
+    "control_box": [
+      66.0,
+      70.0,
+      3.15,
+      4.15
+    ],
+    "finite_scan_bin_ratio_mean": 0.8351120093687432,
+    "finite_scan_bin_ratio_min": 0.6331484049930652,
+    "frames": 514,
+    "gap_height_filter_keep_ratio": 0.9981055783505719,
+    "gap_projection_keep_ratio": 0.10754920030581411,
+    "gap_ring_counts": {
+      "0": 53161,
+      "1": 56545,
+      "10": 52517,
+      "11": 49401,
+      "12": 50781,
+      "13": 48838,
+      "14": 47433,
+      "15": 46366,
+      "2": 54453,
+      "3": 60155,
+      "4": 156468,
+      "5": 127828,
+      "6": 152862,
+      "7": 168670,
+      "8": 58466,
+      "9": 57068
+    },
+    "gap_to_control_projected_ratio": 2.8590406695997426,
+    "gap_to_control_raw_ratio": 2.294554322724743,
+    "gap_z_max_m": 0.5583638548851013,
+    "gap_z_median_m": -0.05742298811674118,
+    "gap_z_min_m": -0.6861667633056641,
+    "height_filtered_raw_points_in_control": 538125,
+    "height_filtered_raw_points_in_gap": 1238661,
+    "map_control": {
+      "cells": 1701,
+      "free_cells": 867,
+      "free_ratio": 0.5097001763668431,
+      "occupied_cells": 117,
+      "occupied_ratio": 0.06878306878306878,
+      "unknown_cells": 717,
+      "unknown_ratio": 0.42151675485008816
+    },
+    "map_gap": {
+      "cells": 3381,
+      "free_cells": 2146,
+      "free_ratio": 0.634723454599231,
+      "occupied_cells": 6,
+      "occupied_ratio": 0.001774622892635315,
+      "unknown_cells": 1229,
+      "unknown_ratio": 0.3635019225081337
+    },
+    "no_free_space_map_gap": {
+      "cells": 3381,
+      "free_cells": 0,
+      "free_ratio": 0.0,
+      "occupied_cells": 940,
+      "occupied_ratio": 0.27802425317953267,
+      "unknown_cells": 2441,
+      "unknown_ratio": 0.7219757468204673
+    },
+    "occupied_ratio_retained_after_return": 0.04918032786885246,
+    "outbound_map_control": {
+      "cells": 1701,
+      "free_cells": 951,
+      "free_ratio": 0.5590828924162258,
+      "occupied_cells": 77,
+      "occupied_ratio": 0.04526748971193416,
+      "unknown_cells": 673,
+      "unknown_ratio": 0.3956496178718401
+    },
+    "outbound_map_gap": {
+      "cells": 3381,
+      "free_cells": 607,
+      "free_ratio": 0.1795326826382727,
+      "occupied_cells": 122,
+      "occupied_ratio": 0.036083998816918074,
+      "unknown_cells": 2652,
+      "unknown_ratio": 0.7843833185448092
+    },
+    "projected_endpoints_in_control": 46595,
+    "projected_endpoints_in_gap": 133217,
+    "projected_wall_all": {
+      "line_center_rmse_m": 0.0271438045671076,
+      "line_intercept": 0.1833297055289927,
+      "line_slope": 0.04936074497855386,
+      "line_y_at_region_midpoint": 3.843428945688762,
+      "median_p90_p10_width_m": 0.07238653274002882,
+      "points": 133217,
+      "valid_x_bins": 73
+    },
+    "projected_wall_outbound": {
+      "line_center_rmse_m": 0.031230994790195962,
+      "line_intercept": 0.16983701750604663,
+      "line_slope": 0.04955904742257396,
+      "line_y_at_region_midpoint": 3.8446403838899057,
+      "median_p90_p10_width_m": 0.1835327086116023,
+      "points": 61676,
+      "valid_x_bins": 73
+    },
+    "projected_wall_return": {
+      "line_center_rmse_m": 0.02627884470244434,
+      "line_intercept": 0.25156529515151926,
+      "line_slope": 0.04840151216598741,
+      "line_y_at_region_midpoint": 3.8405374222594864,
+      "median_p90_p10_width_m": 0.04401388629681868,
+      "points": 54515,
+      "valid_x_bins": 73
+    },
+    "raw_points_in_control": 540851,
+    "raw_points_in_gap": 1241012,
+    "time_max_s": 342.0051124095917,
+    "time_min_s": 245.70462250709534,
+    "trajectory_visits": {
+      "absolute_lateral_separation_median_m": 0.07002494749266308,
+      "absolute_lateral_separation_p90_m": 0.26912304505576307,
+      "outbound_nodes": 127,
+      "return_nodes": 100,
+      "signed_lateral_separation_median_m": 0.07002494749266308
+    }
+  },
+  "gap_near_branch": {
+    "box": [
+      22.5,
+      27.0,
+      1.25,
+      2.15
+    ],
+    "control_box": [
+      18.0,
+      22.0,
+      1.15,
+      2.05
+    ],
+    "finite_scan_bin_ratio_mean": 0.7934990162242365,
+    "finite_scan_bin_ratio_min": 0.45700416088765605,
+    "frames": 1290,
+    "gap_height_filter_keep_ratio": 0.9997789029851211,
+    "gap_projection_keep_ratio": 0.06644552075708732,
+    "gap_ring_counts": {
+      "0": 52363,
+      "1": 55954,
+      "10": 51695,
+      "11": 51729,
+      "12": 52660,
+      "13": 51955,
+      "14": 52115,
+      "15": 52495,
+      "2": 56063,
+      "3": 59004,
+      "4": 82343,
+      "5": 75313,
+      "6": 81221,
+      "7": 85782,
+      "8": 50795,
+      "9": 51891
+    },
+    "gap_to_control_projected_ratio": 1.4516297321205798,
+    "gap_to_control_raw_ratio": 1.758810685283636,
+    "gap_z_max_m": 0.47488752007484436,
+    "gap_z_median_m": -0.025043506175279617,
+    "gap_z_min_m": -0.5642937421798706,
+    "height_filtered_raw_points_in_control": 547626,
+    "height_filtered_raw_points_in_gap": 963165,
+    "map_control": {
+      "cells": 1539,
+      "free_cells": 563,
+      "free_ratio": 0.36582196231319036,
+      "occupied_cells": 131,
+      "occupied_ratio": 0.08512020792722547,
+      "unknown_cells": 845,
+      "unknown_ratio": 0.5490578297595842
+    },
+    "map_gap": {
+      "cells": 1729,
+      "free_cells": 1072,
+      "free_ratio": 0.6200115673799884,
+      "occupied_cells": 1,
+      "occupied_ratio": 0.000578368999421631,
+      "unknown_cells": 656,
+      "unknown_ratio": 0.37941006362058993
+    },
+    "no_free_space_map_gap": {
+      "cells": 1729,
+      "free_cells": 0,
+      "free_ratio": 0.0,
+      "occupied_cells": 614,
+      "occupied_ratio": 0.3551185656448814,
+      "unknown_cells": 1115,
+      "unknown_ratio": 0.6448814343551186
+    },
+    "occupied_ratio_retained_after_return": 0.009708737864077669,
+    "outbound_map_control": {
+      "cells": 1539,
+      "free_cells": 808,
+      "free_ratio": 0.5250162443144899,
+      "occupied_cells": 145,
+      "occupied_ratio": 0.09421702404158544,
+      "unknown_cells": 586,
+      "unknown_ratio": 0.3807667316439246
+    },
+    "outbound_map_gap": {
+      "cells": 1729,
+      "free_cells": 1255,
+      "free_ratio": 0.7258530942741469,
+      "occupied_cells": 103,
+      "occupied_ratio": 0.059572006940427996,
+      "unknown_cells": 371,
+      "unknown_ratio": 0.2145748987854251
+    },
+    "projected_endpoints_in_control": 44087,
+    "projected_endpoints_in_gap": 63998,
+    "projected_wall_all": {
+      "line_center_rmse_m": 0.0010349329688982567,
+      "line_intercept": 0.5903784611632892,
+      "line_slope": 0.04449461051257619,
+      "line_y_at_region_midpoint": 1.6916200713495497,
+      "median_p90_p10_width_m": 0.07542306125649945,
+      "points": 63998,
+      "valid_x_bins": 45
+    },
+    "projected_wall_outbound": {
+      "line_center_rmse_m": 0.001122374406512178,
+      "line_intercept": 0.6102006572418187,
+      "line_slope": 0.04356710889559729,
+      "line_y_at_region_midpoint": 1.6884866024078518,
+      "median_p90_p10_width_m": 0.18044447762800853,
+      "points": 30657,
+      "valid_x_bins": 45
+    },
+    "projected_wall_return": {
+      "line_center_rmse_m": 0.002119439902657101,
+      "line_intercept": 0.5691735787026754,
+      "line_slope": 0.04556505333524193,
+      "line_y_at_region_midpoint": 1.6969086487499134,
+      "median_p90_p10_width_m": 0.036303074282534764,
+      "points": 32933,
+      "valid_x_bins": 45
+    },
+    "raw_points_in_control": 547744,
+    "raw_points_in_gap": 963378,
+    "time_max_s": 520.907497882843,
+    "time_min_s": 57.70576500892639,
+    "trajectory_visits": {
+      "absolute_lateral_separation_median_m": 0.47471515056188146,
+      "absolute_lateral_separation_p90_m": 0.5853928396442591,
+      "outbound_nodes": 48,
+      "return_nodes": 50,
+      "signed_lateral_separation_median_m": 0.47471515056188146
+    }
+  }
+}

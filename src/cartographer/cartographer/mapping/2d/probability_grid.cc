@@ -40,6 +40,8 @@ ProbabilityGrid::ProbabilityGrid(const proto::Grid2D& proto,
 // 'probability'. Only allowed if the cell was unknown before.
 void ProbabilityGrid::SetProbability(const Eigen::Array2i& cell_index,
                                      const float probability) {
+  // 只允许未知格子被直接设置概率。已经观测过的格子必须通过 ApplyLookupTable()
+  // 按 odds 增量更新，保持贝叶斯式的逐步累积语义。
   uint16& cell =
       (*mutable_correspondence_cost_cells())[ToFlatIndex(cell_index)];
   CHECK_EQ(cell, kUnknownProbabilityValue);
@@ -61,9 +63,13 @@ bool ProbabilityGrid::ApplyLookupTable(const Eigen::Array2i& cell_index,
   const int flat_index = ToFlatIndex(cell_index);
   uint16* cell = &(*mutable_correspondence_cost_cells())[flat_index];
   if (*cell >= kUpdateMarker) {
+    // kUpdateMarker 以上表示这个格子在本轮 Insert 中已经更新过。等
+    // Grid2D::FinishUpdate() 清除标记后，下一帧 scan 才能继续更新它。
     return false;
   }
   mutable_update_indices()->push_back(flat_index);
+  // table 是预先算好的 odds 查找表：hit_table 会把占用概率往高推，miss_table
+  // 会把占用概率往低推。多帧反复命中墙面会越来越黑，反复被射线穿过会越来越白。
   *cell = table[*cell];
   DCHECK_GE(*cell, kUpdateMarker);
   mutable_known_cells_box()->extend(cell_index.matrix());
@@ -92,6 +98,8 @@ std::unique_ptr<Grid2D> ProbabilityGrid::ComputeCroppedGrid() const {
   Eigen::Array2i offset;
   CellLimits cell_limits;
   ComputeCroppedLimits(&offset, &cell_limits);
+  // submap 完成后只保留已知区域的最小包围盒。未知边界不再占用内存，也减少
+  // 后端 fast correlative scan matcher 预计算的栅格面积。
   const double resolution = limits().resolution();
   const Eigen::Vector2d max =
       limits().max() - resolution * Eigen::Vector2d(offset.y(), offset.x());
@@ -116,6 +124,8 @@ bool ProbabilityGrid::DrawToSubmapTexture(
   std::string cells;
   for (const Eigen::Array2i& xy_index : XYIndexRangeIterator(cell_limits)) {
     if (!IsKnown(xy_index + offset)) {
+      // unknown 用 alpha=0 表示透明；这就是 RViz 里未观测区域不会被画成白色
+      // 空闲区的原因。
       cells.push_back(0 /* unknown log odds value */);
       cells.push_back(0 /* alpha */);
       continue;

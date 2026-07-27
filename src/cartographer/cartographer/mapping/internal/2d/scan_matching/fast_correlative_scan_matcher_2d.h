@@ -46,6 +46,12 @@ CreateFastCorrelativeScanMatcherOptions2D(
 // A precomputed grid that contains in each cell (x0, y0) the maximum
 // probability in the width x width area defined by x0 <= x < x0 + width and
 // y0 <= y < y0.
+//
+// 中文导读：
+// FastCorrelativeScanMatcher2D 主要用于后端约束/回环搜索。与前端实时相关匹配
+// 不同，它会对已经完成、不可再修改的 submap 做多层预计算。粗层栅格保存一个
+// 区域内的最大可能得分，作为 branch-and-bound 的上界：如果某个粗候选的上界都
+// 打不过当前 best，就不用展开到更细分辨率，从而显著加速大范围回环搜索。
 class PrecomputationGrid2D {
  public:
   PrecomputationGrid2D(const Grid2D& grid, const CellLimits& limits, int width,
@@ -109,6 +115,9 @@ class PrecomputationGridStack2D {
 };
 
 // An implementation of "Real-Time Correlative Scan Matching" by Olson.
+// 后端使用它来回答：“这帧 scan 是否可能匹配到某个 finished submap 中的这个
+// 位姿附近，或者在整个 submap 内全局匹配？”匹配成功会产生 INTER_SUBMAP 约束，
+// 供 PoseGraph2D 后端优化和回环使用。
 class FastCorrelativeScanMatcher2D {
  public:
   FastCorrelativeScanMatcher2D(

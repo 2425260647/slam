@@ -42,6 +42,9 @@ proto::SubmapsOptions2D CreateSubmapsOptions2D(
 
 class Submap2D : public Submap {
  public:
+  // 一个 Submap2D 是局部地图的小块。它有自己的 local_pose，内部持有 Grid2D
+  // 具体实现（常见为 ProbabilityGrid）。前端 scan matching 用它作为局部参考图，
+  // range data inserter 用它累计激光命中/空闲信息。
   Submap2D(const Eigen::Vector2f& origin, std::unique_ptr<Grid2D> grid,
            ValueConversionTables* conversion_tables);
   explicit Submap2D(const proto::Submap2D& proto,
@@ -57,8 +60,12 @@ class Submap2D : public Submap {
 
   // Insert 'range_data' into this submap using 'range_data_inserter'. The
   // submap must not be finished yet.
+  // range_data 已经在 LocalTrajectoryBuilder2D 中变到 local frame。这里不会再做
+  // 位姿估计，只负责把“这束光从哪里发出、打到哪里、哪些地方没打到”写进栅格。
   void InsertRangeData(const sensor::RangeData& range_data,
                        const RangeDataInserterInterface* range_data_inserter);
+  // 完成 submap 后会裁剪掉一直未知的边界，并禁止后续继续插入。后端回环检测
+  // 只会对 finished submap 做更大范围的约束搜索。
   void Finish();
 
  private:
@@ -76,6 +83,14 @@ class Submap2D : public Submap {
 // considered initialized: the old submap is no longer changed, the "new" submap
 // is now the "old" submap and is used for scan-to-map matching. Moreover, a
 // "new" submap gets created. The "old" submap is forgotten by this object.
+//
+// 中文导读：
+// ActiveSubmaps2D 维护前端“局部地图滚动窗口”。Cartographer 2D 通常同时向两个
+// submap 插入同一帧 scan：
+//   - front() 是老 submap，已比较稳定，LocalTrajectoryBuilder2D 用它做匹配；
+//   - back() 是新 submap，正在初始化，避免切换 submap 时地图突然断层。
+// 当老 submap 收到 2 * num_range_data 帧后会 Finish()，随后由 PoseGraph2D 拿去
+// 做回环/全局约束搜索。
 class ActiveSubmaps2D {
  public:
   explicit ActiveSubmaps2D(const proto::SubmapsOptions2D& options);

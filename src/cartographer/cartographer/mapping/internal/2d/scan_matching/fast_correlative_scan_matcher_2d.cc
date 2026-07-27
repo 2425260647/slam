@@ -103,6 +103,8 @@ PrecomputationGrid2D::PrecomputationGrid2D(
   const int stride = wide_limits_.num_x_cells;
   // First we compute the maximum probability for each (x0, y) achieved in the
   // span defined by x0 <= x < x0 + width.
+  // 中文说明：第一遍沿 x 方向做滑动窗口最大值。对每个候选平移，如果允许在
+  // width 范围内继续细分，那么这个最大值就是该粗格子可能达到的上界的一部分。
   std::vector<float>& intermediate = *reusable_intermediate_grid;
   intermediate.resize(wide_limits_.num_x_cells * limits.num_y_cells);
   for (int y = 0; y != limits.num_y_cells; ++y) {
@@ -134,6 +136,8 @@ PrecomputationGrid2D::PrecomputationGrid2D(
   // For each (x, y), we compute the maximum probability in the width x width
   // region starting at each (x, y) and precompute the resulting bound on the
   // score.
+  // 第二遍沿 y 方向继续做滑动窗口最大值，得到 width x width 区域内的最大匹配
+  // 可能性。branch-and-bound 用它判断“这个粗候选值得继续展开吗”。
   for (int x = 0; x != wide_limits_.num_x_cells; ++x) {
     SlidingWindowMaximum current_values;
     current_values.AddValue(intermediate[x]);
@@ -173,6 +177,8 @@ PrecomputationGridStack2D::PrecomputationGridStack2D(
     const proto::FastCorrelativeScanMatcherOptions2D& options) {
   CHECK_GE(options.branch_and_bound_depth(), 1);
   const int max_width = 1 << (options.branch_and_bound_depth() - 1);
+  // 构建从细到粗的多层预计算栅格：width=1 是原始分辨率，width 越大越粗，
+  // 但保存的是区域最大值，因此能作为更细搜索的保守上界。
   precomputation_grids_.reserve(options.branch_and_bound_depth());
   std::vector<float> reusable_intermediate_grid;
   const CellLimits limits = grid.limits().cell_limits();
@@ -199,6 +205,8 @@ bool FastCorrelativeScanMatcher2D::Match(
     const transform::Rigid2d& initial_pose_estimate,
     const sensor::PointCloud& point_cloud, const float min_score, float* score,
     transform::Rigid2d* pose_estimate) const {
+  // 局部约束搜索：围绕 initial_pose_estimate 的线性/角度窗口找匹配。PoseGraph2D
+  // 对同轨迹或近期已连通轨迹通常走这个入口，计算量较小。
   const SearchParameters search_parameters(options_.linear_search_window(),
                                            options_.angular_search_window(),
                                            point_cloud, limits_.resolution());
@@ -212,6 +220,8 @@ bool FastCorrelativeScanMatcher2D::MatchFullSubmap(
     transform::Rigid2d* pose_estimate) const {
   // Compute a search window around the center of the submap that includes it
   // fully.
+  // 全局约束/回环搜索：不相信初始位姿，只要求在整个 submap 范围内找到足够高分
+  // 的匹配。这个入口更贵，所以 PoseGraph2D 会按采样率触发。
   const SearchParameters search_parameters(
       1e6 * limits_.resolution(),  // Linear search window, 1e6 cells/direction.
       M_PI,  // Angular search window, 180 degrees in both directions.
@@ -243,10 +253,13 @@ bool FastCorrelativeScanMatcher2D::MatchWithSearchParameters(
       limits_, rotated_scans,
       Eigen::Translation2f(initial_pose_estimate.translation().x(),
                            initial_pose_estimate.translation().y()));
+  // 裁剪掉会让 scan 落出 submap 的候选平移，减少无效搜索。
   search_parameters.ShrinkToFit(discrete_scans, limits_.cell_limits());
 
   const std::vector<Candidate2D> lowest_resolution_candidates =
       ComputeLowestResolutionCandidates(discrete_scans, search_parameters);
+  // 从最粗层开始递归展开。只有上界分数超过 min_score/当前 best 的候选才会进入
+  // 更细层，最终返回原始分辨率下的最佳候选。
   const Candidate2D best_candidate = BranchAndBound(
       discrete_scans, search_parameters, lowest_resolution_candidates,
       precomputation_grid_stack_->max_depth(), min_score);
@@ -318,6 +331,9 @@ void FastCorrelativeScanMatcher2D::ScoreCandidates(
     std::vector<Candidate2D>* const candidates) const {
   for (Candidate2D& candidate : *candidates) {
     int sum = 0;
+    // 对每个候选，把离散 scan 的所有点偏移到预计算栅格上取值并求平均。
+    // 在粗层，这个值是“未来细化后最多能达到多少”的上界；在最细层，它就是
+    // 当前候选的实际相关匹配分数。
     for (const Eigen::Array2i& xy_index :
          discrete_scans[candidate.scan_index]) {
       const Eigen::Array2i proposed_xy_index(
@@ -346,10 +362,14 @@ Candidate2D FastCorrelativeScanMatcher2D::BranchAndBound(
   best_high_resolution_candidate.score = min_score;
   for (const Candidate2D& candidate : candidates) {
     if (candidate.score <= min_score) {
+      // candidates 已按分数降序排列。当前候选都不超过阈值时，后面的候选上界更低，
+      // 可以整批剪枝，不再展开。
       break;
     }
     std::vector<Candidate2D> higher_resolution_candidates;
     const int half_width = 1 << (candidate_depth - 1);
+    // 把一个粗候选拆成最多 2x2 个更细候选。递归到 depth==0 时，候选已经处在
+    // 原始栅格分辨率。
     for (int x_offset : {0, half_width}) {
       if (candidate.x_index_offset + x_offset >
           search_parameters.linear_bounds[candidate.scan_index].max_x) {

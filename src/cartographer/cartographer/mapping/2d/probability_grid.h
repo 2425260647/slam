@@ -28,6 +28,14 @@ namespace cartographer {
 namespace mapping {
 
 // Represents a 2D grid of probabilities.
+//
+// 中文导读：
+// ProbabilityGrid 是 Cartographer 2D 常用的占据栅格。内部实际存的是
+// correspondence cost 的离散值，但对外提供 GetProbability()/SetProbability()
+// 这样的概率接口。直观上：
+//   - 激光命中 returns 的末端：占用概率增加，RViz/纹理里会逐渐变黑；
+//   - 激光穿过的 free space 或 misses：占用概率降低，显示会逐渐变白；
+//   - 从未观测过的格子保持 unknown，不应被误当作空闲。
 class ProbabilityGrid : public Grid2D {
  public:
   explicit ProbabilityGrid(const MapLimits& limits,
@@ -47,6 +55,9 @@ class ProbabilityGrid : public Grid2D {
   //
   // If this is the first call to ApplyOdds() for the specified cell, its value
   // will be set to probability corresponding to 'odds'.
+  //
+  // 注意“同一次 Insert 内每格只更新一次”：一束 scan 里同一格可能同时被多条射线
+  // 经过或命中，update marker 可避免单帧内重复累加导致概率跳变过猛。
   bool ApplyLookupTable(const Eigen::Array2i& cell_index,
                         const std::vector<uint16>& table);
 

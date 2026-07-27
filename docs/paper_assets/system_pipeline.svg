@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with matplotlib (https://matplotlib.org/) -->
+<svg height="250.02pt" version="1.1" viewBox="0 0 405 250.02" width="405pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+*{stroke-linecap:butt;stroke-linejoin:round;}
+  </style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 250.02 
+L 405 250.02 
+L 405 0 
+L 0 0 
+z
+" style="fill:#ffffff;"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path clip-path="url(#pc59d038f41)" d="M 16.965 74.3517 
+L 83.367 74.3517 
+Q 91.179 74.3517 91.179 69.6393 
+L 91.179 41.3649 
+Q 91.179 36.6525 83.367 36.6525 
+L 16.965 36.6525 
+Q 9.153 36.6525 9.153 41.3649 
+L 9.153 69.6393 
+Q 9.153 74.3517 16.965 74.3517 
+z
+" style="fill:#ffffff;stroke:#6c9bcf;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_3">
+    <path clip-path="url(#pc59d038f41)" d="M 16.965 123.8319 
+L 83.367 123.8319 
+Q 91.179 123.8319 91.179 119.1195 
+L 91.179 90.8451 
+Q 91.179 86.1327 83.367 86.1327 
+L 16.965 86.1327 
+Q 9.153 86.1327 9.153 90.8451 
+L 9.153 119.1195 
+Q 9.153 123.8319 16.965 123.8319 
+z
+" style="fill:#ffffff;stroke:#6c9bcf;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_4">
+    <path clip-path="url(#pc59d038f41)" d="M 16.965 185.0931 
+L 83.367 185.0931 
+Q 91.179 185.0931 91.179 180.3807 
+L 91.179 152.1063 
+Q 91.179 147.3939 83.367 147.3939 
+L 16.965 147.3939 
+Q 9.153 147.3939 9.153 152.1063 
+L 9.153 180.3807 
+Q 9.153 185.0931 16.965 185.0931 
+z
+" style="fill:#ffffff;stroke:#d7a84b;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_5">
+    <path clip-path="url(#pc59d038f41)" d="M 114.615 74.3517 
+L 188.829 74.3517 
+Q 196.641 74.3517 196.641 69.6393 
+L 196.641 41.3649 
+Q 196.641 36.6525 188.829 36.6525 
+L 114.615 36.6525 
+Q 106.803 36.6525 106.803 41.3649 
+L 106.803 69.6393 
+Q 106.803 74.3517 114.615 74.3517 
+z
+" style="fill:#ffffff;stroke:#79a873;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_6">
+    <path clip-path="url(#pc59d038f41)" d="M 114.615 123.8319 
+L 188.829 123.8319 
+Q 196.641 123.8319 196.641 119.1195 
+L 196.641 90.8451 
+Q 196.641 86.1327 188.829 86.1327 
+L 114.615 86.1327 
+Q 106.803 86.1327 106.803 90.8451 
+L 106.803 119.1195 
+Q 106.803 123.8319 114.615 123.8319 
+z
+" style="fill:#ffffff;stroke:#79a873;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_7">
+    <path clip-path="url(#pc59d038f41)" d="M 114.615 173.3121 
+L 188.829 173.3121 
+Q 196.641 173.3121 196.641 168.5997 
+L 196.641 140.3253 
+Q 196.641 135.6129 188.829 135.6129 
+L 114.615 135.6129 
+Q 106.803 135.6129 106.803 140.3253 
+L 106.803 168.5997 
+Q 106.803 173.3121 114.615 173.3121 
+z
+" style="fill:#ffffff;stroke:#79a873;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_8">
+    <path clip-path="url(#pc59d038f41)" d="M 220.077 74.3517 
+L 294.291 74.3517 
+Q 302.103 74.3517 302.103 69.6393 
+L 302.103 41.3649 
+Q 302.103 36.6525 294.291 36.6525 
+L 220.077 36.6525 
+Q 212.265 36.6525 212.265 41.3649 
+L 212.265 69.6393 
+Q 212.265 74.3517 220.077 74.3517 
+z
+" style="fill:#ffffff;stroke:#c85c5c;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_9">
+    <path clip-path="url(#pc59d038f41)" d="M 220.077 123.8319 
+L 294.291 123.8319 
+Q 302.103 123.8319 302.103 119.1195 
+L 302.103 90.8451 
+Q 302.103 86.1327 294.291 86.1327 
+L 220.077 86.1327 
+Q 212.265 86.1327 212.265 90.8451 
+L 212.265 119.1195 
+Q 212.265 123.8319 220.077 123.8319 
+z
+" style="fill:#ffffff;stroke:#c85c5c;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_10">
+    <path clip-path="url(#pc59d038f41)" d="M 220.077 173.3121 
+L 294.291 173.3121 
+Q 302.103 173.3121 302.103 168.5997 
+L 302.103 140.3253 
+Q 302.103 135.6129 294.291 135.6129 
+L 220.077 135.6129 
+Q 212.265 135.6129 212.265 140.3253 
+L 212.265 168.5997 
+Q 212.265 173.3121 220.077 173.3121 
+z
+" style="fill:#ffffff;stroke:#c85c5c;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_11">
+    <path clip-path="url(#pc59d038f41)" d="M 325.539 90.8451 
+L 388.035 90.8451 
+Q 395.847 90.8451 395.847 86.1327 
+L 395.847 57.8583 
+Q 395.847 53.1459 388.035 53.1459 
+L 325.539 53.1459 
+Q 317.727 53.1459 317.727 57.8583 
+L 317.727 86.1327 
+Q 317.727 90.8451 325.539 90.8451 
+z
+" style="fill:#ffffff;stroke:#355c7d;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_12">
+    <path clip-path="url(#pc59d038f41)" d="M 325.539 145.0377 
+L 388.035 145.0377 
+Q 395.847 145.0377 395.847 140.3253 
+L 395.847 112.0509 
+Q 395.847 107.3385 388.035 107.3385 
+L 325.539 107.3385 
+Q 317.727 107.3385 317.727 112.0509 
+L 317.727 140.3253 
+Q 317.727 145.0377 325.539 145.0377 
+z
+" style="fill:#ffffff;stroke:#355c7d;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_13">
+    <path clip-path="url(#pc59d038f41)" d="M 325.539 199.2303 
+L 388.035 199.2303 
+Q 395.847 199.2303 395.847 194.5179 
+L 395.847 166.2435 
+Q 395.847 161.5311 388.035 161.5311 
+L 325.539 161.5311 
+Q 317.727 161.5311 317.727 166.2435 
+L 317.727 194.5179 
+Q 317.727 199.2303 325.539 199.2303 
+z
+" style="fill:#ffffff;stroke:#355c7d;stroke-linejoin:miter;stroke-width:1.1;"/>
+   </g>
+   <g id="text_1">
+    <text style="fill:#355c7d;font-family:AR PL UMing CN;font-size:9px;font-style:normal;font-weight:bold;text-anchor:start;" transform="rotate(-0, 15.012, 18.981)" x="15.012" y="18.981">输入与二维投影</text>
+   </g>
+   <g id="text_2">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(26.166 53.931319)">多线三维点云</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(18.166 62.861631)">/velodyne_points</text>
+   </g>
+   <g id="text_3">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(24.166 103.4273)">高度/量程筛选</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(22.166 112.63105)">二维 LaserScan</text>
+   </g>
+   <g id="text_4">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(30.166 164.891469)">轮式里程计</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(40.166 173.790531)">/odom</text>
+   </g>
+   <g id="patch_14">
+    <path d="M 50.166 72.81925 
+Q 50.166 80.241556 50.166 86.434024 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 51.766 83.234024 
+L 50.166 86.434024 
+L 48.566 83.234024 
+L 51.766 83.234024 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="text_5">
+    <text style="fill:#355c7d;font-family:AR PL UMing CN;font-size:9px;font-style:normal;font-weight:bold;text-anchor:start;" transform="rotate(-0, 112.662, 18.981)" x="112.662" y="18.981">创新点一：方向退化</text>
+   </g>
+   <g id="text_6">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(123.722 53.944912)">2×2 点云协方差</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(121.722 63.145537)">特征值/特征向量</text>
+   </g>
+   <g id="text_7">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(111.722 103.414956)">条件数 κ → Sigmoid</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(123.722 112.635894)">低通平滑 Dconf</text>
+   </g>
+   <g id="text_8">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:7px;font-style:normal;font-weight:normal;" transform="translate(121.972 153.064687)">S=R diag(...) R^T</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:7px;font-style:normal;font-weight:normal;" transform="translate(123.722 160.986719)">各向异性平移先验</text>
+   </g>
+   <g id="patch_15">
+    <path d="M 86.306275 103.239957 
+Q 98.991093 80.831085 111.070077 59.492476 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 108.101314 61.489085 
+L 111.070077 59.492476 
+L 110.886107 63.065451 
+L 108.101314 61.489085 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 151.722 72.81925 
+Q 151.722 80.241556 151.722 86.434024 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 153.322 83.234024 
+L 151.722 86.434024 
+L 150.122 83.234024 
+L 153.322 83.234024 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 151.722 122.29945 
+Q 151.722 129.721756 151.722 135.914224 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 153.322 132.714224 
+L 151.722 135.914224 
+L 150.122 132.714224 
+L 153.322 132.714224 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="text_9">
+    <text style="fill:#355c7d;font-family:AR PL UMing CN;font-size:9px;font-style:normal;font-weight:bold;text-anchor:start;" transform="rotate(-0, 218.124, 18.981)" x="218.124" y="18.981">创新点二：可靠性仲裁</text>
+   </g>
+   <g id="text_10">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(221.184 53.946475)">扫描点数与角度覆盖</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(231.184 63.213975)">LiDAR 质量 QL</text>
+   </g>
+   <g id="text_11">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:7px;font-style:normal;font-weight:normal;" transform="translate(220.434 103.580386)">ΔT=Todom^(-1) Tlidar</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:7px;font-style:normal;font-weight:normal;" transform="translate(223.934 111.51062)">横向/航向一致性残差</text>
+   </g>
+   <g id="text_12">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(215.184 152.86875)">可靠性门控+双阈值迟滞</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(229.184 162.11)">快降权、慢恢复</text>
+   </g>
+   <g id="patch_18">
+    <path d="M 87.196473 104.299809 
+Q 151.719275 80.832241 215.086311 57.785037 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 211.532156 57.375175 
+L 215.086311 57.785037 
+L 212.625929 60.382444 
+L 211.532156 57.375175 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 87.139733 165.404075 
+Q 151.722475 135.612681 215.18847 106.336431 
+" style="fill:none;stroke:#d7a84b;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 211.61253 106.223951 
+L 215.18847 106.336431 
+L 212.952922 109.129695 
+L 211.61253 106.223951 
+z
+" style="fill:#d7a84b;stroke:#d7a84b;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 192.78125 104.9823 
+Q 204.451846 104.9823 214.892605 104.9823 
+" style="fill:none;stroke:#79a873;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 211.692605 103.3823 
+L 214.892605 104.9823 
+L 211.692605 106.5823 
+L 211.692605 103.3823 
+z
+" style="fill:#79a873;stroke:#79a873;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 257.184 72.81925 
+Q 257.184 80.241556 257.184 86.434024 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 258.784 83.234024 
+L 257.184 86.434024 
+L 255.584 83.234024 
+L 258.784 83.234024 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 257.184 122.29945 
+Q 257.184 129.721756 257.184 135.914224 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 258.784 132.714224 
+L 257.184 135.914224 
+L 255.584 132.714224 
+L 258.784 132.714224 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="text_13">
+    <text style="fill:#355c7d;font-family:AR PL UMing CN;font-size:9px;font-style:normal;font-weight:bold;text-anchor:start;" transform="rotate(-0, 323.586, 18.981)" x="323.586" y="18.981">优化与输出</text>
+   </g>
+   <g id="text_14">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(336.787 70.388312)">Ceres 前端</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(328.787 79.642687)">方向自适应匹配</text>
+   </g>
+   <g id="text_15">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(326.787 124.563725)">Pose Graph 后端</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(322.787 133.827475)">odom 标量动态权重</text>
+   </g>
+   <g id="text_16">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(336.787 178.756481)">二维轨迹与</text>
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8px;font-style:normal;font-weight:normal;" transform="translate(332.787 188.058669)">占据栅格地图</text>
+   </g>
+   <g id="patch_23">
+    <path d="M 192.480147 153.408006 
+Q 257.182854 113.229712 320.840772 73.700198 
+" style="fill:none;stroke:#79a873;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 317.278209 74.02905 
+L 320.840772 73.700198 
+L 318.966316 76.74756 
+L 317.278209 74.02905 
+z
+" style="fill:#79a873;stroke:#79a873;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 297.635799 153.023239 
+Q 309.915578 140.324702 321.340431 128.510246 
+" style="fill:none;stroke:#c85c5c;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 317.96576 129.698352 
+L 321.340431 128.510246 
+L 320.266113 131.922846 
+L 317.96576 129.698352 
+z
+" style="fill:#c85c5c;stroke:#c85c5c;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 356.787 89.309773 
+Q 356.787 99.092365 356.787 107.645119 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 358.387 104.445119 
+L 356.787 107.645119 
+L 355.187 104.445119 
+L 358.387 104.445119 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 356.787 143.502373 
+Q 356.787 153.284965 356.787 161.837719 
+" style="fill:none;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+    <path d="M 358.387 158.637719 
+L 356.787 161.837719 
+L 355.187 158.637719 
+L 358.387 158.637719 
+z
+" style="fill:#6f7782;stroke:#6f7782;stroke-linecap:round;stroke-width:1.1;"/>
+   </g>
+   <g id="text_17">
+    <text style="fill:#20252b;font-family:AR PL UMing CN;font-size:8.5px;font-style:normal;font-weight:bold;text-anchor:middle;" transform="rotate(-0, 202.5, 231.858347)" x="202.5" y="231.858347">第一阶段回答“哪个方向退化”，第二阶段回答“观测冲突时降低哪一类约束”</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc59d038f41">
+   <rect height="235.62" width="390.6" x="7.2" y="7.2"/>
+  </clipPath>
+ </defs>
+</svg>

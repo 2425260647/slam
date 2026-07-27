@@ -31,9 +31,13 @@ TfBridge::TfBridge(const std::string& tracking_frame,
 std::unique_ptr<::cartographer::transform::Rigid3d> TfBridge::LookupToTracking(
     const ::cartographer::common::Time time,
     const std::string& frame_id) const {
+  // 该函数是所有传感器坐标变换的关键入口。例如 /scan 到来时，会查询
+  // scan.header.frame_id -> tracking_frame_，再把激光点变换到 tracking_frame。
   ::ros::Duration timeout(lookup_transform_timeout_sec_);
   std::unique_ptr<::cartographer::transform::Rigid3d> frame_id_to_tracking;
   try {
+    // 先查一次最新 TF 的时间。如果缓存中已经有比请求时间更新的 TF，就不再等待；
+    // 这避免了请求旧时间戳时仍然阻塞满 timeout。
     const ::ros::Time latest_tf_time =
         buffer_
             ->lookupTransform(tracking_frame_, frame_id, ::ros::Time(0.),
@@ -45,10 +49,14 @@ std::unique_ptr<::cartographer::transform::Rigid3d> TfBridge::LookupToTracking(
       // for the full 'timeout' even if we ask for data that is too old.
       timeout = ::ros::Duration(0.);
     }
+    // tf2 返回 geometry_msgs::TransformStamped；ToRigid3d 转成 Cartographer
+    // 使用的刚体变换类型，供点云、IMU、里程计统一处理。
     return absl::make_unique<::cartographer::transform::Rigid3d>(
         ToRigid3d(buffer_->lookupTransform(tracking_frame_, frame_id,
                                            requested_time, timeout)));
   } catch (const tf2::TransformException& ex) {
+    // TF 缺失、外推失败、frame 名写错都会走到这里。对本项目而言，如果 /scan
+    // 没有 laser_frame 到 base_link 的 TF，Cartographer 就无法消费该帧扫描。
     LOG(WARNING) << ex.what();
   }
   return nullptr;

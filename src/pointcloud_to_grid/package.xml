@@ -2,7 +2,7 @@
 <package format="2">
   <name>pointcloud_to_grid</name>
   <version>0.1.0</version>
-  <description>Offline converter from A-LOAM PCD point clouds to ROS map_server occupancy maps.</description>
+  <description>Point cloud and occupancy-grid utilities for 2D mapping experiments.</description>
 
   <maintainer email="slam@todo.todo">slam</maintainer>
   <license>MIT</license>

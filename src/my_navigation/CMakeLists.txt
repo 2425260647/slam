@@ -26,8 +26,24 @@ target_link_libraries(local_grid_mapper
   ${catkin_LIBRARIES}
 )
 
+add_executable(mapping_health_monitor
+  src/mapping_health_monitor.cpp
+)
+target_link_libraries(mapping_health_monitor
+  ${catkin_LIBRARIES}
+)
+
+# [Innovation 1] Filters geometrically insufficient projected scans before
+# they enter Cartographer's local scan matcher.
+add_executable(scan_quality_gate
+  src/scan_quality_gate.cpp
+)
+target_link_libraries(scan_quality_gate
+  ${catkin_LIBRARIES}
+)
+
 # ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
-install(TARGETS local_grid_mapper
+install(TARGETS local_grid_mapper mapping_health_monitor scan_quality_gate
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

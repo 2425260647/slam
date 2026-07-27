@@ -1,0 +1,38 @@
+{
+  "repeat_01": {
+    "free_cells": 79329,
+    "height_m": 17.6000002622752,
+    "height_pixels": 352,
+    "occupied_cells": 6592,
+    "occupied_ratio_all": 0.01154579083062437,
+    "occupied_ratio_observed": 0.07672163964572107,
+    "resolution_m": 0.0500000007451,
+    "unknown_cells": 485023,
+    "width_m": 81.1000012085522,
+    "width_pixels": 1622
+  },
+  "repeat_02": {
+    "free_cells": 71853,
+    "height_m": 16.8500002510987,
+    "height_pixels": 337,
+    "occupied_cells": 6090,
+    "occupied_ratio_all": 0.011148190386928243,
+    "occupied_ratio_observed": 0.07813402101535738,
+    "resolution_m": 0.0500000007451,
+    "unknown_cells": 468334,
+    "width_m": 81.0500012078071,
+    "width_pixels": 1621
+  },
+  "repeat_03": {
+    "free_cells": 67658,
+    "height_m": 16.2500002421575,
+    "height_pixels": 325,
+    "occupied_cells": 6566,
+    "occupied_ratio_all": 0.0124864505087002,
+    "occupied_ratio_observed": 0.0884619530071136,
+    "resolution_m": 0.0500000007451,
+    "unknown_cells": 451626,
+    "width_m": 80.9000012055718,
+    "width_pixels": 1618
+  }
+}

@@ -50,6 +50,12 @@ namespace mapping {
 namespace scan_matching {
 
 // An implementation of "Real-Time Correlative Scan Matching" by Olson.
+//
+// 中文导读：
+// 这是前端可选的“粗匹配”。它不会做连续优化，而是在 initial_pose_estimate
+// 附近的有限平移/旋转窗口里枚举候选位姿，把点云离散到栅格后逐个打分。
+// 得分最高的候选作为 CeresScanMatcher2D 的初值。这样当外推器预测有小误差时，
+// Ceres 不容易从错误初值陷入局部最优。
 class RealTimeCorrelativeScanMatcher2D {
  public:
   explicit RealTimeCorrelativeScanMatcher2D(

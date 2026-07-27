@@ -47,6 +47,12 @@ class ProbabilityGridRangeDataInserter2D : public RangeDataInserterInterface {
       const ProbabilityGridRangeDataInserter2D&) = delete;
 
   // Inserts 'range_data' into 'probability_grid'.
+  //
+  // 中文导读：
+  // 这里是概率栅格“为什么会变黑/变白”的核心实现入口。
+  //   - hit_table_ 对 returns 末端应用 hit_probability > 0.5，使格子更像障碍；
+  //   - miss_table_ 对射线经过区域应用 miss_probability < 0.5，使格子更像空闲；
+  //   - FinishUpdate() 后，同一帧的更新标记被清理，下一帧可以继续累积证据。
   virtual void Insert(const sensor::RangeData& range_data,
                       GridInterface* grid) const override;
 

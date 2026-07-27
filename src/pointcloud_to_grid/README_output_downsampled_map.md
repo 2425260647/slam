@@ -1,7 +1,7 @@
-# output_downsampled.pcd to AMCL Map
+# Point Cloud to 2D Occupancy Map
 
-This package converts the A-LOAM accumulated point cloud generated from
-`corridor_99.bag` into a ROS `map_server` compatible 2D occupancy grid map.
+This package contains point-cloud projection and occupancy-grid utilities for
+offline 2D mapping experiments.
 
 ## Input Data
 

@@ -18,7 +18,10 @@ public:
         : nh_(nh), pnh_(pnh), tf_listener_(tf_buffer_) {
         pnh_.param<std::string>("scan_topic", scan_topic_, "/scan");
         pnh_.param<std::string>("output_topic", output_topic_, "/local_occupancy_grid");
+        pnh_.param<std::string>("map_output_topic", map_output_topic_, "/local_occupancy_grid_map");
         pnh_.param<std::string>("base_frame", base_frame_, "base_link");
+        pnh_.param<std::string>("map_frame", map_frame_, "map");
+        pnh_.param<bool>("publish_map_frame_grid", publish_map_frame_grid_, true);
         pnh_.param<double>("map_size", map_size_, 5.0);
         pnh_.param<double>("resolution", resolution_, 0.05);
         pnh_.param<double>("tf_timeout", tf_timeout_, 0.10);
@@ -39,11 +42,15 @@ public:
         origin_y_ = -0.5 * height_ * resolution_;
 
         grid_pub_ = nh_.advertise<nav_msgs::OccupancyGrid>(output_topic_, 1);
+        if (publish_map_frame_grid_) {
+            map_grid_pub_ = nh_.advertise<nav_msgs::OccupancyGrid>(map_output_topic_, 1);
+        }
         scan_sub_ = nh_.subscribe(scan_topic_, 5, &LocalGridMapper::scanCallback, this);
 
-        ROS_INFO("[LOCAL_GRID] scan=%s output=%s frame=%s size=%.2fm res=%.3fm cells=%dx%d",
+        ROS_INFO("[LOCAL_GRID] scan=%s output=%s frame=%s map_output=%s map_frame=%s size=%.2fm res=%.3fm cells=%dx%d",
                  scan_topic_.c_str(), output_topic_.c_str(), base_frame_.c_str(),
-                 map_size_, resolution_, width_, height_);
+                 publish_map_frame_grid_ ? map_output_topic_.c_str() : "disabled",
+                 map_frame_.c_str(), map_size_, resolution_, width_, height_);
     }
 
 private:
@@ -153,21 +160,14 @@ private:
     void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan) {
         geometry_msgs::TransformStamped laser_to_base;
         try {
+            // The lidar extrinsic is static in this project. Using the latest
+            // transform avoids blocking the scan callback under rosbag sim time.
             laser_to_base = tf_buffer_.lookupTransform(
-                base_frame_, scan->header.frame_id, scan->header.stamp, ros::Duration(tf_timeout_));
+                base_frame_, scan->header.frame_id, ros::Time(0), ros::Duration(0.0));
         } catch (const tf2::TransformException& ex) {
-            try {
-                laser_to_base = tf_buffer_.lookupTransform(
-                    base_frame_, scan->header.frame_id, ros::Time(0), ros::Duration(tf_timeout_));
-                ROS_WARN_THROTTLE(2.0,
-                                  "[LOCAL_GRID] TF at scan stamp unavailable, using latest %s->%s: %s",
-                                  base_frame_.c_str(), scan->header.frame_id.c_str(), ex.what());
-            } catch (const tf2::TransformException& latest_ex) {
-                ROS_WARN_THROTTLE(2.0, "[LOCAL_GRID] TF failed %s->%s: %s | latest: %s",
-                                  base_frame_.c_str(), scan->header.frame_id.c_str(),
-                                  ex.what(), latest_ex.what());
-                return;
-            }
+            ROS_WARN_THROTTLE(2.0, "[LOCAL_GRID] TF failed %s->%s: %s",
+                              base_frame_.c_str(), scan->header.frame_id.c_str(), ex.what());
+            return;
         }
 
         geometry_msgs::PointStamped laser_origin;
@@ -262,6 +262,43 @@ private:
 
         setCell(grid.data, width_ / 2, height_ / 2, free_value_);
         grid_pub_.publish(grid);
+
+        if (publish_map_frame_grid_) {
+            publishMapFrameGrid(grid, scan->header.stamp);
+        }
+    }
+
+    void publishMapFrameGrid(const nav_msgs::OccupancyGrid& base_grid,
+                             const ros::Time& stamp) {
+        geometry_msgs::TransformStamped map_to_base;
+        try {
+            // This topic is for RViz display. The latest pose keeps the local
+            // grid attached to the robot without blocking on exact timestamps.
+            map_to_base = tf_buffer_.lookupTransform(
+                map_frame_, base_frame_, ros::Time(0), ros::Duration(0.0));
+        } catch (const tf2::TransformException& ex) {
+            ROS_WARN_THROTTLE(2.0, "[LOCAL_GRID] map-frame grid TF failed %s->%s: %s",
+                              map_frame_.c_str(), base_frame_.c_str(), ex.what());
+            return;
+        }
+
+        geometry_msgs::PointStamped base_origin;
+        base_origin.header.stamp = stamp;
+        base_origin.header.frame_id = base_frame_;
+        base_origin.point.x = origin_x_;
+        base_origin.point.y = origin_y_;
+        base_origin.point.z = 0.0;
+
+        geometry_msgs::PointStamped map_origin;
+        tf2::doTransform(base_origin, map_origin, map_to_base);
+
+        nav_msgs::OccupancyGrid map_grid = base_grid;
+        map_grid.header.frame_id = map_frame_;
+        map_grid.info.origin.position.x = map_origin.point.x;
+        map_grid.info.origin.position.y = map_origin.point.y;
+        map_grid.info.origin.position.z = map_origin.point.z;
+        map_grid.info.origin.orientation = map_to_base.transform.rotation;
+        map_grid_pub_.publish(map_grid);
     }
 
     ros::NodeHandle nh_;
@@ -270,10 +307,14 @@ private:
     tf2_ros::TransformListener tf_listener_;
     ros::Subscriber scan_sub_;
     ros::Publisher grid_pub_;
+    ros::Publisher map_grid_pub_;
 
     std::string scan_topic_;
     std::string output_topic_;
+    std::string map_output_topic_;
     std::string base_frame_;
+    std::string map_frame_;
+    bool publish_map_frame_grid_;
     double map_size_;
     double resolution_;
     double tf_timeout_;

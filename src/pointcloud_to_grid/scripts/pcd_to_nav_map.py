@@ -37,15 +37,15 @@ def parse_header(header_text):
 def load_pcd(path):
     with open(path, "rb") as f:
         data = f.read()
-    marker = "DATA binary_compressed\n"
-    if marker not in data:
-        raise RuntimeError("Only binary_compressed PCD is supported.")
-    header, body = data.split(marker, 1)
+    marker_pos = data.find(b"DATA ")
+    if marker_pos < 0:
+        raise RuntimeError("PCD has no DATA line.")
+    header_end = data.find(b"\n", marker_pos)
+    header = data[:header_end + 1].decode("utf-8", errors="replace")
+    body = data[header_end + 1:]
     fields, sizes, counts, points = parse_header(header)
-    comp_size, uncomp_size = struct.unpack("II", body[:8])
-    blob = zlib.decompress(body[8:8 + comp_size])
-    if len(blob) != uncomp_size:
-        raise RuntimeError("PCD decompression size mismatch")
+    data_line = header.splitlines()[-1].strip()
+    data_type = data_line.split()[1] if data_line.startswith("DATA ") else ""
 
     step = sum(s * c for s, c in zip(sizes, counts))
     offsets = []
@@ -64,6 +64,31 @@ def load_pcd(path):
             z_off = offsets[idx]
     if x_off is None or y_off is None or z_off is None:
         raise RuntimeError("PCD must contain x/y/z fields")
+
+    if data_type == "ascii":
+        x_idx = fields.index("x")
+        y_idx = fields.index("y")
+        z_idx = fields.index("z")
+        rows = []
+        for line in body.decode("utf-8", errors="ignore").splitlines():
+            if not line.strip():
+                continue
+            cols = line.split()
+            rows.append((float(cols[x_idx]), float(cols[y_idx]), float(cols[z_idx])))
+        if not rows:
+            return np.array([], dtype=np.float32), np.array([], dtype=np.float32), np.array([], dtype=np.float32)
+        arr = np.array(rows, dtype=np.float32)
+        return arr[:, 0], arr[:, 1], arr[:, 2]
+
+    if data_type == "binary_compressed":
+        comp_size, uncomp_size = struct.unpack("II", body[:8])
+        blob = zlib.decompress(body[8:8 + comp_size])
+        if len(blob) != uncomp_size:
+            raise RuntimeError("PCD decompression size mismatch")
+    elif data_type == "binary":
+        blob = body
+    else:
+        raise RuntimeError("Unsupported PCD DATA type: %s" % data_type)
 
     xs = np.empty(points, dtype=np.float32)
     ys = np.empty(points, dtype=np.float32)
@@ -101,21 +126,36 @@ def main():
     parser.add_argument("--z-obstacle-min", type=float, default=0.08)
     parser.add_argument("--z-obstacle-max", type=float, default=1.60)
     parser.add_argument("--min-points-per-cell", type=int, default=2)
-    parser.add_argument("--map-size", type=int, default=512)
-    parser.add_argument("--origin-x", type=float, default=-12.824999)
-    parser.add_argument("--origin-y", type=float, default=-12.824999)
+    parser.add_argument("--map-size", type=int, default=0,
+                        help="0 means infer map size from point cloud bounds.")
+    parser.add_argument("--origin-x", type=float, default=None)
+    parser.add_argument("--origin-y", type=float, default=None)
     parser.add_argument("--origin-yaw", type=float, default=0.0)
+    parser.add_argument("--padding", type=float, default=1.0)
+    parser.add_argument("--inflate-cells", type=int, default=2)
     args = parser.parse_args()
 
     xs, ys, zs = load_pcd(args.pcd)
+    finite = np.isfinite(xs) & np.isfinite(ys) & np.isfinite(zs)
+    xs, ys, zs = xs[finite], ys[finite], zs[finite]
+    if len(xs) == 0:
+        raise RuntimeError("PCD has no finite x/y/z points")
     z_ground = estimate_ground(zs)
     z_rel = zs - z_ground
 
     obstacle_mask = (z_rel >= args.z_obstacle_min) & (z_rel <= args.z_obstacle_max)
     free_mask = np.abs(z_rel) <= args.z_ground_band
 
-    width = args.map_size
-    height = args.map_size
+    if args.origin_x is None:
+        args.origin_x = float(np.min(xs)) - args.padding
+    if args.origin_y is None:
+        args.origin_y = float(np.min(ys)) - args.padding
+    if args.map_size > 0:
+        width = args.map_size
+        height = args.map_size
+    else:
+        width = int(np.ceil((float(np.max(xs)) - args.origin_x + args.padding) / args.resolution))
+        height = int(np.ceil((float(np.max(ys)) - args.origin_y + args.padding) / args.resolution))
     occ_votes = np.zeros((height, width), dtype=np.int32)
     free_votes = np.zeros((height, width), dtype=np.int32)
 
@@ -136,15 +176,15 @@ def main():
     img[free_votes >= args.min_points_per_cell] = 254
     img[occ_votes >= args.min_points_per_cell] = 0
 
-    # Light inflation for visibility and map server compatibility.
+    # Inflate occupied cells for map server and vehicle safety margin.
     occ = img == 0
     inflated = occ.copy()
     for y in range(height):
         for x in range(width):
             if not occ[y, x]:
                 continue
-            for ny in (y - 1, y, y + 1):
-                for nx in (x - 1, x, x + 1):
+            for ny in range(y - args.inflate_cells, y + args.inflate_cells + 1):
+                for nx in range(x - args.inflate_cells, x + args.inflate_cells + 1):
                     if 0 <= ny < height and 0 <= nx < width:
                         inflated[ny, nx] = True
     img[inflated] = 0
@@ -156,6 +196,8 @@ def main():
     print("Wrote", out_pgm)
     print("Wrote", out_yaml)
     print("ground_z", z_ground)
+    print("origin", args.origin_x, args.origin_y, args.origin_yaw)
+    print("size", width, height)
 
 
 if __name__ == "__main__":

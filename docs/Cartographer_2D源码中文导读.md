@@ -10,7 +10,7 @@
 
 1. **创新点一：具备 2D 方向性感知的自适应激光-里程计融合模块。**
    它在前端 Ceres scan matcher 中分析当前激光点云的 2D 几何协方差，识别长走廊的退化方向，并把原本标量平移先验改成 2x2 各向异性权重矩阵。
-
++
 2. **创新点二：退化感知门控的无 IMU LiDAR-odometry 一致性异常后端动态调权模块。**
    它在后端相邻节点 odometry 约束处比较 LiDAR local SLAM 相对位姿和 wheel odometry 相对位姿，如果横向和航向不一致，则动态降低 odometry 约束权重。
 
@@ -57,7 +57,7 @@ SensorBridge::HandleLaserScanMessage()
 TrajectoryBuilderInterface::AddSensorData(RANGE)
   |
   v
-GlobalTrajectoryBuilder::AddSensorData(TimedPointCloudData)
+GlobalTrajectoryBuilder::AddSensorData(TimedPointCloudData)    （总调度中心，前段后段的桥梁）
   |
   v
 LocalTrajectoryBuilder2D::AddRangeData()

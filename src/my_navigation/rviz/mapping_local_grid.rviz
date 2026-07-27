@@ -53,7 +53,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Local Grid
-      Topic: /local_occupancy_grid
+      Topic: /local_occupancy_grid_map
       Unreliable: false
       Use Timestamp: false
       Value: true
