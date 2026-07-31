@@ -1,0 +1,5 @@
+Log file created at: 2026/07/30 14:37:20
+Running on machine: ubuntu
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0730 14:37:20.631386 37723 pbstream_to_ros_map_main.cc:43] Loading submap slices from serialized data.
+I0730 14:37:20.708737 37723 pbstream_to_ros_map_main.cc:51] Generating combined map image from submap slices.

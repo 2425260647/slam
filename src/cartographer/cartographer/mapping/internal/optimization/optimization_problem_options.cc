@@ -93,6 +93,11 @@ proto::OptimizationProblemOptions CreateOptimizationProblemOptions(
       parameter_dictionary->HasKey("slip_unknown_keep_previous_weight")
           ? parameter_dictionary->GetBool("slip_unknown_keep_previous_weight")
           : true);
+  options.set_slip_min_consecutive_anomalies(
+      parameter_dictionary->HasKey("slip_min_consecutive_anomalies")
+          ? parameter_dictionary->GetNonNegativeInt(
+                "slip_min_consecutive_anomalies")
+          : 2);
   options.set_local_slam_pose_translation_weight(
       parameter_dictionary->GetDouble("local_slam_pose_translation_weight"));
   options.set_local_slam_pose_rotation_weight(

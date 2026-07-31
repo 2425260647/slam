@@ -1,0 +1,22 @@
+path: /home/slam/slam_ws/paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_full_v2/optimized_trajectory.bag
+version: 2.0
+duration: 292.700660
+start: 1737472022.259189
+end: 1737472314.959848
+size: 799438
+messages: 5208
+indexed: True
+compression: none
+types:
+    - type: geometry_msgs/TransformStamped
+      md5: b5764a33bfeb3588febc2682852579b0
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 2604
+    - topic: trajectory_0
+      type: geometry_msgs/TransformStamped
+      messages: 2604
+

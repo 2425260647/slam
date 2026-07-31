@@ -18,7 +18,7 @@ package cartographer.mapping.optimization.proto;
 
 import "cartographer/common/proto/ceres_solver_options.proto";
 
-// NEXT ID: 40
+// NEXT ID: 41
 message OptimizationProblemOptions {
   reserved 20 to 22; // For visual constraints.
   // Scaling parameter for Huber loss function.
@@ -64,6 +64,9 @@ message OptimizationProblemOptions {
   double slip_lidar_reliability_min = 37;
   double slip_degeneracy_metric_max_time_delta_sec = 38;
   bool slip_unknown_keep_previous_weight = 39;
+  // Number of consecutive reliable high-residual edges required before an
+  // odometry edge is down-weighted.
+  int32 slip_min_consecutive_anomalies = 40;
 
   // Scaling parameter for the FixedFramePose translation. Unit: 1/meters.
   double fixed_frame_pose_translation_weight = 11;

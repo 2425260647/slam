@@ -1,0 +1,42 @@
+
+Published topics:
+ * /rosout_agg [rosgraph_msgs/Log] 1 publisher
+ * /rosout [rosgraph_msgs/Log] 7 publishers
+ * /clock [rosgraph_msgs/Clock] 1 publisher
+ * /vrpn_client_node/UGV/pose [geometry_msgs/PoseStamped] 1 publisher
+ * /odom [nav_msgs/Odometry] 1 publisher
+ * /livox/mid360/lidar [livox_ros_driver2/CustomMsg] 1 publisher
+ * /velodyne_points [sensor_msgs/PointCloud2] 1 publisher
+ * /tf_static [tf2_msgs/TFMessage] 1 publisher
+ * /tf [tf2_msgs/TFMessage] 1 publisher
+ * /submap_list [cartographer_ros_msgs/SubmapList] 1 publisher
+ * /trajectory_node_list [visualization_msgs/MarkerArray] 1 publisher
+ * /landmark_poses_list [visualization_msgs/MarkerArray] 1 publisher
+ * /constraint_list [visualization_msgs/MarkerArray] 1 publisher
+ * /tracked_pose [geometry_msgs/PoseStamped] 1 publisher
+ * /degeneracy_metric [std_msgs/Float32] 1 publisher
+ * /map [nav_msgs/OccupancyGrid] 1 publisher
+ * /degeneracy_direction [geometry_msgs/Vector3] 1 publisher
+ * /slip_metric [std_msgs/Float32] 1 publisher
+ * /slip_state [std_msgs/Bool] 1 publisher
+ * /odom_weight_scale [std_msgs/Float32] 1 publisher
+ * /slip_lidar_reliability [std_msgs/Float32] 1 publisher
+ * /consistency_anomaly_trigger_count [std_msgs/UInt32] 1 publisher
+ * /consistency_anomaly_time [std_msgs/Float64] 1 publisher
+ * /odom_min_weight_scale [std_msgs/Float32] 1 publisher
+ * /local_occupancy_grid [nav_msgs/OccupancyGrid] 1 publisher
+ * /local_occupancy_grid_map [nav_msgs/OccupancyGrid] 1 publisher
+ * /scan_matched_points2 [sensor_msgs/PointCloud2] 1 publisher
+ * /scan [sensor_msgs/LaserScan] 1 publisher
+
+Subscribed topics:
+ * /rosout [rosgraph_msgs/Log] 1 subscriber
+ * /clock [rosgraph_msgs/Clock] 7 subscribers
+ * /livox/mid360/lidar [livox_ros_driver2/CustomMsg] 1 subscriber
+ * /tf [tf2_msgs/TFMessage] 3 subscribers
+ * /tf_static [tf2_msgs/TFMessage] 3 subscribers
+ * /submap_list [cartographer_ros_msgs/SubmapList] 1 subscriber
+ * /scan [sensor_msgs/LaserScan] 2 subscribers
+ * /odom [nav_msgs/Odometry] 1 subscriber
+ * /velodyne_points [sensor_msgs/PointCloud2] 1 subscriber
+

@@ -1,0 +1,84 @@
+<launch>
+  <arg name="rviz" default="false"/>
+  <arg name="enable_monitor" default="true"/>
+  <arg name="cloud_topic" default="/velodyne_points"/>
+  <arg name="projected_scan_topic" default="/scan_projected"/>
+  <arg name="scan_topic" default="/scan"/>
+  <arg name="odom_topic" default="/odom"/>
+  <arg name="target_frame" default="laser_link"/>
+  <arg name="min_height" default="-0.515"/>
+  <arg name="max_height" default="1.435"/>
+  <arg name="range_min" default="0.30"/>
+  <arg name="range_max" default="30.0"/>
+  <arg name="scan_quality_gate_enabled" default="true"/>
+  <arg name="scan_quality_min_valid_ranges" default="250"/>
+  <arg name="scan_quality_sector_count" default="8"/>
+  <arg name="scan_quality_min_active_sectors" default="2"/>
+  <arg name="scan_quality_min_ranges_per_sector" default="10"/>
+  <arg name="configuration_directory"
+       default="$(find my_navigation)/config"/>
+  <arg name="configuration_basename"
+       default="cartographer_scout_online_navigation.lua"/>
+
+  <!-- The chassis/lidar drivers and base_link -> laser_link static TF are
+       started by the robot bringup. This launch owns only online 2D SLAM. -->
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
+        name="slam_cloud_to_scan" output="screen">
+    <remap from="cloud_in" to="$(arg cloud_topic)"/>
+    <remap from="scan" to="$(arg projected_scan_topic)"/>
+    <param name="target_frame" value="$(arg target_frame)"/>
+    <param name="transform_tolerance" value="0.05"/>
+    <param name="min_height" value="$(arg min_height)"/>
+    <param name="max_height" value="$(arg max_height)"/>
+    <param name="angle_min" value="-3.14159"/>
+    <param name="angle_max" value="3.14159"/>
+    <param name="angle_increment" value="0.00436"/>
+    <param name="scan_time" value="0.1"/>
+    <param name="range_min" value="$(arg range_min)"/>
+    <param name="range_max" value="$(arg range_max)"/>
+    <param name="use_inf" value="true"/>
+    <param name="inf_epsilon" value="1.0"/>
+  </node>
+
+  <!-- [Innovation 1] Sparse projected scans are withheld before local SLAM. -->
+  <node pkg="my_navigation" type="scan_quality_gate"
+        name="scan_quality_gate" output="screen">
+    <param name="input_topic" value="$(arg projected_scan_topic)"/>
+    <param name="output_topic" value="$(arg scan_topic)"/>
+    <param name="enabled" value="$(arg scan_quality_gate_enabled)"/>
+    <param name="min_valid_ranges"
+           value="$(arg scan_quality_min_valid_ranges)"/>
+    <param name="sector_count" value="$(arg scan_quality_sector_count)"/>
+    <param name="min_active_sectors"
+           value="$(arg scan_quality_min_active_sectors)"/>
+    <param name="min_ranges_per_sector"
+           value="$(arg scan_quality_min_ranges_per_sector)"/>
+  </node>
+
+  <node name="cartographer_node" pkg="cartographer_ros"
+        type="cartographer_node" output="screen"
+        args="-configuration_directory $(arg configuration_directory)
+              -configuration_basename $(arg configuration_basename)">
+    <remap from="scan" to="$(arg scan_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+  </node>
+
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" output="screen"
+        args="-resolution 0.05 -publish_period_sec 1.0"/>
+
+  <node if="$(arg enable_monitor)" pkg="my_navigation"
+        type="mapping_health_monitor" name="mapping_health_monitor"
+        output="screen">
+    <param name="scan_topic" value="$(arg scan_topic)"/>
+    <param name="map_topic" value="/map"/>
+    <param name="require_local_grid" value="false"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_footprint"/>
+    <param name="report_period" value="2.0"/>
+    <param name="scan_min_hz" value="5.0"/>
+  </node>
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find my_navigation)/rviz/mapping_local_grid.rviz"/>
+</launch>

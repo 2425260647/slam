@@ -1,0 +1,202 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "gate_off": {
+      "bag_sha256": "645f8ab1c119de90b7952bb884627b02725db42d4845c080019b8bfcd2a02518",
+      "config_sha256": "52c6c802d57a62e555de3bb89779d3d15c387cb2a384574a7984b7ef428a850e",
+      "diagnostics": {
+        "anomaly_time_max": 1784865459.159232,
+        "anomaly_time_mean": 1784865248.467863,
+        "anomaly_time_min": 1784865148.352588,
+        "consistency_metric_max": 0.0172173660248518,
+        "consistency_metric_mean": 0.004357708055657333,
+        "consistency_metric_min": 0.00041793592390604317,
+        "distinct_latest_anomaly_times": [
+          1784865148.352588,
+          1784865150.752566,
+          1784865447.559134,
+          1784865459.159232
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 1.0,
+        "lidar_reliability_min": 1.0,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            565
+          ],
+          [
+            0,
+            566
+          ],
+          [
+            0,
+            579
+          ],
+          [
+            0,
+            580
+          ],
+          [
+            0,
+            581
+          ],
+          [
+            0,
+            582
+          ],
+          [
+            0,
+            583
+          ],
+          [
+            0,
+            585
+          ],
+          [
+            0,
+            2020
+          ],
+          [
+            0,
+            2023
+          ],
+          [
+            0,
+            2073
+          ],
+          [
+            0,
+            2074
+          ],
+          [
+            0,
+            2076
+          ],
+          [
+            0,
+            2079
+          ],
+          [
+            0,
+            2081
+          ],
+          [
+            0,
+            2082
+          ],
+          [
+            0,
+            2084
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.2846755011000173,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 4.0,
+        "trigger_count_mean": 2.0681047246012856,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.97965004895455,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.4473351243263437,
+        "candidate_occupied_cells_roi": 5533,
+        "clean_corridor_axis_deg": 0.18877331252554086,
+        "corridor_axis_error_deg": 0.25856181180080284,
+        "occupied_cell_ratio_to_clean": 0.9901574803149606,
+        "occupied_f1_at_0_15_m": 0.636413909299444,
+        "occupied_precision_at_0_15_m": 0.647388396891379,
+        "occupied_recall_at_0_15_m": 0.6258052970651395,
+        "reference_occupied_cells_roi": 5588,
+        "symmetric_chamfer_mean_m": 0.12880754439264042,
+        "symmetric_chamfer_p95_m": 0.4567877409694454
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_off/repeat_03",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.009869528776598503,
+        "endpoint_yaw_difference_deg": 0.22218879004849723,
+        "position_difference_max_m": 0.3033282829013483,
+        "position_difference_mean_m": 0.049280540858562885,
+        "position_difference_p95_m": 0.22406158872108145,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5787,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.41180048630225924,
+        "yaw_difference_p95_deg": 1.1942798522817353
+      }
+    },
+    "gate_on": {
+      "bag_sha256": "645f8ab1c119de90b7952bb884627b02725db42d4845c080019b8bfcd2a02518",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "consistency_metric_max": 0.0172173660248518,
+        "consistency_metric_mean": 0.004399481130429196,
+        "consistency_metric_min": 0.00041793592390604317,
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.4117082784164696,
+        "lidar_reliability_min": 0.03556910902261734,
+        "logged_unique_anomaly_node_ids": [],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 1.0,
+        "minimum_weight_scale_min": 1.0,
+        "trigger_count_max": 0.0,
+        "trigger_count_mean": 0.0,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 1.0,
+        "weight_scale_min": 1.0
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.645934908284886,
+        "candidate_occupied_cells_roi": 5456,
+        "clean_corridor_axis_deg": 0.18877331252554086,
+        "corridor_axis_error_deg": 0.4571615957593451,
+        "occupied_cell_ratio_to_clean": 0.9763779527559056,
+        "occupied_f1_at_0_15_m": 0.5565117350914064,
+        "occupied_precision_at_0_15_m": 0.5575513196480938,
+        "occupied_recall_at_0_15_m": 0.5554760200429492,
+        "reference_occupied_cells_roi": 5588,
+        "symmetric_chamfer_mean_m": 0.20591716771053328,
+        "symmetric_chamfer_p95_m": 0.7138276280548109
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_on/repeat_03",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.010728324976593779,
+        "endpoint_yaw_difference_deg": 0.26744277239322195,
+        "position_difference_max_m": 0.2701526408672412,
+        "position_difference_mean_m": 0.029873623355563504,
+        "position_difference_p95_m": 0.09655219040242298,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5787,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.3846914291504563,
+        "yaw_difference_p95_deg": 1.0650749836515836
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_03",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 3,
+  "schema_version": 1,
+  "suite": "gate_ablation"
+}

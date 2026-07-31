@@ -1,0 +1,11 @@
+generated_at_utc=2026-07-30T07:18:01Z
+algorithm_version=innovation_combined_v2_20260730
+git_head=3fd6da35a2f24b79437499632c1c025c8a1da864
+source_manifest_sha256=65e1e225f9cc3b62a9b886603af41cadd3887ce604124a2b8ae785338f478e84
+playback_rate=2.0
+static_tf=0 0 0.33521 -1.5708 0 0 base_link laser_link
+projection_height=-0.515,1.435
+scan_quality_gate=true
+f17265814b44d2620a51eb47bf575989f74834486f426f414339b63d3ba12855  /home/slam/slam_ws/bags/corridor_repeat_01.bag
+c45b8ea922dbab4b05c198695dcc261b04d3cee87b876c3c2399430651c41fef  /home/slam/slam_ws/bags/corridor_repeat_02.bag
+d14c3f6f1ae1c878f479ea45e4cb18cc41c62aa9dd6cd8e6fec28655d8319c55  /home/slam/slam_ws/bags/corridor_repeat_03.bag

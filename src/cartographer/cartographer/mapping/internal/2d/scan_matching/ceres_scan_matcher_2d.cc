@@ -232,6 +232,24 @@ proto::CeresScanMatcherOptions2D CreateCeresScanMatcherOptions2D(
           ? parameter_dictionary->GetDouble(
                 "directional_adaptive_log_scale_change_threshold")
           : 0.25);
+  options.set_directional_adaptive_activation_confidence(
+      parameter_dictionary->HasKey(
+          "directional_adaptive_activation_confidence")
+          ? parameter_dictionary->GetDouble(
+                "directional_adaptive_activation_confidence")
+          : 0.5);
+  options.set_directional_adaptive_motion_alignment_min_cosine(
+      parameter_dictionary->HasKey(
+          "directional_adaptive_motion_alignment_min_cosine")
+          ? parameter_dictionary->GetDouble(
+                "directional_adaptive_motion_alignment_min_cosine")
+          : 0.);
+  options.set_directional_adaptive_max_longitudinal_scale(
+      parameter_dictionary->HasKey(
+          "directional_adaptive_max_longitudinal_scale")
+          ? parameter_dictionary->GetDouble(
+                "directional_adaptive_max_longitudinal_scale")
+          : 0.);
   *options.mutable_ceres_solver_options() =
       common::CreateCeresSolverOptionsProto(
           parameter_dictionary->GetDictionary("ceres_solver_options").get());
@@ -251,6 +269,7 @@ CeresScanMatcher2D::~CeresScanMatcher2D() {}
 Eigen::Matrix<double, 2, 2>
 CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
     const sensor::PointCloud& point_cloud,
+    const Eigen::Matrix<double, 2, 2>& tracking_to_local_rotation,
     const double real_time_correlative_score) const {
   const double base_translation_weight = options_.translation_weight();
   Eigen::Matrix<double, 2, 2> sqrt_information =
@@ -273,7 +292,10 @@ CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
     return sqrt_information;
   }
 
-  // [Innovation 1] Compute 2D scan covariance in the current scan frame.
+  // [Innovation 1] Compute 2D scan covariance in the current gravity-aligned
+  // [Innovation 1] tracking frame. Ceres translation residuals are expressed
+  // [Innovation 1] in the local-SLAM frame, so the eigenbasis is rotated below
+  // [Innovation 1] before it is used to construct the information matrix.
   // [Innovation 1] This is O(N) and uses only x/y, without IMU logic.
   Eigen::Vector2d mean = Eigen::Vector2d::Zero();
   for (const sensor::RangefinderPoint& point : point_cloud) {
@@ -304,8 +326,14 @@ CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
   const double lambda_max =
       std::max(eigenvalue_epsilon, solver.eigenvalues()(1));
   const double condition_number = lambda_max / lambda_min;
-  Eigen::Vector2d v_lat = solver.eigenvectors().col(0).normalized();
-  Eigen::Vector2d v_long = solver.eigenvectors().col(1).normalized();
+  // [Innovation 1] Map the covariance eigenvectors into the same local-SLAM
+  // [Innovation 1] coordinates as e = p_local - p0_local in the Ceres prior.
+  // [Innovation 1] This prevents the anisotropic axes from following the robot
+  // [Innovation 1] body frame when the robot changes heading in a corridor.
+  Eigen::Vector2d v_lat =
+      (tracking_to_local_rotation * solver.eigenvectors().col(0)).normalized();
+  Eigen::Vector2d v_long =
+      (tracking_to_local_rotation * solver.eigenvectors().col(1)).normalized();
   if (!v_long.allFinite() || !v_lat.allFinite()) {
     SetLatestDirectionalDegeneracyMetric(metric);
     return sqrt_information;
@@ -356,6 +384,31 @@ CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
   rotation.col(1) =
       Eigen::Vector2d(-smoothed_direction.y(), smoothed_direction.x());
 
+  const double activation_confidence = std::min(
+      1. - 1e-6,
+      std::max(0., options_.directional_adaptive_activation_confidence()));
+  const double degeneracy_strength = std::min(
+      1., std::max(0., (confidence - activation_confidence) /
+                              (1. - activation_confidence)));
+  const Eigen::Vector2d forward_direction =
+      tracking_to_local_rotation * Eigen::Vector2d::UnitX();
+  const double alignment_min_cosine =
+      std::min(1. - 1e-6,
+               std::max(
+                   0., options_
+                           .directional_adaptive_motion_alignment_min_cosine()));
+  double alignment_strength = 1.;
+  if (alignment_min_cosine > 0. && forward_direction.allFinite() &&
+      forward_direction.norm() > 1e-6) {
+    const double alignment_cosine = std::abs(
+        smoothed_direction.dot(forward_direction.normalized()));
+    alignment_strength = std::min(
+        1., std::max(0., (alignment_cosine - alignment_min_cosine) /
+                                 (1. - alignment_min_cosine)));
+  }
+  const double adaptation_strength =
+      degeneracy_strength * alignment_strength;
+
   // [Innovation 1] The occupied-space residual is scalar per laser point.
   // [Innovation 1] Directional fusion is injected through the 2D motion prior.
   // [Innovation 1] scan_*_scale changes relative LiDAR influence without
@@ -364,16 +417,28 @@ CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
       std::max(1e-3, options_.directional_adaptive_min_scan_weight_scale());
   const double scan_long_scale = std::max(
       min_scan_scale,
-      1. - options_.directional_adaptive_scan_longitudinal_beta() * confidence);
+      1. - options_.directional_adaptive_scan_longitudinal_beta() *
+               adaptation_strength);
   const double scan_lat_scale = std::max(
       min_scan_scale,
-      1. - options_.directional_adaptive_scan_lateral_beta() * confidence);
+      1. - options_.directional_adaptive_scan_lateral_beta() *
+               adaptation_strength);
   const double odom_long_scale =
-      1. + options_.directional_adaptive_odom_longitudinal_alpha() * confidence;
+      1. + options_.directional_adaptive_odom_longitudinal_alpha() *
+               adaptation_strength;
   const double odom_lat_scale =
-      1. + options_.directional_adaptive_odom_lateral_alpha() * confidence;
-  const double longitudinal_weight =
+      1. + options_.directional_adaptive_odom_lateral_alpha() *
+               adaptation_strength;
+  double longitudinal_weight =
       base_translation_weight * odom_long_scale / scan_long_scale;
+  const double max_longitudinal_scale =
+      options_.directional_adaptive_max_longitudinal_scale();
+  if (max_longitudinal_scale > 0.) {
+    longitudinal_weight =
+        std::min(longitudinal_weight,
+                 base_translation_weight *
+                     std::max(1., max_longitudinal_scale));
+  }
   const double lateral_weight =
       base_translation_weight * odom_lat_scale / scan_lat_scale;
 
@@ -382,7 +447,9 @@ CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
       (Eigen::Vector2d(longitudinal_weight, lateral_weight).asDiagonal()) *
       rotation.transpose();
 
+  metric.valid = true;
   metric.confidence = confidence;
+  metric.adaptation_strength = adaptation_strength;
   metric.condition_number = condition_number;
   metric.direction = smoothed_direction;
   metric.longitudinal_scale = longitudinal_weight / base_translation_weight;
@@ -451,7 +518,8 @@ void CeresScanMatcher2D::Match(const Eigen::Vector2d& target_translation,
   problem.AddResidualBlock(
       TranslationDeltaCostFunctor2D::CreateAutoDiffCostFunction(
           ComputeAnisotropicTranslationSqrtInformation(
-              point_cloud, real_time_correlative_score),
+              point_cloud, initial_pose_estimate.rotation().toRotationMatrix(),
+              real_time_correlative_score),
           target_translation),
       nullptr /* loss function */, ceres_pose_estimate);
   CHECK_GT(options_.rotation_weight(), 0.);

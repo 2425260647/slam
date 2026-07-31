@@ -29,10 +29,20 @@ namespace mapping {
 // [Innovation 1] thread; cartographer_ros reads a copy for diagnostics.
 struct DirectionalDegeneracyMetric {
   bool enabled = false;
+  bool valid = false;
   common::Time time = common::FromUniversal(0);
+  // Geometric degeneracy confidence. Higher means the scan is more elongated
+  // and its principal direction is less observable; this is not an overall
+  // LiDAR reliability score.
   double confidence = 0.;
+  // Gated strength actually applied to the anisotropic front-end prior.
+  // Normal geometry keeps this at zero so the scan matcher matches baseline.
+  double adaptation_strength = 0.;
   double condition_number = 1.;
   double real_time_correlative_score = 0.;
+  // [Innovation 1] Principal axis in the local-SLAM frame used by the Ceres
+  // [Innovation 1] translation residual. cartographer_ros rotates this copy
+  // [Innovation 1] into map_frame before publishing the diagnostic topic.
   Eigen::Vector2d direction = Eigen::Vector2d::UnitX();
   double longitudinal_scale = 1.;
   double lateral_scale = 1.;

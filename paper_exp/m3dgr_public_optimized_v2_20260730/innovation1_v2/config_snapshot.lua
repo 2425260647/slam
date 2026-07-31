@@ -1,0 +1,27 @@
+include "cartographer_m3dgr_mid360.lua"
+
+-- M3DGR Innovation 1 variant: enable only the IMU-free directional adaptive
+-- front-end. All dataset projection and base Cartographer parameters come from
+-- cartographer_m3dgr_mid360.lua.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.translation_weight = 10.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_fusion_enabled = true
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_condition_number_threshold = 8.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_sigmoid_slope = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_smoothing_alpha = 0.2
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_min_num_points = 10
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_degeneracy_eigenvalue_epsilon = 1e-4
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_odom_longitudinal_alpha = 1.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_odom_lateral_alpha = 0.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_longitudinal_beta = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_lateral_beta = 0.0
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_min_scan_weight_scale = 0.2
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_log_scale_change_threshold = 0.25
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_activation_confidence = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_motion_alignment_min_cosine = 0.7
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_max_longitudinal_scale = 1.5
+
+POSE_GRAPH.optimization_problem.slip_adaptive_odometry_weight_enabled = false
+POSE_GRAPH.optimization_problem.odometry_translation_weight = 1e5
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 1e5
+
+return options

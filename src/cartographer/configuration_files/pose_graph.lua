@@ -86,6 +86,7 @@ POSE_GRAPH = {
     slip_lidar_reliability_min = 0.6,
     slip_degeneracy_metric_max_time_delta_sec = 0.25,
     slip_unknown_keep_previous_weight = true,
+    slip_min_consecutive_anomalies = 2,
     fixed_frame_pose_translation_weight = 1e1,
     fixed_frame_pose_rotation_weight = 1e2,
     fixed_frame_pose_use_tolerant_loss = false,

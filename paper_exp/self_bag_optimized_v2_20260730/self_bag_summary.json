@@ -1,0 +1,672 @@
+{
+  "aggregate": {
+    "best_wall_continuous_length_m": {
+      "baseline_mean": 9.9000001475298,
+      "proposed_mean": 10.816666827856631,
+      "relative_change_percent": 9.259259259259231
+    },
+    "best_wall_gap_closed_coverage": {
+      "baseline_mean": 0.24559596294403963,
+      "proposed_mean": 0.2651195056262294,
+      "relative_change_percent": 7.949455865705048
+    },
+    "occupied_cells": {
+      "baseline_mean": 9074.0,
+      "proposed_mean": 9164.0,
+      "relative_change_percent": 0.9918448313863787
+    }
+  },
+  "evaluation_boundary": "No continuous ATE/RPE is reported for self bags.",
+  "reference_limit": "same-bag structural baseline, not external ground truth",
+  "runs": [
+    {
+      "algorithm_version": "innovation_combined_v2_20260730",
+      "anomaly_trigger_count_max": 0.0,
+      "bag": "/home/slam/slam_ws/bags/corridor_repeat_01.bag",
+      "bag_sha256": "f17265814b44d2620a51eb47bf575989f74834486f426f414339b63d3ba12855",
+      "baseline_map": {
+        "aligned_height_cells": 288,
+        "aligned_width_cells": 1607,
+        "best_wall_continuous_length_m": 4.6500000692942995,
+        "best_wall_gap_closed_coverage": 0.14436838830118232,
+        "candidate_wall_rows": 11,
+        "dominant_axis_yaw_deg": -1.3979094779770598,
+        "free_cells": 77653,
+        "free_ratio": 0.13757139617614128,
+        "height_cells": 348,
+        "height_m": 17.4000002592948,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/i1/baseline_a/repeat_01/map",
+        "occupied_cells": 9247,
+        "occupied_ratio": 0.01638214493246595,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.14436838830118232,
+            "longest_gap_closed_run_m": 4.6500000692942995,
+            "longest_raw_run_m": 2.7000000402354,
+            "occupied_cells": 207,
+            "raw_coverage": 0.12881144990665838,
+            "row": 174
+          },
+          {
+            "gap_closed_coverage": 0.14436838830118232,
+            "longest_gap_closed_run_m": 3.4000000506668,
+            "longest_raw_run_m": 2.7000000402354,
+            "occupied_cells": 206,
+            "raw_coverage": 0.1281891723708774,
+            "row": 176
+          },
+          {
+            "gap_closed_coverage": 0.14063472308649658,
+            "longest_gap_closed_run_m": 4.8000000715296,
+            "longest_raw_run_m": 2.1000000312941998,
+            "occupied_cells": 202,
+            "raw_coverage": 0.12570006222775357,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.1281891723708774,
+            "longest_gap_closed_run_m": 5.1000000760001996,
+            "longest_raw_run_m": 2.9000000432157997,
+            "occupied_cells": 193,
+            "raw_coverage": 0.12009956440572496,
+            "row": 161
+          },
+          {
+            "gap_closed_coverage": 0.1238332296204107,
+            "longest_gap_closed_run_m": 5.00000007451,
+            "longest_raw_run_m": 2.6000000387452,
+            "occupied_cells": 191,
+            "raw_coverage": 0.11885500933416304,
+            "row": 172
+          },
+          {
+            "gap_closed_coverage": 0.12196639701306783,
+            "longest_gap_closed_run_m": 5.5500000827061,
+            "longest_raw_run_m": 4.3000000640786,
+            "occupied_cells": 183,
+            "raw_coverage": 0.11387678904791537,
+            "row": 164
+          },
+          {
+            "gap_closed_coverage": 0.12134411947728686,
+            "longest_gap_closed_run_m": 2.6500000394903,
+            "longest_raw_run_m": 2.6500000394903,
+            "occupied_cells": 183,
+            "raw_coverage": 0.11387678904791537,
+            "row": 175
+          },
+          {
+            "gap_closed_coverage": 0.12009956440572496,
+            "longest_gap_closed_run_m": 5.2500000782355,
+            "longest_raw_run_m": 1.9000000283137999,
+            "occupied_cells": 181,
+            "raw_coverage": 0.11263223397635345,
+            "row": 162
+          },
+          {
+            "gap_closed_coverage": 0.12009956440572496,
+            "longest_gap_closed_run_m": 4.3000000640786,
+            "longest_raw_run_m": 2.0500000305491,
+            "occupied_cells": 168,
+            "raw_coverage": 0.104542626011201,
+            "row": 179
+          },
+          {
+            "gap_closed_coverage": 0.10952084629744867,
+            "longest_gap_closed_run_m": 5.1000000760001996,
+            "longest_raw_run_m": 3.8000000566275998,
+            "occupied_cells": 164,
+            "raw_coverage": 0.10205351586807716,
+            "row": 163
+          }
+        ],
+        "unknown_cells": 477556,
+        "unknown_ratio": 0.8460464588913927,
+        "width_cells": 1622,
+        "width_m": 81.1000012085522
+      },
+      "config": "innovation2_proposed_slip_adaptive.lua",
+      "fatal_scan_bytes": 0,
+      "forbidden_imu_or_avia_topics": [],
+      "odom_weight_scale_mean": 1.0,
+      "odom_weight_scale_min": 1.0,
+      "proposed_map": {
+        "aligned_height_cells": 290,
+        "aligned_width_cells": 1607,
+        "best_wall_continuous_length_m": 6.050000090157099,
+        "best_wall_gap_closed_coverage": 0.18730553827006846,
+        "candidate_wall_rows": 11,
+        "dominant_axis_yaw_deg": -1.4682658085982805,
+        "free_cells": 77603,
+        "free_ratio": 0.13608831369248037,
+        "height_cells": 352,
+        "height_m": 17.6000002622752,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/self_bag_optimized_v2_20260730/runs/normal_full/proposed/repeat_01/map",
+        "occupied_cells": 9233,
+        "occupied_ratio": 0.016191428170594838,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.18730553827006846,
+            "longest_gap_closed_run_m": 6.050000090157099,
+            "longest_raw_run_m": 2.2000000327844,
+            "occupied_cells": 249,
+            "raw_coverage": 0.1549471064094586,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.1686372121966397,
+            "longest_gap_closed_run_m": 5.9000000879218,
+            "longest_raw_run_m": 5.9000000879218,
+            "occupied_cells": 251,
+            "raw_coverage": 0.15619166148102054,
+            "row": 174
+          },
+          {
+            "gap_closed_coverage": 0.1611698817672682,
+            "longest_gap_closed_run_m": 3.0500000454511,
+            "longest_raw_run_m": 1.6500000245883,
+            "occupied_cells": 236,
+            "raw_coverage": 0.14685749844430615,
+            "row": 175
+          },
+          {
+            "gap_closed_coverage": 0.15245799626633477,
+            "longest_gap_closed_run_m": 5.500000081961,
+            "longest_raw_run_m": 2.7000000402354,
+            "occupied_cells": 220,
+            "raw_coverage": 0.13690105787181084,
+            "row": 172
+          },
+          {
+            "gap_closed_coverage": 0.14747977598008713,
+            "longest_gap_closed_run_m": 6.8000001013336,
+            "longest_raw_run_m": 3.3000000491766,
+            "occupied_cells": 227,
+            "raw_coverage": 0.14125700062227753,
+            "row": 163
+          },
+          {
+            "gap_closed_coverage": 0.14561294337274425,
+            "longest_gap_closed_run_m": 3.000000044706,
+            "longest_raw_run_m": 1.7500000260785,
+            "occupied_cells": 222,
+            "raw_coverage": 0.13814561294337274,
+            "row": 162
+          },
+          {
+            "gap_closed_coverage": 0.14187927815805848,
+            "longest_gap_closed_run_m": 3.6500000543923,
+            "longest_raw_run_m": 2.4000000357648,
+            "occupied_cells": 206,
+            "raw_coverage": 0.1281891723708774,
+            "row": 164
+          },
+          {
+            "gap_closed_coverage": 0.13005600497822029,
+            "longest_gap_closed_run_m": 4.2500000633335,
+            "longest_raw_run_m": 2.6000000387452,
+            "occupied_cells": 198,
+            "raw_coverage": 0.12321095208462975,
+            "row": 161
+          },
+          {
+            "gap_closed_coverage": 0.1238332296204107,
+            "longest_gap_closed_run_m": 3.1000000461962,
+            "longest_raw_run_m": 2.1000000312941998,
+            "occupied_cells": 186,
+            "raw_coverage": 0.11574362165525824,
+            "row": 178
+          },
+          {
+            "gap_closed_coverage": 0.12321095208462975,
+            "longest_gap_closed_run_m": 3.7000000551373997,
+            "longest_raw_run_m": 3.1000000461962,
+            "occupied_cells": 186,
+            "raw_coverage": 0.11574362165525824,
+            "row": 171
+          }
+        ],
+        "unknown_cells": 483404,
+        "unknown_ratio": 0.8477202581369248,
+        "width_cells": 1620,
+        "width_m": 81.000001207062
+      },
+      "repeat": 1,
+      "success_marker": true,
+      "tracked_pose_rows": 26862
+    },
+    {
+      "algorithm_version": "innovation_combined_v2_20260730",
+      "anomaly_trigger_count_max": 0.0,
+      "bag": "/home/slam/slam_ws/bags/corridor_repeat_02.bag",
+      "bag_sha256": "c45b8ea922dbab4b05c198695dcc261b04d3cee87b876c3c2399430651c41fef",
+      "baseline_map": {
+        "aligned_height_cells": 310,
+        "aligned_width_cells": 1606,
+        "best_wall_continuous_length_m": 9.300000138588599,
+        "best_wall_gap_closed_coverage": 0.23599003735990037,
+        "candidate_wall_rows": 17,
+        "dominant_axis_yaw_deg": -0.07729107803845112,
+        "free_cells": 70133,
+        "free_ratio": 0.1291500547846824,
+        "height_cells": 335,
+        "height_m": 16.7500002496085,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/i1/baseline_a/repeat_02/map",
+        "occupied_cells": 8634,
+        "occupied_ratio": 0.01589952765475522,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.23599003735990037,
+            "longest_gap_closed_run_m": 9.300000138588599,
+            "longest_raw_run_m": 8.1500001214513,
+            "occupied_cells": 360,
+            "raw_coverage": 0.22415940224159403,
+            "row": 164
+          },
+          {
+            "gap_closed_coverage": 0.17995018679950187,
+            "longest_gap_closed_run_m": 5.3000000789806,
+            "longest_raw_run_m": 4.7000000700394,
+            "occupied_cells": 275,
+            "raw_coverage": 0.17123287671232876,
+            "row": 163
+          },
+          {
+            "gap_closed_coverage": 0.16687422166874222,
+            "longest_gap_closed_run_m": 3.6500000543923,
+            "longest_raw_run_m": 2.6500000394903,
+            "occupied_cells": 248,
+            "raw_coverage": 0.15442092154420922,
+            "row": 165
+          },
+          {
+            "gap_closed_coverage": 0.1643835616438356,
+            "longest_gap_closed_run_m": 10.4000001549808,
+            "longest_raw_run_m": 6.500000096862999,
+            "occupied_cells": 253,
+            "raw_coverage": 0.15753424657534246,
+            "row": 176
+          },
+          {
+            "gap_closed_coverage": 0.1519302615193026,
+            "longest_gap_closed_run_m": 5.3000000789806,
+            "longest_raw_run_m": 4.9000000730197995,
+            "occupied_cells": 230,
+            "raw_coverage": 0.1432129514321295,
+            "row": 174
+          },
+          {
+            "gap_closed_coverage": 0.1357409713574097,
+            "longest_gap_closed_run_m": 5.2000000774904,
+            "longest_raw_run_m": 4.9000000730197995,
+            "occupied_cells": 209,
+            "raw_coverage": 0.13013698630136986,
+            "row": 175
+          },
+          {
+            "gap_closed_coverage": 0.13262764632627647,
+            "longest_gap_closed_run_m": 2.4000000357648,
+            "longest_raw_run_m": 2.000000029804,
+            "occupied_cells": 200,
+            "raw_coverage": 0.12453300124533001,
+            "row": 162
+          },
+          {
+            "gap_closed_coverage": 0.1307596513075965,
+            "longest_gap_closed_run_m": 4.000000059608,
+            "longest_raw_run_m": 3.6000000536472,
+            "occupied_cells": 201,
+            "raw_coverage": 0.12515566625155666,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.12889165628891655,
+            "longest_gap_closed_run_m": 7.6000001132551995,
+            "longest_raw_run_m": 7.1500001065492995,
+            "occupied_cells": 201,
+            "raw_coverage": 0.12515566625155666,
+            "row": 124
+          },
+          {
+            "gap_closed_coverage": 0.12577833125778332,
+            "longest_gap_closed_run_m": 5.6500000841963,
+            "longest_raw_run_m": 5.4000000804708,
+            "occupied_cells": 187,
+            "raw_coverage": 0.11643835616438356,
+            "row": 160
+          }
+        ],
+        "unknown_cells": 464268,
+        "unknown_ratio": 0.8549504175605624,
+        "width_cells": 1621,
+        "width_m": 81.0500012078071
+      },
+      "config": "innovation2_proposed_slip_adaptive.lua",
+      "fatal_scan_bytes": 0,
+      "forbidden_imu_or_avia_topics": [],
+      "odom_weight_scale_mean": 1.0,
+      "odom_weight_scale_min": 1.0,
+      "proposed_map": {
+        "aligned_height_cells": 307,
+        "aligned_width_cells": 1606,
+        "best_wall_continuous_length_m": 10.950000163176899,
+        "best_wall_gap_closed_coverage": 0.22478206724782068,
+        "candidate_wall_rows": 16,
+        "dominant_axis_yaw_deg": -0.17397971109320207,
+        "free_cells": 69993,
+        "free_ratio": 0.12966637210930856,
+        "height_cells": 333,
+        "height_m": 16.6500002481183,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/self_bag_optimized_v2_20260730/runs/normal_full/proposed/repeat_02/map",
+        "occupied_cells": 8723,
+        "occupied_ratio": 0.016159898331397405,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.22478206724782068,
+            "longest_gap_closed_run_m": 10.950000163176899,
+            "longest_raw_run_m": 8.4500001259219,
+            "occupied_cells": 343,
+            "raw_coverage": 0.21357409713574096,
+            "row": 164
+          },
+          {
+            "gap_closed_coverage": 0.20361145703611458,
+            "longest_gap_closed_run_m": 10.8500001616867,
+            "longest_raw_run_m": 9.9500001482749,
+            "occupied_cells": 314,
+            "raw_coverage": 0.19551681195516812,
+            "row": 163
+          },
+          {
+            "gap_closed_coverage": 0.20112079701120797,
+            "longest_gap_closed_run_m": 3.7000000551373997,
+            "longest_raw_run_m": 3.3000000491766,
+            "occupied_cells": 305,
+            "raw_coverage": 0.18991282689912828,
+            "row": 165
+          },
+          {
+            "gap_closed_coverage": 0.19676214196762143,
+            "longest_gap_closed_run_m": 3.5500000529021,
+            "longest_raw_run_m": 2.9500000439609,
+            "occupied_cells": 291,
+            "raw_coverage": 0.18119551681195517,
+            "row": 172
+          },
+          {
+            "gap_closed_coverage": 0.19115815691158156,
+            "longest_gap_closed_run_m": 8.1000001207062,
+            "longest_raw_run_m": 8.1000001207062,
+            "occupied_cells": 296,
+            "raw_coverage": 0.1843088418430884,
+            "row": 171
+          },
+          {
+            "gap_closed_coverage": 0.1843088418430884,
+            "longest_gap_closed_run_m": 4.6500000692942995,
+            "longest_raw_run_m": 4.1000000610982,
+            "occupied_cells": 277,
+            "raw_coverage": 0.17247820672478206,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.18244084682440848,
+            "longest_gap_closed_run_m": 9.6000001430592,
+            "longest_raw_run_m": 9.6000001430592,
+            "occupied_cells": 291,
+            "raw_coverage": 0.18119551681195517,
+            "row": 161
+          },
+          {
+            "gap_closed_coverage": 0.17745952677459526,
+            "longest_gap_closed_run_m": 5.4500000812159,
+            "longest_raw_run_m": 3.1000000461962,
+            "occupied_cells": 256,
+            "raw_coverage": 0.15940224159402241,
+            "row": 166
+          },
+          {
+            "gap_closed_coverage": 0.16811955168119552,
+            "longest_gap_closed_run_m": 4.5500000678041,
+            "longest_raw_run_m": 4.4000000655688,
+            "occupied_cells": 250,
+            "raw_coverage": 0.15566625155666253,
+            "row": 123
+          },
+          {
+            "gap_closed_coverage": 0.16687422166874222,
+            "longest_gap_closed_run_m": 6.1000000909022,
+            "longest_raw_run_m": 6.1000000909022,
+            "occupied_cells": 262,
+            "raw_coverage": 0.16313823163138233,
+            "row": 124
+          }
+        ],
+        "unknown_cells": 461077,
+        "unknown_ratio": 0.854173729559294,
+        "width_cells": 1621,
+        "width_m": 81.0500012078071
+      },
+      "repeat": 2,
+      "success_marker": true,
+      "tracked_pose_rows": 26437
+    },
+    {
+      "algorithm_version": "innovation_combined_v2_20260730",
+      "anomaly_trigger_count_max": 0.0,
+      "bag": "/home/slam/slam_ws/bags/corridor_repeat_03.bag",
+      "bag_sha256": "d14c3f6f1ae1c878f479ea45e4cb18cc41c62aa9dd6cd8e6fec28655d8319c55",
+      "baseline_map": {
+        "aligned_height_cells": 305,
+        "aligned_width_cells": 1602,
+        "best_wall_continuous_length_m": 15.7500002347065,
+        "best_wall_gap_closed_coverage": 0.3564294631710362,
+        "candidate_wall_rows": 20,
+        "dominant_axis_yaw_deg": 0.1261730497189691,
+        "free_cells": 65463,
+        "free_ratio": 0.11443300050344017,
+        "height_cells": 354,
+        "height_m": 17.7000002637654,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/i1/baseline_a/repeat_03/map",
+        "occupied_cells": 9341,
+        "occupied_ratio": 0.016328592605023215,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.3564294631710362,
+            "longest_gap_closed_run_m": 15.7500002347065,
+            "longest_raw_run_m": 9.6000001430592,
+            "occupied_cells": 551,
+            "raw_coverage": 0.3439450686641698,
+            "row": 167
+          },
+          {
+            "gap_closed_coverage": 0.33146067415730335,
+            "longest_gap_closed_run_m": 8.500000126667,
+            "longest_raw_run_m": 7.500000111765,
+            "occupied_cells": 498,
+            "raw_coverage": 0.31086142322097376,
+            "row": 166
+          },
+          {
+            "gap_closed_coverage": 0.30774032459425715,
+            "longest_gap_closed_run_m": 11.4000001698828,
+            "longest_raw_run_m": 3.6000000536472,
+            "occupied_cells": 455,
+            "raw_coverage": 0.284019975031211,
+            "row": 168
+          },
+          {
+            "gap_closed_coverage": 0.29775280898876405,
+            "longest_gap_closed_run_m": 5.1500000767453,
+            "longest_raw_run_m": 3.500000052157,
+            "occupied_cells": 455,
+            "raw_coverage": 0.284019975031211,
+            "row": 127
+          },
+          {
+            "gap_closed_coverage": 0.2877652933832709,
+            "longest_gap_closed_run_m": 15.6000002324712,
+            "longest_raw_run_m": 7.9000001177258,
+            "occupied_cells": 435,
+            "raw_coverage": 0.27153558052434457,
+            "row": 174
+          },
+          {
+            "gap_closed_coverage": 0.27403245942571786,
+            "longest_gap_closed_run_m": 11.7500001750985,
+            "longest_raw_run_m": 10.200000152000399,
+            "occupied_cells": 422,
+            "raw_coverage": 0.2634207240948814,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.25530586766541824,
+            "longest_gap_closed_run_m": 8.3000001236866,
+            "longest_raw_run_m": 8.3000001236866,
+            "occupied_cells": 372,
+            "raw_coverage": 0.23220973782771537,
+            "row": 165
+          },
+          {
+            "gap_closed_coverage": 0.23220973782771537,
+            "longest_gap_closed_run_m": 3.9500000588629,
+            "longest_raw_run_m": 3.9500000588629,
+            "occupied_cells": 360,
+            "raw_coverage": 0.2247191011235955,
+            "row": 128
+          },
+          {
+            "gap_closed_coverage": 0.23158551810237205,
+            "longest_gap_closed_run_m": 5.8000000864315995,
+            "longest_raw_run_m": 3.7500000558825,
+            "occupied_cells": 339,
+            "raw_coverage": 0.21161048689138576,
+            "row": 126
+          },
+          {
+            "gap_closed_coverage": 0.22596754057428214,
+            "longest_gap_closed_run_m": 7.000000104314,
+            "longest_raw_run_m": 4.3000000640786,
+            "occupied_cells": 317,
+            "raw_coverage": 0.19787765293383272,
+            "row": 172
+          }
+        ],
+        "unknown_cells": 497260,
+        "unknown_ratio": 0.8692384068915366,
+        "width_cells": 1616,
+        "width_m": 80.8000012040816
+      },
+      "config": "innovation2_proposed_slip_adaptive.lua",
+      "fatal_scan_bytes": 0,
+      "forbidden_imu_or_avia_topics": [],
+      "odom_weight_scale_mean": 1.0,
+      "odom_weight_scale_min": 1.0,
+      "proposed_map": {
+        "aligned_height_cells": 307,
+        "aligned_width_cells": 1602,
+        "best_wall_continuous_length_m": 15.450000230235899,
+        "best_wall_gap_closed_coverage": 0.383270911360799,
+        "candidate_wall_rows": 20,
+        "dominant_axis_yaw_deg": 0.5745450099182916,
+        "free_cells": 65230,
+        "free_ratio": 0.11844602017377409,
+        "height_cells": 341,
+        "height_m": 17.050000254079098,
+        "map_prefix": "/home/slam/slam_ws/paper_exp/self_bag_optimized_v2_20260730/runs/normal_full/proposed/repeat_03/map",
+        "occupied_cells": 9536,
+        "occupied_ratio": 0.017315671445302924,
+        "top_wall_rows": [
+          {
+            "gap_closed_coverage": 0.383270911360799,
+            "longest_gap_closed_run_m": 15.450000230235899,
+            "longest_raw_run_m": 11.0500001646671,
+            "occupied_cells": 602,
+            "raw_coverage": 0.3757802746566791,
+            "row": 166
+          },
+          {
+            "gap_closed_coverage": 0.367665418227216,
+            "longest_gap_closed_run_m": 10.6500001587063,
+            "longest_raw_run_m": 6.5500000976081,
+            "occupied_cells": 549,
+            "raw_coverage": 0.34269662921348315,
+            "row": 165
+          },
+          {
+            "gap_closed_coverage": 0.301498127340824,
+            "longest_gap_closed_run_m": 9.9000001475298,
+            "longest_raw_run_m": 9.9000001475298,
+            "occupied_cells": 451,
+            "raw_coverage": 0.2815230961298377,
+            "row": 126
+          },
+          {
+            "gap_closed_coverage": 0.29463171036204744,
+            "longest_gap_closed_run_m": 8.3000001236866,
+            "longest_raw_run_m": 2.5500000380000998,
+            "occupied_cells": 448,
+            "raw_coverage": 0.27965043695380776,
+            "row": 127
+          },
+          {
+            "gap_closed_coverage": 0.29275905118601747,
+            "longest_gap_closed_run_m": 6.3000000938826,
+            "longest_raw_run_m": 4.9000000730197995,
+            "occupied_cells": 432,
+            "raw_coverage": 0.2696629213483146,
+            "row": 167
+          },
+          {
+            "gap_closed_coverage": 0.22347066167290885,
+            "longest_gap_closed_run_m": 7.1500001065492995,
+            "longest_raw_run_m": 6.000000089412,
+            "occupied_cells": 340,
+            "raw_coverage": 0.21223470661672908,
+            "row": 173
+          },
+          {
+            "gap_closed_coverage": 0.21785268414481898,
+            "longest_gap_closed_run_m": 5.00000007451,
+            "longest_raw_run_m": 3.3500000499216998,
+            "occupied_cells": 316,
+            "raw_coverage": 0.1972534332084894,
+            "row": 125
+          },
+          {
+            "gap_closed_coverage": 0.20848938826466917,
+            "longest_gap_closed_run_m": 9.550000142314099,
+            "longest_raw_run_m": 9.550000142314099,
+            "occupied_cells": 316,
+            "raw_coverage": 0.1972534332084894,
+            "row": 171
+          },
+          {
+            "gap_closed_coverage": 0.2009987515605493,
+            "longest_gap_closed_run_m": 5.00000007451,
+            "longest_raw_run_m": 5.00000007451,
+            "occupied_cells": 294,
+            "raw_coverage": 0.18352059925093633,
+            "row": 164
+          },
+          {
+            "gap_closed_coverage": 0.19975031210986266,
+            "longest_gap_closed_run_m": 9.4500001408239,
+            "longest_raw_run_m": 5.6500000841963,
+            "occupied_cells": 276,
+            "raw_coverage": 0.17228464419475656,
+            "row": 170
+          }
+        ],
+        "unknown_cells": 475949,
+        "unknown_ratio": 0.864238308380923,
+        "width_cells": 1615,
+        "width_m": 80.7500012033365
+      },
+      "repeat": 3,
+      "success_marker": true,
+      "tracked_pose_rows": 27545
+    }
+  ],
+  "schema_version": 1
+}

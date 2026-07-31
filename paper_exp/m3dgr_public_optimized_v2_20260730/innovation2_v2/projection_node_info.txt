@@ -1,0 +1,48 @@
+--------------------------------------------------------------------------------
+Node [/m3dgr_mid360_cloud_to_scan]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /scan [sensor_msgs/LaserScan]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+ * /velodyne_points [sensor_msgs/PointCloud2]
+
+Services: 
+ * /m3dgr_mid360_cloud_to_scan/get_loggers
+ * /m3dgr_mid360_cloud_to_scan/list
+ * /m3dgr_mid360_cloud_to_scan/load_nodelet
+ * /m3dgr_mid360_cloud_to_scan/set_logger_level
+ * /m3dgr_mid360_cloud_to_scan/unload_nodelet
+
+
+contacting node http://ubuntu:43261/ ...
+Pid: 38688
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (47369 - 127.0.0.1:54960) [12]
+    * transport: TCPROS
+ * topic: /scan
+    * to: /cartographer_node
+    * direction: outbound (47369 - 127.0.0.1:54958) [10]
+    * transport: TCPROS
+ * topic: /scan
+    * to: /local_grid_mapper
+    * direction: outbound (47369 - 127.0.0.1:54970) [11]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /cartographer_node (http://ubuntu:46259/)
+    * direction: inbound (44514 - ubuntu:38913) [17]
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /m3dgr_base_to_mid360 (http://ubuntu:33199/)
+    * direction: inbound (57992 - ubuntu:53685) [16]
+    * transport: TCPROS
+ * topic: /velodyne_points
+    * to: /m3dgr_mid360_custommsg_to_pointcloud2 (http://ubuntu:43363/)
+    * direction: inbound (34048 - ubuntu:44777) [18]
+    * transport: TCPROS
+

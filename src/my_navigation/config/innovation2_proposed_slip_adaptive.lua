@@ -2,6 +2,7 @@ include "cartographer_scout_2d.lua"
 
 -- [Innovation 2 experiment] Proposed: high base odometry weight with IMU-free
 -- slip-adaptive per-edge backend down-weighting.
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_fusion_enabled = true
 POSE_GRAPH.optimization_problem.slip_adaptive_odometry_weight_enabled = true
 POSE_GRAPH.optimization_problem.odometry_translation_weight = 1e5
 POSE_GRAPH.optimization_problem.odometry_rotation_weight = 1e5
@@ -17,6 +18,7 @@ POSE_GRAPH.optimization_problem.slip_min_motion_angle = 0.01
 POSE_GRAPH.optimization_problem.slip_lidar_reliability_gate_enabled = true
 POSE_GRAPH.optimization_problem.slip_lidar_reliability_min = 0.5
 POSE_GRAPH.optimization_problem.slip_degeneracy_metric_max_time_delta_sec = 0.25
-POSE_GRAPH.optimization_problem.slip_unknown_keep_previous_weight = true
+POSE_GRAPH.optimization_problem.slip_unknown_keep_previous_weight = false
+POSE_GRAPH.optimization_problem.slip_min_consecutive_anomalies = 2
 
 return options

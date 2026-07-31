@@ -10,6 +10,7 @@ options = {
   odom_frame = "odom",
   provide_odom_frame = true,
   publish_frame_projected_to_2d = true,
+  publish_tracked_pose = true,
   use_pose_extrapolator = true,
   use_odometry = true,
   use_nav_sat = false,
@@ -70,6 +71,9 @@ TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_longitudinal_
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_scan_lateral_beta = 0.0
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_min_scan_weight_scale = 0.2
 TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_log_scale_change_threshold = 0.25
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_activation_confidence = 0.5
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_motion_alignment_min_cosine = 0.7
+TRAJECTORY_BUILDER_2D.ceres_scan_matcher.directional_adaptive_max_longitudinal_scale = 1.5
 
 TRAJECTORY_BUILDER_2D.motion_filter.max_time_seconds = 0.5
 TRAJECTORY_BUILDER_2D.motion_filter.max_distance_meters = 0.08
@@ -78,7 +82,7 @@ TRAJECTORY_BUILDER_2D.motion_filter.max_angle_radians = math.rad(0.5)
 TRAJECTORY_BUILDER_2D.submaps.num_range_data = 70
 TRAJECTORY_BUILDER_2D.submaps.grid_options_2d.resolution = 0.05
 TRAJECTORY_BUILDER_2D.submaps.range_data_inserter.probability_grid_range_data_inserter.insert_free_space = true
-TRAJECTORY_BUILDER_2D.submaps.range_data_inserter.probability_grid_range_data_inserter.hit_probability = 0.55
+TRAJECTORY_BUILDER_2D.submaps.range_data_inserter.probability_grid_range_data_inserter.hit_probability = 0.60
 TRAJECTORY_BUILDER_2D.submaps.range_data_inserter.probability_grid_range_data_inserter.miss_probability = 0.49
 
 POSE_GRAPH.optimize_every_n_nodes = 35
@@ -110,7 +114,8 @@ POSE_GRAPH.optimization_problem.slip_min_motion_angle = 0.01
 POSE_GRAPH.optimization_problem.slip_lidar_reliability_gate_enabled = true
 POSE_GRAPH.optimization_problem.slip_lidar_reliability_min = 0.5
 POSE_GRAPH.optimization_problem.slip_degeneracy_metric_max_time_delta_sec = 0.25
-POSE_GRAPH.optimization_problem.slip_unknown_keep_previous_weight = true
+POSE_GRAPH.optimization_problem.slip_unknown_keep_previous_weight = false
+POSE_GRAPH.optimization_problem.slip_min_consecutive_anomalies = 2
 POSE_GRAPH.optimization_problem.ceres_solver_options.max_num_iterations = 50
 POSE_GRAPH.optimization_problem.ceres_solver_options.num_threads = 4
 

@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   tf2_geometry_msgs
+  livox_ros_driver2
 )
 
 catkin_package()
@@ -42,8 +43,20 @@ target_link_libraries(scan_quality_gate
   ${catkin_LIBRARIES}
 )
 
+# M3DGR MID-360 bags contain Livox CustomMsg rather than PointCloud2.
+add_executable(livox_custommsg_to_pointcloud2
+  src/livox_custommsg_to_pointcloud2.cpp
+)
+add_dependencies(livox_custommsg_to_pointcloud2
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(livox_custommsg_to_pointcloud2
+  ${catkin_LIBRARIES}
+)
+
 # ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
 install(TARGETS local_grid_mapper mapping_health_monitor scan_quality_gate
+                livox_custommsg_to_pointcloud2
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

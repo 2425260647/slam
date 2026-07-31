@@ -218,7 +218,7 @@ class Node {
   ::ros::Publisher landmark_poses_list_publisher_;
   ::ros::Publisher constraint_list_publisher_;
   ::ros::Publisher tracked_pose_publisher_;
-  // [Innovation 1] Publishes directional degeneracy diagnostics.
+  // [Innovation 1] Publishes confidence and map-frame direction diagnostics.
   ::ros::Publisher degeneracy_metric_publisher_;
   ::ros::Publisher degeneracy_direction_publisher_;
   // [Innovation 2] Publishes IMU-free consistency-anomaly diagnostics.
@@ -226,8 +226,10 @@ class Node {
   ::ros::Publisher slip_state_publisher_;
   ::ros::Publisher odom_weight_scale_publisher_;
   ::ros::Publisher slip_lidar_reliability_publisher_;
-  // [Innovation 2] Publishes per-Solve trigger count and minimum scale.
+  // [Innovation 2] Publishes per-Solve trigger count, event time, and minimum
+  // [Innovation 2] scale for event-level evaluation without batch-delay bias.
   ::ros::Publisher consistency_anomaly_trigger_count_publisher_;
+  ::ros::Publisher consistency_anomaly_time_publisher_;
   ::ros::Publisher odom_min_weight_scale_publisher_;
   // 这些 ServiceServer 必须和 Node 同生命周期，否则服务会自动下线。
   std::vector<::ros::ServiceServer> service_servers_;

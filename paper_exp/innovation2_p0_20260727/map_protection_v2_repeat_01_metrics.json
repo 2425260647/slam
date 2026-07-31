@@ -1,0 +1,240 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "proposed_gate": {
+      "bag_sha256": "74ffae0c7f9494a609f25b5ad4a6247460637d42c3bb7bb5ae030ce4a3b687db",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "anomaly_time_max": 1784863911.730059,
+        "anomaly_time_mean": 1784863857.5114422,
+        "anomaly_time_min": 1784863736.630702,
+        "consistency_metric_max": 0.10115065425634384,
+        "consistency_metric_mean": 0.005861519855003278,
+        "consistency_metric_min": 0.0001322527532465756,
+        "distinct_latest_anomaly_times": [
+          1784863736.630702,
+          1784863751.630512,
+          1784863901.830058,
+          1784863911.730059
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.6671264500422539,
+        "lidar_reliability_min": 0.04250061511993408,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            141
+          ],
+          [
+            0,
+            142
+          ],
+          [
+            0,
+            143
+          ],
+          [
+            0,
+            144
+          ],
+          [
+            0,
+            145
+          ],
+          [
+            0,
+            182
+          ],
+          [
+            0,
+            183
+          ],
+          [
+            0,
+            184
+          ],
+          [
+            0,
+            185
+          ],
+          [
+            0,
+            186
+          ],
+          [
+            0,
+            842
+          ],
+          [
+            0,
+            843
+          ],
+          [
+            0,
+            844
+          ],
+          [
+            0,
+            845
+          ],
+          [
+            0,
+            846
+          ],
+          [
+            0,
+            847
+          ],
+          [
+            0,
+            892
+          ],
+          [
+            0,
+            893
+          ],
+          [
+            0,
+            894
+          ],
+          [
+            0,
+            895
+          ],
+          [
+            0,
+            897
+          ],
+          [
+            0,
+            898
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.161109918760453,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 4.0,
+        "trigger_count_mean": 3.0490887426015276,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.9504152590697198,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 2.0623192589918915,
+        "candidate_occupied_cells_roi": 5059,
+        "clean_corridor_axis_deg": 2.259470341589548,
+        "corridor_axis_error_deg": 0.19715108259765657,
+        "occupied_cell_ratio_to_clean": 1.092656587473002,
+        "occupied_f1_at_0_15_m": 0.6397255198522026,
+        "occupied_precision_at_0_15_m": 0.6362917572642814,
+        "occupied_recall_at_0_15_m": 0.6431965442764579,
+        "reference_occupied_cells_roi": 4630,
+        "symmetric_chamfer_mean_m": 0.12356719783290239,
+        "symmetric_chamfer_p95_m": 0.41848380099522103
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/proposed_gate/repeat_01",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.00688483466679568,
+        "endpoint_yaw_difference_deg": 0.15028907493660468,
+        "position_difference_max_m": 0.8400012661000528,
+        "position_difference_mean_m": 0.19440312874381516,
+        "position_difference_p95_m": 0.6937164781483686,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5640,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.586117387616141,
+        "yaw_difference_p95_deg": 1.3408667774040233
+      }
+    },
+    "static_high": {
+      "bag_sha256": "74ffae0c7f9494a609f25b5ad4a6247460637d42c3bb7bb5ae030ce4a3b687db",
+      "config_sha256": "66a0286d7e47101427c98c4bc80e63e72a83571c2f4c4637dccff7354034c94d",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 2.664972939223418,
+        "candidate_occupied_cells_roi": 5427,
+        "clean_corridor_axis_deg": 2.259470341589548,
+        "corridor_axis_error_deg": 0.40550259763386975,
+        "occupied_cell_ratio_to_clean": 1.1721382289416846,
+        "occupied_f1_at_0_15_m": 0.5373337470933408,
+        "occupied_precision_at_0_15_m": 0.5253362815551871,
+        "occupied_recall_at_0_15_m": 0.5498920086393089,
+        "reference_occupied_cells_roi": 4630,
+        "symmetric_chamfer_mean_m": 0.16606863906216987,
+        "symmetric_chamfer_p95_m": 0.37925352966909043
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_high/repeat_01",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.021855949239234958,
+        "endpoint_yaw_difference_deg": 0.08466733147059094,
+        "position_difference_max_m": 4.174360281018825,
+        "position_difference_mean_m": 1.2767213619458413,
+        "position_difference_p95_m": 3.943476619933347,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5640,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 2.3851895189774073,
+        "yaw_difference_p95_deg": 5.178336770999314
+      }
+    },
+    "static_low": {
+      "bag_sha256": "74ffae0c7f9494a609f25b5ad4a6247460637d42c3bb7bb5ae030ce4a3b687db",
+      "config_sha256": "0678460a1419282f17f0f9099982d3df820494e189ac3badb491245fa8bea94f",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 2.7920196792205445,
+        "candidate_occupied_cells_roi": 5215,
+        "clean_corridor_axis_deg": 2.259470341589548,
+        "corridor_axis_error_deg": 0.5325493376309964,
+        "occupied_cell_ratio_to_clean": 1.1263498920086392,
+        "occupied_f1_at_0_15_m": 0.4391821979460945,
+        "occupied_precision_at_0_15_m": 0.42818791946308726,
+        "occupied_recall_at_0_15_m": 0.450755939524838,
+        "reference_occupied_cells_roi": 4630,
+        "symmetric_chamfer_mean_m": 0.18889857391753173,
+        "symmetric_chamfer_p95_m": 0.4088664527401457
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_low/repeat_01",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.02146921004825702,
+        "endpoint_yaw_difference_deg": 0.024397644910900945,
+        "position_difference_max_m": 2.205187725113795,
+        "position_difference_mean_m": 0.501020918110201,
+        "position_difference_p95_m": 1.9826087080829187,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5640,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 1.981317403097223,
+        "yaw_difference_p95_deg": 4.290105154915641
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_01",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 1,
+  "schema_version": 1,
+  "suite": "map_protection_v2"
+}

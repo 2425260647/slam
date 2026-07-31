@@ -18,7 +18,7 @@ package cartographer.mapping.scan_matching.proto;
 
 import "cartographer/common/proto/ceres_solver_options.proto";
 
-// NEXT ID: 22
+// NEXT ID: 25
 message CeresScanMatcherOptions2D {
   // Scaling parameters for each cost functor.
   double occupied_space_weight = 1;
@@ -40,6 +40,16 @@ message CeresScanMatcherOptions2D {
   double directional_adaptive_scan_lateral_beta = 19;
   double directional_adaptive_min_scan_weight_scale = 20;
   double directional_adaptive_log_scale_change_threshold = 21;
+  // Degeneracy confidence below this value leaves the front-end exactly at
+  // its isotropic baseline. Above it, adaptation ramps continuously to one.
+  double directional_adaptive_activation_confidence = 22;
+  // Optional motion-direction gate. Zero disables the gate. Otherwise the
+  // principal degeneracy axis must align with the robot forward direction
+  // before the anisotropic prior is activated.
+  double directional_adaptive_motion_alignment_min_cosine = 23;
+  // Optional cap on the longitudinal sqrt-information multiplier. Zero keeps
+  // the uncapped legacy behavior.
+  double directional_adaptive_max_longitudinal_scale = 24;
 
   // Configure the Ceres solver. See the Ceres documentation for more
   // information: https://code.google.com/p/ceres-solver/

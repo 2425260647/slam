@@ -60,10 +60,13 @@ dominant.
 
 - `/degeneracy_metric` (`std_msgs/Float32`): smoothed confidence in `[0, 1]`.
 - `/degeneracy_direction` (`geometry_msgs/Vector3`): principal degeneracy
-  direction in the current 2D scan frame.
+  direction rotated into Cartographer's `map_frame` for diagnostics.
 
-The latest metric is stored in Cartographer core behind a mutex, then copied by
-the ROS timer thread for publishing.
+The covariance is computed in the current gravity-aligned tracking plane. Its
+eigenvectors are rotated by the initial Ceres pose into the local-SLAM frame
+before smoothing and constructing the anisotropic translation prior. The core
+stores this local-SLAM direction behind a mutex. The ROS timer then applies the
+current `local_to_map` rotation before publishing `/degeneracy_direction`.
 
 ## Configuration
 

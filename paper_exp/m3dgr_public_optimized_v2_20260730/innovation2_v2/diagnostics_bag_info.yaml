@@ -1,0 +1,83 @@
+path: /home/slam/slam_ws/paper_exp/m3dgr_public_optimized_v2_20260730/innovation2_v2/diagnostics.bag
+version: 2.0
+duration: 123.262155
+start: 1732437676.886596
+end: 1732437800.148751
+size: 87420976
+messages: 254638
+indexed: True
+compression: none
+types:
+    - type: geometry_msgs/PoseStamped
+      md5: d3812c3cbc69362b77dc0b19b345f8f5
+    - type: geometry_msgs/Vector3
+      md5: 4a842b65f413084dc2b10fb484ea7f17
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: std_msgs/Bool
+      md5: 8b94c1b53db61fb6aed406028ad6332a
+    - type: std_msgs/Float32
+      md5: 73fcbf46b49191e672908e50842a83d4
+    - type: std_msgs/Float64
+      md5: fdb28210bfa9d7c91146260178d9a584
+    - type: std_msgs/UInt32
+      md5: 304a39449588c7f8ce2df6e8001c5fce
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /consistency_anomaly_time
+      type: std_msgs/Float64
+      messages: 20070
+    - topic: /consistency_anomaly_trigger_count
+      type: std_msgs/UInt32
+      messages: 21432
+    - topic: /degeneracy_direction
+      type: geometry_msgs/Vector3
+      messages: 20668
+    - topic: /degeneracy_metric
+      type: std_msgs/Float32
+      messages: 20668
+    - topic: /local_occupancy_grid
+      type: nav_msgs/OccupancyGrid
+      messages: 1233
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 152
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 2466
+    - topic: /odom_min_weight_scale
+      type: std_msgs/Float32
+      messages: 21432
+    - topic: /odom_weight_scale
+      type: std_msgs/Float32
+      messages: 21432
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 1233
+    - topic: /slip_lidar_reliability
+      type: std_msgs/Float32
+      messages: 21432
+    - topic: /slip_metric
+      type: std_msgs/Float32
+      messages: 21432
+    - topic: /slip_state
+      type: std_msgs/Bool
+      messages: 21432
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 11748
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 1
+    - topic: /tracked_pose
+      type: geometry_msgs/PoseStamped
+      messages: 11748
+    - topic: /vrpn_client_node/UGV/pose
+      type: geometry_msgs/PoseStamped
+      messages: 36059
+

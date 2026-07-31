@@ -1,0 +1,32 @@
+{
+  "purpose": "Validate the Innovation 1 tracking-to-local direction correction.",
+  "old_run": "paper_exp/formal_corridor_20260724/runs/i1/proposed/repeat_03",
+  "new_run": "paper_exp/formal_corridor_20260724/runs/i1_coordinate_fix_validation/proposed_map_direction/repeat_03",
+  "direction_samples_compared": 42620,
+  "high_confidence_samples": 11241,
+  "trajectory_pca_axis_deg": 2.7279673273757195,
+  "map_direction_to_trajectory_axis_error_deg": {
+    "median": 2.6381923011075363,
+    "p90": 5.8925933203668865,
+    "max": 13.763380611508756
+  },
+  "straight_corridor_high_confidence_samples": 11241,
+  "straight_corridor_map_direction_error_deg": {
+    "median": 2.6381923011075363,
+    "p90": 5.8925933203668865,
+    "max": 13.763380611508756
+  },
+  "old_map": {
+    "map_area_m2": 1680.910050097842,
+    "occupied_cells": 9374,
+    "free_cells": 64999,
+    "unknown_cells": 597991
+  },
+  "new_map": {
+    "map_area_m2": 1372.7500409134411,
+    "occupied_cells": 9474,
+    "free_cells": 65166,
+    "unknown_cells": 474460
+  },
+  "scope_note": "The reference is the online trajectory PCA axis, not a surveyed physical corridor axis. Map metrics are structural proxies, not ATE/RPE."
+}

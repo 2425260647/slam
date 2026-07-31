@@ -60,8 +60,7 @@ class CeresScanMatcher2D {
   void Match(const Eigen::Vector2d& target_translation,
              const transform::Rigid2d& initial_pose_estimate,
              const sensor::PointCloud& point_cloud, const Grid2D& grid,
-             transform::Rigid2d* pose_estimate,
-             ceres::Solver::Summary* summary,
+             transform::Rigid2d* pose_estimate, ceres::Solver::Summary* summary,
              double real_time_correlative_score = 0.) const;
 
  private:
@@ -69,6 +68,7 @@ class CeresScanMatcher2D {
   // [Innovation 1] Disabled or underconstrained scans return isotropic weight.
   Eigen::Matrix<double, 2, 2> ComputeAnisotropicTranslationSqrtInformation(
       const sensor::PointCloud& point_cloud,
+      const Eigen::Matrix<double, 2, 2>& tracking_to_local_rotation,
       double real_time_correlative_score) const;
 
   const proto::CeresScanMatcherOptions2D options_;

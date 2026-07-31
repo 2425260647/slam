@@ -1,0 +1,77 @@
+{
+  "association": {
+    "reference_pose_count": 36059,
+    "estimate_pose_count": 11624,
+    "matched_pose_count": 11237,
+    "max_time_difference_seconds": 0.02,
+    "mean_absolute_time_difference_seconds": 0.0025256549144030953,
+    "max_observed_time_difference_seconds": 0.019870519638061523
+  },
+  "alignment": {
+    "type": "rigid_SE3_without_scale",
+    "rotation_matrix": [
+      [
+        -0.998288065362006,
+        0.05819977109084766,
+        -0.0058073402479571065
+      ],
+      [
+        -0.05818454472193834,
+        -0.998302036097618,
+        -0.002757440634050665
+      ],
+      [
+        -0.005957962007545574,
+        -0.0024148226275442363,
+        0.9999793354466852
+      ]
+    ],
+    "translation": [
+      4.26602474305479,
+      1.2145175287201515,
+      0.8682137070511151
+    ],
+    "scale": 1.0
+  },
+  "ape_translation_meters": {
+    "rmse": 0.6885345526254086,
+    "mean": 0.6290410466453286,
+    "median": 0.5997370166195329,
+    "std": 0.2799771272701059,
+    "min": 0.0581646335311374,
+    "max": 1.319196642324222
+  },
+  "ape_planar_translation_meters": {
+    "rmse": 0.6884649766606279,
+    "mean": 0.6289191053116163,
+    "median": 0.5996680138476396,
+    "std": 0.28007995833753446,
+    "min": 0.05801615032109381,
+    "max": 1.3192330537067498
+  },
+  "rpe": {
+    "delta_seconds": 1.0,
+    "pair_tolerance_seconds": 0.05,
+    "pair_count": 11032,
+    "se3_translation_meters": {
+      "rmse": 0.80793094021296,
+      "mean": 0.7474299340009788,
+      "median": 0.8292653967631751,
+      "std": 0.306758696555925,
+      "min": 0.0005110423057083851,
+      "max": 2.1645233885739272
+    },
+    "planar_world_displacement_meters": {
+      "rmse": 0.17502443737674733,
+      "mean": 0.13088827375285028,
+      "median": 0.0933213248681809,
+      "std": 0.11619730406961205,
+      "min": 0.00028414124131787645,
+      "max": 1.3495146659690058
+    }
+  },
+  "limitations": [
+    "M3DGR does not publish an explicit Mocap-rigid-body to base_footprint lever-arm calibration in the dataset bag.",
+    "The planar RPE compares aligned world-frame displacement; the SE3 RPE additionally depends on tracked-body frame consistency."
+  ]
+}

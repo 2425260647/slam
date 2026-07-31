@@ -1,0 +1,18 @@
+Log file created at: 2026/07/30 14:46:08
+Running on machine: ubuntu
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0730 14:46:08.441532 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/src/my_navigation/config/cartographer_m3dgr_mid360_full_proposed.lua' for 'cartographer_m3dgr_mid360_full_proposed.lua'.
+I0730 14:46:08.441797 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/src/my_navigation/config/cartographer_m3dgr_mid360_innovation1.lua' for 'cartographer_m3dgr_mid360_innovation1.lua'.
+I0730 14:46:08.441803 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/src/my_navigation/config/cartographer_m3dgr_mid360_innovation1.lua' for 'cartographer_m3dgr_mid360_innovation1.lua'.
+I0730 14:46:08.441846 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/src/my_navigation/config/cartographer_m3dgr_mid360.lua' for 'cartographer_m3dgr_mid360.lua'.
+I0730 14:46:08.441851 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/src/my_navigation/config/cartographer_m3dgr_mid360.lua' for 'cartographer_m3dgr_mid360.lua'.
+I0730 14:46:08.441923 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/map_builder.lua' for 'map_builder.lua'.
+I0730 14:46:08.441931 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/map_builder.lua' for 'map_builder.lua'.
+I0730 14:46:08.441951 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/pose_graph.lua' for 'pose_graph.lua'.
+I0730 14:46:08.441958 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/pose_graph.lua' for 'pose_graph.lua'.
+I0730 14:46:08.442027 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder.lua' for 'trajectory_builder.lua'.
+I0730 14:46:08.442034 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder.lua' for 'trajectory_builder.lua'.
+I0730 14:46:08.442055 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder_2d.lua' for 'trajectory_builder_2d.lua'.
+I0730 14:46:08.442062 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder_2d.lua' for 'trajectory_builder_2d.lua'.
+I0730 14:46:08.442133 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder_3d.lua' for 'trajectory_builder_3d.lua'.
+I0730 14:46:08.442143 39409 configuration_file_resolver.cc:41] Found '/home/slam/slam_ws/install_isolated/share/cartographer/configuration_files/trajectory_builder_3d.lua' for 'trajectory_builder_3d.lua'.

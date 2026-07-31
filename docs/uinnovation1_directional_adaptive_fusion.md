@@ -493,6 +493,8 @@ src/cartographer/cartographer/mapping/internal/2d/scan_matching/ceres_scan_match
 
 - 读取 Lua/proto 中新增参数。
 - 新增 `ComputeAnisotropicTranslationSqrtInformation()`。
+- 使用 `initial_pose_estimate.rotation()` 把当前重力对齐 tracking 平面中的
+  协方差特征向量旋转到 local-SLAM 坐标系。
 - 在 `Match()` 中调用该函数，生成 2x2 权重矩阵。
 - 将 2x2 矩阵传给 `TranslationDeltaCostFunctor2D`。
 - 保存最新退化指标。
@@ -502,6 +504,11 @@ src/cartographer/cartographer/mapping/internal/2d/scan_matching/ceres_scan_match
 - CeresScanMatcher2D 是 Cartographer 2D 前端精匹配的核心。
 - 当前 scan 点云、submap grid、初始位姿和 Ceres problem 都在这里汇合。
 - 在这里注入方向性感知，路径最短、侵入最小。
+- 点云主轴最初位于随机器人航向变化的 tracking 平面，而平移残差
+  `p_local-p0_local` 位于 local-SLAM 坐标系。二者不先对齐，就会把纵向高权重
+  施加到错误方向。修正后的数学关系为
+  `v_long_local=R(initial_pose_estimate.yaw)*v_long_tracking`，再用
+  `R_local*diag(w_long,w_lat)*R_local^T` 构造矩阵。
 
 专业名称：
 
@@ -719,7 +726,12 @@ scan_lateral_beta = 0.0
 
 - 类型：`geometry_msgs/Vector3`
 - 含义：退化主方向向量
+- 坐标语义：发布前由 `local_to_map` 旋转到 Cartographer 的 `map_frame`
 - z 固定为 0
+
+注意：`geometry_msgs/Vector3` 本身没有 `Header` 和 `frame_id`。本项目源码已经
+约定该话题表达 `map_frame` 中的方向；离线分析时不能再乘一次机器人 yaw，
+否则会发生“重复旋转（double rotation）”。
 
 通俗看法：
 

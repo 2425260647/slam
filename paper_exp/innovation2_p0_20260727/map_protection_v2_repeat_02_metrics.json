@@ -1,0 +1,212 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "proposed_gate": {
+      "bag_sha256": "c580ccceb95d8287f0f0b34fc75b867e8056445735fea9352d121dd61ce55e56",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "anomaly_time_max": 1784864571.440221,
+        "anomaly_time_mean": 1784864518.3457835,
+        "anomaly_time_min": 1784864396.136967,
+        "consistency_metric_max": 0.07518734782934189,
+        "consistency_metric_mean": 0.005450982197411669,
+        "consistency_metric_min": 0.0005504529690369964,
+        "distinct_latest_anomaly_times": [
+          1784864396.136967,
+          1784864411.137209,
+          1784864561.240167,
+          1784864571.440221
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.6020343102647123,
+        "lidar_reliability_min": 0.039241351187229156,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            147
+          ],
+          [
+            0,
+            148
+          ],
+          [
+            0,
+            150
+          ],
+          [
+            0,
+            151
+          ],
+          [
+            0,
+            152
+          ],
+          [
+            0,
+            212
+          ],
+          [
+            0,
+            214
+          ],
+          [
+            0,
+            216
+          ],
+          [
+            0,
+            217
+          ],
+          [
+            0,
+            952
+          ],
+          [
+            0,
+            954
+          ],
+          [
+            0,
+            956
+          ],
+          [
+            0,
+            1003
+          ],
+          [
+            0,
+            1005
+          ],
+          [
+            0,
+            1007
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.17361459122421355,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 4.0,
+        "trigger_count_mean": 3.039801189730745,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.9562557695888954,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.7538273530029187,
+        "candidate_occupied_cells_roi": 5295,
+        "clean_corridor_axis_deg": 0.8790509314158612,
+        "corridor_axis_error_deg": 0.12522357841294252,
+        "occupied_cell_ratio_to_clean": 1.1199238578680204,
+        "occupied_f1_at_0_15_m": 0.8128770768914688,
+        "occupied_precision_at_0_15_m": 0.7884796978281398,
+        "occupied_recall_at_0_15_m": 0.8388324873096447,
+        "reference_occupied_cells_roi": 4728,
+        "symmetric_chamfer_mean_m": 0.07827821907069013,
+        "symmetric_chamfer_p95_m": 0.2383206981573927
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/proposed_gate/repeat_02",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.013301956335732223,
+        "endpoint_yaw_difference_deg": 0.10066105604980764,
+        "position_difference_max_m": 0.3708450410551772,
+        "position_difference_mean_m": 0.08838026984153305,
+        "position_difference_p95_m": 0.3200789010119786,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5553,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.41817296444190627,
+        "yaw_difference_p95_deg": 0.8831616844966811
+      }
+    },
+    "static_high": {
+      "bag_sha256": "c580ccceb95d8287f0f0b34fc75b867e8056445735fea9352d121dd61ce55e56",
+      "config_sha256": "66a0286d7e47101427c98c4bc80e63e72a83571c2f4c4637dccff7354034c94d",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 1.6320636078209816,
+        "candidate_occupied_cells_roi": 5261,
+        "clean_corridor_axis_deg": 0.8790509314158612,
+        "corridor_axis_error_deg": 0.7530126764051204,
+        "occupied_cell_ratio_to_clean": 1.1127326565143825,
+        "occupied_f1_at_0_15_m": 0.5455745235308409,
+        "occupied_precision_at_0_15_m": 0.5287968066907432,
+        "occupied_recall_at_0_15_m": 0.5634517766497462,
+        "reference_occupied_cells_roi": 4728,
+        "symmetric_chamfer_mean_m": 0.20893649786438556,
+        "symmetric_chamfer_p95_m": 0.7178351455381058
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_high/repeat_02",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.01228781247497443,
+        "endpoint_yaw_difference_deg": 0.11136867503447072,
+        "position_difference_max_m": 4.596774046303196,
+        "position_difference_mean_m": 1.4942627592726236,
+        "position_difference_p95_m": 4.3510304822560215,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5553,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 2.846600376867821,
+        "yaw_difference_p95_deg": 5.794185008994721
+      }
+    },
+    "static_low": {
+      "bag_sha256": "c580ccceb95d8287f0f0b34fc75b867e8056445735fea9352d121dd61ce55e56",
+      "config_sha256": "0678460a1419282f17f0f9099982d3df820494e189ac3badb491245fa8bea94f",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 1.5883357409601615,
+        "candidate_occupied_cells_roi": 5309,
+        "clean_corridor_axis_deg": 0.8790509314158612,
+        "corridor_axis_error_deg": 0.7092848095443003,
+        "occupied_cell_ratio_to_clean": 1.122884940778342,
+        "occupied_f1_at_0_15_m": 0.3912805005907599,
+        "occupied_precision_at_0_15_m": 0.38086268600489737,
+        "occupied_recall_at_0_15_m": 0.4022842639593909,
+        "reference_occupied_cells_roi": 4728,
+        "symmetric_chamfer_mean_m": 0.23568038762556875,
+        "symmetric_chamfer_p95_m": 0.5616117744247318
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_low/repeat_02",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.0272306684138273,
+        "endpoint_yaw_difference_deg": 0.026311110726448157,
+        "position_difference_max_m": 2.2305331654851024,
+        "position_difference_mean_m": 0.5115336676580396,
+        "position_difference_p95_m": 2.0024401138993073,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5542,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 2.0350039382834813,
+        "yaw_difference_p95_deg": 4.606656823926569
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_02",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 2,
+  "schema_version": 1,
+  "suite": "map_protection_v2"
+}

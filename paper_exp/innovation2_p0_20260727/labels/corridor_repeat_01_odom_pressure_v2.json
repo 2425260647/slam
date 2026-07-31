@@ -1,0 +1,76 @@
+{
+  "bag_end_sec": 1784864246.554219,
+  "bag_start_sec": 1784863681.0268524,
+  "duration_sec": 565.5273666381836,
+  "event_count": 4,
+  "events": [
+    {
+      "absolute_end_sec": 1784863738.0268524,
+      "absolute_start_sec": 1784863736.0268524,
+      "duration_sec": 2.0,
+      "end_sec": 57.0,
+      "event_id": "odom_pressure_01",
+      "profile": "sin_squared_rate",
+      "samples": 100,
+      "start_sec": 55.0,
+      "target_lateral_m": 0.35,
+      "target_yaw_rad": 0.1
+    },
+    {
+      "absolute_end_sec": 1784863753.0268524,
+      "absolute_start_sec": 1784863751.0268524,
+      "duration_sec": 2.0,
+      "end_sec": 72.0,
+      "event_id": "odom_pressure_02",
+      "profile": "sin_squared_rate",
+      "samples": 100,
+      "start_sec": 70.0,
+      "target_lateral_m": 0.35,
+      "target_yaw_rad": 0.1
+    },
+    {
+      "absolute_end_sec": 1784863903.0268524,
+      "absolute_start_sec": 1784863901.0268524,
+      "duration_sec": 2.0,
+      "end_sec": 222.0,
+      "event_id": "odom_pressure_03",
+      "profile": "sin_squared_rate",
+      "samples": 100,
+      "start_sec": 220.0,
+      "target_lateral_m": 0.35,
+      "target_yaw_rad": 0.1
+    },
+    {
+      "absolute_end_sec": 1784863913.0268524,
+      "absolute_start_sec": 1784863911.0268524,
+      "duration_sec": 2.0,
+      "end_sec": 232.0,
+      "event_id": "odom_pressure_04",
+      "profile": "sin_squared_rate",
+      "samples": 100,
+      "start_sec": 230.0,
+      "target_lateral_m": 0.35,
+      "target_yaw_rad": 0.1
+    }
+  ],
+  "experiment_version": 2,
+  "integrated_signed_lateral_m": 1.400000035081135,
+  "integrated_signed_yaw_rad": 0.4000000100231815,
+  "method": "Local-frame SE(2) odometry increment reintegration",
+  "mode": "odom_pressure",
+  "modified_point_cloud_messages": 0,
+  "odom_messages": 28277,
+  "output_bag": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/generated_bags/corridor_repeat_01_odom_pressure_v2.bag",
+  "output_bag_sha256": "74ffae0c7f9494a609f25b5ad4a6247460637d42c3bb7bb5ae030ce4a3b687db",
+  "parameters": {
+    "lidar_peak_lateral_m": 0.3,
+    "lidar_peak_yaw_rad": 0.15,
+    "pressure_lateral_m_per_event": 0.35,
+    "pressure_yaw_rad_per_event": 0.1
+  },
+  "point_cloud_messages": 5655,
+  "schema_version": 1,
+  "source_bag": "/home/slam/slam_ws/bags/corridor_repeat_01.bag",
+  "source_bag_sha256": "f17265814b44d2620a51eb47bf575989f74834486f426f414339b63d3ba12855",
+  "variant": 1
+}

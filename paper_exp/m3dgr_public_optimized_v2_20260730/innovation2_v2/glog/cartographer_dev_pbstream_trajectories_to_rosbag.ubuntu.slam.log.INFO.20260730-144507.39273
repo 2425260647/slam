@@ -1,0 +1,4 @@
+Log file created at: 2026/07/30 14:45:07
+Running on machine: ubuntu
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0730 14:45:07.313305 39273 pbstream_trajectories_to_rosbag_main.cc:64] Writing tf and geometry_msgs/TransformStamped for trajectory id 0 with 874 nodes.

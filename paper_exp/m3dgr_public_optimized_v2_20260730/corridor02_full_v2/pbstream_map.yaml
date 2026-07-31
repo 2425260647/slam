@@ -1,0 +1,6 @@
+image: /home/slam/slam_ws/paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_full_v2/pbstream_map.pgm
+resolution: 0.05
+origin: [-34.5429, -33.8203, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

@@ -1,0 +1,27 @@
+--------------------------------------------------------------------------------
+Node [/m3dgr_mid360_custommsg_to_pointcloud2]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /velodyne_points [sensor_msgs/PointCloud2]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /livox/mid360/lidar [livox_ros_driver2/CustomMsg]
+
+Services: 
+ * /m3dgr_mid360_custommsg_to_pointcloud2/get_loggers
+ * /m3dgr_mid360_custommsg_to_pointcloud2/set_logger_level
+
+
+contacting node http://ubuntu:40867/ ...
+Pid: 40548
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (37069 - 127.0.0.1:46980) [10]
+    * transport: TCPROS
+ * topic: /velodyne_points
+    * to: /m3dgr_mid360_cloud_to_scan
+    * direction: outbound (37069 - 127.0.0.1:46982) [13]
+    * transport: TCPROS
+

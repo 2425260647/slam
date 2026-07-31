@@ -1,0 +1,388 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "gate_off": {
+      "bag_sha256": "31691917ef8bd7dc63a5720b72b4a0578ba83e06819dd43b07a87d8cf1a33765",
+      "config_sha256": "52c6c802d57a62e555de3bb89779d3d15c387cb2a384574a7984b7ef428a850e",
+      "diagnostics": {
+        "anomaly_time_max": 1784864781.144267,
+        "anomaly_time_mean": 1784864554.2815464,
+        "anomaly_time_min": 1784864471.338415,
+        "consistency_metric_max": 0.03494613617658615,
+        "consistency_metric_mean": 0.004207670413322427,
+        "consistency_metric_min": 0.0003470693773124367,
+        "distinct_latest_anomaly_times": [
+          1784864471.338415,
+          1784864781.144267
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 1.0,
+        "lidar_reliability_min": 1.0,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            473
+          ],
+          [
+            0,
+            474
+          ],
+          [
+            0,
+            475
+          ],
+          [
+            0,
+            476
+          ],
+          [
+            0,
+            477
+          ],
+          [
+            0,
+            479
+          ],
+          [
+            0,
+            481
+          ],
+          [
+            0,
+            483
+          ],
+          [
+            0,
+            485
+          ],
+          [
+            0,
+            486
+          ],
+          [
+            0,
+            487
+          ],
+          [
+            0,
+            488
+          ],
+          [
+            0,
+            489
+          ],
+          [
+            0,
+            491
+          ],
+          [
+            0,
+            493
+          ],
+          [
+            0,
+            495
+          ],
+          [
+            0,
+            497
+          ],
+          [
+            0,
+            498
+          ],
+          [
+            0,
+            499
+          ],
+          [
+            0,
+            500
+          ],
+          [
+            0,
+            501
+          ],
+          [
+            0,
+            503
+          ],
+          [
+            0,
+            505
+          ],
+          [
+            0,
+            507
+          ],
+          [
+            0,
+            509
+          ],
+          [
+            0,
+            511
+          ],
+          [
+            0,
+            512
+          ],
+          [
+            0,
+            513
+          ],
+          [
+            0,
+            514
+          ],
+          [
+            0,
+            515
+          ],
+          [
+            0,
+            517
+          ],
+          [
+            0,
+            519
+          ],
+          [
+            0,
+            521
+          ],
+          [
+            0,
+            523
+          ],
+          [
+            0,
+            524
+          ],
+          [
+            0,
+            525
+          ],
+          [
+            0,
+            526
+          ],
+          [
+            0,
+            527
+          ],
+          [
+            0,
+            529
+          ],
+          [
+            0,
+            531
+          ],
+          [
+            0,
+            533
+          ],
+          [
+            0,
+            535
+          ],
+          [
+            0,
+            536
+          ],
+          [
+            0,
+            537
+          ],
+          [
+            0,
+            538
+          ],
+          [
+            0,
+            539
+          ],
+          [
+            0,
+            541
+          ],
+          [
+            0,
+            543
+          ],
+          [
+            0,
+            545
+          ],
+          [
+            0,
+            547
+          ],
+          [
+            0,
+            548
+          ],
+          [
+            0,
+            2062
+          ],
+          [
+            0,
+            2067
+          ],
+          [
+            0,
+            2069
+          ],
+          [
+            0,
+            2074
+          ],
+          [
+            0,
+            2076
+          ],
+          [
+            0,
+            2079
+          ],
+          [
+            0,
+            2081
+          ],
+          [
+            0,
+            2086
+          ],
+          [
+            0,
+            2088
+          ],
+          [
+            0,
+            2093
+          ],
+          [
+            0,
+            2095
+          ],
+          [
+            0,
+            2098
+          ],
+          [
+            0,
+            2100
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.2966662034215298,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 2.0,
+        "trigger_count_mean": 0.9907051728599009,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.9599799921679141,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.6498845564972839,
+        "candidate_occupied_cells_roi": 5018,
+        "clean_corridor_axis_deg": 0.8790509314158612,
+        "corridor_axis_error_deg": 0.22916637491857728,
+        "occupied_cell_ratio_to_clean": 1.0613367174280879,
+        "occupied_f1_at_0_15_m": 0.716155798307792,
+        "occupied_precision_at_0_15_m": 0.697887604623356,
+        "occupied_recall_at_0_15_m": 0.7354060913705583,
+        "reference_occupied_cells_roi": 4728,
+        "symmetric_chamfer_mean_m": 0.08831612213264084,
+        "symmetric_chamfer_p95_m": 0.30020076990363576
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_off/repeat_02",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.006498504079916727,
+        "endpoint_yaw_difference_deg": 0.0892790690315918,
+        "position_difference_max_m": 0.25426661384488125,
+        "position_difference_mean_m": 0.0226064991224421,
+        "position_difference_p95_m": 0.06065840513822789,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5552,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.22338459512466566,
+        "yaw_difference_p95_deg": 0.5903716550329949
+      }
+    },
+    "gate_on": {
+      "bag_sha256": "31691917ef8bd7dc63a5720b72b4a0578ba83e06819dd43b07a87d8cf1a33765",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "consistency_metric_max": 0.03494613617658615,
+        "consistency_metric_mean": 0.004244459062218117,
+        "consistency_metric_min": 0.0003470693773124367,
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.615739604635201,
+        "lidar_reliability_min": 0.03602835536003113,
+        "logged_unique_anomaly_node_ids": [],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 1.0,
+        "minimum_weight_scale_min": 1.0,
+        "trigger_count_max": 0.0,
+        "trigger_count_mean": 0.0,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 1.0,
+        "weight_scale_min": 1.0
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.7291904928807469,
+        "candidate_occupied_cells_roi": 5027,
+        "clean_corridor_axis_deg": 0.8790509314158612,
+        "corridor_axis_error_deg": 0.14986043853511433,
+        "occupied_cell_ratio_to_clean": 1.0632402707275803,
+        "occupied_f1_at_0_15_m": 0.8657979026996439,
+        "occupied_precision_at_0_15_m": 0.8559777203103243,
+        "occupied_recall_at_0_15_m": 0.8758460236886633,
+        "reference_occupied_cells_roi": 4728,
+        "symmetric_chamfer_mean_m": 0.07012811036643443,
+        "symmetric_chamfer_p95_m": 0.228159760039433
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_on/repeat_02",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.008097365942284347,
+        "endpoint_yaw_difference_deg": 0.11134526960472353,
+        "position_difference_max_m": 0.252085226918592,
+        "position_difference_mean_m": 0.022117909369508176,
+        "position_difference_p95_m": 0.06479832247572465,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5553,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.2309203549694666,
+        "yaw_difference_p95_deg": 0.6053091192082819
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_02",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 2,
+  "schema_version": 1,
+  "suite": "gate_ablation"
+}

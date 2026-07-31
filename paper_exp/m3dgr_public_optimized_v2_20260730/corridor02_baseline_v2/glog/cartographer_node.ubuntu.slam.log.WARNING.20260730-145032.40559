@@ -1,0 +1,4 @@
+Log file created at: 2026/07/30 14:50:32
+Running on machine: ubuntu
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W0730 14:50:32.185102 40559 pose_extrapolator.cc:168] Queue too short for velocity estimation. Queue duration: 0 s

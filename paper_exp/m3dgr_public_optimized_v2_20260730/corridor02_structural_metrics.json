@@ -1,0 +1,42 @@
+{
+  "corridor02_baseline_v2": {
+    "map_prefix": "paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_baseline_v2/online_map",
+    "width_cells": 2106,
+    "height_cells": 1431,
+    "width_m": 105.3000015691806,
+    "height_m": 71.5500010662381,
+    "occupied_cells": 17962,
+    "free_cells": 256857,
+    "unknown_cells": 2738867,
+    "occupied_ratio": 0.005960143160236335,
+    "free_ratio": 0.08523017991920857,
+    "unknown_ratio": 0.9088096769205551,
+    "dominant_axis_yaw_deg": 17.44309117260785,
+    "aligned_width_cells": 1844,
+    "aligned_height_cells": 1385,
+    "candidate_wall_rows": 0,
+    "top_wall_rows": [],
+    "best_wall_gap_closed_coverage": 0.0,
+    "best_wall_continuous_length_m": 0.0
+  },
+  "corridor02_full_v2": {
+    "map_prefix": "paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_full_v2/online_map",
+    "width_cells": 2108,
+    "height_cells": 1447,
+    "width_m": 105.4000015706708,
+    "height_m": 72.35000107815969,
+    "occupied_cells": 18160,
+    "free_cells": 256800,
+    "unknown_cells": 2775316,
+    "occupied_ratio": 0.005953559612310493,
+    "free_ratio": 0.08418910288773869,
+    "unknown_ratio": 0.9098573374999508,
+    "dominant_axis_yaw_deg": 17.326525529970315,
+    "aligned_width_cells": 1849,
+    "aligned_height_cells": 1384,
+    "candidate_wall_rows": 0,
+    "top_wall_rows": [],
+    "best_wall_gap_closed_coverage": 0.0,
+    "best_wall_continuous_length_m": 0.0
+  }
+}

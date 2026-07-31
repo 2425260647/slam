@@ -438,24 +438,69 @@ void OptimizationProblem2D::Solve(
         const bool lidar_reliability_available =
             degeneracy_metric_it !=
                 directional_degeneracy_metrics_by_node_.end() &&
-            degeneracy_metric_it->second.enabled;
+            degeneracy_metric_it->second.enabled &&
+            degeneracy_metric_it->second.valid &&
+            degeneracy_metric_it->second.direction.allFinite() &&
+            degeneracy_metric_it->second.direction.norm() > 1e-6 &&
+            std::isfinite(
+                degeneracy_metric_it->second.real_time_correlative_score);
+        // Innovation 1's confidence is a degeneracy severity, not LiDAR
+        // reliability. Use the scan-match score for the reliability gate and
+        // use degeneracy only to select the observable translation direction.
         const double lidar_reliability =
             lidar_reliability_available
-                ? std::min(
-                      1., std::max(0., degeneracy_metric_it->second.confidence))
+                ? std::min(1., std::max(
+                                   0., degeneracy_metric_it->second
+                                           .real_time_correlative_score))
                 : 0.;
+        const transform::Rigid2d relative_odometry_2d =
+            transform::Project2D(*relative_odometry);
+        const transform::Rigid2d relative_local_slam_pose_2d =
+            transform::Project2D(relative_local_slam_pose);
+        // Both relative translations are expressed at the first node. The
+        // degeneracy direction is recorded in this same local-SLAM frame.
+        const Eigen::Vector2d scan_translation_local =
+            relative_local_slam_pose_2d.translation();
+        const Eigen::Vector2d odometry_translation_local =
+            relative_odometry_2d.translation();
+        const Eigen::Vector2d translation_error_local =
+            odometry_translation_local - scan_translation_local;
+
+        double observable_translation_error = translation_error_local.norm();
+        if (lidar_reliability_available) {
+          const double adaptation_strength =
+              std::min(1., std::max(
+                               0., degeneracy_metric_it->second
+                                       .adaptation_strength));
+          // Isotropic scans use the full translation discrepancy. As
+          // directional degeneracy grows, smoothly ignore the unreliable
+          // principal component and retain only the observable component.
+          observable_translation_error = ComputeObservableTranslationError(
+              translation_error_local,
+              degeneracy_metric_it->second.direction, adaptation_strength);
+        }
+        const double yaw_error = std::abs(common::NormalizeAngleDifference(
+            relative_odometry_2d.rotation().angle() -
+            relative_local_slam_pose_2d.rotation().angle()));
+        // A scan-only jump must not authorize weakening a wheel constraint.
+        // Require the wheel odometry edge itself to contain enough motion.
+        const double motion_distance =
+            relative_odometry_2d.translation().norm();
+        const double motion_angle =
+            std::abs(relative_odometry_2d.rotation().angle());
         // [Innovation 2] 单边 per-edge 抗打滑 odometry 动态权重。
         // [Innovation 2] 检测器在 2D 平面比较 T_scan_ij 与 T_odom_ij，重点观察
         // [Innovation 2] 横向 lateral 和航向 yaw 不一致。若判定打滑，则本条
         // [Innovation 2] odometry residual 立即降权；若正常，则平滑恢复。
-        const SlipDetectorResult slip_result = slip_detector.Update(
-            transform::Project2D(relative_local_slam_pose),
-            transform::Project2D(*relative_odometry),
-            lidar_reliability_available, lidar_reliability);
+        const SlipDetectorResult slip_result = slip_detector.UpdateFromResiduals(
+            observable_translation_error, yaw_error, motion_distance,
+            motion_angle, lidar_reliability_available, lidar_reliability);
         const double dynamic_odometry_translation_weight =
-            options_.odometry_translation_weight() * slip_result.weight_scale;
+            options_.odometry_translation_weight() *
+            slip_result.translation_weight_scale;
         const double dynamic_odometry_rotation_weight =
-            options_.odometry_rotation_weight() * slip_result.weight_scale;
+            options_.odometry_rotation_weight() *
+            slip_result.rotation_weight_scale;
         has_slip_metric = true;
         minimum_weight_scale =
             std::min(minimum_weight_scale, slip_result.weight_scale);
@@ -490,7 +535,9 @@ void OptimizationProblem2D::Solve(
               << ", lateral_error=" << slip_result.lateral_error
               << ", yaw_error=" << slip_result.yaw_error
               << ", lidar_reliability=" << slip_result.lidar_reliability
-              << ", odometry weight scaled by " << slip_result.weight_scale
+              << ", translation_scale="
+              << slip_result.translation_weight_scale
+              << ", rotation_scale=" << slip_result.rotation_weight_scale
               << ".";
         }
         problem.AddResidualBlock(

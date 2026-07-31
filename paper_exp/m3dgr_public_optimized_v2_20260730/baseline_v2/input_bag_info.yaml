@@ -1,0 +1,51 @@
+path: /home/slam/slam_ws/bags/Wheel-float01/Wheel-float01.bag
+version: 2.0
+duration: 123.277814
+start: 1732437676.878834
+end: 1732437800.156648
+size: 1613905871
+messages: 122762
+indexed: True
+compression: none
+types:
+    - type: geometry_msgs/PoseStamped
+      md5: d3812c3cbc69362b77dc0b19b345f8f5
+    - type: livox_ros_driver/CustomMsg
+      md5: e4d6829bdfe657cb6c21a746c86b21a6
+    - type: livox_ros_driver2/CustomMsg
+      md5: e4d6829bdfe657cb6c21a746c86b21a6
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/CompressedImage
+      md5: 8f7a12909da2c9d3332d540a0977563f
+    - type: sensor_msgs/Imu
+      md5: 6a62c6daae103f4ff57a132d6f95cec2
+topics:
+    - topic: /camera/aligned_depth_to_color/image_raw/compressedDepth
+      type: sensor_msgs/CompressedImage
+      messages: 3696
+    - topic: /camera/color/image_raw/compressed
+      type: sensor_msgs/CompressedImage
+      messages: 3696
+    - topic: /camera/imu
+      type: sensor_msgs/Imu
+      messages: 24649
+    - topic: /livox/avia/imu
+      type: sensor_msgs/Imu
+      messages: 25074
+    - topic: /livox/avia/lidar
+      type: livox_ros_driver/CustomMsg
+      messages: 1233
+    - topic: /livox/mid360/imu
+      type: sensor_msgs/Imu
+      messages: 24656
+    - topic: /livox/mid360/lidar
+      type: livox_ros_driver2/CustomMsg
+      messages: 1233
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 2466
+    - topic: /vrpn_client_node/UGV/pose
+      type: geometry_msgs/PoseStamped
+      messages: 36059
+

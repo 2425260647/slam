@@ -1,0 +1,43 @@
+path: /home/slam/slam_ws/paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_baseline_v2/diagnostics.bag
+version: 2.0
+duration: 293.318729
+start: 1737472022.259907
+end: 1737472315.578637
+size: 831653486
+messages: 66916
+indexed: True
+compression: none
+types:
+    - type: geometry_msgs/PoseStamped
+      md5: d3812c3cbc69362b77dc0b19b345f8f5
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /local_occupancy_grid
+      type: nav_msgs/OccupancyGrid
+      messages: 2934
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 322
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 5867
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 2934
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 27429
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 1
+    - topic: /tracked_pose
+      type: geometry_msgs/PoseStamped
+      messages: 27429
+

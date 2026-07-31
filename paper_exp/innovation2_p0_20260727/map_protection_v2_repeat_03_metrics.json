@@ -1,0 +1,180 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "proposed_gate": {
+      "bag_sha256": "25fd00251bb1ffe0ee0b6769b9e64c544fa4da78018fdf7d78a26f3b613d0298",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "anomaly_time_max": 1784865248.654704,
+        "anomaly_time_mean": 1784865195.3194542,
+        "anomaly_time_min": 1784865073.551005,
+        "consistency_metric_max": 0.08149314671754837,
+        "consistency_metric_mean": 0.006945907356563492,
+        "consistency_metric_min": 0.0004317495913710445,
+        "distinct_latest_anomaly_times": [
+          1784865073.551005,
+          1784865088.451281,
+          1784865238.554457,
+          1784865248.654704
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.41058133330672575,
+        "lidar_reliability_min": 0.03571177273988724,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            176
+          ],
+          [
+            0,
+            178
+          ],
+          [
+            0,
+            180
+          ],
+          [
+            0,
+            182
+          ],
+          [
+            0,
+            251
+          ],
+          [
+            0,
+            253
+          ],
+          [
+            0,
+            1009
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.1617482479182491,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 4.0,
+        "trigger_count_mean": 3.067863005521564,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.9608463133391898,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.15620409005023816,
+        "candidate_occupied_cells_roi": 5978,
+        "clean_corridor_axis_deg": 0.18877331252554086,
+        "corridor_axis_error_deg": 0.032569222475302695,
+        "occupied_cell_ratio_to_clean": 1.0697924123120974,
+        "occupied_f1_at_0_15_m": 0.9933546345288568,
+        "occupied_precision_at_0_15_m": 0.9901304784208765,
+        "occupied_recall_at_0_15_m": 0.9965998568360773,
+        "reference_occupied_cells_roi": 5588,
+        "symmetric_chamfer_mean_m": 0.03960730151520773,
+        "symmetric_chamfer_p95_m": 0.07745350186700817
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/proposed_gate/repeat_03",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.008804293024448358,
+        "endpoint_yaw_difference_deg": 1.0139962455922673,
+        "position_difference_max_m": 0.859210058700792,
+        "position_difference_mean_m": 0.20211796381009142,
+        "position_difference_p95_m": 0.7900132578932333,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5787,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.8469138729414806,
+        "yaw_difference_p95_deg": 1.5856079452224854
+      }
+    },
+    "static_high": {
+      "bag_sha256": "25fd00251bb1ffe0ee0b6769b9e64c544fa4da78018fdf7d78a26f3b613d0298",
+      "config_sha256": "66a0286d7e47101427c98c4bc80e63e72a83571c2f4c4637dccff7354034c94d",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 1.4319736557979752,
+        "candidate_occupied_cells_roi": 5900,
+        "clean_corridor_axis_deg": 0.18877331252554086,
+        "corridor_axis_error_deg": 1.2432003432724343,
+        "occupied_cell_ratio_to_clean": 1.055833929849678,
+        "occupied_f1_at_0_15_m": 0.416306705373247,
+        "occupied_precision_at_0_15_m": 0.40728813559322036,
+        "occupied_recall_at_0_15_m": 0.4257337151037938,
+        "reference_occupied_cells_roi": 5588,
+        "symmetric_chamfer_mean_m": 0.39467849536462385,
+        "symmetric_chamfer_p95_m": 1.312249401367768
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_high/repeat_03",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.009862358112450937,
+        "endpoint_yaw_difference_deg": 1.0558113832385558,
+        "position_difference_max_m": 3.667507931633092,
+        "position_difference_mean_m": 1.2217687871850138,
+        "position_difference_p95_m": 3.5550430468167407,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5772,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 2.413579884820635,
+        "yaw_difference_p95_deg": 4.969896358173897
+      }
+    },
+    "static_low": {
+      "bag_sha256": "25fd00251bb1ffe0ee0b6769b9e64c544fa4da78018fdf7d78a26f3b613d0298",
+      "config_sha256": "0678460a1419282f17f0f9099982d3df820494e189ac3badb491245fa8bea94f",
+      "diagnostics": {
+        "logged_unique_anomaly_node_ids": []
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 0.8307905386178334,
+        "candidate_occupied_cells_roi": 5570,
+        "clean_corridor_axis_deg": 0.18877331252554086,
+        "corridor_axis_error_deg": 0.6420172260922925,
+        "occupied_cell_ratio_to_clean": 0.9967788117394416,
+        "occupied_f1_at_0_15_m": 0.36275852150482174,
+        "occupied_precision_at_0_15_m": 0.366427289048474,
+        "occupied_recall_at_0_15_m": 0.35916249105225484,
+        "reference_occupied_cells_roi": 5588,
+        "symmetric_chamfer_mean_m": 0.2850025611088168,
+        "symmetric_chamfer_p95_m": 0.7284007775060143
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/map_protection_v2/static_low/repeat_03",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.006408761879300271,
+        "endpoint_yaw_difference_deg": 1.0406537837221055,
+        "position_difference_max_m": 4.133216440367657,
+        "position_difference_mean_m": 1.0668355927482436,
+        "position_difference_p95_m": 3.9293433827732374,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5787,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 3.5170041358624475,
+        "yaw_difference_p95_deg": 7.666307103073988
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_03",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 3,
+  "schema_version": 1,
+  "suite": "map_protection_v2"
+}

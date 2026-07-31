@@ -1,0 +1,18 @@
+{
+  "corridor02_baseline_v2": {
+    "occupied_cells": 17612,
+    "free_cells": 27417,
+    "known_cells": 2784246,
+    "occupied_components": 668,
+    "largest_component_ratio": 0.07500567794685442,
+    "occupied_pca_ratio": 1.6250392968718124
+  },
+  "corridor02_full_v2": {
+    "occupied_cells": 17792,
+    "free_cells": 26958,
+    "known_cells": 2820434,
+    "occupied_components": 679,
+    "largest_component_ratio": 0.0766636690647482,
+    "occupied_pca_ratio": 1.6219545945502043
+  }
+}

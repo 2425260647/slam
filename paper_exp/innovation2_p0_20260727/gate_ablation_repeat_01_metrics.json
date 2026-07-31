@@ -1,0 +1,346 @@
+{
+  "fixed_roi": {
+    "match_tolerance_m": 0.15,
+    "x_intervals_m": [
+      [
+        0.0,
+        28.0
+      ],
+      [
+        38.0,
+        58.0
+      ],
+      [
+        67.0,
+        77.0
+      ]
+    ],
+    "y_max_m": 5.0,
+    "y_min_m": -4.0
+  },
+  "methods": {
+    "gate_off": {
+      "bag_sha256": "191dccc0a747b1a5518f4d59665a491c8164e00fce41de684e86ca0471e24567",
+      "config_sha256": "52c6c802d57a62e555de3bb89779d3d15c387cb2a384574a7984b7ef428a850e",
+      "diagnostics": {
+        "anomaly_time_max": 1784864238.134942,
+        "anomaly_time_mean": 1784863902.2334356,
+        "anomaly_time_min": 1784863811.630217,
+        "consistency_metric_max": 0.050692372024059296,
+        "consistency_metric_mean": 0.0045601916294308355,
+        "consistency_metric_min": 0.00023480640084017068,
+        "distinct_latest_anomaly_times": [
+          1784863811.630217,
+          1784863813.930118,
+          1784864121.63247,
+          1784864238.134942
+        ],
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 1.0,
+        "lidar_reliability_min": 1.0,
+        "logged_unique_anomaly_node_ids": [
+          [
+            0,
+            423
+          ],
+          [
+            0,
+            424
+          ],
+          [
+            0,
+            425
+          ],
+          [
+            0,
+            426
+          ],
+          [
+            0,
+            427
+          ],
+          [
+            0,
+            429
+          ],
+          [
+            0,
+            430
+          ],
+          [
+            0,
+            431
+          ],
+          [
+            0,
+            432
+          ],
+          [
+            0,
+            433
+          ],
+          [
+            0,
+            434
+          ],
+          [
+            0,
+            437
+          ],
+          [
+            0,
+            438
+          ],
+          [
+            0,
+            439
+          ],
+          [
+            0,
+            440
+          ],
+          [
+            0,
+            441
+          ],
+          [
+            0,
+            442
+          ],
+          [
+            0,
+            444
+          ],
+          [
+            0,
+            445
+          ],
+          [
+            0,
+            1953
+          ],
+          [
+            0,
+            1955
+          ],
+          [
+            0,
+            1960
+          ],
+          [
+            0,
+            1962
+          ],
+          [
+            0,
+            1965
+          ],
+          [
+            0,
+            1967
+          ],
+          [
+            0,
+            1972
+          ],
+          [
+            0,
+            1974
+          ],
+          [
+            0,
+            1977
+          ],
+          [
+            0,
+            1979
+          ],
+          [
+            0,
+            1984
+          ],
+          [
+            0,
+            1986
+          ],
+          [
+            0,
+            1991
+          ],
+          [
+            0,
+            1993
+          ],
+          [
+            0,
+            1995
+          ],
+          [
+            0,
+            1996
+          ],
+          [
+            0,
+            1998
+          ],
+          [
+            0,
+            2003
+          ],
+          [
+            0,
+            2005
+          ],
+          [
+            0,
+            2010
+          ],
+          [
+            0,
+            2012
+          ],
+          [
+            0,
+            2015
+          ],
+          [
+            0,
+            2017
+          ],
+          [
+            0,
+            2022
+          ],
+          [
+            0,
+            2024
+          ],
+          [
+            0,
+            2027
+          ],
+          [
+            0,
+            2029
+          ],
+          [
+            0,
+            2034
+          ],
+          [
+            0,
+            2036
+          ],
+          [
+            0,
+            2041
+          ],
+          [
+            0,
+            2043
+          ],
+          [
+            0,
+            2046
+          ],
+          [
+            0,
+            2048
+          ],
+          [
+            0,
+            2592
+          ]
+        ],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 0.2857128814313454,
+        "minimum_weight_scale_min": 0.10000000149011612,
+        "trigger_count_max": 4.0,
+        "trigger_count_mean": 1.8061862972728346,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 0.9378061683137556,
+        "weight_scale_min": 0.10000000149011612
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 2.2293869247826876,
+        "candidate_occupied_cells_roi": 4698,
+        "clean_corridor_axis_deg": 2.259470341589548,
+        "corridor_axis_error_deg": 0.03008341680686044,
+        "occupied_cell_ratio_to_clean": 1.0146868250539958,
+        "occupied_f1_at_0_15_m": 0.9876252919119834,
+        "occupied_precision_at_0_15_m": 0.991698595146871,
+        "occupied_recall_at_0_15_m": 0.983585313174946,
+        "reference_occupied_cells_roi": 4630,
+        "symmetric_chamfer_mean_m": 0.03765009005643147,
+        "symmetric_chamfer_p95_m": 0.14919029957294982
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_off/repeat_01",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.01316178162292282,
+        "endpoint_yaw_difference_deg": 0.18791717497302113,
+        "position_difference_max_m": 0.2913604119247529,
+        "position_difference_mean_m": 0.03958583436894437,
+        "position_difference_p95_m": 0.1581167065009334,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5640,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.24596235474811357,
+        "yaw_difference_p95_deg": 0.5143106567382588
+      }
+    },
+    "gate_on": {
+      "bag_sha256": "191dccc0a747b1a5518f4d59665a491c8164e00fce41de684e86ca0471e24567",
+      "config_sha256": "e6db84e0b740306157869513d93a5fe2baeb1c0a780a6d2a4b5fd5a2c09ba051",
+      "diagnostics": {
+        "consistency_metric_max": 0.050692372024059296,
+        "consistency_metric_mean": 0.004569488122053819,
+        "consistency_metric_min": 0.00023480640084017068,
+        "lidar_reliability_max": 1.0,
+        "lidar_reliability_mean": 0.6579014008577879,
+        "lidar_reliability_min": 0.04026283323764801,
+        "logged_unique_anomaly_node_ids": [],
+        "minimum_weight_scale_max": 1.0,
+        "minimum_weight_scale_mean": 1.0,
+        "minimum_weight_scale_min": 1.0,
+        "trigger_count_max": 0.0,
+        "trigger_count_mean": 0.0,
+        "trigger_count_min": 0.0,
+        "weight_scale_max": 1.0,
+        "weight_scale_mean": 1.0,
+        "weight_scale_min": 1.0
+      },
+      "map_reference": {
+        "candidate_corridor_axis_deg": 2.1535722641133646,
+        "candidate_occupied_cells_roi": 4611,
+        "clean_corridor_axis_deg": 2.259470341589548,
+        "corridor_axis_error_deg": 0.10589807747618352,
+        "occupied_cell_ratio_to_clean": 0.9958963282937365,
+        "occupied_f1_at_0_15_m": 0.9350530299339767,
+        "occupied_precision_at_0_15_m": 0.9403600086749079,
+        "occupied_recall_at_0_15_m": 0.9298056155507559,
+        "reference_occupied_cells_roi": 4630,
+        "symmetric_chamfer_mean_m": 0.055032485087295344,
+        "symmetric_chamfer_p95_m": 0.17542889784521917
+      },
+      "run_dir": "/home/slam/slam_ws/paper_exp/innovation2_p0_20260727/runs/gate_ablation/gate_on/repeat_01",
+      "trajectory_reference": {
+        "endpoint_position_difference_m": 0.016702815032745375,
+        "endpoint_yaw_difference_deg": 1.0400923328764904,
+        "position_difference_max_m": 0.27204698109769654,
+        "position_difference_mean_m": 0.04575989595381068,
+        "position_difference_p95_m": 0.174061959564115,
+        "reference_kind": "same-bag clean-run proxy; not ground truth",
+        "sample_count": 5640,
+        "sample_period_sec": 0.1,
+        "yaw_difference_mean_deg": 0.26438808540907416,
+        "yaw_difference_p95_deg": 0.7580553990585528
+      }
+    }
+  },
+  "reference": "/home/slam/slam_ws/paper_exp/formal_corridor_20260724/runs/normal_full/proposed/repeat_01",
+  "reference_limit": "same-bag clean run, not external ground truth",
+  "repeat": 1,
+  "schema_version": 1,
+  "suite": "gate_ablation"
+}

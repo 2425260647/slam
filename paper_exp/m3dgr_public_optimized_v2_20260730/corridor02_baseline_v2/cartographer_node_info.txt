@@ -1,0 +1,76 @@
+--------------------------------------------------------------------------------
+Node [/cartographer_node]
+Publications: 
+ * /consistency_anomaly_time [std_msgs/Float64]
+ * /consistency_anomaly_trigger_count [std_msgs/UInt32]
+ * /constraint_list [visualization_msgs/MarkerArray]
+ * /degeneracy_direction [geometry_msgs/Vector3]
+ * /degeneracy_metric [std_msgs/Float32]
+ * /landmark_poses_list [visualization_msgs/MarkerArray]
+ * /odom_min_weight_scale [std_msgs/Float32]
+ * /odom_weight_scale [std_msgs/Float32]
+ * /rosout [rosgraph_msgs/Log]
+ * /scan_matched_points2 [sensor_msgs/PointCloud2]
+ * /slip_lidar_reliability [std_msgs/Float32]
+ * /slip_metric [std_msgs/Float32]
+ * /slip_state [std_msgs/Bool]
+ * /submap_list [cartographer_ros_msgs/SubmapList]
+ * /tf [tf2_msgs/TFMessage]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+ * /trajectory_node_list [visualization_msgs/MarkerArray]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /scan [sensor_msgs/LaserScan]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /cartographer_node/get_loggers
+ * /cartographer_node/set_logger_level
+ * /finish_trajectory
+ * /get_trajectory_states
+ * /read_metrics
+ * /start_trajectory
+ * /submap_query
+ * /trajectory_query
+ * /write_state
+
+
+contacting node http://ubuntu:40405/ ...
+Pid: 40559
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (60419 - 127.0.0.1:36426) [16]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /cartographer_node
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /tf
+    * to: /m3dgr_mid360_cloud_to_scan
+    * direction: outbound (60419 - 127.0.0.1:36418) [14]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /local_grid_mapper
+    * direction: outbound (60419 - 127.0.0.1:36440) [11]
+    * transport: TCPROS
+ * topic: /submap_list
+    * to: /cartographer_occupancy_grid_node
+    * direction: outbound (60419 - 127.0.0.1:36410) [10]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /cartographer_node (http://ubuntu:40405/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+ * topic: /tf_static
+    * to: /m3dgr_base_to_mid360 (http://ubuntu:42205/)
+    * direction: inbound (49922 - ubuntu:55633) [15]
+    * transport: TCPROS
+ * topic: /scan
+    * to: /m3dgr_mid360_cloud_to_scan (http://ubuntu:36095/)
+    * direction: inbound (40532 - ubuntu:37023) [20]
+    * transport: TCPROS
+

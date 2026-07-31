@@ -1,0 +1,49 @@
+path: /home/slam/slam_ws/bags/Corridor02/Corridor02.bag
+version: 2.0
+duration: 293.356221
+start: 1737472022.243105
+end: 1737472315.599326
+size: 4961140985
+messages: 210711
+indexed: True
+compression: none
+types:
+    - type: livox_ros_driver/CustomMsg
+      md5: e4d6829bdfe657cb6c21a746c86b21a6
+    - type: livox_ros_driver2/CustomMsg
+      md5: e4d6829bdfe657cb6c21a746c86b21a6
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/CompressedImage
+      md5: 8f7a12909da2c9d3332d540a0977563f
+    - type: sensor_msgs/Imu
+      md5: 6a62c6daae103f4ff57a132d6f95cec2
+topics:
+    - topic: /camera/aligned_depth_to_color/image_raw/compressedDepth
+      type: sensor_msgs/CompressedImage
+      messages: 8794
+    - topic: /camera/color/image_raw/compressed
+      type: sensor_msgs/CompressedImage
+      messages: 8795
+    - topic: /camera/imu
+      type: sensor_msgs/Imu
+      messages: 58661
+    - topic: /cv_camera/image_raw/compressed
+      type: sensor_msgs/CompressedImage
+      messages: 4400
+    - topic: /livox/avia/imu
+      type: sensor_msgs/Imu
+      messages: 59655
+    - topic: /livox/avia/lidar
+      type: livox_ros_driver/CustomMsg
+      messages: 2933
+    - topic: /livox/mid360/imu
+      type: sensor_msgs/Imu
+      messages: 58672
+    - topic: /livox/mid360/lidar
+      type: livox_ros_driver2/CustomMsg
+      messages: 2934
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 5867
+
