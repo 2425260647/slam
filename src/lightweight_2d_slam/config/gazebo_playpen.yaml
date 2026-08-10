@@ -1,0 +1,102 @@
+scan_topic: /scan
+odom_topic: /scout_mini_velocity_controller/odom
+map_topic: /map
+local_grid_topic: /local_occupancy_grid
+tracked_pose_topic: /tracked_pose
+path_topic: /lightweight_slam/path
+diagnostics_topic: /slam_diagnostics
+map_frame: map
+odom_frame: odom
+base_frame: base_link
+
+# The Gazebo diff-drive controller publishes nav_msgs/Odometry but its own
+# odom TF is disabled. The SLAM node is the single odom TF publisher.
+publish_odom_tf: true
+transform_timeout: 0.10
+min_range: 0.30
+max_range: 25.0
+point_stride: 3
+
+grid_resolution: 0.05
+active_grid_size: 30.0
+active_keyframes: 60
+active_grid_insert_free_space: true
+# Frozen loop-closure grids retain occupied endpoints only. Free-space rays
+# remain enabled in the front-end tracking grid and the published global map.
+submap_insert_free_space: false
+submap_keyframes: 50
+keyframe_translation: 0.10
+keyframe_rotation: 0.035
+keyframe_time: 0.75
+keyframe_min_translation_for_time: 0.02
+keyframe_min_rotation_for_time: 0.01
+min_match_score: 0.25
+max_match_rms: 0.25
+
+# Sequential constraints do not require repeated global solves. The graph is
+# optimized immediately after an accepted non-local loop constraint.
+optimize_every_n_keyframes: 0
+scan_constraint_translation_weight: 20.0
+scan_constraint_rotation_weight: 30.0
+# Odometry already seeds the front-end matcher. Re-adding it to the pose graph
+# double-counts the same prior and is harmful when wheel odometry drifts.
+odom_constraint_translation_weight: 0.0
+odom_constraint_rotation_weight: 0.0
+
+enable_loop_closure: true
+loop_min_separation: 35
+loop_min_submap_separation: 2
+loop_search_every_n_keyframes: 5
+loop_top_k_candidates: 5
+loop_descriptor_min_similarity: 0.68
+loop_min_score_margin: 0.03
+loop_linear_search_window: 0.80
+loop_angular_search_window: 0.70
+loop_linear_step: 0.10
+loop_angular_step: 0.05
+loop_max_coarse_points: 120
+loop_min_match_score: 0.75
+loop_max_match_rms: 0.08
+loop_min_translation_observability: 0.08
+loop_unobservable_max_correction: 0.50
+loop_max_correction_translation: 30.0
+loop_max_correction_rotation: 1.20
+loop_min_confirmations: 2
+loop_confirmation_translation_tolerance: 0.15
+loop_confirmation_rotation_tolerance: 0.12
+loop_min_keyframes_between_accepts: 30
+loop_translation_weight: 25.0
+loop_rotation_weight: 35.0
+
+map_publish_period: 1.0
+max_global_grid_cells: 4000000
+global_map_point_stride: 2
+local_grid_size: 5.0
+local_grid_max_range: 5.0
+
+scan_matcher:
+  linear_search_window: 0.15
+  angular_search_window: 0.20
+  linear_step: 0.05
+  angular_step: 0.025
+  use_likelihood_field: true
+  enable_fine_correlative: true
+  fine_candidate_count: 1
+  fine_linear_step: 0.0125
+  fine_angular_window: 0.0
+  fine_angular_step: 0.0125
+  endpoint_neighborhood: 1
+  max_coarse_points: 240
+  correlative_translation_cost_weight: 0.01
+  correlative_rotation_cost_weight: 0.005
+  line_search_radius_cells: 4
+  line_min_neighbors: 4
+  max_refinement_iterations: 8
+  use_likelihood_refinement: true
+  max_likelihood_refinement_points: 240
+  likelihood_refinement_weight: 0.5
+  min_correspondences: 20
+  prior_translation_weight: 0.5
+  prior_rotation_weight: 3.0
+  line_max_eigenvalue_ratio: 0.35
+  line_min_eigenvalue: 1.0e-8

@@ -1,0 +1,8 @@
+<launch>
+  <!-- Front-end-only ablation: no OAD and no backend weighting changes. -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v7c_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/scan_matcher/enable_oad_csm" value="false"/>
+  <param name="/lightweight_2d_slam/scan_matcher/use_hybrid_refinement" value="true"/>
+  <param name="/lightweight_2d_slam/scan_matcher/point_line_refinement_weight" value="0.35"/>
+  <param name="/lightweight_2d_slam/scan_matcher/refinement_huber_scale" value="0.20"/>
+</launch>

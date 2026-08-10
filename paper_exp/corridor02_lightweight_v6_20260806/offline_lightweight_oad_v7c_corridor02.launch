@@ -1,0 +1,16 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_oad_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/loop_min_score_margin" value="0.06"/>
+  <param name="/lightweight_2d_slam/loop_min_confirmations" value="3"/>
+  <param name="/lightweight_2d_slam/loop_min_keyframes_between_accepts" value="60"/>
+  <param name="/lightweight_2d_slam/loop_reject_low_observability_large_correction" value="true"/>
+  <param name="/lightweight_2d_slam/loop_use_switchable_constraints" value="true"/>
+  <param name="/lightweight_2d_slam/loop_switch_prior_weight" value="1.0"/>
+  <param name="/lightweight_2d_slam/loop_sequence_keyframes" value="3"/>
+  <param name="/lightweight_2d_slam/loop_sequence_stride" value="5"/>
+  <param name="/lightweight_2d_slam/loop_min_sequence_support" value="2"/>
+  <param name="/lightweight_2d_slam/loop_sequence_linear_window" value="0.35"/>
+  <param name="/lightweight_2d_slam/loop_sequence_angular_window" value="0.25"/>
+  <param name="/lightweight_2d_slam/loop_sequence_correction_tolerance" value="0.35"/>
+  <param name="/lightweight_2d_slam/loop_sequence_yaw_tolerance" value="0.12"/>
+</launch>

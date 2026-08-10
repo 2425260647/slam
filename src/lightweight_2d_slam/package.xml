@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lightweight_2d_slam</name>
+  <version>0.1.0</version>
+  <description>Independent lightweight 2D laser, wheel odometry, submap and pose-graph SLAM for ROS1.</description>
+
+  <maintainer email="slam@todo.todo">slam</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>diagnostic_msgs</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>rospy</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>tf2_ros</depend>
+
+  <build_depend>libceres-dev</build_depend>
+  <build_depend>eigen</build_depend>
+  <build_export_depend>libceres-dev</build_export_depend>
+  <build_export_depend>eigen</build_export_depend>
+
+  <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>scout_gazebo_sim</exec_depend>
+
+  <export/>
+</package>

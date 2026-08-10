@@ -1,0 +1,21 @@
+<launch>
+  <arg name="config"
+       default="$(find lightweight_2d_slam)/config/gazebo_playpen.yaml"/>
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_slam.launch">
+    <arg name="config" value="$(arg config)"/>
+    <!-- V7b backend plus multi-frame submap consistency. -->
+    <arg name="loop_min_score_margin" value="0.03"/>
+    <arg name="loop_min_confirmations" value="2"/>
+    <arg name="loop_min_keyframes_between_accepts" value="30"/>
+    <arg name="loop_reject_low_observability_large_correction" value="false"/>
+    <arg name="loop_use_switchable_constraints" value="true"/>
+    <arg name="loop_switch_prior_weight" value="25.0"/>
+    <arg name="loop_sequence_keyframes" value="3"/>
+    <arg name="loop_sequence_stride" value="5"/>
+    <arg name="loop_min_sequence_support" value="2"/>
+    <arg name="loop_sequence_linear_window" value="0.35"/>
+    <arg name="loop_sequence_angular_window" value="0.25"/>
+    <arg name="loop_sequence_correction_tolerance" value="0.35"/>
+    <arg name="loop_sequence_yaw_tolerance" value="0.12"/>
+  </include>
+</launch>

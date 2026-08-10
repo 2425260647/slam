@@ -1,0 +1,8 @@
+<launch>
+  <!--
+    Pair repeated-hit occupancy evidence with all scan endpoints so stable
+    surfaces are not thinned by the historical publication-only stride.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_sep250_verified_loop_hit060_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/global_map_point_stride" value="1"/>
+</launch>

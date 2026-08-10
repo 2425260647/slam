@@ -1,0 +1,2 @@
+scan_count=2934
+odom_count=5867

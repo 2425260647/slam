@@ -1,0 +1,37 @@
+<launch>
+  <arg name="world_name" default="$(find scout_gazebo_sim)/worlds/clearpath_playpen.world"/>
+  <arg name="gui" default="false"/>
+  <arg name="paused" default="true"/>
+
+  <param name="use_sim_time" value="true"/>
+
+  <!-- No SLAM node is started here. This launch only creates the common sensor input. -->
+  <include file="$(find scout_gazebo_sim)/launch/scout_mini_diff_drive_empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="spawn_unpause" value="false"/>
+  </include>
+
+  <node pkg="scout_gazebo_sim" type="pointcloud_to_pointcloud2.py"
+        name="gazebo_capture_cloud_converter" output="screen">
+    <param name="input" value="/velodyne_points_raw"/>
+    <param name="output" value="/velodyne_points"/>
+  </node>
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
+        name="gazebo_capture_cloud_to_scan" output="screen">
+    <remap from="cloud_in" to="/velodyne_points"/>
+    <remap from="scan" to="/scan"/>
+    <param name="target_frame" value="laser_link"/>
+    <param name="transform_tolerance" value="0.05"/>
+    <param name="min_height" value="-0.35"/>
+    <param name="max_height" value="1.6"/>
+    <param name="angle_min" value="-3.14159"/>
+    <param name="angle_max" value="3.14159"/>
+    <param name="angle_increment" value="0.00872"/>
+    <param name="scan_time" value="0.1"/>
+    <param name="range_min" value="0.30"/>
+    <param name="range_max" value="25.0"/>
+  </node>
+</launch>

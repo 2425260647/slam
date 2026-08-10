@@ -1,0 +1,8 @@
+<launch>
+  <!--
+    Clean Cartographer configuration with no parameter changes. The experiment
+    runner supplies exactly the same deskewed /scan and /odom as the lightweight
+    Phase B run.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_cartographer_clean.launch"/>
+</launch>

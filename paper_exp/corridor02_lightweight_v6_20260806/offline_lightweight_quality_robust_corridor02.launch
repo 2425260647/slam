@@ -1,0 +1,19 @@
+<launch>
+  <!-- Generic precision optimization. OAD is explicitly disabled. -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v7c_corridor02.launch"/>
+
+  <param name="/lightweight_2d_slam/scan_matcher/enable_oad_csm" value="false"/>
+  <param name="/lightweight_2d_slam/scan_matcher/use_hybrid_refinement" value="true"/>
+  <param name="/lightweight_2d_slam/scan_matcher/point_line_refinement_weight" value="0.35"/>
+  <param name="/lightweight_2d_slam/scan_matcher/refinement_huber_scale" value="0.20"/>
+
+  <param name="/lightweight_2d_slam/quality_weighted_constraints" value="true"/>
+  <param name="/lightweight_2d_slam/min_constraint_quality" value="0.25"/>
+  <param name="/lightweight_2d_slam/robust_scan_constraints" value="true"/>
+  <param name="/lightweight_2d_slam/scan_constraint_huber_scale" value="0.10"/>
+  <param name="/lightweight_2d_slam/odom_constraint_translation_weight" value="0.5"/>
+  <param name="/lightweight_2d_slam/odom_constraint_rotation_weight" value="0.5"/>
+  <param name="/lightweight_2d_slam/robust_odom_constraints" value="true"/>
+  <param name="/lightweight_2d_slam/odom_constraint_huber_scale" value="0.20"/>
+  <param name="/lightweight_2d_slam/optimize_every_n_keyframes" value="100"/>
+</launch>

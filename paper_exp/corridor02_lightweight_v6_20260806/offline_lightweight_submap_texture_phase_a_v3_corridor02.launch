@@ -1,0 +1,6 @@
+<launch>
+  <!-- Join only neighboring returns that plausibly sample one surface. -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_submap_texture_phase_a_v2_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/global_map_hit_connection_max_distance"
+         value="0.25"/>
+</launch>

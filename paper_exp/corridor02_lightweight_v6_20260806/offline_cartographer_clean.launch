@@ -1,0 +1,18 @@
+<launch>
+  <arg name="configuration_directory" default="$(find my_navigation)/config"/>
+  <arg name="configuration_basename"
+       default="cartographer_m3dgr_mid360_clean_baseline.lua"/>
+
+  <param name="use_sim_time" value="true"/>
+
+  <node name="cartographer_clean" pkg="cartographer_ros"
+        type="cartographer_node" output="screen"
+        args="-configuration_directory $(arg configuration_directory)
+              -configuration_basename $(arg configuration_basename)">
+    <remap from="scan" to="/scan"/>
+    <remap from="odom" to="/odom"/>
+  </node>
+  <node name="cartographer_occupancy_grid" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" output="screen"
+        args="-resolution 0.05 -publish_period_sec 1.0"/>
+</launch>

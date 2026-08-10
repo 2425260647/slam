@@ -1,0 +1,29 @@
+<launch>
+  <!--
+    Backend-only precision ablation.  The scan matcher is kept at V7c
+    settings; only graph-edge robustness is changed through launch args.
+  -->
+  <arg name="scan_robust" default="false"/>
+  <arg name="scan_huber_scale" default="1.0"/>
+  <arg name="odom_weight" default="0.0"/>
+  <arg name="odom_robust" default="false"/>
+  <arg name="odom_huber_scale" default="1.0"/>
+  <arg name="switch_prior_weight" default="25.0"/>
+  <arg name="optimize_every" default="0"/>
+  <arg name="anisotropic_loops" default="false"/>
+
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v7c_corridor02.launch"/>
+
+  <!-- Keep the front-end unchanged and explicitly keep OAD disabled. -->
+  <param name="/lightweight_2d_slam/scan_matcher/enable_oad_csm" value="false"/>
+  <param name="/lightweight_2d_slam/quality_weighted_constraints" value="false"/>
+  <param name="/lightweight_2d_slam/robust_scan_constraints" value="$(arg scan_robust)"/>
+  <param name="/lightweight_2d_slam/scan_constraint_huber_scale" value="$(arg scan_huber_scale)"/>
+  <param name="/lightweight_2d_slam/odom_constraint_translation_weight" value="$(arg odom_weight)"/>
+  <param name="/lightweight_2d_slam/odom_constraint_rotation_weight" value="$(arg odom_weight)"/>
+  <param name="/lightweight_2d_slam/robust_odom_constraints" value="$(arg odom_robust)"/>
+  <param name="/lightweight_2d_slam/odom_constraint_huber_scale" value="$(arg odom_huber_scale)"/>
+  <param name="/lightweight_2d_slam/loop_switch_prior_weight" value="$(arg switch_prior_weight)"/>
+  <param name="/lightweight_2d_slam/loop_use_anisotropic_constraints" value="$(arg anisotropic_loops)"/>
+  <param name="/lightweight_2d_slam/optimize_every_n_keyframes" value="$(arg optimize_every)"/>
+</launch>

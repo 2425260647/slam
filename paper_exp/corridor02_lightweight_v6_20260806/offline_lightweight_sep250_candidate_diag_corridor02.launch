@@ -1,0 +1,4 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_multiscale_temporal_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/loop_log_candidate_evaluations" value="true"/>
+</launch>

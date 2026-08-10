@@ -1,0 +1,5 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_sep250_verified_loop_corridor02.launch"/>
+  <!-- Preserve every accepted scan endpoint in the navigation map. -->
+  <param name="/lightweight_2d_slam/global_map_point_stride" value="1"/>
+</launch>

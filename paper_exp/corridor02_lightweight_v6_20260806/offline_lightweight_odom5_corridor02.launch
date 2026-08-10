@@ -1,0 +1,5 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v6.launch"/>
+  <param name="/lightweight_2d_slam/odom_constraint_translation_weight" value="5.0"/>
+  <param name="/lightweight_2d_slam/odom_constraint_rotation_weight" value="5.0"/>
+</launch>

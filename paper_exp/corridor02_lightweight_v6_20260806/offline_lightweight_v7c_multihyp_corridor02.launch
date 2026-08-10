@@ -1,0 +1,6 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v7c_corridor02.launch"/>
+  <!-- Keep several descriptor/keyframe hypotheses from each frozen submap. -->
+  <param name="/lightweight_2d_slam/loop_candidates_per_submap" value="3"/>
+  <param name="/lightweight_2d_slam/loop_top_k_candidates" value="15"/>
+</launch>

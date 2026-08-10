@@ -1,0 +1,27 @@
+<launch>
+  <!--
+    Precision-oriented lightweight 2D SLAM profile.
+    OAD and hybrid front-end experiments are intentionally disabled.  Loop
+    edges retain the complete 2D translation residual so a switchable edge
+    can detect a globally inconsistent displacement in either direction.
+  -->
+  <arg name="config"
+       default="$(find lightweight_2d_slam)/config/gazebo_playpen.yaml"/>
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_slam.launch">
+    <arg name="config" value="$(arg config)"/>
+    <arg name="loop_use_switchable_constraints" value="true"/>
+    <arg name="loop_switch_prior_weight" value="1.0"/>
+    <arg name="loop_min_confirmations" value="2"/>
+    <arg name="loop_min_keyframes_between_accepts" value="30"/>
+    <arg name="loop_sequence_keyframes" value="3"/>
+    <arg name="loop_sequence_stride" value="5"/>
+    <arg name="loop_min_sequence_support" value="2"/>
+    <arg name="loop_sequence_linear_window" value="0.35"/>
+    <arg name="loop_sequence_angular_window" value="0.25"/>
+    <arg name="loop_sequence_correction_tolerance" value="0.35"/>
+    <arg name="loop_sequence_yaw_tolerance" value="0.12"/>
+  </include>
+  <param name="/lightweight_2d_slam/scan_matcher/enable_oad_csm" value="false"/>
+  <param name="/lightweight_2d_slam/scan_matcher/use_hybrid_refinement" value="false"/>
+  <param name="/lightweight_2d_slam/loop_use_anisotropic_constraints" value="false"/>
+</launch>

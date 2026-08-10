@@ -54,9 +54,19 @@ target_link_libraries(livox_custommsg_to_pointcloud2
   ${catkin_LIBRARIES}
 )
 
+add_executable(livox_deskewed_laserscan
+  src/livox_deskewed_laserscan.cpp
+)
+add_dependencies(livox_deskewed_laserscan
+  ${catkin_EXPORTED_TARGETS}
+)
+target_link_libraries(livox_deskewed_laserscan
+  ${catkin_LIBRARIES}
+)
+
 # ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
 install(TARGETS local_grid_mapper mapping_health_monitor scan_quality_gate
-                livox_custommsg_to_pointcloud2
+                livox_custommsg_to_pointcloud2 livox_deskewed_laserscan
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

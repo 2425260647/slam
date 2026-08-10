@@ -1,0 +1,5 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_sep250_verified_loop_corridor02.launch"/>
+  <!-- Connect only adjacent returns that plausibly belong to one surface. -->
+  <param name="/lightweight_2d_slam/global_map_hit_connection_max_distance" value="0.25"/>
+</launch>

@@ -1,0 +1,15 @@
+<launch>
+  <!--
+    Corridor02 topology ablation. It inherits the already verified long-range
+    loop detector and changes only the graph ownership and map rendering.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_sep250_verified_loop_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/use_rigid_submap_pose_graph"
+         value="true"/>
+  <param name="/lightweight_2d_slam/submap_keyframes" value="50"/>
+  <param name="/lightweight_2d_slam/submap_overlap_keyframes" value="25"/>
+  <param name="/lightweight_2d_slam/node_submap_translation_weight"
+         value="20.0"/>
+  <param name="/lightweight_2d_slam/node_submap_rotation_weight"
+         value="30.0"/>
+</launch>

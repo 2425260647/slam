@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_v7c.launch"/>
+  <param name="/lightweight_2d_slam/odom_topic" value="/odom"/>
+  <param name="/lightweight_2d_slam/base_frame" value="base_footprint"/>
+</launch>

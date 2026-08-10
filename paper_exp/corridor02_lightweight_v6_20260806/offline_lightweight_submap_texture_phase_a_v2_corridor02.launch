@@ -1,0 +1,10 @@
+<launch>
+  <!--
+    Phase A sensor-model calibration after the 0.55/0.49 preflight proved
+    too conservative. One hit remains below map_server's occupied threshold,
+    while repeated hits and misses can now form walls and free space.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_submap_texture_phase_a_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/global_map_hit_probability" value="0.60"/>
+  <param name="/lightweight_2d_slam/global_map_miss_probability" value="0.45"/>
+</launch>

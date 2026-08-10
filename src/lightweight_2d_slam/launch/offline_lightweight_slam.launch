@@ -1,0 +1,99 @@
+<launch>
+  <arg name="config" default="$(find lightweight_2d_slam)/config/gazebo_playpen.yaml"/>
+  <arg name="enable_loop_closure" default="true"/>
+  <arg name="use_likelihood_field" default="true"/>
+  <arg name="enable_fine_correlative" default="true"/>
+  <arg name="fine_candidate_count" default="1"/>
+  <arg name="min_match_score" default="0.25"/>
+  <arg name="fine_linear_step" default="0.0125"/>
+  <arg name="fine_angular_window" default="0.0"/>
+  <arg name="fine_angular_step" default="0.0125"/>
+  <arg name="prior_rotation_weight" default="3.0"/>
+  <arg name="max_refinement_iterations" default="8"/>
+  <arg name="use_likelihood_refinement" default="true"/>
+  <arg name="likelihood_refinement_weight" default="0.5"/>
+  <arg name="correlative_rotation_cost_weight" default="0.005"/>
+  <arg name="odom_constraint_translation_weight" default="0.0"/>
+  <arg name="odom_constraint_rotation_weight" default="0.0"/>
+  <arg name="loop_min_match_score" default="0.75"/>
+  <arg name="loop_min_score_margin" default="0.03"/>
+  <arg name="loop_min_confirmations" default="2"/>
+  <arg name="loop_min_keyframes_between_accepts" default="30"/>
+  <arg name="loop_reject_low_observability_large_correction" default="false"/>
+  <arg name="loop_use_switchable_constraints" default="false"/>
+  <arg name="loop_switch_prior_weight" default="1.0"/>
+  <arg name="loop_sequence_keyframes" default="3"/>
+  <arg name="loop_sequence_stride" default="5"/>
+  <arg name="loop_min_sequence_support" default="0"/>
+  <arg name="loop_sequence_linear_window" default="0.35"/>
+  <arg name="loop_sequence_angular_window" default="0.25"/>
+  <arg name="loop_sequence_correction_tolerance" default="0.35"/>
+  <arg name="loop_sequence_yaw_tolerance" default="0.12"/>
+  <arg name="active_keyframes" default="60"/>
+  <arg name="point_stride" default="3"/>
+  <arg name="active_grid_insert_free_space" default="true"/>
+
+  <param name="use_sim_time" value="true"/>
+
+  <node pkg="lightweight_2d_slam" type="lightweight_2d_slam_node"
+        name="lightweight_2d_slam" output="screen">
+    <rosparam command="load" file="$(arg config)"/>
+    <param name="enable_loop_closure" value="$(arg enable_loop_closure)"/>
+    <param name="scan_matcher/use_likelihood_field"
+           value="$(arg use_likelihood_field)"/>
+    <param name="scan_matcher/enable_fine_correlative"
+           value="$(arg enable_fine_correlative)"/>
+    <param name="scan_matcher/fine_candidate_count"
+           value="$(arg fine_candidate_count)"/>
+    <param name="min_match_score" value="$(arg min_match_score)"/>
+    <param name="scan_matcher/fine_linear_step"
+           value="$(arg fine_linear_step)"/>
+    <param name="scan_matcher/fine_angular_window"
+           value="$(arg fine_angular_window)"/>
+    <param name="scan_matcher/fine_angular_step"
+           value="$(arg fine_angular_step)"/>
+    <param name="scan_matcher/prior_rotation_weight"
+           value="$(arg prior_rotation_weight)"/>
+    <param name="scan_matcher/max_refinement_iterations"
+           value="$(arg max_refinement_iterations)"/>
+    <param name="scan_matcher/use_likelihood_refinement"
+           value="$(arg use_likelihood_refinement)"/>
+    <param name="scan_matcher/likelihood_refinement_weight"
+           value="$(arg likelihood_refinement_weight)"/>
+    <param name="scan_matcher/correlative_rotation_cost_weight"
+           value="$(arg correlative_rotation_cost_weight)"/>
+    <param name="odom_constraint_translation_weight"
+           value="$(arg odom_constraint_translation_weight)"/>
+    <param name="odom_constraint_rotation_weight"
+           value="$(arg odom_constraint_rotation_weight)"/>
+    <param name="loop_min_match_score" value="$(arg loop_min_match_score)"/>
+    <param name="loop_min_score_margin" value="$(arg loop_min_score_margin)"/>
+    <param name="loop_min_confirmations" value="$(arg loop_min_confirmations)"/>
+    <param name="loop_min_keyframes_between_accepts"
+           value="$(arg loop_min_keyframes_between_accepts)"/>
+    <param name="loop_reject_low_observability_large_correction"
+           value="$(arg loop_reject_low_observability_large_correction)"/>
+    <param name="loop_use_switchable_constraints"
+           value="$(arg loop_use_switchable_constraints)"/>
+    <param name="loop_switch_prior_weight"
+           value="$(arg loop_switch_prior_weight)"/>
+    <param name="loop_sequence_keyframes"
+           value="$(arg loop_sequence_keyframes)"/>
+    <param name="loop_sequence_stride"
+           value="$(arg loop_sequence_stride)"/>
+    <param name="loop_min_sequence_support"
+           value="$(arg loop_min_sequence_support)"/>
+    <param name="loop_sequence_linear_window"
+           value="$(arg loop_sequence_linear_window)"/>
+    <param name="loop_sequence_angular_window"
+           value="$(arg loop_sequence_angular_window)"/>
+    <param name="loop_sequence_correction_tolerance"
+           value="$(arg loop_sequence_correction_tolerance)"/>
+    <param name="loop_sequence_yaw_tolerance"
+           value="$(arg loop_sequence_yaw_tolerance)"/>
+    <param name="active_keyframes" value="$(arg active_keyframes)"/>
+    <param name="point_stride" value="$(arg point_stride)"/>
+    <param name="active_grid_insert_free_space"
+           value="$(arg active_grid_insert_free_space)"/>
+  </node>
+</launch>

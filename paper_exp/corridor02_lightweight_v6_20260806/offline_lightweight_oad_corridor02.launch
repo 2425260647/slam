@@ -1,0 +1,11 @@
+<launch>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v6.launch"/>
+  <param name="/lightweight_2d_slam/scan_matcher/enable_oad_csm" value="true"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_candidate_count" value="5"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_min_score_margin" value="0.015"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_min_translation_observability" value="0.08"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_search_expansion_factor" value="2.0"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_max_linear_search_window" value="0.60"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_max_angular_search_window" value="0.35"/>
+  <param name="/lightweight_2d_slam/scan_matcher/oad_min_score_gain" value="0.005"/>
+</launch>

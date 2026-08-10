@@ -1,0 +1,14 @@
+path:         /home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/common_inputs.bag
+version:      2.0
+duration:     4:53s (293s)
+start:        Jan 21 2025 23:07:02.27 (1737472022.27)
+end:          Jan 21 2025 23:11:55.58 (1737472315.58)
+size:         8.0 MB
+messages:     8801
+compression:  lz4 [28/28 chunks; 37.72%]
+uncompressed: 20.8 MB @ 72.5 KB/s
+compressed:    7.8 MB @ 27.4 KB/s (37.72%)
+types:        nav_msgs/Odometry     [cd5e73d190d741a2f92e81eda573aca7]
+              sensor_msgs/LaserScan [90c7ef2dc6895d81024acba2ac42f369]
+topics:       /odom   5867 msgs    : nav_msgs/Odometry
+              /scan   2934 msgs    : sensor_msgs/LaserScan

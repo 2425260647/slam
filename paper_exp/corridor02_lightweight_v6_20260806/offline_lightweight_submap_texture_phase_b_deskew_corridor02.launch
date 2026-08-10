@@ -1,0 +1,7 @@
+<launch>
+  <!--
+    Phase B freezes all Phase A V4 SLAM parameters. The experiment runner is
+    solely responsible for selecting the shared deskewed /scan input bag.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_submap_texture_phase_a_v4_sync_corridor02.launch"/>
+</launch>

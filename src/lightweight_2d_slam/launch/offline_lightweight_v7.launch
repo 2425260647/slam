@@ -1,0 +1,13 @@
+<launch>
+  <arg name="config"
+       default="$(find lightweight_2d_slam)/config/corridor_repeat03_v7.yaml"/>
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_slam.launch">
+    <arg name="config" value="$(arg config)"/>
+    <arg name="loop_min_score_margin" value="0.06"/>
+    <arg name="loop_min_confirmations" value="3"/>
+    <arg name="loop_min_keyframes_between_accepts" value="60"/>
+    <arg name="loop_reject_low_observability_large_correction" value="true"/>
+    <arg name="loop_use_switchable_constraints" value="true"/>
+    <arg name="loop_switch_prior_weight" value="1.0"/>
+  </include>
+</launch>

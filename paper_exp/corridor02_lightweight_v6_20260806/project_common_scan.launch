@@ -1,0 +1,8 @@
+<launch>
+  <include file="$(find my_navigation)/launch/m3dgr_mid360_mapping.launch">
+    <arg name="start_cartographer" value="false"/>
+    <arg name="start_local_grid" value="false"/>
+    <arg name="rviz" value="false"/>
+    <arg name="publish_official_extrinsic" value="true"/>
+  </include>
+</launch>

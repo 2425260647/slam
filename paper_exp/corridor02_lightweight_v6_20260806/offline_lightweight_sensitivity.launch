@@ -1,0 +1,15 @@
+<launch>
+  <arg name="correlative_translation_cost_weight" default="0.01"/>
+  <arg name="correlative_rotation_cost_weight" default="0.005"/>
+  <arg name="prior_translation_weight" default="0.5"/>
+  <arg name="prior_rotation_weight" default="3.0"/>
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_v6.launch"/>
+  <param name="/lightweight_2d_slam/scan_matcher/correlative_translation_cost_weight"
+         value="$(arg correlative_translation_cost_weight)"/>
+  <param name="/lightweight_2d_slam/scan_matcher/correlative_rotation_cost_weight"
+         value="$(arg correlative_rotation_cost_weight)"/>
+  <param name="/lightweight_2d_slam/scan_matcher/prior_translation_weight"
+         value="$(arg prior_translation_weight)"/>
+  <param name="/lightweight_2d_slam/scan_matcher/prior_rotation_weight"
+         value="$(arg prior_rotation_weight)"/>
+</launch>

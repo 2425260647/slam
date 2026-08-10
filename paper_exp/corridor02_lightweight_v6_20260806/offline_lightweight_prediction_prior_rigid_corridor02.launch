@@ -1,0 +1,12 @@
+<launch>
+  <!--
+    V2 combines the rigid overlapping-submap graph with a Cartographer-style
+    continuous translation prior anchored to the odometry pose prediction.
+    OAD remains disabled; this is a general front-end consistency change.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_rigid_submap_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/scan_matcher/use_prediction_translation_prior"
+         value="true"/>
+  <param name="/lightweight_2d_slam/scan_matcher/prior_translation_weight"
+         value="5.0"/>
+</launch>

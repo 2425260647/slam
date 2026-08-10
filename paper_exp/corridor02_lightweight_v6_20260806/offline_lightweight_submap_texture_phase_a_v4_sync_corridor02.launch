@@ -1,0 +1,4 @@
+<launch>
+  <!-- V3 map parameters with timestamp-ordered deferred scan processing. -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_submap_texture_phase_a_v3_corridor02.launch"/>
+</launch>

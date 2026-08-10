@@ -1,0 +1,31 @@
+<launch>
+  <!--
+    Precision experiment: multi-scale global submap retrieval, coarse-to-fine
+    geometric verification, and independent-submap SE(2) consensus. This is
+    a new experiment profile and does not replace any historical baseline.
+  -->
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_precision.launch"/>
+
+  <param name="/lightweight_2d_slam/odom_topic" value="/odom"/>
+  <param name="/lightweight_2d_slam/base_frame" value="base_footprint"/>
+  <param name="/lightweight_2d_slam/loop_descriptor_angular_bins" value="60"/>
+  <param name="/lightweight_2d_slam/loop_descriptor_radial_scales" value="3"/>
+  <param name="/lightweight_2d_slam/loop_top_k_candidates" value="12"/>
+  <param name="/lightweight_2d_slam/loop_candidates_per_submap" value="3"/>
+  <param name="/lightweight_2d_slam/loop_min_separation" value="250"/>
+  <param name="/lightweight_2d_slam/loop_descriptor_min_similarity" value="0.68"/>
+
+  <param name="/lightweight_2d_slam/loop_use_multiresolution_search" value="true"/>
+  <param name="/lightweight_2d_slam/loop_global_linear_search_window" value="3.0"/>
+  <param name="/lightweight_2d_slam/loop_global_angular_search_window" value="0.70"/>
+  <param name="/lightweight_2d_slam/loop_global_linear_step" value="0.30"/>
+  <param name="/lightweight_2d_slam/loop_global_angular_step" value="0.10"/>
+  <param name="/lightweight_2d_slam/loop_global_max_coarse_points" value="80"/>
+  <param name="/lightweight_2d_slam/loop_fine_linear_search_window" value="0.40"/>
+  <param name="/lightweight_2d_slam/loop_fine_angular_search_window" value="0.20"/>
+
+  <param name="/lightweight_2d_slam/loop_require_se2_consensus" value="true"/>
+  <param name="/lightweight_2d_slam/loop_consensus_min_submaps" value="2"/>
+  <param name="/lightweight_2d_slam/loop_consensus_translation_tolerance" value="0.60"/>
+  <param name="/lightweight_2d_slam/loop_consensus_rotation_tolerance" value="0.15"/>
+</launch>

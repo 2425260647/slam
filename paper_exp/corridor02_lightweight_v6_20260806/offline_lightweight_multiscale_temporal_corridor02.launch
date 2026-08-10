@@ -1,0 +1,11 @@
+<launch>
+  <!--
+    Multi-scale coarse-to-fine retrieval with temporal confirmation. Frozen
+    submaps do not overlap, so simultaneous two-submap voting is disabled;
+    independent evidence instead comes from three scan times plus repeated
+    proposals in the loop-closure gate.
+  -->
+  <include file="/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/offline_lightweight_multiscale_consensus_corridor02.launch"/>
+  <param name="/lightweight_2d_slam/loop_require_se2_consensus" value="false"/>
+  <param name="/lightweight_2d_slam/loop_min_score_margin" value="0.0"/>
+</launch>

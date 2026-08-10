@@ -1,0 +1,28 @@
+<launch>
+  <!--
+    Rigid overlapping-submap backend. The front-end and public ROS topics are
+    identical to the precision profile; only the pose-graph ownership model
+    changes from a sequential node chain to overlapping node-to-submap
+    constraints.
+  -->
+  <arg name="config"
+       default="$(find lightweight_2d_slam)/config/gazebo_playpen.yaml"/>
+  <arg name="submap_keyframes" default="50"/>
+  <arg name="submap_overlap_keyframes" default="25"/>
+  <arg name="node_submap_translation_weight" default="20.0"/>
+  <arg name="node_submap_rotation_weight" default="30.0"/>
+
+  <include file="$(find lightweight_2d_slam)/launch/offline_lightweight_precision.launch">
+    <arg name="config" value="$(arg config)"/>
+  </include>
+  <param name="/lightweight_2d_slam/use_rigid_submap_pose_graph"
+         value="true"/>
+  <param name="/lightweight_2d_slam/submap_keyframes"
+         value="$(arg submap_keyframes)"/>
+  <param name="/lightweight_2d_slam/submap_overlap_keyframes"
+         value="$(arg submap_overlap_keyframes)"/>
+  <param name="/lightweight_2d_slam/node_submap_translation_weight"
+         value="$(arg node_submap_translation_weight)"/>
+  <param name="/lightweight_2d_slam/node_submap_rotation_weight"
+         value="$(arg node_submap_rotation_weight)"/>
+</launch>

@@ -1,0 +1,14 @@
+<launch>
+  <param name="use_sim_time" value="true"/>
+  <node pkg="my_navigation" type="livox_deskewed_laserscan"
+        name="m3dgr_mid360_deskewed_scan" output="screen">
+    <param name="input_topic" value="/livox/mid360/lidar"/>
+    <param name="odom_topic" value="/odom"/>
+    <param name="output_topic" value="/scan"/>
+    <param name="output_frame" value="base_footprint"/>
+    <param name="filter_isolated_returns" value="true"/>
+    <param name="isolation_window_bins" value="3"/>
+    <param name="isolation_max_distance" value="0.30"/>
+    <param name="minimum_valid_bins" value="30"/>
+  </node>
+</launch>
