@@ -79,20 +79,15 @@ std::unique_ptr<transform::Rigid2d> LocalTrajectoryBuilder2D::ScanMatch(
   // The online correlative scan matcher will refine the initial estimate for
   // the Ceres scan matcher.
   // 这里分两级匹配：
-  //   1. RealTimeCorrelativeScanMatcher2D
-  //   在离散窗口内粗搜，能把初值从外推误差中
+  //   1. RealTimeCorrelativeScanMatcher2D 在离散窗口内粗搜，能把初值从外推误差中
   //      拉回到地图附近；
   //   2. CeresScanMatcher2D 在连续空间里最小化残差，输出更平滑的最终位姿。
   transform::Rigid2d initial_ceres_pose = pose_prediction;
-  // [Innovation 1] Keep the real-time correlative score for diagnostics.
-  // [Innovation 1] If disabled, 0 means "not observed", not a failed score.
-  double real_time_correlative_score = 0.;
 
   if (options_.use_online_correlative_scan_matching()) {
     const double score = real_time_correlative_scan_matcher_.Match(
         pose_prediction, filtered_gravity_aligned_point_cloud,
         *matching_submap->grid(), &initial_ceres_pose);
-    real_time_correlative_score = score;
     kRealTimeCorrelativeScanMatcherScoreMetric->Observe(score);
   }
 
@@ -101,16 +96,7 @@ std::unique_ptr<transform::Rigid2d> LocalTrajectoryBuilder2D::ScanMatch(
   ceres_scan_matcher_.Match(pose_prediction.translation(), initial_ceres_pose,
                             filtered_gravity_aligned_point_cloud,
                             *matching_submap->grid(), pose_observation.get(),
-                            &summary, real_time_correlative_score);
-  // [Innovation 1] The scan matcher computes geometry-only degeneracy without
-  // [Innovation 1] owning the sensor timestamp. Stamp and cache the metric here
-  // [Innovation 1] in the front-end thread, so Innovation 2 can query a
-  // [Innovation 1] time-aligned copy from the backend optimization thread.
-  const DirectionalDegeneracyMetric degeneracy_metric =
-      GetLatestDirectionalDegeneracyMetric();
-  if (degeneracy_metric.enabled) {
-    RecordDirectionalDegeneracyMetric(degeneracy_metric, time);
-  }
+                            &summary);
   if (pose_observation) {
     kCeresScanMatcherCostMetric->Observe(summary.final_cost);
     const double residual_distance =

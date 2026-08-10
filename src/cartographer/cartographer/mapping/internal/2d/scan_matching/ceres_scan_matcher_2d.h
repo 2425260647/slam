@@ -18,13 +18,11 @@
 #define CARTOGRAPHER_MAPPING_INTERNAL_2D_SCAN_MATCHING_CERES_SCAN_MATCHER_2D_H_
 
 #include <memory>
-#include <mutex>
 #include <vector>
 
 #include "Eigen/Core"
 #include "cartographer/common/lua_parameter_dictionary.h"
 #include "cartographer/mapping/2d/grid_2d.h"
-#include "cartographer/mapping/directional_degeneracy_metric.h"
 #include "cartographer/mapping/proto/scan_matching/ceres_scan_matcher_options_2d.pb.h"
 #include "cartographer/sensor/point_cloud.h"
 #include "ceres/ceres.h"
@@ -60,23 +58,12 @@ class CeresScanMatcher2D {
   void Match(const Eigen::Vector2d& target_translation,
              const transform::Rigid2d& initial_pose_estimate,
              const sensor::PointCloud& point_cloud, const Grid2D& grid,
-             transform::Rigid2d* pose_estimate, ceres::Solver::Summary* summary,
-             double real_time_correlative_score = 0.) const;
+             transform::Rigid2d* pose_estimate,
+             ceres::Solver::Summary* summary) const;
 
  private:
-  // [Innovation 1] Computes the scan-covariance driven 2x2 sqrt information.
-  // [Innovation 1] Disabled or underconstrained scans return isotropic weight.
-  Eigen::Matrix<double, 2, 2> ComputeAnisotropicTranslationSqrtInformation(
-      const sensor::PointCloud& point_cloud,
-      const Eigen::Matrix<double, 2, 2>& tracking_to_local_rotation,
-      double real_time_correlative_score) const;
-
   const proto::CeresScanMatcherOptions2D options_;
   ceres::Solver::Options ceres_solver_options_;
-
-  // [Innovation 1] Protects the smoothed metric used by consecutive scans.
-  mutable std::mutex metric_mutex_;
-  mutable DirectionalDegeneracyMetric smoothed_metric_;
 };
 
 }  // namespace scan_matching

@@ -96,8 +96,7 @@ class Node {
   ComputeDefaultSensorIdsForMultipleBags(
       const std::vector<TrajectoryOptions>& bags_options) const;
 
-  // 添加离线轨迹，只登记期望传感器，不启动 ROS subscriber；rosbag
-  // 离线处理会用。
+  // 添加离线轨迹，只登记期望传感器，不启动 ROS subscriber；rosbag 离线处理会用。
   int AddOfflineTrajectory(
       const std::set<
           cartographer::mapping::TrajectoryBuilderInterface::SensorId>&
@@ -218,19 +217,6 @@ class Node {
   ::ros::Publisher landmark_poses_list_publisher_;
   ::ros::Publisher constraint_list_publisher_;
   ::ros::Publisher tracked_pose_publisher_;
-  // [Innovation 1] Publishes confidence and map-frame direction diagnostics.
-  ::ros::Publisher degeneracy_metric_publisher_;
-  ::ros::Publisher degeneracy_direction_publisher_;
-  // [Innovation 2] Publishes IMU-free consistency-anomaly diagnostics.
-  ::ros::Publisher slip_metric_publisher_;
-  ::ros::Publisher slip_state_publisher_;
-  ::ros::Publisher odom_weight_scale_publisher_;
-  ::ros::Publisher slip_lidar_reliability_publisher_;
-  // [Innovation 2] Publishes per-Solve trigger count, event time, and minimum
-  // [Innovation 2] scale for event-level evaluation without batch-delay bias.
-  ::ros::Publisher consistency_anomaly_trigger_count_publisher_;
-  ::ros::Publisher consistency_anomaly_time_publisher_;
-  ::ros::Publisher odom_min_weight_scale_publisher_;
   // 这些 ServiceServer 必须和 Node 同生命周期，否则服务会自动下线。
   std::vector<::ros::ServiceServer> service_servers_;
   // 发布扫描匹配后的点云，主要给 RViz 调试局部匹配结果；不是 /map 的来源。

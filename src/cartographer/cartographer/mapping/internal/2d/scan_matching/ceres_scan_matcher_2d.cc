@@ -16,19 +16,12 @@
 
 #include "cartographer/mapping/internal/2d/scan_matching/ceres_scan_matcher_2d.h"
 
-#include <algorithm>
-#include <cmath>
-#include <deque>
-#include <mutex>
 #include <utility>
 #include <vector>
 
 #include "Eigen/Core"
-#include "Eigen/Eigenvalues"
-#include "absl/types/optional.h"
 #include "cartographer/common/internal/ceres_solver_options.h"
 #include "cartographer/common/lua_parameter_dictionary.h"
-#include "cartographer/common/time.h"
 #include "cartographer/mapping/2d/grid_2d.h"
 #include "cartographer/mapping/internal/2d/scan_matching/occupied_space_cost_function_2d.h"
 #include "cartographer/mapping/internal/2d/scan_matching/rotation_delta_cost_functor_2d.h"
@@ -40,122 +33,6 @@
 
 namespace cartographer {
 namespace mapping {
-namespace {
-
-// [Innovation 1] Global latest metric storage for cartographer_ros topics.
-// [Innovation 1] A plain mutex avoids local SLAM vs ROS timer data races.
-std::mutex* LatestMetricMutex() {
-  static auto* mutex = new std::mutex;
-  return mutex;
-}
-
-// [Innovation 1] Global latest metric value.
-// [Innovation 1] Function-local static avoids initialization order issues.
-::cartographer::mapping::DirectionalDegeneracyMetric* LatestMetric() {
-  static auto* metric = new DirectionalDegeneracyMetric;
-  return metric;
-}
-
-// [Innovation 1] Bounded history for time-aligned degeneracy lookup.
-// [Innovation 1] Front-end local SLAM writes this buffer, backend optimization
-// [Innovation 1] reads it. A dedicated mutex keeps the lock scope small and
-// [Innovation 1] avoids coupling it to Cartographer's larger pose-graph locks.
-std::mutex* MetricHistoryMutex() {
-  static auto* mutex = new std::mutex;
-  return mutex;
-}
-
-std::deque<::cartographer::mapping::DirectionalDegeneracyMetric>*
-MetricHistory() {
-  static auto* history =
-      new std::deque<::cartographer::mapping::DirectionalDegeneracyMetric>;
-  return history;
-}
-
-constexpr size_t kMaxMetricHistorySize = 5000;
-
-// [Innovation 1] Numerically stable sigmoid.
-// [Innovation 1] This avoids hard threshold switching near corridor cases.
-double Sigmoid(const double x) {
-  if (x >= 0.) {
-    const double z = std::exp(-x);
-    return 1. / (1. + z);
-  }
-  const double z = std::exp(x);
-  return z / (1. + z);
-}
-
-// [Innovation 1] Publishes a thread-safe metric snapshot for ROS.
-void SetLatestDirectionalDegeneracyMetric(
-    const ::cartographer::mapping::DirectionalDegeneracyMetric& metric) {
-  std::lock_guard<std::mutex> lock(*LatestMetricMutex());
-  *LatestMetric() = metric;
-}
-
-}  // namespace
-
-DirectionalDegeneracyMetric GetLatestDirectionalDegeneracyMetric() {
-  std::lock_guard<std::mutex> lock(*LatestMetricMutex());
-  return *LatestMetric();
-}
-
-void RecordDirectionalDegeneracyMetric(DirectionalDegeneracyMetric metric,
-                                       const common::Time time) {
-  // [Innovation 1] LocalTrajectoryBuilder2D owns the sensor timestamp, so it
-  // [Innovation 1] stamps the scan matcher metric here before the backend reads
-  // [Innovation 1] it. Disabled metrics are still ignored by callers.
-  metric.time = time;
-  {
-    std::lock_guard<std::mutex> lock(*MetricHistoryMutex());
-    auto* const history = MetricHistory();
-    if (!history->empty() && history->back().time > metric.time) {
-      // [Innovation 1] Keep the buffer monotonic for lower_bound. This rare
-      // [Innovation 1] branch handles bag timestamp jumps without exposing
-      // [Innovation 1] partially ordered data to the backend thread.
-      history->clear();
-    }
-    history->push_back(metric);
-    while (history->size() > kMaxMetricHistorySize) {
-      history->pop_front();
-    }
-  }
-  SetLatestDirectionalDegeneracyMetric(metric);
-}
-
-absl::optional<DirectionalDegeneracyMetric> QueryDirectionalDegeneracyMetric(
-    const common::Time time, const common::Duration max_delta) {
-  std::lock_guard<std::mutex> lock(*MetricHistoryMutex());
-  const auto* const history = MetricHistory();
-  if (history->empty()) {
-    return absl::nullopt;
-  }
-  const auto lower = std::lower_bound(
-      history->begin(), history->end(), time,
-      [](const DirectionalDegeneracyMetric& metric,
-         const common::Time query_time) { return metric.time < query_time; });
-
-  absl::optional<DirectionalDegeneracyMetric> best;
-  common::Duration best_delta = max_delta + common::FromSeconds(1.);
-  if (lower != history->end()) {
-    const common::Duration delta =
-        lower->time > time ? lower->time - time : time - lower->time;
-    if (delta <= max_delta && delta < best_delta) {
-      best_delta = delta;
-      best = *lower;
-    }
-  }
-  if (lower != history->begin()) {
-    const auto previous = std::prev(lower);
-    const common::Duration delta =
-        previous->time > time ? previous->time - time : time - previous->time;
-    if (delta <= max_delta && delta < best_delta) {
-      best_delta = delta;
-      best = *previous;
-    }
-  }
-  return best;
-}
-
 namespace scan_matching {
 
 proto::CeresScanMatcherOptions2D CreateCeresScanMatcherOptions2D(
@@ -167,89 +44,6 @@ proto::CeresScanMatcherOptions2D CreateCeresScanMatcherOptions2D(
       parameter_dictionary->GetDouble("translation_weight"));
   options.set_rotation_weight(
       parameter_dictionary->GetDouble("rotation_weight"));
-  // [Innovation 1] Parameters remain optional for upstream compatibility.
-  // [Innovation 1] Project Lua files still declare them explicitly.
-  options.set_directional_adaptive_fusion_enabled(
-      parameter_dictionary->HasKey("directional_adaptive_fusion_enabled")
-          ? parameter_dictionary->GetBool("directional_adaptive_fusion_enabled")
-          : false);
-  options.set_directional_degeneracy_condition_number_threshold(
-      parameter_dictionary->HasKey(
-          "directional_degeneracy_condition_number_threshold")
-          ? parameter_dictionary->GetDouble(
-                "directional_degeneracy_condition_number_threshold")
-          : 8.);
-  options.set_directional_degeneracy_sigmoid_slope(
-      parameter_dictionary->HasKey("directional_degeneracy_sigmoid_slope")
-          ? parameter_dictionary->GetDouble(
-                "directional_degeneracy_sigmoid_slope")
-          : 0.5);
-  options.set_directional_degeneracy_smoothing_alpha(
-      parameter_dictionary->HasKey("directional_degeneracy_smoothing_alpha")
-          ? parameter_dictionary->GetDouble(
-                "directional_degeneracy_smoothing_alpha")
-          : 0.2);
-  options.set_directional_degeneracy_min_num_points(
-      parameter_dictionary->HasKey("directional_degeneracy_min_num_points")
-          ? parameter_dictionary->GetNonNegativeInt(
-                "directional_degeneracy_min_num_points")
-          : 10);
-  options.set_directional_degeneracy_eigenvalue_epsilon(
-      parameter_dictionary->HasKey("directional_degeneracy_eigenvalue_epsilon")
-          ? parameter_dictionary->GetDouble(
-                "directional_degeneracy_eigenvalue_epsilon")
-          : 1e-4);
-  options.set_directional_adaptive_odom_longitudinal_alpha(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_odom_longitudinal_alpha")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_odom_longitudinal_alpha")
-          : 1.);
-  options.set_directional_adaptive_odom_lateral_alpha(
-      parameter_dictionary->HasKey("directional_adaptive_odom_lateral_alpha")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_odom_lateral_alpha")
-          : 0.);
-  options.set_directional_adaptive_scan_longitudinal_beta(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_scan_longitudinal_beta")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_scan_longitudinal_beta")
-          : 0.5);
-  options.set_directional_adaptive_scan_lateral_beta(
-      parameter_dictionary->HasKey("directional_adaptive_scan_lateral_beta")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_scan_lateral_beta")
-          : 0.);
-  options.set_directional_adaptive_min_scan_weight_scale(
-      parameter_dictionary->HasKey("directional_adaptive_min_scan_weight_scale")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_min_scan_weight_scale")
-          : 0.2);
-  options.set_directional_adaptive_log_scale_change_threshold(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_log_scale_change_threshold")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_log_scale_change_threshold")
-          : 0.25);
-  options.set_directional_adaptive_activation_confidence(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_activation_confidence")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_activation_confidence")
-          : 0.5);
-  options.set_directional_adaptive_motion_alignment_min_cosine(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_motion_alignment_min_cosine")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_motion_alignment_min_cosine")
-          : 0.);
-  options.set_directional_adaptive_max_longitudinal_scale(
-      parameter_dictionary->HasKey(
-          "directional_adaptive_max_longitudinal_scale")
-          ? parameter_dictionary->GetDouble(
-                "directional_adaptive_max_longitudinal_scale")
-          : 0.);
   *options.mutable_ceres_solver_options() =
       common::CreateCeresSolverOptionsProto(
           parameter_dictionary->GetDictionary("ceres_solver_options").get());
@@ -266,222 +60,12 @@ CeresScanMatcher2D::CeresScanMatcher2D(
 
 CeresScanMatcher2D::~CeresScanMatcher2D() {}
 
-Eigen::Matrix<double, 2, 2>
-CeresScanMatcher2D::ComputeAnisotropicTranslationSqrtInformation(
-    const sensor::PointCloud& point_cloud,
-    const Eigen::Matrix<double, 2, 2>& tracking_to_local_rotation,
-    const double real_time_correlative_score) const {
-  const double base_translation_weight = options_.translation_weight();
-  Eigen::Matrix<double, 2, 2> sqrt_information =
-      Eigen::Matrix<double, 2, 2>::Identity() * base_translation_weight;
-
-  DirectionalDegeneracyMetric metric;
-  metric.real_time_correlative_score = real_time_correlative_score;
-  metric.direction = Eigen::Vector2d::UnitX();
-
-  if (!options_.directional_adaptive_fusion_enabled()) {
-    SetLatestDirectionalDegeneracyMetric(metric);
-    return sqrt_information;
-  }
-
-  metric.enabled = true;
-  const int min_num_points =
-      std::max(10, options_.directional_degeneracy_min_num_points());
-  if (static_cast<int>(point_cloud.size()) < min_num_points) {
-    SetLatestDirectionalDegeneracyMetric(metric);
-    return sqrt_information;
-  }
-
-  // [Innovation 1] Compute 2D scan covariance in the current gravity-aligned
-  // [Innovation 1] tracking frame. Ceres translation residuals are expressed
-  // [Innovation 1] in the local-SLAM frame, so the eigenbasis is rotated below
-  // [Innovation 1] before it is used to construct the information matrix.
-  // [Innovation 1] This is O(N) and uses only x/y, without IMU logic.
-  Eigen::Vector2d mean = Eigen::Vector2d::Zero();
-  for (const sensor::RangefinderPoint& point : point_cloud) {
-    mean += point.position.head<2>().cast<double>();
-  }
-  mean /= static_cast<double>(point_cloud.size());
-
-  Eigen::Matrix<double, 2, 2> covariance = Eigen::Matrix<double, 2, 2>::Zero();
-  for (const sensor::RangefinderPoint& point : point_cloud) {
-    const Eigen::Vector2d centered =
-        point.position.head<2>().cast<double>() - mean;
-    covariance += centered * centered.transpose();
-  }
-  covariance /= static_cast<double>(point_cloud.size());
-
-  const double eigenvalue_epsilon =
-      std::max(1e-9, options_.directional_degeneracy_eigenvalue_epsilon());
-  covariance += Eigen::Matrix<double, 2, 2>::Identity() * eigenvalue_epsilon;
-
-  Eigen::SelfAdjointEigenSolver<Eigen::Matrix<double, 2, 2>> solver(covariance);
-  if (solver.info() != Eigen::Success) {
-    SetLatestDirectionalDegeneracyMetric(metric);
-    return sqrt_information;
-  }
-
-  const double lambda_min =
-      std::max(eigenvalue_epsilon, solver.eigenvalues()(0));
-  const double lambda_max =
-      std::max(eigenvalue_epsilon, solver.eigenvalues()(1));
-  const double condition_number = lambda_max / lambda_min;
-  // [Innovation 1] Map the covariance eigenvectors into the same local-SLAM
-  // [Innovation 1] coordinates as e = p_local - p0_local in the Ceres prior.
-  // [Innovation 1] This prevents the anisotropic axes from following the robot
-  // [Innovation 1] body frame when the robot changes heading in a corridor.
-  Eigen::Vector2d v_lat =
-      (tracking_to_local_rotation * solver.eigenvectors().col(0)).normalized();
-  Eigen::Vector2d v_long =
-      (tracking_to_local_rotation * solver.eigenvectors().col(1)).normalized();
-  if (!v_long.allFinite() || !v_lat.allFinite()) {
-    SetLatestDirectionalDegeneracyMetric(metric);
-    return sqrt_information;
-  }
-
-  // [Innovation 1] Eigenvector signs are arbitrary.
-  // [Innovation 1] Align with the previous direction before smoothing.
-  DirectionalDegeneracyMetric previous_metric;
-  {
-    std::lock_guard<std::mutex> lock(metric_mutex_);
-    previous_metric = smoothed_metric_;
-  }
-  if (previous_metric.enabled && previous_metric.direction.dot(v_long) < 0.) {
-    v_long = -v_long;
-    v_lat = -v_lat;
-  }
-
-  Eigen::Matrix<double, 2, 2> rotation;
-  rotation.col(0) = v_long;
-  rotation.col(1) = v_lat;
-  if (rotation.determinant() < 0.) {
-    rotation.col(1) = -rotation.col(1);
-  }
-
-  const double sigmoid_input =
-      options_.directional_degeneracy_sigmoid_slope() *
-      (condition_number -
-       options_.directional_degeneracy_condition_number_threshold());
-  const double raw_confidence = Sigmoid(sigmoid_input);
-  const double smoothing_alpha = std::min(
-      1., std::max(0., options_.directional_degeneracy_smoothing_alpha()));
-  const double confidence =
-      previous_metric.enabled
-          ? smoothing_alpha * raw_confidence +
-                (1. - smoothing_alpha) * previous_metric.confidence
-          : raw_confidence;
-  Eigen::Vector2d smoothed_direction =
-      previous_metric.enabled
-          ? smoothing_alpha * v_long +
-                (1. - smoothing_alpha) * previous_metric.direction
-          : v_long;
-  if (smoothed_direction.norm() < 1e-6 || !smoothed_direction.allFinite()) {
-    smoothed_direction = v_long;
-  }
-  smoothed_direction.normalize();
-
-  rotation.col(0) = smoothed_direction;
-  rotation.col(1) =
-      Eigen::Vector2d(-smoothed_direction.y(), smoothed_direction.x());
-
-  const double activation_confidence = std::min(
-      1. - 1e-6,
-      std::max(0., options_.directional_adaptive_activation_confidence()));
-  const double degeneracy_strength = std::min(
-      1., std::max(0., (confidence - activation_confidence) /
-                              (1. - activation_confidence)));
-  const Eigen::Vector2d forward_direction =
-      tracking_to_local_rotation * Eigen::Vector2d::UnitX();
-  const double alignment_min_cosine =
-      std::min(1. - 1e-6,
-               std::max(
-                   0., options_
-                           .directional_adaptive_motion_alignment_min_cosine()));
-  double alignment_strength = 1.;
-  if (alignment_min_cosine > 0. && forward_direction.allFinite() &&
-      forward_direction.norm() > 1e-6) {
-    const double alignment_cosine = std::abs(
-        smoothed_direction.dot(forward_direction.normalized()));
-    alignment_strength = std::min(
-        1., std::max(0., (alignment_cosine - alignment_min_cosine) /
-                                 (1. - alignment_min_cosine)));
-  }
-  const double adaptation_strength =
-      degeneracy_strength * alignment_strength;
-
-  // [Innovation 1] The occupied-space residual is scalar per laser point.
-  // [Innovation 1] Directional fusion is injected through the 2D motion prior.
-  // [Innovation 1] scan_*_scale changes relative LiDAR influence without
-  // [Innovation 1] changing the grid cost function ABI.
-  const double min_scan_scale =
-      std::max(1e-3, options_.directional_adaptive_min_scan_weight_scale());
-  const double scan_long_scale = std::max(
-      min_scan_scale,
-      1. - options_.directional_adaptive_scan_longitudinal_beta() *
-               adaptation_strength);
-  const double scan_lat_scale = std::max(
-      min_scan_scale,
-      1. - options_.directional_adaptive_scan_lateral_beta() *
-               adaptation_strength);
-  const double odom_long_scale =
-      1. + options_.directional_adaptive_odom_longitudinal_alpha() *
-               adaptation_strength;
-  const double odom_lat_scale =
-      1. + options_.directional_adaptive_odom_lateral_alpha() *
-               adaptation_strength;
-  double longitudinal_weight =
-      base_translation_weight * odom_long_scale / scan_long_scale;
-  const double max_longitudinal_scale =
-      options_.directional_adaptive_max_longitudinal_scale();
-  if (max_longitudinal_scale > 0.) {
-    longitudinal_weight =
-        std::min(longitudinal_weight,
-                 base_translation_weight *
-                     std::max(1., max_longitudinal_scale));
-  }
-  const double lateral_weight =
-      base_translation_weight * odom_lat_scale / scan_lat_scale;
-
-  sqrt_information =
-      rotation *
-      (Eigen::Vector2d(longitudinal_weight, lateral_weight).asDiagonal()) *
-      rotation.transpose();
-
-  metric.valid = true;
-  metric.confidence = confidence;
-  metric.adaptation_strength = adaptation_strength;
-  metric.condition_number = condition_number;
-  metric.direction = smoothed_direction;
-  metric.longitudinal_scale = longitudinal_weight / base_translation_weight;
-  metric.lateral_scale = lateral_weight / base_translation_weight;
-
-  {
-    std::lock_guard<std::mutex> lock(metric_mutex_);
-    const double log_threshold = std::max(
-        0., options_.directional_adaptive_log_scale_change_threshold());
-    const bool scale_changed =
-        std::abs(metric.longitudinal_scale -
-                 smoothed_metric_.longitudinal_scale) > log_threshold ||
-        std::abs(metric.lateral_scale - smoothed_metric_.lateral_scale) >
-            log_threshold;
-    if (confidence > 0.5 && scale_changed) {
-      LOG(INFO) << "[Innovation1] Directional Degeneracy detected! "
-                << "longitudinal weight scaled by " << metric.longitudinal_scale
-                << ", lateral weight scaled by " << metric.lateral_scale << ".";
-    }
-    smoothed_metric_ = metric;
-  }
-  SetLatestDirectionalDegeneracyMetric(metric);
-  return sqrt_information;
-}
-
 void CeresScanMatcher2D::Match(const Eigen::Vector2d& target_translation,
                                const transform::Rigid2d& initial_pose_estimate,
                                const sensor::PointCloud& point_cloud,
                                const Grid2D& grid,
                                transform::Rigid2d* const pose_estimate,
-                               ceres::Solver::Summary* const summary,
-                               const double real_time_correlative_score) const {
+                               ceres::Solver::Summary* const summary) const {
   // 优化变量只有 3 个：x、y、yaw。Cartographer 2D 已经在前面做了重力对齐，
   // 所以这里不估计 z、roll、pitch。
   double ceres_pose_estimate[3] = {initial_pose_estimate.translation().x(),
@@ -514,13 +98,9 @@ void CeresScanMatcher2D::Match(const Eigen::Vector2d& target_translation,
   CHECK_GT(options_.translation_weight(), 0.);
   // 平移先验：不要让 scan matcher 为了贴合局部地图而无限偏离外推位姿。
   // 这个约束能抑制走廊、重复结构等场景中的错误跳变。
-  // [Innovation 1] Use scan-covariance-derived anisotropic sqrt information.
   problem.AddResidualBlock(
       TranslationDeltaCostFunctor2D::CreateAutoDiffCostFunction(
-          ComputeAnisotropicTranslationSqrtInformation(
-              point_cloud, initial_pose_estimate.rotation().toRotationMatrix(),
-              real_time_correlative_score),
-          target_translation),
+          options_.translation_weight(), target_translation),
       nullptr /* loss function */, ceres_pose_estimate);
   CHECK_GT(options_.rotation_weight(), 0.);
   // 旋转先验：限制 yaw 偏离初值。这里使用当前 ceres_pose_estimate[2] 作为目标
