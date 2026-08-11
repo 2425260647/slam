@@ -1,0 +1,43 @@
+timestamp_utc=2026-08-04T09:22:48Z
+git_head=78f77a66ff5c4bc9ebb7a66950b491ace8b30a19
+git_status_porcelain_begin
+ M src/cartographer/cartographer/mapping/directional_degeneracy_metric.h
+ M src/cartographer/cartographer/mapping/internal/2d/local_trajectory_builder_2d.cc
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/ceres_scan_matcher_2d.cc
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/ceres_scan_matcher_2d_test.cc
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/correlative_scan_matcher_2d.h
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/real_time_correlative_scan_matcher_2d.cc
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/real_time_correlative_scan_matcher_2d.h
+ M src/cartographer/cartographer/mapping/internal/2d/scan_matching/real_time_correlative_scan_matcher_2d_test.cc
+ M src/cartographer/cartographer/mapping/internal/optimization/optimization_problem_2d.cc
+ M src/cartographer/cartographer/mapping/internal/optimization/optimization_problem_2d.h
+ M src/cartographer/cartographer/mapping/internal/scan_matching/real_time_correlative_scan_matcher.cc
+ M src/cartographer/cartographer/mapping/proto/scan_matching/ceres_scan_matcher_options_2d.proto
+ M src/cartographer/cartographer/mapping/proto/scan_matching/real_time_correlative_scan_matcher_options.proto
+ M src/cartographer/configuration_files/trajectory_builder_2d.lua
+ M src/cartographer_ros/cartographer_ros/cartographer_ros/node.cc
+ M src/cartographer_ros/cartographer_ros/cartographer_ros/node.h
+ M src/my_navigation/config/cartographer_m3dgr_mid360.lua
+ M "\346\257\217\346\227\245\346\200\273\347\273\223.md"
+?? .ros_runtime/
+?? paper_exp/corridor02_hector_20260803/
+?? paper_exp/corridor02_mixed_20260804/
+?? paper_exp/corridor_new_ablation_20260803/
+?? paper_exp/corridor_new_optimized_20260731/
+?? paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_baseline_v2/online_map_preview.png
+?? paper_exp/m3dgr_public_optimized_v2_20260730/corridor02_full_v2/online_map_preview.png
+?? paper_exp/oad_csm_feasibility_20260804/
+?? paper_exp/wheel_float02_ablation_20260803/
+?? src/cartographer/cartographer/mapping/internal/optimization/optimization_problem_2d_test.cc
+?? src/my_navigation/config/cartographer_m3dgr_mid360_clean_baseline.lua
+?? src/my_navigation/config/cartographer_m3dgr_mid360_oad_diagnostic.lua
+?? src/my_navigation/config/cartographer_m3dgr_mid360_oad_diagnostic_full_yaw.lua
+?? src/slam_gmapping-melodic-devel.zip
+?? src/slam_toolbox-ros2.zip
+git_status_porcelain_end
+ros_distro=noetic
+cartographer_ros=1.0.0
+compiler=c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0
+cmake=cmake version 3.16.3
+ninja=1.10.0
+disk=/dev/sda5       147G   78G   63G   56% /home/slam/slam_ws

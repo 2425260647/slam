@@ -23,7 +23,7 @@ import "cartographer/mapping/proto/scan_matching/ceres_scan_matcher_options_2d.p
 import "cartographer/mapping/proto/scan_matching/real_time_correlative_scan_matcher_options.proto";
 import "cartographer/mapping/proto/submaps_options_2d.proto";
 
-// NEXT ID: 22
+// NEXT ID: 25
 message LocalTrajectoryBuilderOptions2D {
   // Rangefinder points outside these ranges will be dropped.
   float min_range = 14;
@@ -41,6 +41,19 @@ message LocalTrajectoryBuilderOptions2D {
   // Voxel filter that gets applied to the range data immediately after
   // cropping.
   float voxel_filter_size = 3;
+
+  // Optional second voxel filter used only for submap insertion. Keeping this
+  // separate from voxel_filter_size allows scan matching to retain dense
+  // geometry while preventing repeated noisy hits from thickening map walls.
+  // A value of zero means to reuse voxel_filter_size for backward
+  // compatibility.
+  float submap_insertion_voxel_filter_size = 22;
+
+  // Optional angular de-duplication used only for submap insertion. For each
+  // azimuth bin, keep the nearest return to avoid stacking multiple LiDAR
+  // rings into a thick 2D wall. Disabled by default.
+  bool submap_insertion_polar_filter_enabled = 23;
+  float submap_insertion_polar_angular_resolution = 24;
 
   // Voxel filter used to compute a sparser point cloud for matching.
   sensor.proto.AdaptiveVoxelFilterOptions adaptive_voxel_filter_options = 6;

@@ -1,0 +1,68 @@
+{
+  "cartographer_clean": {
+    "free_cells": 146045,
+    "height_px": 432,
+    "known_cells": 152432,
+    "largest_component_cells": 615,
+    "largest_component_ratio": 0.09628933771723815,
+    "map_area_m2": 473.0400000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/cartographer_clean",
+    "occupied_cells": 6387,
+    "occupied_components_8_connected": 69,
+    "occupied_pca_length_ratio": 1.0583802628233203,
+    "occupied_ratio_known": 0.041900650781988034,
+    "occupied_ratio_total": 0.033755073566717406,
+    "origin": [
+      -11.036472,
+      -10.825076,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 36784,
+    "width_px": 438
+  },
+  "gmapping": {
+    "free_cells": 147796,
+    "height_px": 1184,
+    "known_cells": 154627,
+    "largest_component_cells": 620,
+    "largest_component_ratio": 0.09076269945835164,
+    "map_area_m2": 3504.6400000000003,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/gmapping",
+    "occupied_cells": 6831,
+    "occupied_components_8_connected": 90,
+    "occupied_pca_length_ratio": 1.0379383498897918,
+    "occupied_ratio_known": 0.0441772782243722,
+    "occupied_ratio_total": 0.004872825739590942,
+    "origin": [
+      -30.0,
+      -30.0,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1247229,
+    "width_px": 1184
+  },
+  "lightweight": {
+    "free_cells": 147490,
+    "height_px": 456,
+    "known_cells": 152416,
+    "largest_component_cells": 388,
+    "largest_component_ratio": 0.07876573284612262,
+    "map_area_m2": 525.5400000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/lightweight",
+    "occupied_cells": 4926,
+    "occupied_components_8_connected": 163,
+    "occupied_pca_length_ratio": 1.0107977777352934,
+    "occupied_ratio_known": 0.032319441528448456,
+    "occupied_ratio_total": 0.02343304030140427,
+    "origin": [
+      -11.697991,
+      -11.37353,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 57800,
+    "width_px": 461
+  }
+}

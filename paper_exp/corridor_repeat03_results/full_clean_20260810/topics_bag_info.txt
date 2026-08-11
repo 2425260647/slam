@@ -1,0 +1,28 @@
+path:         /home/slam/slam_ws/paper_exp/corridor_repeat03_results/full_clean_20260810/topics.bag
+version:      2.0
+duration:     9:38s (578s)
+start:        Jul 24 2026 11:50:17.81 (1784865017.81)
+end:          Jul 24 2026 11:59:56.62 (1784865596.62)
+size:         567.7 MB
+messages:     165604
+compression:  lz4 [1982/1982 chunks; 28.77%]
+uncompressed:   1.9 GB @   3.4 MB/s
+compressed:   564.5 MB @ 998.6 KB/s (28.77%)
+types:        cartographer_ros_msgs/SubmapList [73b1e412208f0787050395996f6143db]
+              nav_msgs/OccupancyGrid           [3381f2d731d4076ec5c71b0759edbe4e]
+              nav_msgs/Odometry                [cd5e73d190d741a2f92e81eda573aca7]
+              sensor_msgs/LaserScan            [90c7ef2dc6895d81024acba2ac42f369]
+              sensor_msgs/PointCloud2          [1158d486dd51d683ce2f1be655c3c181]
+              tf2_msgs/TFMessage               [94810edda583a504dfda3829e70d7eec]
+              visualization_msgs/MarkerArray   [d155b9ce5188fbaf89745847fd5882d7]
+topics:       /constraint_list             1206 msgs    : visualization_msgs/MarkerArray  
+              /local_occupancy_grid        5781 msgs    : nav_msgs/OccupancyGrid          
+              /local_occupancy_grid_map    5780 msgs    : nav_msgs/OccupancyGrid          
+              /map                          602 msgs    : nav_msgs/OccupancyGrid          
+              /odom                       28940 msgs    : nav_msgs/Odometry               
+              /scan                        5782 msgs    : sensor_msgs/LaserScan           
+              /scan_matched_points2        5773 msgs    : sensor_msgs/PointCloud2         
+              /submap_list                 2011 msgs    : cartographer_ros_msgs/SubmapList
+              /tf                         89626 msgs    : tf2_msgs/TFMessage               (2 connections)
+              /tf_static                      4 msgs    : tf2_msgs/TFMessage              
+              /trajectory_node_list       20099 msgs    : visualization_msgs/MarkerArray

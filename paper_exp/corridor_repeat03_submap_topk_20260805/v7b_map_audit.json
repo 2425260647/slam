@@ -1,0 +1,24 @@
+{
+  "lightweight_v7b": {
+    "free_cells": 64185,
+    "height_px": 362,
+    "known_cells": 69827,
+    "largest_component_cells": 328,
+    "largest_component_ratio": 0.058135412974122655,
+    "map_area_m2": 1293.2450000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v7b",
+    "occupied_cells": 5642,
+    "occupied_components_8_connected": 607,
+    "occupied_pca_length_ratio": 4.7691907294703135,
+    "occupied_ratio_known": 0.08079969066406978,
+    "occupied_ratio_total": 0.010906672749556348,
+    "origin": [
+      -11.725276,
+      -8.681611,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 447471,
+    "width_px": 1429
+  }
+}

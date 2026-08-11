@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------
+Node [/lightweight_2d_slam]
+Publications: 
+ * /lightweight_slam/path [nav_msgs/Path]
+ * /local_occupancy_grid [nav_msgs/OccupancyGrid]
+ * /map [nav_msgs/OccupancyGrid]
+ * /rosout [rosgraph_msgs/Log]
+ * /slam_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /tf [tf2_msgs/TFMessage]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /scan [sensor_msgs/LaserScan]
+ * /scout_mini_velocity_controller/odom [nav_msgs/Odometry]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /dynamic_map
+ * /lightweight_2d_slam/get_loggers
+ * /lightweight_2d_slam/set_logger_level
+
+
+contacting node http://ubuntu:40481/ ...
+Pid: 25128
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (52553 - 127.0.0.1:46184) [13]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /lightweight_2d_slam
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /tf
+    * to: /lightweight_2d_slam (http://ubuntu:40481/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+ * topic: /tf_static
+    * to: /static_transform_publisher_1785936326434059815 (http://ubuntu:43019/)
+    * direction: inbound (58660 - ubuntu:60143) [14]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ubuntu:34087/ ...
+Pid: 25081
+Connections:
+ * topic: /rosout
+    * to: /static_transform_publisher_1785936326434059815 (http://ubuntu:43019/)
+    * direction: inbound (58656 - ubuntu:60143) [13]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /lightweight_2d_slam (http://ubuntu:40481/)
+    * direction: inbound (46184 - ubuntu:52553) [15]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/static_transform_publisher_1785936326434059815]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Subscriptions: None
+
+Services: 
+ * /static_transform_publisher_1785936326434059815/get_loggers
+ * /static_transform_publisher_1785936326434059815/set_logger_level
+
+
+contacting node http://ubuntu:43019/ ...
+Pid: 25090
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (60143 - 127.0.0.1:58656) [11]
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /lightweight_2d_slam
+    * direction: outbound (60143 - 127.0.0.1:58660) [12]
+    * transport: TCPROS
+

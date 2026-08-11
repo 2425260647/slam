@@ -1,0 +1,136 @@
+lightweight_2d_slam:
+  active_grid_insert_free_space: true
+  active_grid_size: 30.0
+  active_keyframes: 60
+  base_frame: base_footprint
+  diagnostics_topic: /slam_diagnostics
+  enable_loop_closure: true
+  global_correction_blend_duration: 10.0
+  global_map_point_stride: 2
+  grid_resolution: 0.05
+  keyframe_min_rotation_for_time: 0.01
+  keyframe_min_translation_for_time: 0.02
+  keyframe_rotation: 0.035
+  keyframe_time: 0.75
+  keyframe_translation: 0.1
+  local_grid_max_range: 5.0
+  local_grid_size: 5.0
+  local_grid_topic: /local_occupancy_grid
+  loop_angular_search_window: 0.7
+  loop_angular_step: 0.05
+  loop_candidates_per_submap: 3
+  loop_confirmation_rotation_tolerance: 0.12
+  loop_confirmation_translation_tolerance: 0.15
+  loop_consensus_min_submaps: 2
+  loop_consensus_rotation_tolerance: 0.15
+  loop_consensus_translation_tolerance: 0.6
+  loop_descriptor_angular_bins: 60
+  loop_descriptor_min_similarity: 0.68
+  loop_descriptor_radial_scales: 3
+  loop_fine_angular_search_window: 0.2
+  loop_fine_linear_search_window: 0.4
+  loop_global_angular_search_window: 0.7
+  loop_global_angular_step: 0.1
+  loop_global_linear_search_window: 3.0
+  loop_global_linear_step: 0.3
+  loop_global_max_coarse_points: 80
+  loop_linear_search_window: 0.8
+  loop_linear_step: 0.1
+  loop_log_candidate_evaluations: false
+  loop_max_coarse_points: 120
+  loop_max_correction_rotation: 1.2
+  loop_max_correction_translation: 30.0
+  loop_max_match_rms: 0.08
+  loop_min_confirmations: 2
+  loop_min_keyframes_between_accepts: 30
+  loop_min_match_score: 0.64
+  loop_min_score_margin: 0.0
+  loop_min_separation: 250
+  loop_min_sequence_support: 2
+  loop_min_submap_separation: 2
+  loop_min_translation_observability: 0.08
+  loop_reject_low_observability_large_correction: false
+  loop_require_se2_consensus: false
+  loop_rotation_weight: 35.0
+  loop_search_every_n_keyframes: 5
+  loop_sequence_angular_window: 0.25
+  loop_sequence_correction_tolerance: 0.35
+  loop_sequence_keyframes: 3
+  loop_sequence_linear_window: 0.35
+  loop_sequence_stride: 5
+  loop_sequence_yaw_tolerance: 0.12
+  loop_switch_prior_weight: 1.0
+  loop_top_k_candidates: 12
+  loop_translation_weight: 25.0
+  loop_unobservable_max_correction: 0.5
+  loop_use_anisotropic_constraints: false
+  loop_use_multiresolution_search: true
+  loop_use_switchable_constraints: false
+  map_frame: map
+  map_publish_period: 0.5
+  map_topic: /map
+  max_global_grid_cells: 4000000
+  max_match_rms: 0.25
+  max_range: 25.0
+  min_match_score: 0.25
+  min_range: 0.3
+  node_submap_rotation_weight: 30.0
+  node_submap_translation_weight: 20.0
+  odom_constraint_rotation_weight: 0.0
+  odom_constraint_translation_weight: 0.0
+  odom_frame: odom
+  odom_topic: /odom
+  optimize_every_n_keyframes: 0
+  path_topic: /lightweight_slam/path
+  point_stride: 3
+  publish_odom_tf: true
+  scan_constraint_rotation_weight: 30.0
+  scan_constraint_translation_weight: 20.0
+  scan_matcher:
+    angular_search_window: 0.2
+    angular_step: 0.025
+    correlative_rotation_cost_weight: 0.005
+    correlative_translation_cost_weight: 0.01
+    enable_fine_correlative: true
+    enable_oad_csm: false
+    endpoint_neighborhood: 1
+    fine_angular_step: 0.0125
+    fine_angular_window: 0.0
+    fine_candidate_count: 1
+    fine_linear_step: 0.0125
+    likelihood_refinement_weight: 0.5
+    line_max_eigenvalue_ratio: 0.35
+    line_min_eigenvalue: 1.0e-08
+    line_min_neighbors: 4
+    line_search_radius_cells: 4
+    linear_search_window: 0.15
+    linear_step: 0.05
+    max_coarse_points: 240
+    max_likelihood_refinement_points: 240
+    max_refinement_iterations: 8
+    min_correspondences: 20
+    prior_rotation_weight: 3.0
+    prior_translation_weight: 5.0
+    use_hybrid_refinement: false
+    use_likelihood_field: true
+    use_likelihood_refinement: true
+    use_prediction_translation_prior: true
+  scan_topic: /scan
+  submap_insert_free_space: false
+  submap_keyframes: 50
+  submap_overlap_keyframes: 25
+  tracked_pose_topic: /tracked_pose
+  transform_timeout: 0.1
+  use_rigid_submap_pose_graph: true
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_ubuntu__34563: http://ubuntu:34563/
+    host_ubuntu__36279: http://ubuntu:36279/
+rosversion: '1.17.4
+
+  '
+run_id: e69400b6-919e-11f1-ae02-a778fcff34e6
+use_sim_time: true

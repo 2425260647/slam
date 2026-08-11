@@ -1,0 +1,112 @@
+{
+  "cartographer_clean": {
+    "free_cells": 146045,
+    "height_px": 432,
+    "known_cells": 152432,
+    "largest_component_cells": 615,
+    "largest_component_ratio": 0.09628933771723815,
+    "map_area_m2": 473.0400000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/cartographer_clean",
+    "occupied_cells": 6387,
+    "occupied_components_8_connected": 69,
+    "occupied_pca_length_ratio": 1.0583802628233203,
+    "occupied_ratio_known": 0.041900650781988034,
+    "occupied_ratio_total": 0.033755073566717406,
+    "origin": [
+      -11.036472,
+      -10.825076,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 36784,
+    "width_px": 438
+  },
+  "gmapping": {
+    "free_cells": 147796,
+    "height_px": 1184,
+    "known_cells": 154627,
+    "largest_component_cells": 620,
+    "largest_component_ratio": 0.09076269945835164,
+    "map_area_m2": 3504.6400000000003,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/gmapping",
+    "occupied_cells": 6831,
+    "occupied_components_8_connected": 90,
+    "occupied_pca_length_ratio": 1.0379383498897918,
+    "occupied_ratio_known": 0.0441772782243722,
+    "occupied_ratio_total": 0.004872825739590942,
+    "origin": [
+      -30.0,
+      -30.0,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1247229,
+    "width_px": 1184
+  },
+  "lightweight_frozen_e2_20260805": {
+    "free_cells": 147398,
+    "height_px": 455,
+    "known_cells": 152331,
+    "largest_component_cells": 410,
+    "largest_component_ratio": 0.08311372390026353,
+    "map_area_m2": 522.1125000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/lightweight_frozen_e2_20260805",
+    "occupied_cells": 4933,
+    "occupied_components_8_connected": 182,
+    "occupied_pca_length_ratio": 1.01427197477473,
+    "occupied_ratio_known": 0.032383428192554374,
+    "occupied_ratio_total": 0.02362038832627068,
+    "origin": [
+      -11.628454,
+      -11.368833,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 56514,
+    "width_px": 459
+  },
+  "likelihood_refinement_weight05": {
+    "free_cells": 147358,
+    "height_px": 455,
+    "known_cells": 152539,
+    "largest_component_cells": 505,
+    "largest_component_ratio": 0.0974715305925497,
+    "map_area_m2": 524.3875,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/optimization/likelihood_refinement_weight05",
+    "occupied_cells": 5181,
+    "occupied_components_8_connected": 252,
+    "occupied_pca_length_ratio": 1.0203894948035623,
+    "occupied_ratio_known": 0.03396508433908706,
+    "occupied_ratio_total": 0.024700245524540535,
+    "origin": [
+      -11.652381,
+      -11.35296,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 57216,
+    "width_px": 461
+  },
+  "likelihood_refinement_weight05_repeat": {
+    "free_cells": 147358,
+    "height_px": 455,
+    "known_cells": 152539,
+    "largest_component_cells": 505,
+    "largest_component_ratio": 0.0974715305925497,
+    "map_area_m2": 524.3875,
+    "map_dir": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/optimization/likelihood_refinement_weight05_repeat",
+    "occupied_cells": 5181,
+    "occupied_components_8_connected": 252,
+    "occupied_pca_length_ratio": 1.0203894948035623,
+    "occupied_ratio_known": 0.03396508433908706,
+    "occupied_ratio_total": 0.024700245524540535,
+    "origin": [
+      -11.652381,
+      -11.35296,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 57216,
+    "width_px": 461
+  }
+}

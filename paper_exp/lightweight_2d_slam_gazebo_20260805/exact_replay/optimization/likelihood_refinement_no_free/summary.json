@@ -1,0 +1,247 @@
+{
+  "algorithm": "lightweight_likelihood_refinement_no_free",
+  "associated_samples": 705,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/exact_replay/optimization/likelihood_refinement_no_free/trajectory.csv",
+  "diagnostic_metrics": {
+    "coarse_score": {
+      "final": 0.979006,
+      "maximum": 0.979006,
+      "mean": 0.8552942312056737,
+      "p95": 0.967626,
+      "rmse": 0.8663512761259551
+    },
+    "correspondences": {
+      "final": 158.0,
+      "maximum": 190.0,
+      "mean": 141.58014184397163,
+      "p95": 178.0,
+      "rmse": 147.76112599263018
+    },
+    "residual_rms_m": {
+      "final": 0.0261008,
+      "maximum": 0.0556593,
+      "mean": 0.03240408269503546,
+      "p95": 0.0437917,
+      "rmse": 0.032813809502885295
+    },
+    "scan_quality": {
+      "final": 0.93302,
+      "maximum": 0.93302,
+      "mean": 0.8316288368794327,
+      "p95": 0.918604,
+      "rmse": 0.8382469688841493
+    }
+  },
+  "estimate_messages": 705,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "final_diagnostics": {
+    "coarse_score": "0.979006",
+    "correspondences": "158",
+    "dropped_scans": "0",
+    "keyframes": "162",
+    "loop_candidates_rejected": "2",
+    "loop_constraints": "2",
+    "loop_searches_completed": "4",
+    "loop_searches_skipped": "0",
+    "loop_worker_busy": "false",
+    "map_build_seconds": "0.0172468",
+    "map_rebuild_failures": "0",
+    "map_worker_busy": "false",
+    "optimizer_last_seconds": "0.000963376",
+    "optimizer_pose_version": "10",
+    "optimizer_running": "false",
+    "pose_graph_constraints": "324",
+    "processing_ms": "3.88685",
+    "residual_rms_m": "0.0261008",
+    "scan_quality": "0.93302",
+    "submaps": "4"
+  },
+  "first_tracking_diagnostics": [
+    {
+      "coarse_score": 0.0,
+      "correspondences": 0.0,
+      "residual_rms_m": 0.0,
+      "scan_quality": 0.0,
+      "stamp": 1342.25,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.641148,
+      "correspondences": 60.0,
+      "residual_rms_m": 0.0310829,
+      "scan_quality": 0.675787,
+      "stamp": 1342.35,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.648859,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0268132,
+      "scan_quality": 0.689038,
+      "stamp": 1342.45,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.632553,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0280928,
+      "scan_quality": 0.67287,
+      "stamp": 1342.55,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.639826,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0284614,
+      "scan_quality": 0.678671,
+      "stamp": 1342.65,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.633373,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0276632,
+      "scan_quality": 0.674242,
+      "stamp": 1342.75,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.621497,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0264146,
+      "scan_quality": 0.665578,
+      "stamp": 1342.85,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.636756,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0287066,
+      "scan_quality": 0.67562,
+      "stamp": 1342.95,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.649652,
+      "correspondences": 63.0,
+      "residual_rms_m": 0.030295,
+      "scan_quality": 0.684321,
+      "stamp": 1343.05,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.654313,
+      "correspondences": 63.0,
+      "residual_rms_m": 0.0298385,
+      "scan_quality": 0.689015,
+      "stamp": 1343.15,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.631574,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0259825,
+      "scan_quality": 0.675196,
+      "stamp": 1343.25,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.64891,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0286563,
+      "scan_quality": 0.686232,
+      "stamp": 1343.35,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.638875,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0269395,
+      "scan_quality": 0.680167,
+      "stamp": 1343.45,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.624391,
+      "correspondences": 63.0,
+      "residual_rms_m": 0.031563,
+      "scan_quality": 0.660428,
+      "stamp": 1343.55,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.643893,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0291478,
+      "scan_quality": 0.681145,
+      "stamp": 1343.65,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.621375,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0292751,
+      "scan_quality": 0.661198,
+      "stamp": 1343.75,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.613321,
+      "correspondences": 62.0,
+      "residual_rms_m": 0.0352986,
+      "scan_quality": 0.645004,
+      "stamp": 1343.85,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.623879,
+      "correspondences": 59.0,
+      "residual_rms_m": 0.0333766,
+      "scan_quality": 0.65723,
+      "stamp": 1343.95,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.644314,
+      "correspondences": 63.0,
+      "residual_rms_m": 0.0274608,
+      "scan_quality": 0.684106,
+      "stamp": 1344.05,
+      "status": "tracking"
+    },
+    {
+      "coarse_score": 0.626065,
+      "correspondences": 61.0,
+      "residual_rms_m": 0.0296802,
+      "scan_quality": 0.664749,
+      "stamp": 1344.15,
+      "status": "tracking"
+    }
+  ],
+  "max_association_delta_s": 0.07999999999992724,
+  "processing_ms": {
+    "maximum": 10.4456,
+    "mean": 4.3659529361702125,
+    "p95": 5.48125,
+    "samples": 705
+  },
+  "tracking_status_counts": {
+    "tracking": 705
+  },
+  "translation_error_m": {
+    "final": 0.008388417742964508,
+    "maximum": 0.04545537116642428,
+    "mean": 0.015687768689101104,
+    "p95": 0.03665767238801512,
+    "rmse": 0.018876957030033552
+  },
+  "truth_messages": 7057,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.004530085254295546,
+    "maximum": 0.07276076087431149,
+    "mean": 0.012252452251786883,
+    "p95": 0.05037086254095091,
+    "rmse": 0.021018299471531117
+  }
+}

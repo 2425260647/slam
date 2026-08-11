@@ -39,6 +39,18 @@ proto::LocalTrajectoryBuilderOptions2D CreateLocalTrajectoryBuilderOptions2D(
       parameter_dictionary->GetInt("num_accumulated_range_data"));
   options.set_voxel_filter_size(
       parameter_dictionary->GetDouble("voxel_filter_size"));
+  options.set_submap_insertion_voxel_filter_size(
+      parameter_dictionary->HasKey("submap_insertion_voxel_filter_size")
+          ? parameter_dictionary->GetDouble("submap_insertion_voxel_filter_size")
+          : options.voxel_filter_size());
+  options.set_submap_insertion_polar_filter_enabled(
+      parameter_dictionary->HasKey("submap_insertion_polar_filter_enabled") &&
+      parameter_dictionary->GetBool("submap_insertion_polar_filter_enabled"));
+  options.set_submap_insertion_polar_angular_resolution(
+      parameter_dictionary->HasKey("submap_insertion_polar_angular_resolution")
+          ? parameter_dictionary->GetDouble(
+                "submap_insertion_polar_angular_resolution")
+          : 0.0043633231);
   options.set_use_online_correlative_scan_matching(
       parameter_dictionary->GetBool("use_online_correlative_scan_matching"));
   *options.mutable_adaptive_voxel_filter_options() =

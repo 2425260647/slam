@@ -1,0 +1,62 @@
+{
+  "run_dir": "paper_exp/oad_csm_feasibility_20260804/wheel_float01_v2_10s",
+  "sample_count": 20,
+  "outside_fixed_window_count": 0,
+  "outside_fixed_window_ratio": 0.0,
+  "boundary_count": 0,
+  "second_peak_valid_count": 20,
+  "map_score_gain": {
+    "count": 20,
+    "min": 0.0,
+    "p50": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "offset_translation_m": {
+    "count": 20,
+    "min": 0.0,
+    "p50": 0.0,
+    "p95": 0.0,
+    "max": 0.0
+  },
+  "search_time_ms": {
+    "count": 20,
+    "min": 10.368575,
+    "p50": 12.648711,
+    "p95": 14.72822925,
+    "max": 15.731985
+  },
+  "candidate_count": {
+    "count": 20,
+    "min": 28577.0,
+    "p50": 35301.0,
+    "p95": 35469.100000000006,
+    "max": 38663.0
+  },
+  "submap_num_range_data": {
+    "count": 20,
+    "min": 1.0,
+    "p50": 9.5,
+    "p95": 27.1,
+    "max": 29.0
+  },
+  "eligible_sample_count": 0,
+  "eligible_event_count": 0,
+  "eligible_event_lengths": [],
+  "pre_registered_gate": {
+    "outside_offset_m": 0.15,
+    "map_score_gain": 0.02,
+    "independent_peak_margin": 0.01,
+    "not_boundary": true,
+    "second_peak_valid": true,
+    "min_consecutive_samples": 2,
+    "min_events": 3
+  },
+  "events": [],
+  "limitations": [
+    "No official Corridor02 GT body trajectory was available during this run.",
+    "Candidate is read-only and never replaces production pose.",
+    "Map score is an empirical occupancy-grid score, not a likelihood.",
+    "Eligible events are a mechanism gate, not proof of trajectory improvement."
+  ]
+}

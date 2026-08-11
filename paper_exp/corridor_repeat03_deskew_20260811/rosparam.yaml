@@ -1,0 +1,35 @@
+local_grid_mapper:
+  base_frame: base_link
+  map_frame: map
+  map_output_topic: /local_occupancy_grid_map
+  map_size: 5.0
+  max_range: 5.0
+  obstacle_dilation_cells: 1
+  output_topic: /local_occupancy_grid
+  publish_map_frame_grid: true
+  resolution: 0.05
+  scan_topic: /scan
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_ubuntu__39053: http://ubuntu:39053/
+    host_ubuntu__44625: http://ubuntu:44625/
+rosversion: '1.17.4
+
+  '
+run_id: c7ea02f8-9529-11f1-b8a2-59a8600949a1
+use_sim_time: true
+velodyne_deskewed_laserscan:
+  base_frame: base_link
+  filter_isolated_returns: true
+  input_topic: /velodyne_points
+  isolation_max_distance: 0.3
+  isolation_window_bins: 2
+  minimum_valid_bins: 60
+  odom_topic: /odom
+  output_frame: laser_link
+  output_topic: /scan
+  ring_max: 9
+  ring_min: 8

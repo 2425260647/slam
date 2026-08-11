@@ -1,0 +1,179 @@
+--------------------------------------------------------------------------------
+Node [/gmapping]
+Publications: 
+ * /gmapping/entropy [std_msgs/Float64]
+ * /map [nav_msgs/OccupancyGrid]
+ * /map_metadata [nav_msgs/MapMetaData]
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /scan [sensor_msgs/LaserScan]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /dynamic_map
+ * /gmapping/get_loggers
+ * /gmapping/set_logger_level
+
+
+contacting node http://ubuntu:44887/ ...
+Pid: 25827
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (59087 - 127.0.0.1:36688) [14]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /tf
+    * to: /gmapping_tracked_pose
+    * direction: outbound (59087 - 127.0.0.1:36678) [13]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping (http://ubuntu:44887/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+ * topic: /tf
+    * to: /gmapping_odom_to_tf (http://ubuntu:37011/)
+    * direction: inbound (52264 - ubuntu:33705) [16]
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /static_transform_publisher_1785936608698760550 (http://ubuntu:44083/)
+    * direction: inbound (40670 - ubuntu:56903) [12]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/gmapping_odom_to_tf]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf [tf2_msgs/TFMessage]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /scout_mini_velocity_controller/odom [nav_msgs/Odometry]
+
+Services: 
+ * /gmapping_odom_to_tf/get_loggers
+ * /gmapping_odom_to_tf/set_logger_level
+
+
+contacting node http://ubuntu:37011/ ...
+Pid: 25826
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (33705 - 127.0.0.1:52262) [14]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping_tracked_pose
+    * direction: outbound (33705 - 127.0.0.1:52254) [9]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping
+    * direction: outbound (33705 - 127.0.0.1:52264) [15]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/gmapping_tracked_pose]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /gmapping_tracked_pose/get_loggers
+ * /gmapping_tracked_pose/set_logger_level
+ * /gmapping_tracked_pose/tf2_frames
+
+
+contacting node http://ubuntu:41281/ ...
+Pid: 25828
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (33707 - 127.0.0.1:60694) [9]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping (http://ubuntu:44887/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /tf
+    * to: /gmapping_odom_to_tf (http://ubuntu:37011/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /static_transform_publisher_1785936608698760550 (http://ubuntu:44083/)
+    * direction: inbound
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ubuntu:35173/ ...
+Pid: 25777
+Connections:
+ * topic: /rosout
+    * to: /static_transform_publisher_1785936608698760550 (http://ubuntu:44083/)
+    * direction: inbound (40656 - ubuntu:56903) [13]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /gmapping (http://ubuntu:44887/)
+    * direction: inbound (36688 - ubuntu:59087) [15]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /gmapping_tracked_pose (http://ubuntu:41281/)
+    * direction: inbound (60694 - ubuntu:33707) [18]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /gmapping_odom_to_tf (http://ubuntu:37011/)
+    * direction: inbound (52262 - ubuntu:33705) [19]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/static_transform_publisher_1785936608698760550]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Subscriptions: None
+
+Services: 
+ * /static_transform_publisher_1785936608698760550/get_loggers
+ * /static_transform_publisher_1785936608698760550/set_logger_level
+
+
+contacting node http://ubuntu:44083/ ...
+Pid: 25789
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (56903 - 127.0.0.1:40656) [11]
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /gmapping_tracked_pose
+    * direction: outbound (56903 - 127.0.0.1:40660) [12]
+    * transport: TCPROS
+ * topic: /tf_static
+    * to: /gmapping
+    * direction: outbound (56903 - 127.0.0.1:40670) [10]
+    * transport: TCPROS
+

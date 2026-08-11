@@ -1,0 +1,14 @@
+path:         /home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/preflight/common_inputs_deskewed_30s.bag
+version:      2.0
+duration:     29.9s
+start:        Jan 21 2025 23:07:02.29 (1737472022.29)
+end:          Jan 21 2025 23:07:32.24 (1737472052.24)
+size:         743.9 KB
+messages:     900
+compression:  lz4 [3/3 chunks; 33.15%]
+uncompressed:   2.1 MB @ 72.8 KB/s
+compressed:   722.8 KB @ 24.1 KB/s (33.15%)
+types:        nav_msgs/Odometry     [cd5e73d190d741a2f92e81eda573aca7]
+              sensor_msgs/LaserScan [90c7ef2dc6895d81024acba2ac42f369]
+topics:       /odom   600 msgs    : nav_msgs/Odometry    
+              /scan   300 msgs    : sensor_msgs/LaserScan

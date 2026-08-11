@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v4_observable/map.pgm
+resolution: 0.050000
+origin: [-13.433031, -13.020734, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

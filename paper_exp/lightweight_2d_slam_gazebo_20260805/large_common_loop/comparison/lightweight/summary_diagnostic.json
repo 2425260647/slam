@@ -1,0 +1,47 @@
+{
+  "algorithm": "lightweight_diag",
+  "associated_samples": 1930,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/lightweight/trajectory_diagnostic.csv",
+  "estimate_messages": 1930,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "final_diagnostics": {
+    "coarse_score": "0.925868",
+    "correspondences": "193",
+    "dropped_scans": "0",
+    "keyframes": "635",
+    "loop_candidates_rejected": "28",
+    "loop_constraints": "2",
+    "loop_searches_completed": "30",
+    "loop_searches_skipped": "0",
+    "loop_worker_busy": "false",
+    "optimizer_last_seconds": "0.00514006",
+    "optimizer_running": "false",
+    "pose_graph_constraints": "1270",
+    "processing_ms": "16.0599",
+    "residual_rms_m": "0.0540353",
+    "submaps": "13"
+  },
+  "max_association_delta_s": 0.07355837000000065,
+  "processing_ms": {
+    "maximum": 36.4977,
+    "mean": 15.524164155440415,
+    "p95": 22.9533,
+    "samples": 1930
+  },
+  "translation_error_m": {
+    "final": 0.0981157909610671,
+    "maximum": 0.2273329531587236,
+    "mean": 0.11786572342902697,
+    "p95": 0.1861474910924304,
+    "rmse": 0.12767405465954776
+  },
+  "truth_messages": 19315,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.0075060078035801255,
+    "maximum": 0.1242323174046396,
+    "mean": 0.010963612515973404,
+    "p95": 0.0742172625312909,
+    "rmse": 0.024028315349279183
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "evaluation_protocol": {
+    "pose_group": "SE(2)",
+    "alignment": "single planar rigid transform (xy + yaw), no scale",
+    "rpe": "inv(T_ref_i_j) * T_est_i_j",
+    "full_se2_valid": false,
+    "full_se2_blocker": "missing calibrated Mocap-rigid-body to base_footprint yaw offset"
+  },
+  "association": {
+    "reference_pose_count": 44444,
+    "estimate_pose_count": 14272,
+    "matched_pose_count": 14209,
+    "max_time_difference_seconds": 0.01989150047302246,
+    "mean_absolute_time_difference_seconds": 0.0025494672854601587
+  },
+  "alignment": {
+    "type": "rigid_SE2_without_scale",
+    "rotation_matrix_2d": [
+      [
+        -0.9998211119636712,
+        0.01891412360457111
+      ],
+      [
+        -0.018914123604571124,
+        -0.999821111963671
+      ]
+    ],
+    "yaw_offset_radians": -3.122677402067703,
+    "translation_xy": [
+      2.8399443484178906,
+      1.2995260030259999
+    ],
+    "scale": 1.0,
+    "reference_body_yaw_offset_radians": null
+  },
+  "ape_translation_meters": {
+    "rmse": 0.6517825623386808,
+    "mean": 0.6150191702884404,
+    "median": 0.6395169932884058,
+    "std": 0.21580530286926372,
+    "min": 0.050114710365886384,
+    "max": 1.2359900549763116
+  },
+  "ape_planar_translation_meters": {
+    "rmse": 0.6517825623386808,
+    "mean": 0.6150191702884404,
+    "median": 0.6395169932884058,
+    "std": 0.21580530286926372,
+    "min": 0.050114710365886384,
+    "max": 1.2359900549763116
+  },
+  "ape_rotation_radians": {},
+  "ape_rotation_degrees": {},
+  "rpe": {
+    "delta_seconds": 1.0,
+    "pair_tolerance_seconds": 0.05,
+    "pair_count": 14110,
+    "se2_translation_meters": {},
+    "se2_rotation_radians": {
+      "rmse": 0.059597519099419946,
+      "mean": 0.03218848526421836,
+      "median": 0.013339707251427857,
+      "std": 0.05015740921539832,
+      "min": 1.8409082209736027e-06,
+      "max": 0.3275381405340796
+    },
+    "se2_rotation_degrees": {
+      "rmse": 3.414686313847078,
+      "mean": 1.8442643545587543,
+      "median": 0.7643089254468759,
+      "std": 2.873807859352905,
+      "min": 0.00010547627153272418,
+      "max": 18.766553082165597
+    },
+    "frame_invariant_world_displacement_pair_count": 14110,
+    "frame_invariant_world_displacement_meters": {
+      "rmse": 0.2174531684577347,
+      "mean": 0.14377685724260314,
+      "median": 0.09343378334069513,
+      "std": 0.16313827200797507,
+      "min": 4.076334356725846e-05,
+      "max": 0.9459996049967413
+    }
+  },
+  "limitations": [
+    "M3DGR does not publish an explicit Mocap-rigid-body to base_footprint lever-arm calibration in the dataset bag.",
+    "Full SE(2) yaw APE and body-frame translation RPE are withheld unless --reference-body-yaw-offset-radians is supplied from a defensible calibration.",
+    "SE(2) APE/RPE are valid only for runs with continuous Mocap pose; Corridor02 is therefore excluded from these metrics.",
+    "The single planar alignment removes global xy/yaw gauge error but does not remove drift."
+  ]
+}

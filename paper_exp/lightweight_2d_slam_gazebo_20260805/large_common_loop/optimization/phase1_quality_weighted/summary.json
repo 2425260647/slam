@@ -1,0 +1,52 @@
+{
+  "algorithm": "lightweight_phase1_quality_weighted",
+  "associated_samples": 1930,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/optimization/phase1_quality_weighted/trajectory.csv",
+  "estimate_messages": 1930,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "final_diagnostics": {
+    "coarse_score": "0.925868",
+    "correspondences": "193",
+    "dropped_scans": "0",
+    "keyframes": "635",
+    "loop_candidates_rejected": "28",
+    "loop_constraints": "2",
+    "loop_searches_completed": "30",
+    "loop_searches_skipped": "0",
+    "loop_worker_busy": "false",
+    "map_build_seconds": "0.0411887",
+    "map_rebuild_failures": "0",
+    "map_worker_busy": "false",
+    "optimizer_last_seconds": "0.00480118",
+    "optimizer_pose_version": "33",
+    "optimizer_running": "false",
+    "pose_graph_constraints": "1270",
+    "processing_ms": "14.5596",
+    "residual_rms_m": "0.0540353",
+    "scan_quality": "0.823533",
+    "submaps": "13"
+  },
+  "max_association_delta_s": 0.07546376000004784,
+  "processing_ms": {
+    "maximum": 30.0827,
+    "mean": 15.67625645595855,
+    "p95": 23.6833,
+    "samples": 1930
+  },
+  "translation_error_m": {
+    "final": 0.09798570753835716,
+    "maximum": 0.5087665339695937,
+    "mean": 0.12269129849908515,
+    "p95": 0.1887781999588655,
+    "rmse": 0.13751091735575224
+  },
+  "truth_messages": 19315,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.007474443167545602,
+    "maximum": 0.12858214862385228,
+    "mean": 0.011728249882028578,
+    "p95": 0.07400503244861512,
+    "rmse": 0.024679992802371403
+  }
+}

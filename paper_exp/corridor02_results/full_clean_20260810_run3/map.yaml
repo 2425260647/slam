@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/corridor02_results/full_clean_20260810_run3/map.pgm
+resolution: 0.050000
+origin: [-33.357681, -30.715808, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

@@ -1,0 +1,17 @@
+path:         /home/slam/slam_ws/paper_exp/corridor_repeat01_pointcloud_polar_realtime_20260811/outputs.bag
+version:      2.0
+duration:     9:25s (565s)
+start:        Jul 24 2026 11:28:01.04 (1784863681.04)
+end:          Jul 24 2026 11:37:26.55 (1784864246.55)
+size:         32.0 MB
+messages:     99281
+compression:  lz4 [478/478 chunks; 8.00%]
+uncompressed: 382.9 MB @ 693.4 KB/s
+compressed:    30.6 MB @  55.5 KB/s (8.00%)
+types:        nav_msgs/OccupancyGrid [3381f2d731d4076ec5c71b0759edbe4e]
+              tf2_msgs/TFMessage     [94810edda583a504dfda3829e70d7eec]
+topics:       /local_occupancy_grid        5655 msgs    : nav_msgs/OccupancyGrid
+              /local_occupancy_grid_map    5653 msgs    : nav_msgs/OccupancyGrid
+              /map                          587 msgs    : nav_msgs/OccupancyGrid
+              /tf                         87382 msgs    : tf2_msgs/TFMessage     (2 connections)
+              /tf_static                      4 msgs    : tf2_msgs/TFMessage

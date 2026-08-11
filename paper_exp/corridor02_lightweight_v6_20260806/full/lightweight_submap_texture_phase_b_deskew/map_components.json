@@ -1,0 +1,29 @@
+{
+  "cartographer_old_input": {
+    "components": 666,
+    "components_le_3_pixels": 353,
+    "largest_component_pixels": 1794,
+    "map": "paper_exp/corridor02_lightweight_v6_20260806/full/cartographer_clean/map.pgm",
+    "metric_boundary": "Occupied-pixel connectivity proxy; not ATE/RPE or surveyed wall accuracy.",
+    "occupied_cells": 17962,
+    "single_pixel_components": 206
+  },
+  "phase_a_v4_sync": {
+    "components": 494,
+    "components_le_3_pixels": 272,
+    "largest_component_pixels": 2586,
+    "map": "paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_submap_texture_phase_a_v4_sync/map.pgm",
+    "metric_boundary": "Occupied-pixel connectivity proxy; not ATE/RPE or surveyed wall accuracy.",
+    "occupied_cells": 16372,
+    "single_pixel_components": 138
+  },
+  "phase_b_deskew": {
+    "components": 431,
+    "components_le_3_pixels": 239,
+    "largest_component_pixels": 2582,
+    "map": "paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_submap_texture_phase_b_deskew/map.pgm",
+    "metric_boundary": "Occupied-pixel connectivity proxy; not ATE/RPE or surveyed wall accuracy.",
+    "occupied_cells": 17791,
+    "single_pixel_components": 120
+  }
+}

@@ -1,0 +1,18 @@
+path:        /home/slam/slam_ws/paper_exp/corridor02_results/preflight_escalated/topics.bag
+version:     2.0
+duration:    15.0s
+start:       Jan 21 2025 23:07:02.26 (1737472022.26)
+end:         Jan 21 2025 23:07:17.23 (1737472037.23)
+size:        6.6 MB
+messages:    2039
+compression: none [9/9 chunks]
+types:       nav_msgs/OccupancyGrid [3381f2d731d4076ec5c71b0759edbe4e]
+             nav_msgs/Odometry      [cd5e73d190d741a2f92e81eda573aca7]
+             sensor_msgs/LaserScan  [90c7ef2dc6895d81024acba2ac42f369]
+             tf2_msgs/TFMessage     [94810edda583a504dfda3829e70d7eec]
+topics:      /local_occupancy_grid    150 msgs    : nav_msgs/OccupancyGrid
+             /map                      28 msgs    : nav_msgs/OccupancyGrid
+             /odom                    300 msgs    : nav_msgs/Odometry     
+             /scan                    150 msgs    : sensor_msgs/LaserScan 
+             /tf                     1410 msgs    : tf2_msgs/TFMessage    
+             /tf_static                 1 msg     : tf2_msgs/TFMessage

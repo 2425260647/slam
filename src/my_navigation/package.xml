@@ -16,12 +16,9 @@
   <depend>tf2</depend>
   <depend>tf2_ros</depend>
   <depend>tf2_geometry_msgs</depend>
-  <depend>livox_ros_driver2</depend>
 
   <exec_depend>cartographer_ros</exec_depend>
   <exec_depend>pointcloud_to_laserscan</exec_depend>
-  <exec_depend>scout_gazebo_sim</exec_depend>
-  <exec_depend>rviz</exec_depend>
 
   <export>
   </export>

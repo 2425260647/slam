@@ -1,0 +1,8 @@
+Failure at 1785850009.167903374
+Exception thrown:"odom_combined" passed to lookupTransform argument target_frame does not exist. 
+The current list of frames is:
+
+Failure at 1785850009.167996648
+Exception thrown:"odom_combined" passed to lookupTransform argument target_frame does not exist. 
+The current list of frames is:
+

@@ -1,0 +1,13 @@
+experiment=hector_wheel_float02_reference
+algorithm=hector_mapping
+bag=/home/slam/slam_ws/bags/Wheel-float02/Wheel-float02.bag
+bag_sha256=1b5479a036d3a85732dce78b67327813964cab2e2058f32b64afd1f32c4a0855
+input_topics=/livox/mid360/lidar,/vrpn_client_node/UGV/pose
+odom_used=false
+imu_used=false
+avia_used=false
+official_static_tf=base_footprint->livox_frame
+projection_height_m=0.20,0.60
+start_wall_utc=2026-08-03T08:49:13Z
+git_head=78f77a66ff5c4bc9ebb7a66950b491ace8b30a19
+end_wall_utc=2026-08-03T08:51:59Z

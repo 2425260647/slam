@@ -1,0 +1,16 @@
+experiment=hector_corridor02_reference
+algorithm=hector_mapping
+bag=/home/slam/slam_ws/bags/Corridor02/Corridor02.bag
+bag_sha256=f6ac8ab3e82fa80bab74f20eaeb437bbe68cb2e2e0f4c90ba25248d724743452
+input_topics=/livox/mid360/lidar
+odom_used=false
+imu_used=false
+avia_used=false
+official_static_tf=base_footprint->livox_frame
+projection_height_m=0.20,0.60
+continuous_ground_truth=false
+ros_master_uri=http://127.0.0.1:11312
+ros_master_port=11312
+start_wall_utc=2026-08-03T11:22:16Z
+git_head=78f77a66ff5c4bc9ebb7a66950b491ace8b30a19
+end_wall_utc=2026-08-03T11:27:27Z

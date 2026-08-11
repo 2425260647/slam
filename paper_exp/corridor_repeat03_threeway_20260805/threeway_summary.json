@@ -1,0 +1,204 @@
+{
+  "cartographer": {
+    "diagnostics": {
+      "final_values": {},
+      "messages": 0,
+      "status_counts": {}
+    },
+    "map": {
+      "free_cells": 67460,
+      "height_px": 354,
+      "known_cells": 76801,
+      "occupied_cells": 9341,
+      "occupied_ratio_known": 0.12162602049452481,
+      "origin": [
+        -2.099349,
+        -8.686073,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 495263,
+      "width_px": 1616
+    },
+    "odometry_proxy": {
+      "duration_sec": 578.7659776210785,
+      "messages": 28940,
+      "path_length_m": 173.72046677799239,
+      "start_end_translation_m": 60.89842623103738,
+      "start_end_yaw_rad": 1.9019498441775078
+    },
+    "runtime": {
+      "play_wall_duration_sec": 579.68
+    },
+    "trajectory_proxy": {
+      "end_pose": [
+        -0.014018559760795468,
+        0.010939151734351338,
+        0.13722436430413354
+      ],
+      "maximum_pose_step_m": 0.13527143531139804,
+      "path_length_m": 181.89683301814657,
+      "pose_caller_id": "/cartographer_clean",
+      "pose_duration_sec": 578.7001254558563,
+      "pose_messages": 55131,
+      "start_end_translation_m": 0.017781593247911048,
+      "start_end_yaw_rad": 0.13722436430413354,
+      "start_pose": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "gmapping": {
+    "diagnostics": {
+      "final_values": {},
+      "messages": 0,
+      "status_counts": {}
+    },
+    "map": {
+      "free_cells": 95842,
+      "height_px": 1184,
+      "known_cells": 106434,
+      "occupied_cells": 10592,
+      "occupied_ratio_known": 0.09951707161245467,
+      "origin": [
+        -30.0,
+        -30.0,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 3341374,
+      "width_px": 2912
+    },
+    "odometry_proxy": {
+      "duration_sec": 578.7659776210785,
+      "messages": 28940,
+      "path_length_m": 173.72046677799239,
+      "start_end_translation_m": 60.89842623103738,
+      "start_end_yaw_rad": 1.9019498441775078
+    },
+    "runtime": {
+      "play_wall_duration_sec": 579.77
+    },
+    "trajectory_proxy": {
+      "end_pose": [
+        96.08563789026555,
+        18.338488850835255,
+        -2.540008408178839
+      ],
+      "maximum_pose_step_m": 1.5299146333619937,
+      "path_length_m": 243.6091836612067,
+      "pose_caller_id": null,
+      "pose_duration_sec": 578.5974853038788,
+      "pose_messages": 11573,
+      "start_end_translation_m": 21.531604101990595,
+      "start_end_yaw_rad": 0.26167610096819893,
+      "start_pose": [
+        77.10471381471842,
+        8.173131186533727,
+        3.4815007980325485
+      ]
+    }
+  },
+  "lightweight": {
+    "diagnostics": {
+      "coarse_score": {
+        "maximum": 0.968908,
+        "mean": 0.8569255670352454,
+        "p95": 0.9415306
+      },
+      "correspondences": {
+        "maximum": 423.0,
+        "mean": 292.71026261230134,
+        "p95": 379.0
+      },
+      "final_values": {
+        "coarse_score": "0.717544",
+        "correspondences": "300",
+        "dropped_scans": "0",
+        "keyframes": "1436",
+        "loop_candidates_rejected": "175",
+        "loop_constraints": "2",
+        "loop_searches_completed": "177",
+        "loop_searches_skipped": "0",
+        "loop_worker_busy": "false",
+        "map_build_seconds": "0.0508248",
+        "map_rebuild_failures": "0",
+        "map_worker_busy": "false",
+        "optimizer_last_seconds": "0.0111913",
+        "optimizer_pose_version": "73",
+        "optimizer_running": "false",
+        "pose_graph_constraints": "2872",
+        "processing_ms": "4.76433",
+        "residual_rms_m": "0.0470922",
+        "scan_quality": "0.711312",
+        "submaps": "29"
+      },
+      "messages": 5788,
+      "processing_ms": {
+        "maximum": 20.9399,
+        "mean": 5.734417140635798,
+        "p95": 10.296649999999996
+      },
+      "residual_rms_m": {
+        "maximum": 0.123656,
+        "mean": 0.04422795314443676,
+        "p95": 0.06520806999999999
+      },
+      "scan_quality": {
+        "maximum": 0.948531,
+        "mean": 0.8147529974084312,
+        "p95": 0.90426175
+      },
+      "status_counts": {
+        "tracking": 5788
+      }
+    },
+    "map": {
+      "free_cells": 70383,
+      "height_px": 368,
+      "known_cells": 76500,
+      "occupied_cells": 6117,
+      "occupied_ratio_known": 0.0799607843137255,
+      "origin": [
+        -14.664174,
+        -8.681611,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 454156,
+      "width_px": 1442
+    },
+    "odometry_proxy": {
+      "duration_sec": 578.7659776210785,
+      "messages": 28940,
+      "path_length_m": 173.72046677799239,
+      "start_end_translation_m": 60.89842623103738,
+      "start_end_yaw_rad": 1.9019498441775078
+    },
+    "runtime": {
+      "play_wall_duration_sec": 579.89
+    },
+    "trajectory_proxy": {
+      "end_pose": [
+        10.116271440592966,
+        -4.1942858404003855,
+        0.42733618057358663
+      ],
+      "maximum_pose_step_m": 0.7404187721677798,
+      "path_length_m": 208.61965588187903,
+      "pose_caller_id": null,
+      "pose_duration_sec": 578.7215056419373,
+      "pose_messages": 5788,
+      "start_end_translation_m": 10.951300451121778,
+      "start_end_yaw_rad": 0.42733618057358663,
+      "start_pose": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "metric_boundary": "No external truth is present. Closure, trajectory and map values are engineering proxies and must not be reported as ATE or RPE."
+}

@@ -1,0 +1,129 @@
+{
+  "algorithm": "sensitivity_prior0",
+  "diagnostics": {
+    "coarse_score": {
+      "maximum": 0.867676,
+      "mean": 0.7045562192691031,
+      "p95": 0.818787
+    },
+    "correspondences": {
+      "maximum": 199.0,
+      "mean": 131.0531561461794,
+      "p95": 175.0
+    },
+    "final_values": {
+      "coarse_score": "0.741385",
+      "correspondences": "152",
+      "dropped_scans": "1",
+      "frozen_submaps": "2",
+      "keyframes": "127",
+      "loop_anisotropic_candidates": "0",
+      "loop_anisotropic_constraints": "0",
+      "loop_candidates_evaluated": "5",
+      "loop_candidates_rejected": "16",
+      "loop_constraints": "0",
+      "loop_low_observability_rejections": "0",
+      "loop_minimum_switch": "1",
+      "loop_reject_ambiguity": "0",
+      "loop_reject_confirmation": "0",
+      "loop_reject_correction": "0",
+      "loop_reject_match": "0",
+      "loop_reject_no_candidate": "11",
+      "loop_reject_rms": "0",
+      "loop_reject_score": "5",
+      "loop_searches_completed": "16",
+      "loop_searches_skipped": "0",
+      "loop_sequence_rejections": "0",
+      "loop_suppressed_constraints": "0",
+      "loop_worker_busy": "false",
+      "map_build_seconds": "0.0259992",
+      "map_rebuild_failures": "0",
+      "map_worker_busy": "false",
+      "optimizer_last_seconds": "0",
+      "optimizer_pose_version": "0",
+      "optimizer_running": "false",
+      "pose_graph_constraints": "126",
+      "processing_ms": "29.5709",
+      "residual_rms_m": "0.0276921",
+      "scan_quality": "0.763287",
+      "submaps": "3"
+    },
+    "messages": 301,
+    "processing_ms": {
+      "maximum": 46.9178,
+      "mean": 22.947379401993356,
+      "p95": 40.4521
+    },
+    "residual_rms_m": {
+      "maximum": 0.0649543,
+      "mean": 0.035366507308970105,
+      "p95": 0.0519192
+    },
+    "scan_quality": {
+      "maximum": 0.847547,
+      "mean": 0.7178847574750831,
+      "p95": 0.815487
+    },
+    "status_counts": {
+      "tracking": 300,
+      "waiting_for_synchronized_input": 1
+    }
+  },
+  "input_bag": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/common_inputs.bag",
+  "input_counts": {
+    "/odom": 5867,
+    "/scan": 2934
+  },
+  "map": {
+    "free_cells": 42469,
+    "height_px": 1182,
+    "known_cells": 44019,
+    "occupied_cells": 1550,
+    "occupied_ratio_known": 0.03521206751629978,
+    "origin": [
+      -21.7499,
+      -23.51331,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 854301,
+    "width_px": 760
+  },
+  "metric_boundary": "Start/end closure and map statistics are no-ground-truth engineering proxies, not ATE or RPE.",
+  "mode": "preflight",
+  "odometry_proxy": {
+    "duration_sec": 293.29788303375244,
+    "messages": 5867,
+    "path_length_m": 229.9138663475029,
+    "start_end_translation_m": 27.19682513401294,
+    "start_end_yaw_rad": 0.264954741801126
+  },
+  "output_counts": {
+    "/slam_diagnostics": 301,
+    "/tracked_pose": 300
+  },
+  "runtime": {
+    "play_wall_duration_sec": 30.9
+  },
+  "trajectory_proxy": {
+    "end_pose": [
+      -0.9422348330538198,
+      15.199257998486631,
+      1.5670691014785816
+    ],
+    "maximum_pose_step_m": 0.19892008969787367,
+    "path_length_m": 17.731741118992296,
+    "pose_caller_id": null,
+    "pose_duration_sec": 29.874480962753296,
+    "pose_messages": 300,
+    "start_end_translation_m": 15.228435579046844,
+    "start_end_yaw_rad": 1.5670691014785816,
+    "start_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "truth_available": false,
+  "truth_used_for_slam": false
+}

@@ -1,0 +1,6 @@
+image: corridor_repeat_03_map.pgm
+resolution: 0.050000
+origin: [-2.160395, -8.822079, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196

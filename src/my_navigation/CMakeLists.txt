@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(my_navigation)
 
-# 查找依赖项（仅保留本包需要的）
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
@@ -10,7 +9,6 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   tf2_geometry_msgs
-  livox_ros_driver2
 )
 
 catkin_package()
@@ -19,7 +17,6 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-# ===== 实时局部栅格地图节点 =====
 add_executable(local_grid_mapper
   src/local_grid_mapper.cpp
 )
@@ -34,42 +31,10 @@ target_link_libraries(mapping_health_monitor
   ${catkin_LIBRARIES}
 )
 
-# [Innovation 1] Filters geometrically insufficient projected scans before
-# they enter Cartographer's local scan matcher.
-add_executable(scan_quality_gate
-  src/scan_quality_gate.cpp
-)
-target_link_libraries(scan_quality_gate
-  ${catkin_LIBRARIES}
-)
-
-# M3DGR MID-360 bags contain Livox CustomMsg rather than PointCloud2.
-add_executable(livox_custommsg_to_pointcloud2
-  src/livox_custommsg_to_pointcloud2.cpp
-)
-add_dependencies(livox_custommsg_to_pointcloud2
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(livox_custommsg_to_pointcloud2
-  ${catkin_LIBRARIES}
-)
-
-add_executable(livox_deskewed_laserscan
-  src/livox_deskewed_laserscan.cpp
-)
-add_dependencies(livox_deskewed_laserscan
-  ${catkin_EXPORTED_TARGETS}
-)
-target_link_libraries(livox_deskewed_laserscan
-  ${catkin_LIBRARIES}
-)
-
-# ===== 安装规则（务必给出 RUNTIME DESTINATION）=====
-install(TARGETS local_grid_mapper mapping_health_monitor scan_quality_gate
-                livox_custommsg_to_pointcloud2 livox_deskewed_laserscan
+install(TARGETS local_grid_mapper mapping_health_monitor
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-install(DIRECTORY launch config rviz
+install(DIRECTORY launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )

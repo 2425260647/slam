@@ -1,0 +1,24 @@
+{
+  "algorithm": "gmapping",
+  "associated_samples": 3846,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/gmapping/trajectory.csv",
+  "estimate_messages": 3848,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "max_association_delta_s": 0.07336151000004065,
+  "translation_error_m": {
+    "final": 0.015567987273362562,
+    "maximum": 0.1417573667058357,
+    "mean": 0.04134645132282712,
+    "p95": 0.07902671494095678,
+    "rmse": 0.04634005836098386
+  },
+  "truth_messages": 19315,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.004061271059287772,
+    "maximum": 0.14782292625500884,
+    "mean": 0.010997557044708329,
+    "p95": 0.056862990651595835,
+    "rmse": 0.022458346883655382
+  }
+}

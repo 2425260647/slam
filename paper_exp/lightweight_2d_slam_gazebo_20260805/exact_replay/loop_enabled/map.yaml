@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/exact_replay/loop_enabled/map.pgm
+resolution: 0.050000
+origin: [-11.523687, -11.173857, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

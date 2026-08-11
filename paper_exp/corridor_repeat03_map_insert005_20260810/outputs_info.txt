@@ -1,0 +1,15 @@
+path:        /home/slam/slam_ws/paper_exp/corridor_repeat03_map_insert005_20260810/outputs.bag
+version:     2.0
+duration:    9:38s (578s)
+start:       Jul 24 2026 11:50:17.83 (1784865017.83)
+end:         Jul 24 2026 11:59:56.62 (1784865596.62)
+size:        384.2 MB
+messages:    102267
+compression: none [487/487 chunks]
+types:       nav_msgs/OccupancyGrid [3381f2d731d4076ec5c71b0759edbe4e]
+             tf2_msgs/TFMessage     [94810edda583a504dfda3829e70d7eec]
+topics:      /local_occupancy_grid        5788 msgs    : nav_msgs/OccupancyGrid
+             /local_occupancy_grid_map    5787 msgs    : nav_msgs/OccupancyGrid
+             /map                          588 msgs    : nav_msgs/OccupancyGrid
+             /tf                         90100 msgs    : tf2_msgs/TFMessage     (2 connections)
+             /tf_static                      4 msgs    : tf2_msgs/TFMessage

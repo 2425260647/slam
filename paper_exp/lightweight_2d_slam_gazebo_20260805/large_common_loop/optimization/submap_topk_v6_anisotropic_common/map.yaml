@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/optimization/submap_topk_v6_anisotropic_common/map.pgm
+resolution: 0.050000
+origin: [-11.647466, -11.370842, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

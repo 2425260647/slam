@@ -1,0 +1,33 @@
+path: paper_exp/backend_compare_20260804/gmapping_full/outputs.bag
+version: 2.0
+duration: 292.670586
+start: 1737472022.259907
+end: 1737472314.930493
+size: 23537193
+messages: 20832
+indexed: True
+compression: none
+types:
+    - type: nav_msgs/MapMetaData
+      md5: 10cfc8a2818024d3248802c00c95f11b
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /map_metadata
+      type: nav_msgs/MapMetaData
+      messages: 220
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 5867
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 2882
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 11863
+      connections: 2
+

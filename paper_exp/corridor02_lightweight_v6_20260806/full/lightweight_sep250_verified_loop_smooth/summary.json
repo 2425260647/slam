@@ -1,0 +1,139 @@
+{
+  "algorithm": "lightweight_sep250_verified_loop_smooth",
+  "diagnostics": {
+    "coarse_score": {
+      "maximum": 0.910954,
+      "mean": 0.7566103698023178,
+      "p95": 0.83435975
+    },
+    "correspondences": {
+      "maximum": 245.0,
+      "mean": 153.61963190184048,
+      "p95": 209.0
+    },
+    "final_values": {
+      "coarse_score": "0.765103",
+      "correspondences": "114",
+      "dropped_scans": "1",
+      "frozen_submaps": "24",
+      "global_correction_blend_progress": "1",
+      "global_correction_blending": "false",
+      "keyframes": "1220",
+      "loop_anisotropic_candidates": "701",
+      "loop_anisotropic_constraints": "0",
+      "loop_candidates_evaluated": "1891",
+      "loop_candidates_rejected": "1880",
+      "loop_consensus_accepts": "0",
+      "loop_constraints": "1",
+      "loop_last_consensus_support": "0",
+      "loop_low_observability_rejections": "0",
+      "loop_minimum_switch": "1",
+      "loop_reject_ambiguity": "0",
+      "loop_reject_confirmation": "5",
+      "loop_reject_consensus": "0",
+      "loop_reject_correction": "739",
+      "loop_reject_match": "3",
+      "loop_reject_no_candidate": "0",
+      "loop_reject_rms": "30",
+      "loop_reject_score": "1095",
+      "loop_searches_completed": "182",
+      "loop_searches_skipped": "12",
+      "loop_sequence_rejections": "8",
+      "loop_suppressed_constraints": "0",
+      "loop_worker_busy": "false",
+      "map_build_seconds": "0.145675",
+      "map_rebuild_failures": "0",
+      "map_worker_busy": "false",
+      "oad_expanded": "false",
+      "oad_search_window_m": "0.15",
+      "oad_triggered": "false",
+      "optimizer_last_seconds": "0.137009",
+      "optimizer_pose_version": "1",
+      "optimizer_running": "false",
+      "pose_graph_constraints": "1220",
+      "processing_ms": "13.1169",
+      "residual_rms_m": "0.0304699",
+      "scan_quality": "0.869473",
+      "score_margin": "inf",
+      "submaps": "25",
+      "translation_observability": "0.435252"
+    },
+    "messages": 2934,
+    "processing_ms": {
+      "maximum": 48.6767,
+      "mean": 22.00772410702113,
+      "p95": 34.47291
+    },
+    "residual_rms_m": {
+      "maximum": 0.0704247,
+      "mean": 0.028288115259032038,
+      "p95": 0.047390629999999996
+    },
+    "scan_quality": {
+      "maximum": 0.941761,
+      "mean": 0.8701309328561692,
+      "p95": 0.9109674
+    },
+    "status_counts": {
+      "tracking": 2933,
+      "waiting_for_synchronized_input": 1
+    }
+  },
+  "input_bag": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/common_inputs.bag",
+  "input_counts": {
+    "/odom": 5867,
+    "/scan": 2934
+  },
+  "map": {
+    "free_cells": 204212,
+    "height_px": 1311,
+    "known_cells": 214269,
+    "occupied_cells": 10057,
+    "occupied_ratio_known": 0.046936327700227286,
+    "origin": [
+      -22.78026,
+      -27.884006,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1509696,
+    "width_px": 1315
+  },
+  "metric_boundary": "Start/end closure and map statistics are no-ground-truth engineering proxies, not ATE or RPE.",
+  "mode": "full",
+  "odometry_proxy": {
+    "duration_sec": 293.29788303375244,
+    "messages": 5867,
+    "path_length_m": 229.9138663475029,
+    "start_end_translation_m": 27.19682513401294,
+    "start_end_yaw_rad": 0.264954741801126
+  },
+  "output_counts": {
+    "/slam_diagnostics": 2934,
+    "/tracked_pose": 2933
+  },
+  "runtime": {
+    "play_wall_duration_sec": 294.13
+  },
+  "trajectory_proxy": {
+    "end_pose": [
+      -0.11735685618983645,
+      0.1855276236570819,
+      -0.45021859731864666
+    ],
+    "maximum_pose_step_m": 14.787789303282308,
+    "path_length_m": 201.01896460062747,
+    "pose_caller_id": null,
+    "pose_duration_sec": 293.19546246528625,
+    "pose_messages": 2933,
+    "start_end_translation_m": 0.21952933934808297,
+    "start_end_yaw_rad": 0.45021859731864666,
+    "start_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "truth_available": false,
+  "truth_used_for_slam": false
+}

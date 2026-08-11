@@ -2,8 +2,10 @@
 <launch>
     <arg name="robot_namespace" default="/"/>
     <arg name="urdf_extras" default="$(find scout_description)/urdf/empty.urdf"/>
+    <arg name="wheel_axis_multiplier" default="1.0"/>
 
     <param name="robot_description" command="$(find xacro)/xacro '$(find scout_description)/urdf/scout_mini.urdf.xacro'
         robot_namespace:=$(arg robot_namespace)
-        urdf_extras:=$(arg urdf_extras)" />
+        urdf_extras:=$(arg urdf_extras)
+        wheel_axis_multiplier:=$(arg wheel_axis_multiplier)" />
 </launch>

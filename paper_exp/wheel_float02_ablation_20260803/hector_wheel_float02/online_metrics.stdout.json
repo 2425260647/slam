@@ -1,0 +1,76 @@
+{
+  "association": {
+    "reference_pose_count": 44444,
+    "estimate_pose_count": 1499,
+    "matched_pose_count": 1491,
+    "max_time_difference_seconds": 0.015379667282104492,
+    "mean_absolute_time_difference_seconds": 0.0047010569505288565
+  },
+  "alignment": {
+    "type": "rigid_SE3_without_scale",
+    "rotation_matrix": [
+      [
+        -0.9975335733297207,
+        0.06988540267956658,
+        -0.0065422146367797515
+      ],
+      [
+        -0.06990696400370862,
+        -0.9975486147384242,
+        0.0031269181689618335
+      ],
+      [
+        -0.006307651212857127,
+        0.0035765522177120946,
+        0.9999737105596382
+      ]
+    ],
+    "translation": [
+      2.7740969019055464,
+      2.0180951764114994,
+      0.8558566902911402
+    ],
+    "scale": 1.0
+  },
+  "ape_translation_meters": {
+    "rmse": 0.9401267686566809,
+    "mean": 0.9393060441126327,
+    "median": 0.934488554071629,
+    "std": 0.03927463097636059,
+    "min": 0.8551727042122674,
+    "max": 1.0361157736676925
+  },
+  "ape_planar_translation_meters": {
+    "rmse": 0.9400540856349864,
+    "mean": 0.9392323037994251,
+    "median": 0.9344462390840506,
+    "std": 0.03929838951731034,
+    "min": 0.8551713244848875,
+    "max": 1.036101393937263
+  },
+  "rpe": {
+    "delta_seconds": 1.0,
+    "pair_tolerance_seconds": 0.05,
+    "pair_count": 1474,
+    "se3_translation_meters": {
+      "rmse": 0.15003340736180204,
+      "mean": 0.12017640732020031,
+      "median": 0.1030163458957385,
+      "std": 0.08982012273539676,
+      "min": 0.0008572532665171708,
+      "max": 0.3734455379720021
+    },
+    "planar_world_displacement_meters": {
+      "rmse": 0.14974687934214925,
+      "mean": 0.11918067754239145,
+      "median": 0.10285577154649778,
+      "std": 0.09066473390050134,
+      "min": 0.0003585899077768995,
+      "max": 0.373416451277771
+    }
+  },
+  "limitations": [
+    "M3DGR does not publish an explicit Mocap-rigid-body to base_footprint lever-arm calibration in the dataset bag.",
+    "APE uses rigid SE(3) alignment without scale; the reported 1 s RPE compares aligned world-frame displacement."
+  ]
+}

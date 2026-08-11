@@ -1,0 +1,3 @@
+mode=preflight
+scan_count=300
+odom_count=600

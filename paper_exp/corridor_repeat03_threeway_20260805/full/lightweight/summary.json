@@ -1,0 +1,113 @@
+{
+  "algorithm": "lightweight",
+  "diagnostics": {
+    "coarse_score": {
+      "maximum": 0.968908,
+      "mean": 0.8569255670352454,
+      "p95": 0.9415306
+    },
+    "correspondences": {
+      "maximum": 423.0,
+      "mean": 292.71026261230134,
+      "p95": 379.0
+    },
+    "final_values": {
+      "coarse_score": "0.717544",
+      "correspondences": "300",
+      "dropped_scans": "0",
+      "keyframes": "1436",
+      "loop_candidates_rejected": "175",
+      "loop_constraints": "2",
+      "loop_searches_completed": "177",
+      "loop_searches_skipped": "0",
+      "loop_worker_busy": "false",
+      "map_build_seconds": "0.0508248",
+      "map_rebuild_failures": "0",
+      "map_worker_busy": "false",
+      "optimizer_last_seconds": "0.0111913",
+      "optimizer_pose_version": "73",
+      "optimizer_running": "false",
+      "pose_graph_constraints": "2872",
+      "processing_ms": "4.76433",
+      "residual_rms_m": "0.0470922",
+      "scan_quality": "0.711312",
+      "submaps": "29"
+    },
+    "messages": 5788,
+    "processing_ms": {
+      "maximum": 20.9399,
+      "mean": 5.734417140635798,
+      "p95": 10.296649999999996
+    },
+    "residual_rms_m": {
+      "maximum": 0.123656,
+      "mean": 0.04422795314443676,
+      "p95": 0.06520806999999999
+    },
+    "scan_quality": {
+      "maximum": 0.948531,
+      "mean": 0.8147529974084312,
+      "p95": 0.90426175
+    },
+    "status_counts": {
+      "tracking": 5788
+    }
+  },
+  "input_bag": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/common_inputs.bag",
+  "input_counts": {
+    "/odom": 28940,
+    "/scan": 5788
+  },
+  "map": {
+    "free_cells": 70383,
+    "height_px": 368,
+    "known_cells": 76500,
+    "occupied_cells": 6117,
+    "occupied_ratio_known": 0.0799607843137255,
+    "origin": [
+      -14.664174,
+      -8.681611,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 454156,
+    "width_px": 1442
+  },
+  "metric_boundary": "Start/end closure and map statistics are no-ground-truth engineering proxies, not ATE or RPE.",
+  "mode": "full",
+  "odometry_proxy": {
+    "duration_sec": 578.7659776210785,
+    "messages": 28940,
+    "path_length_m": 173.72046677799239,
+    "start_end_translation_m": 60.89842623103738,
+    "start_end_yaw_rad": 1.9019498441775078
+  },
+  "output_counts": {
+    "/slam_diagnostics": 5788,
+    "/tracked_pose": 5788
+  },
+  "runtime": {
+    "play_wall_duration_sec": 579.89
+  },
+  "trajectory_proxy": {
+    "end_pose": [
+      10.116271440592966,
+      -4.1942858404003855,
+      0.42733618057358663
+    ],
+    "maximum_pose_step_m": 0.7404187721677798,
+    "path_length_m": 208.61965588187903,
+    "pose_caller_id": null,
+    "pose_duration_sec": 578.7215056419373,
+    "pose_messages": 5788,
+    "start_end_translation_m": 10.951300451121778,
+    "start_end_yaw_rad": 0.42733618057358663,
+    "start_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "truth_available": false,
+  "truth_used_for_slam": false
+}

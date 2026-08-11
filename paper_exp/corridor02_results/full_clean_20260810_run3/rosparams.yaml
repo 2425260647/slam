@@ -1,0 +1,245 @@
+corridor02_livox_deskewed_scan:
+  filter_isolated_returns: true
+  input_topic: /livox/mid360/lidar
+  max_height: 0.6
+  min_height: 0.2
+  odom_topic: /odom
+  output_frame: base_footprint
+  output_topic: /scan
+  range_max: 30.0
+  range_min: 0.3
+local_grid_mapper:
+  base_frame: base_footprint
+  map_frame: map
+  map_output_topic: /local_occupancy_grid_map
+  map_size: 5.0
+  max_range: 5.0
+  obstacle_dilation_cells: 1
+  output_topic: /local_occupancy_grid
+  publish_map_frame_grid: true
+  resolution: 0.05
+  scan_topic: /scan
+move_base:
+  GlobalPlanner:
+    allow_unknown: true
+    cost_factor: 3.0
+    lethal_cost: 253
+    neutral_cost: 50
+    orientation_mode: 1
+    orientation_window_size: 1
+    publish_potential: true
+    use_dijkstra: false
+  TebLocalPlannerROS:
+    acc_lim_theta: 1.0
+    acc_lim_x: 0.5
+    acc_lim_y: 0.5
+    allow_init_with_backwards_motion: false
+    cmd_angle_instead_rotvel: false
+    costmap_obstacles_behind_robot_dist: 1.5
+    dt_hysteresis: 0.1
+    dt_ref: 0.3
+    dynamic_obstacle_inflation_dist: 0.6
+    enable_multithreading: true
+    exact_arc_length: false
+    feasibility_check_no_poses: 5
+    footprint_model:
+      radius: 0.5
+      type: circular
+    force_reinit_new_goal_angular: 0.78
+    force_reinit_new_goal_dist: 1.0
+    free_goal_vel: false
+    global_plan_overwrite_orientation: true
+    global_plan_viapoint_sep: -0.1
+    h_signature_prescaler: 1.0
+    h_signature_threshold: 0.1
+    include_costmap_obstacles: true
+    include_dynamic_obstacles: false
+    inflation_dist: 0.6
+    is_footprint_dynamic: false
+    legacy_obstacle_association: false
+    max_global_plan_lookahead_dist: 3.0
+    max_number_classes: 5
+    max_vel_theta: 0.8
+    max_vel_x: 0.5
+    max_vel_x_backwards: 0.2
+    max_vel_y: 0.0
+    min_obstacle_dist: 0.5
+    min_turning_radius: 0.0
+    no_inner_iterations: 5
+    no_outer_iterations: 4
+    obstacle_association_cutoff_factor: 5.0
+    obstacle_association_force_inclusion_factor: 1.5
+    obstacle_cost_exponent: 1.0
+    obstacle_heading_threshold: 0.45
+    obstacle_poses_affected: 30
+    optimization_activate: true
+    optimization_verbose: false
+    oscillation_recovery: true
+    penalty_epsilon: 0.05
+    publish_feedback: false
+    roadmap_graph_area_length_scale: 1.0
+    roadmap_graph_area_width: 5.0
+    roadmap_graph_no_samples: 15
+    selection_alternative_time_cost: false
+    selection_cost_hysteresis: 1.0
+    selection_obst_cost_scale: 2.0
+    selection_prefer_initial_plan: 0.95
+    selection_viapoint_cost_scale: 1.0
+    shrink_horizon_backup: true
+    switching_blocking_period: 0.0
+    teb_autosize: true
+    via_points_ordered: false
+    viapoints_all_candidates: true
+    visualize_hc_graph: false
+    visualize_with_time_as_z_axis_scale: 0.0
+    weight_acc_lim_theta: 1.0
+    weight_acc_lim_x: 1.0
+    weight_acc_lim_y: 1.0
+    weight_adapt_factor: 2.0
+    weight_dynamic_obstacle: 50.0
+    weight_dynamic_obstacle_inflation: 0.1
+    weight_inflation: 0.1
+    weight_kinematics_forward_drive: 1.0
+    weight_kinematics_nh: 1000.0
+    weight_kinematics_turning_radius: 1.0
+    weight_max_vel_theta: 1.0
+    weight_max_vel_x: 2.0
+    weight_max_vel_y: 2.0
+    weight_obstacle: 50.0
+    weight_optimaltime: 1.0
+    weight_shortest_path: 0.0
+    weight_viapoint: 1.0
+    wheelbase: 1.0
+    xy_goal_tolerance: 0.2
+    yaw_goal_tolerance: 0.1
+  aggressive_reset:
+    reset_distance: 1.84
+  base_global_planner: global_planner/GlobalPlanner
+  base_local_planner: teb_local_planner/TebLocalPlannerROS
+  clearing_rotation_allowed: true
+  conservative_reset:
+    reset_distance: 3.0
+  conservative_reset_dist: 3.0
+  controller_frequency: 5.0
+  controller_patience: 5.0
+  global_costmap:
+    footprint: '[]'
+    footprint_padding: 0.01
+    global_frame: map
+    height: 10
+    inflation_layer:
+      cost_scaling_factor: 10.0
+      enabled: true
+      inflate_unknown: false
+      inflation_radius: 0.55
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      max_obstacle_height: 2.0
+      observation_sources: scan
+      scan:
+        clearing: true
+        data_type: LaserScan
+        marking: true
+        topic: /scan
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - name: static_layer
+      type: costmap_2d::StaticLayer
+    - name: obstacle_layer
+      type: costmap_2d::ObstacleLayer
+    - name: inflation_layer
+      type: costmap_2d::InflationLayer
+    publish_frequency: 1.0
+    resolution: 0.05
+    robot_base_frame: base_link
+    robot_radius: 0.46
+    rolling_window: false
+    static_layer:
+      enabled: true
+    static_map: true
+    transform_tolerance: 0.3
+    update_frequency: 1.0
+    width: 10
+  local_costmap:
+    footprint: '[]'
+    footprint_padding: 0.01
+    global_frame: odom
+    height: 6
+    inflation_layer:
+      cost_scaling_factor: 10.0
+      enabled: true
+      inflate_unknown: false
+      inflation_radius: 0.55
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      max_obstacle_height: 2.0
+      observation_sources: scan
+      scan:
+        clearing: true
+        data_type: LaserScan
+        marking: true
+        topic: /scan
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - name: obstacle_layer
+      type: costmap_2d::ObstacleLayer
+    - name: inflation_layer
+      type: costmap_2d::InflationLayer
+    publish_frequency: 2.0
+    resolution: 0.05
+    robot_base_frame: base_link
+    robot_radius: 0.46
+    rolling_window: true
+    transform_tolerance: 0.3
+    update_frequency: 5.0
+    width: 6
+  make_plan_add_unreachable_goal: true
+  make_plan_clear_costmap: true
+  max_planning_retries: -1
+  oscillation_distance: 0.5
+  oscillation_timeout: 0.0
+  planner_frequency: 1.0
+  planner_patience: 5.0
+  recovery_behavior_enabled: true
+  restore_defaults: false
+  shutdown_costmaps: false
+navigation_driver:
+  camera_offset_x: 0.32
+  exploration_frequency: 0.5
+  frontier_min_dist: 0.5
+  object_timeout: 5.0
+  stop_distance: 1.0
+repeat03_cloud_to_scan:
+  angle_increment: 0.0043633
+  angle_max: 3.1415926
+  angle_min: -3.1415926
+  inf_epsilon: 1.0
+  max_height: 1.435
+  min_height: -0.515
+  range_max: 30.0
+  range_min: 0.3
+  scan_time: 0.1
+  target_frame: laser_link
+  transform_tolerance: 0.1
+  use_inf: true
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_localhost__33833: http://localhost:33833/
+    host_localhost__33975: http://localhost:33975/
+    host_localhost__35749: http://localhost:35749/
+    host_localhost__37257: http://localhost:37257/
+    host_localhost__39575: http://localhost:39575/
+rosversion: '1.17.4
+
+  '
+run_id: fec49226-946a-11f1-b8a2-59a8600949a1
+use_sim_time: true

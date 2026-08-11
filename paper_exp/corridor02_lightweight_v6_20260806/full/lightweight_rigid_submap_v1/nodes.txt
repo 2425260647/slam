@@ -1,0 +1,2 @@
+/lightweight_2d_slam
+/rosout

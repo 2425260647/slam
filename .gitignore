@@ -50,6 +50,13 @@ __pycache__/
 *.swp
 *.swo
 .~lock.*
+.deps/
+.ros_runtime/
+catkin_ws_planning_readonly/
+navigation_runtime_ws/
+planning_runtime_ws/
+src/*.zip
+cartographer_print_configuration.*.INFO.*
 
 # ROS logs and generated maps outside source control unless added explicitly
 .ros/
@@ -66,6 +73,21 @@ paper_exp/**/scan_configs/
 paper_exp/formal_corridor_*/partial_precheck/
 paper_exp/formal_corridor_*/missing_wall_stage_check/
 paper_exp/formal_corridor_*/repeat_*_clean_baseline/
+
+# Raw experiment streams and process logs remain local. Version reports,
+# metrics, maps, plots, configurations and scripts instead.
+paper_exp/**/*.bag
+paper_exp/**/*.bag.active
+paper_exp/**/*.csv
+paper_exp/**/*.stdout
+paper_exp/**/*.stderr
+paper_exp/**/*.err
+paper_exp/**/*.pid
+paper_exp/**/*.active
+paper_exp/**/ros_home/
+paper_exp/**/log/
+paper_exp/**/logs/
+paper_exp/**/map_sample.txt
 
 # Large manuscript figure exports; PNG/SVG sources remain versioned.
 docs/paper_assets/*.pdf

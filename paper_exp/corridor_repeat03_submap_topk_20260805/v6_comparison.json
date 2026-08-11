@@ -1,0 +1,119 @@
+{
+  "Cartographer": {
+    "anisotropic_constraints": null,
+    "closure_proxy_m": 0.017781593247911048,
+    "closure_yaw_proxy_rad": 0.13722436430413354,
+    "loop_constraints": null,
+    "map_audit": {
+      "free_cells": 67460,
+      "height_px": 354,
+      "known_cells": 76801,
+      "largest_component_cells": 1571,
+      "largest_component_ratio": 0.16818327802162508,
+      "map_area_m2": 1430.16,
+      "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/full/cartographer",
+      "occupied_cells": 9341,
+      "occupied_components_8_connected": 111,
+      "occupied_pca_length_ratio": 9.997011610540042,
+      "occupied_ratio_known": 0.12162602049452481,
+      "occupied_ratio_total": 0.016328592605023215,
+      "origin": [
+        -2.099349,
+        -8.686073,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 495263,
+      "width_px": 1616
+    },
+    "maximum_pose_step_m": 0.13527143531139804
+  },
+  "metric_boundary": "No continuous ground truth is present. Closure and map structure values are engineering proxies, not ATE or RPE.",
+  "v4": {
+    "anisotropic_constraints": null,
+    "closure_proxy_m": 0.14328917218564038,
+    "closure_yaw_proxy_rad": 0.15161436888003407,
+    "loop_constraints": "4",
+    "map_audit": {
+      "free_cells": 77305,
+      "height_px": 646,
+      "known_cells": 83119,
+      "largest_component_cells": 632,
+      "largest_component_ratio": 0.108703130374957,
+      "map_area_m2": 1981.6050000000005,
+      "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v4_observable",
+      "occupied_cells": 5814,
+      "occupied_components_8_connected": 961,
+      "occupied_pca_length_ratio": 3.58454353876158,
+      "occupied_ratio_known": 0.0699479060142687,
+      "occupied_ratio_total": 0.007334963325183374,
+      "origin": [
+        -13.433031,
+        -13.020734,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 709523,
+      "width_px": 1227
+    },
+    "maximum_pose_step_m": 8.39201990870234
+  },
+  "v5": {
+    "anisotropic_constraints": null,
+    "closure_proxy_m": 0.21185343154818345,
+    "closure_yaw_proxy_rad": 0.13470925040801712,
+    "loop_constraints": "4",
+    "map_audit": {
+      "free_cells": 58723,
+      "height_px": 400,
+      "known_cells": 63713,
+      "largest_component_cells": 512,
+      "largest_component_ratio": 0.10260521042084168,
+      "map_area_m2": 1438.0,
+      "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v5_scan_graph",
+      "occupied_cells": 4990,
+      "occupied_components_8_connected": 686,
+      "occupied_pca_length_ratio": 4.44893143811532,
+      "occupied_ratio_known": 0.07831996609797058,
+      "occupied_ratio_total": 0.008675243393602225,
+      "origin": [
+        -19.910064,
+        -9.336987,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 511487,
+      "width_px": 1438
+    },
+    "maximum_pose_step_m": 6.308779971137953
+  },
+  "v6": {
+    "anisotropic_constraints": "5",
+    "closure_proxy_m": 7.247617746037727,
+    "closure_yaw_proxy_rad": 0.12064950356757287,
+    "loop_constraints": "8",
+    "map_audit": {
+      "free_cells": 54371,
+      "height_px": 358,
+      "known_cells": 59664,
+      "largest_component_cells": 632,
+      "largest_component_ratio": 0.11940298507462686,
+      "map_area_m2": 1259.2650000000003,
+      "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v6_anisotropic",
+      "occupied_cells": 5293,
+      "occupied_components_8_connected": 497,
+      "occupied_pca_length_ratio": 5.538822122825148,
+      "occupied_ratio_known": 0.08871346205417002,
+      "occupied_ratio_total": 0.010508113860069168,
+      "origin": [
+        -14.034103,
+        -8.681611,
+        0.0
+      ],
+      "resolution_m": 0.05,
+      "unknown_cells": 444042,
+      "width_px": 1407
+    },
+    "maximum_pose_step_m": 1.3836990667734317
+  }
+}

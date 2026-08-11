@@ -1,0 +1,25 @@
+{
+  "protocol_version": "corridor02_mixed_20260804_v1",
+  "original_bag": "bags/Corridor02/Corridor02.bag",
+  "odom_topic_input": "/odom",
+  "overlay_topic": "/odom_injected",
+  "pointcloud_unchanged": true,
+  "ground_truth_unchanged": true,
+  "windows_sec": [[90.0, 120.0], [210.0, 240.0]],
+  "transition_sec": 2.0,
+  "profiles": {
+    "detectable_mild": {"lateral_m_per_forward_m": 0.01, "yaw_rad_per_forward_m": 0.002},
+    "detectable_medium": {"lateral_m_per_forward_m": 0.02, "yaw_rad_per_forward_m": 0.004},
+    "limit_mild": {"forward_scale": 1.05},
+    "limit_medium": {"forward_scale": 1.10}
+  },
+  "configuration_matrix": {
+    "C0": "cartographer_m3dgr_mid360_clean_baseline.lua",
+    "C1": "cartographer_m3dgr_mid360_innovation1.lua",
+    "C2": "cartographer_m3dgr_mid360_innovation2.lua",
+    "C3": "cartographer_m3dgr_mid360_full_proposed.lua"
+  },
+  "diagnostic_only_before_control": true,
+  "corridor02_continuous_ate_rpe_allowed": false,
+  "synthetic_fault_label": "controlled wheel-odometry measurement fault, not physical tire-slip ground truth"
+}

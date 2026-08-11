@@ -1,0 +1,68 @@
+{
+  "cartographer": {
+    "free_cells": 67460,
+    "height_px": 354,
+    "known_cells": 76801,
+    "largest_component_cells": 1571,
+    "largest_component_ratio": 0.16818327802162508,
+    "map_area_m2": 1430.16,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/full/cartographer",
+    "occupied_cells": 9341,
+    "occupied_components_8_connected": 111,
+    "occupied_pca_length_ratio": 9.997011610540042,
+    "occupied_ratio_known": 0.12162602049452481,
+    "occupied_ratio_total": 0.016328592605023215,
+    "origin": [
+      -2.099349,
+      -8.686073,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 495263,
+    "width_px": 1616
+  },
+  "lightweight_v6_anisotropic": {
+    "free_cells": 54371,
+    "height_px": 358,
+    "known_cells": 59664,
+    "largest_component_cells": 632,
+    "largest_component_ratio": 0.11940298507462686,
+    "map_area_m2": 1259.2650000000003,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v6_anisotropic",
+    "occupied_cells": 5293,
+    "occupied_components_8_connected": 497,
+    "occupied_pca_length_ratio": 5.538822122825148,
+    "occupied_ratio_known": 0.08871346205417002,
+    "occupied_ratio_total": 0.010508113860069168,
+    "origin": [
+      -14.034103,
+      -8.681611,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 444042,
+    "width_px": 1407
+  },
+  "lightweight_v7": {
+    "free_cells": 71499,
+    "height_px": 407,
+    "known_cells": 77426,
+    "largest_component_cells": 544,
+    "largest_component_ratio": 0.09178336426522693,
+    "map_area_m2": 1429.5875,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_submap_topk_20260805/full/lightweight_v7",
+    "occupied_cells": 5927,
+    "occupied_components_8_connected": 580,
+    "occupied_pca_length_ratio": 4.753013359370664,
+    "occupied_ratio_known": 0.07655051274765583,
+    "occupied_ratio_total": 0.010364877980536343,
+    "origin": [
+      -11.311248,
+      -10.458392,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 494409,
+    "width_px": 1405
+  }
+}

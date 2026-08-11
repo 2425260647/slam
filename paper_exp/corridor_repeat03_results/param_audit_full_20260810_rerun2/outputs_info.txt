@@ -1,0 +1,14 @@
+path:         /home/slam/slam_ws/paper_exp/corridor_repeat03_results/param_audit_full_20260810_rerun2/outputs.bag
+version:      2.0
+duration:     9:38s (578s)
+start:        Jul 24 2026 11:50:17.81 (1784865017.81)
+end:          Jul 24 2026 11:59:56.58 (1784865596.58)
+size:         246.5 MB
+messages:     56686
+compression:  lz4 [691/691 chunks; 30.38%]
+uncompressed: 808.4 MB @   1.4 MB/s
+compressed:   245.6 MB @ 434.6 KB/s (30.38%)
+types:        tf2_msgs/TFMessage             [94810edda583a504dfda3829e70d7eec]
+              visualization_msgs/MarkerArray [d155b9ce5188fbaf89745847fd5882d7]
+topics:       /constraint_list    1183 msgs    : visualization_msgs/MarkerArray
+              /tf                55503 msgs    : tf2_msgs/TFMessage

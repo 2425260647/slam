@@ -29,6 +29,8 @@ public:
     pnh_.param<double>("map_timeout", map_timeout_, 5.0);
     pnh_.param<double>("local_grid_timeout", local_grid_timeout_, 2.0);
     pnh_.param<double>("pose_window_sec", pose_window_sec_, 10.0);
+    pnh_.param<bool>("enable_static_jitter_check",
+                     enable_static_jitter_check_, false);
     pnh_.param<double>("static_jitter_warn_m", static_jitter_warn_m_, 0.08);
     pnh_.param<double>("static_yaw_warn_rad", static_yaw_warn_rad_, 0.08);
 
@@ -215,8 +217,9 @@ private:
         !require_local_grid_ ||
         (local_grid_count_ > 0 && local_age <= local_grid_timeout_);
     const bool jitter_warn =
-        poses_.size() >= 3 && (pose_span_xy > static_jitter_warn_m_ ||
-                               pose_span_yaw > static_yaw_warn_rad_);
+        enable_static_jitter_check_ && poses_.size() >= 3 &&
+        (pose_span_xy > static_jitter_warn_m_ ||
+         pose_span_yaw > static_yaw_warn_rad_);
     const bool ok = scan_ok && map_ok && local_ok && tf_ok && !jitter_warn;
 
     const int map_total = map_unknown_ + map_free_ + map_occupied_;
@@ -271,6 +274,7 @@ private:
   double map_timeout_;
   double local_grid_timeout_;
   double pose_window_sec_;
+  bool enable_static_jitter_check_;
   double static_jitter_warn_m_;
   double static_yaw_warn_rad_;
 

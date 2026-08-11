@@ -1,0 +1,32 @@
+path: paper_exp/backend_compare_20260804/cartographer_full/outputs.bag
+version: 2.0
+duration: 293.317875
+start: 1737472022.259907
+end: 1737472315.577783
+size: 31195121
+messages: 58787
+indexed: True
+compression: none
+types:
+    - type: geometry_msgs/PoseStamped
+      md5: d3812c3cbc69362b77dc0b19b345f8f5
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 5867
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 2930
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 24995
+    - topic: /tracked_pose
+      type: geometry_msgs/PoseStamped
+      messages: 24995
+

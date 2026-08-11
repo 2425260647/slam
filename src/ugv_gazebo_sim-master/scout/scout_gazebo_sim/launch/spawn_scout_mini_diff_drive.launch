@@ -5,14 +5,20 @@
   <arg name="yaw" default="0.0"/>
   <arg name="robot_namespace" default="/"/>
   <arg name="urdf_extras" default="$(find scout_gazebo_sim)/urdf/scout_mini_sim_extras.xacro"/>
+  <arg name="unpause" default="true"/>
 
   <include file="$(find scout_description)/launch/scout_mini_stock.launch">
     <arg name="robot_namespace" value="$(arg robot_namespace)"/>
     <arg name="urdf_extras" value="$(arg urdf_extras)"/>
+    <!-- The mesh contact convention is opposite to the controller joint convention. -->
+    <arg name="wheel_axis_multiplier" value="-1.0"/>
   </include>
 
-  <node name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+  <node if="$(arg unpause)" name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" output="screen"
         args="-x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -unpause -urdf -param robot_description -model scout_mini"/>
+
+  <node unless="$(arg unpause)" name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw) -urdf -param robot_description -model scout_mini"/>
 
   <rosparam file="$(find scout_control)/config/scout_mini_control.yaml" command="load"/>
 

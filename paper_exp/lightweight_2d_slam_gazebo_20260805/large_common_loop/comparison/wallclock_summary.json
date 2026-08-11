@@ -1,0 +1,22 @@
+{
+  "bag_duration_sec": 193.21,
+  "playback_topics": [
+    "/scan",
+    "/scout_mini_velocity_controller/odom",
+    "/gazebo/model_states",
+    "/tf",
+    "/tf_static"
+  ],
+  "rosbag_clock_topic_replayed": false,
+  "wall_duration_sec": {
+    "lightweight": 194.21,
+    "cartographer_clean": 194.33,
+    "gmapping": 194.29
+  },
+  "wall_to_bag_ratio": {
+    "lightweight": 1.0052,
+    "cartographer_clean": 1.0058,
+    "gmapping": 1.0056
+  },
+  "errors_seen_in_launch_logs": false
+}

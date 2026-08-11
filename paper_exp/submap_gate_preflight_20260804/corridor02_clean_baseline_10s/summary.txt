@@ -1,0 +1,8 @@
+scan_samples=99
+odom_samples=198
+tracked_pose_samples=911
+gate_blocked_samples=-1
+gate_forced_samples=-1
+map_metadata_samples=-1
+map_width=148
+map_height=764

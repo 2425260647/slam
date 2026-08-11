@@ -1,0 +1,24 @@
+{
+  "algorithm": "cartographer_clean",
+  "associated_samples": 18047,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/cartographer_clean/trajectory.csv",
+  "estimate_messages": 18049,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "max_association_delta_s": 0.07330252399992787,
+  "translation_error_m": {
+    "final": 0.025214589712542188,
+    "maximum": 0.11112273020430598,
+    "mean": 0.0443585802265436,
+    "p95": 0.07242081384083604,
+    "rmse": 0.04805361968973213
+  },
+  "truth_messages": 19315,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.0007901227389026776,
+    "maximum": 0.13849130615946623,
+    "mean": 0.012683878703765132,
+    "p95": 0.0735956212887845,
+    "rmse": 0.02520678297463172
+  }
+}

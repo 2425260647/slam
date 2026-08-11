@@ -1,0 +1,17 @@
+experiment=wheel_float02_ablation_20260803
+case=oad_v2
+config=cartographer_m3dgr_mid360_oad.lua
+bag=/home/slam/slam_ws/bags/Wheel-float02/Wheel-float02.bag
+bag_sha256=1b5479a036d3a85732dce78b67327813964cab2e2058f32b64afd1f32c4a0855
+playback_rate=1.0
+input_topics=/livox/mid360/lidar,/odom,/vrpn_client_node/UGV/pose
+imu_used=false
+avia_used=false
+official_static_tf=base_footprint->livox_frame
+projection_height_m=0.20,0.60
+start_wall_utc=2026-08-04T12:32:02Z
+git_head=78f77a66ff5c4bc9ebb7a66950b491ace8b30a19
+play_start_wall_sec=1785846724.959712003
+play_end_wall_sec=1785846877.243220098
+play_wall_duration_sec=152.283508
+end_wall_utc=2026-08-04T12:35:07Z

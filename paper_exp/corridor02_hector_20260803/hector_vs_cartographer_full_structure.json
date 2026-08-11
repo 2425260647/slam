@@ -1,0 +1,2467 @@
+{
+  "dataset": "M3DGR Corridor02",
+  "map_resolution_m": 0.0500000007451,
+  "map_pixels": {
+    "baseline": {
+      "width_cells": 2108,
+      "height_cells": 1447,
+      "occupied_cells": 18160,
+      "free_cells": 256800,
+      "unknown_cells": 2775316,
+      "occupied_ratio": 0.005953559612310493,
+      "free_ratio": 0.08418910288773869
+    },
+    "proposed": {
+      "width_cells": 2048,
+      "height_cells": 2048,
+      "occupied_cells": 13245,
+      "free_cells": 249209,
+      "unknown_cells": 3931850,
+      "occupied_ratio": 0.0031578540802001953,
+      "free_ratio": 0.05941605567932129
+    }
+  },
+  "all_detected_lines": {
+    "configuration_count": 120,
+    "minimum_line_length_m": 0.0,
+    "direction_concentration_delta": {
+      "mean": -0.03622818688575755,
+      "median": -0.031584459944283716,
+      "min": -0.12629514795049634,
+      "max": -0.012492474105329165
+    },
+    "direction_concentration_win_ratio": 0.0,
+    "angular_rmse_reduction_deg": {
+      "mean": -2.4551896735537206,
+      "median": -2.216338939232554,
+      "min": -5.572764355803499,
+      "max": -0.8886732417751118
+    },
+    "angular_rmse_win_ratio": 0.0
+  },
+  "long_walls": {
+    "configuration_count": 24,
+    "minimum_line_length_m": 6.0,
+    "direction_concentration_delta": {
+      "mean": -0.030309635206334826,
+      "median": -0.03232718796455453,
+      "min": -0.04909769014383614,
+      "max": -0.012492474105329165
+    },
+    "direction_concentration_win_ratio": 0.0,
+    "angular_rmse_reduction_deg": {
+      "mean": -2.5960577131443383,
+      "median": -2.492576245850974,
+      "min": -4.069525194091209,
+      "max": -1.5450574397762036
+    },
+    "angular_rmse_win_ratio": 0.0
+  },
+  "parameter_sweep": [
+    {
+      "threshold": 15,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 184,
+        "total_line_length_m": 466.96158976142607,
+        "direction_concentration": 0.9756463532814287,
+        "dominant_axis_mod_90_deg": 5.716529996883523,
+        "orthogonal_axis_angular_rmse_deg": 3.21124057501841
+      },
+      "proposed": {
+        "line_count": 135,
+        "total_line_length_m": 330.2591718921946,
+        "direction_concentration": 0.9598045927954377,
+        "dominant_axis_mod_90_deg": 15.407456759453785,
+        "orthogonal_axis_angular_rmse_deg": 4.099913816793522
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 230,
+        "total_line_length_m": 720.7941424152693,
+        "direction_concentration": 0.9724735835340181,
+        "dominant_axis_mod_90_deg": 5.9729758606417445,
+        "orthogonal_axis_angular_rmse_deg": 3.4434191867656425
+      },
+      "proposed": {
+        "line_count": 200,
+        "total_line_length_m": 475.0260731550533,
+        "direction_concentration": 0.9166385321046132,
+        "dominant_axis_mod_90_deg": 14.69932016300119,
+        "orthogonal_axis_angular_rmse_deg": 6.542308041739176
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 266,
+        "total_line_length_m": 892.0631416183242,
+        "direction_concentration": 0.9717386061198502,
+        "dominant_axis_mod_90_deg": 5.829121072643762,
+        "orthogonal_axis_angular_rmse_deg": 3.6359770181409607
+      },
+      "proposed": {
+        "line_count": 254,
+        "total_line_length_m": 647.8446802803269,
+        "direction_concentration": 0.8947175267189514,
+        "dominant_axis_mod_90_deg": 15.33254877437292,
+        "orthogonal_axis_angular_rmse_deg": 7.6810410496829995
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 287,
+        "total_line_length_m": 998.1271292599259,
+        "direction_concentration": 0.9454386356093667,
+        "dominant_axis_mod_90_deg": 5.608905517594979,
+        "orthogonal_axis_angular_rmse_deg": 5.30508088847042
+      },
+      "proposed": {
+        "line_count": 322,
+        "total_line_length_m": 839.6387022190125,
+        "direction_concentration": 0.8191434876588704,
+        "dominant_axis_mod_90_deg": 15.220686296048832,
+        "orthogonal_axis_angular_rmse_deg": 10.857796398437403
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 76,
+        "total_line_length_m": 330.8962879904301,
+        "direction_concentration": 0.9893483365438474,
+        "dominant_axis_mod_90_deg": 6.436893906975006,
+        "orthogonal_axis_angular_rmse_deg": 2.116307600547023
+      },
+      "proposed": {
+        "line_count": 49,
+        "total_line_length_m": 213.45852622277943,
+        "direction_concentration": 0.9614710135574752,
+        "dominant_axis_mod_90_deg": 15.84282156039512,
+        "orthogonal_axis_angular_rmse_deg": 4.006971262871011
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 113,
+        "total_line_length_m": 568.8290786963578,
+        "direction_concentration": 0.9903076882054238,
+        "dominant_axis_mod_90_deg": 6.53831386311311,
+        "orthogonal_axis_angular_rmse_deg": 2.0183645589520025
+      },
+      "proposed": {
+        "line_count": 72,
+        "total_line_length_m": 293.35939164798566,
+        "direction_concentration": 0.9501934833982489,
+        "dominant_axis_mod_90_deg": 15.602766388406407,
+        "orthogonal_axis_angular_rmse_deg": 4.792688032226358
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 136,
+        "total_line_length_m": 691.9592020969046,
+        "direction_concentration": 0.9881032302971315,
+        "dominant_axis_mod_90_deg": 6.402601962513998,
+        "orthogonal_axis_angular_rmse_deg": 2.2338496132248413
+      },
+      "proposed": {
+        "line_count": 91,
+        "total_line_length_m": 382.36616348060363,
+        "direction_concentration": 0.9493927364811892,
+        "dominant_axis_mod_90_deg": 15.938059334170287,
+        "orthogonal_axis_angular_rmse_deg": 4.844047314563548
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 149,
+        "total_line_length_m": 799.3791324594736,
+        "direction_concentration": 0.9824083077484048,
+        "dominant_axis_mod_90_deg": 6.27250765894068,
+        "orthogonal_axis_angular_rmse_deg": 2.73435008890368
+      },
+      "proposed": {
+        "line_count": 140,
+        "total_line_length_m": 575.021378025414,
+        "direction_concentration": 0.9275511786227313,
+        "dominant_axis_mod_90_deg": 15.533911636397667,
+        "orthogonal_axis_angular_rmse_deg": 6.074588363378726
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 43,
+        "total_line_length_m": 248.0748922215828,
+        "direction_concentration": 0.9915509090774692,
+        "dominant_axis_mod_90_deg": 6.71289412499465,
+        "orthogonal_axis_angular_rmse_deg": 1.8909594763359734
+      },
+      "proposed": {
+        "line_count": 31,
+        "total_line_length_m": 170.44761429256465,
+        "direction_concentration": 0.96348130458114,
+        "dominant_axis_mod_90_deg": 15.885860955313326,
+        "orthogonal_axis_angular_rmse_deg": 3.9025748280382793
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 63,
+        "total_line_length_m": 456.53012107185896,
+        "direction_concentration": 0.9938622252167846,
+        "dominant_axis_mod_90_deg": 6.695324397512312,
+        "orthogonal_axis_angular_rmse_deg": 1.6118037392469085
+      },
+      "proposed": {
+        "line_count": 36,
+        "total_line_length_m": 211.78489181719755,
+        "direction_concentration": 0.9641601017553841,
+        "dominant_axis_mod_90_deg": 15.874506452202576,
+        "orthogonal_axis_angular_rmse_deg": 3.8706912278010583
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 84,
+        "total_line_length_m": 573.4195601469473,
+        "direction_concentration": 0.9916359307712672,
+        "dominant_axis_mod_90_deg": 6.5865679744745655,
+        "orthogonal_axis_angular_rmse_deg": 1.881500369294097
+      },
+      "proposed": {
+        "line_count": 57,
+        "total_line_length_m": 309.93004534230613,
+        "direction_concentration": 0.9408265390889289,
+        "dominant_axis_mod_90_deg": 16.05302754535602,
+        "orthogonal_axis_angular_rmse_deg": 5.441877535090862
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 96,
+        "total_line_length_m": 695.0865503183065,
+        "direction_concentration": 0.9831913418743942,
+        "dominant_axis_mod_90_deg": 6.367936591510521,
+        "orthogonal_axis_angular_rmse_deg": 2.7029045762429638
+      },
+      "proposed": {
+        "line_count": 71,
+        "total_line_length_m": 403.2923789780087,
+        "direction_concentration": 0.9356581326907769,
+        "dominant_axis_mod_90_deg": 15.496242243109679,
+        "orthogonal_axis_angular_rmse_deg": 5.555920278248492
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 22,
+        "total_line_length_m": 169.2828208811031,
+        "direction_concentration": 0.9901262939463953,
+        "dominant_axis_mod_90_deg": 6.783345151089864,
+        "orthogonal_axis_angular_rmse_deg": 2.052383307286016
+      },
+      "proposed": {
+        "line_count": 18,
+        "total_line_length_m": 116.94740365807807,
+        "direction_concentration": 0.9691966707730004,
+        "dominant_axis_mod_90_deg": 16.39809826067144,
+        "orthogonal_axis_angular_rmse_deg": 3.590260525913046
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 48,
+        "total_line_length_m": 417.5285839227033,
+        "direction_concentration": 0.9940684745888362,
+        "dominant_axis_mod_90_deg": 6.736040857222704,
+        "orthogonal_axis_angular_rmse_deg": 1.5877440352458605
+      },
+      "proposed": {
+        "line_count": 24,
+        "total_line_length_m": 169.7977646682681,
+        "direction_concentration": 0.966344328531617,
+        "dominant_axis_mod_90_deg": 16.018649177648484,
+        "orthogonal_axis_angular_rmse_deg": 3.751684738700136
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 58,
+        "total_line_length_m": 482.30857848219614,
+        "direction_concentration": 0.9928108358728832,
+        "dominant_axis_mod_90_deg": 6.760670533557549,
+        "orthogonal_axis_angular_rmse_deg": 1.7500278315785462
+      },
+      "proposed": {
+        "line_count": 31,
+        "total_line_length_m": 219.2885615285112,
+        "direction_concentration": 0.9632418927383679,
+        "dominant_axis_mod_90_deg": 16.157376687857347,
+        "orthogonal_axis_angular_rmse_deg": 3.9246532200050575
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 69,
+        "total_line_length_m": 607.0563393752734,
+        "direction_concentration": 0.9932471869609766,
+        "dominant_axis_mod_90_deg": 6.673114734879889,
+        "orthogonal_axis_angular_rmse_deg": 1.6929932421941385
+      },
+      "proposed": {
+        "line_count": 42,
+        "total_line_length_m": 300.41036952920143,
+        "direction_concentration": 0.9330243207694293,
+        "dominant_axis_mod_90_deg": 15.688662973194988,
+        "orthogonal_axis_angular_rmse_deg": 5.725738319294629
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 14,
+        "total_line_length_m": 140.12823060693455,
+        "direction_concentration": 0.999336021391718,
+        "dominant_axis_mod_90_deg": 7.257009907678834,
+        "orthogonal_axis_angular_rmse_deg": 0.5221061588527667
+      },
+      "proposed": {
+        "line_count": 9,
+        "total_line_length_m": 75.08398386117355,
+        "direction_concentration": 0.9747913629923269,
+        "dominant_axis_mod_90_deg": 16.74077239981521,
+        "orthogonal_axis_angular_rmse_deg": 3.2368514954658747
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 26,
+        "total_line_length_m": 308.69290535831294,
+        "direction_concentration": 0.99834890425324,
+        "dominant_axis_mod_90_deg": 7.016188148245292,
+        "orthogonal_axis_angular_rmse_deg": 0.8237598102627828
+      },
+      "proposed": {
+        "line_count": 16,
+        "total_line_length_m": 128.6973470590235,
+        "direction_concentration": 0.9617882796186737,
+        "dominant_axis_mod_90_deg": 15.832045403992861,
+        "orthogonal_axis_angular_rmse_deg": 3.9969532284964697
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 32,
+        "total_line_length_m": 370.3716876833426,
+        "direction_concentration": 0.990666882294343,
+        "dominant_axis_mod_90_deg": 6.751400127287988,
+        "orthogonal_axis_angular_rmse_deg": 1.9973654306670983
+      },
+      "proposed": {
+        "line_count": 18,
+        "total_line_length_m": 154.53997006211168,
+        "direction_concentration": 0.9620320077821947,
+        "dominant_axis_mod_90_deg": 15.84510576132679,
+        "orthogonal_axis_angular_rmse_deg": 3.9821658000200317
+      }
+    },
+    {
+      "threshold": 15,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 40,
+        "total_line_length_m": 471.1526309815944,
+        "direction_concentration": 0.9917919536714159,
+        "dominant_axis_mod_90_deg": 6.653693466609817,
+        "orthogonal_axis_angular_rmse_deg": 1.8681181731389849
+      },
+      "proposed": {
+        "line_count": 22,
+        "total_line_length_m": 194.74020586818787,
+        "direction_concentration": 0.9597638303776632,
+        "dominant_axis_mod_90_deg": 15.8635415030852,
+        "orthogonal_axis_angular_rmse_deg": 4.100462859629714
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 196,
+        "total_line_length_m": 489.21706611245526,
+        "direction_concentration": 0.9777775631514319,
+        "dominant_axis_mod_90_deg": 5.6881886928650465,
+        "orthogonal_axis_angular_rmse_deg": 3.0643418266032754
+      },
+      "proposed": {
+        "line_count": 136,
+        "total_line_length_m": 330.65649291143717,
+        "direction_concentration": 0.9490674517114205,
+        "dominant_axis_mod_90_deg": 15.154125479349846,
+        "orthogonal_axis_angular_rmse_deg": 4.7314049701644985
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 230,
+        "total_line_length_m": 758.8048437007682,
+        "direction_concentration": 0.9756851385700419,
+        "dominant_axis_mod_90_deg": 6.091714221570122,
+        "orthogonal_axis_angular_rmse_deg": 3.491256293645757
+      },
+      "proposed": {
+        "line_count": 206,
+        "total_line_length_m": 494.05410222560323,
+        "direction_concentration": 0.919071179622178,
+        "dominant_axis_mod_90_deg": 15.06605879177167,
+        "orthogonal_axis_angular_rmse_deg": 6.795400986404183
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 236,
+        "total_line_length_m": 869.2752875865781,
+        "direction_concentration": 0.9702436061784154,
+        "dominant_axis_mod_90_deg": 5.8746244611247,
+        "orthogonal_axis_angular_rmse_deg": 3.798266081132894
+      },
+      "proposed": {
+        "line_count": 252,
+        "total_line_length_m": 639.9776041154323,
+        "direction_concentration": 0.887147352606422,
+        "dominant_axis_mod_90_deg": 15.42224766935126,
+        "orthogonal_axis_angular_rmse_deg": 8.039735900754788
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 243,
+        "total_line_length_m": 980.308790802191,
+        "direction_concentration": 0.9656972538787337,
+        "dominant_axis_mod_90_deg": 5.5069126807163915,
+        "orthogonal_axis_angular_rmse_deg": 3.9772523759256506
+      },
+      "proposed": {
+        "line_count": 282,
+        "total_line_length_m": 779.0173011580076,
+        "direction_concentration": 0.8585819751728073,
+        "dominant_axis_mod_90_deg": 15.021472814826057,
+        "orthogonal_axis_angular_rmse_deg": 9.55001673172915
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 77,
+        "total_line_length_m": 343.5095635250406,
+        "direction_concentration": 0.9883036863694106,
+        "dominant_axis_mod_90_deg": 6.592356972622148,
+        "orthogonal_axis_angular_rmse_deg": 2.2232825208387674
+      },
+      "proposed": {
+        "line_count": 49,
+        "total_line_length_m": 207.32775715097452,
+        "direction_concentration": 0.9595165958488551,
+        "dominant_axis_mod_90_deg": 15.58051820432918,
+        "orthogonal_axis_angular_rmse_deg": 4.109842319940013
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 112,
+        "total_line_length_m": 585.8393558798842,
+        "direction_concentration": 0.9880039506161096,
+        "dominant_axis_mod_90_deg": 6.718232753881262,
+        "orthogonal_axis_angular_rmse_deg": 2.2556389732760405
+      },
+      "proposed": {
+        "line_count": 73,
+        "total_line_length_m": 301.8837163321008,
+        "direction_concentration": 0.959173649138626,
+        "dominant_axis_mod_90_deg": 15.589808659587234,
+        "orthogonal_axis_angular_rmse_deg": 4.125572208817914
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 130,
+        "total_line_length_m": 717.0095147763656,
+        "direction_concentration": 0.9868222998926297,
+        "dominant_axis_mod_90_deg": 6.267245464896613,
+        "orthogonal_axis_angular_rmse_deg": 2.3580169049335273
+      },
+      "proposed": {
+        "line_count": 104,
+        "total_line_length_m": 418.6307699267515,
+        "direction_concentration": 0.9371301356155054,
+        "dominant_axis_mod_90_deg": 15.507482757208372,
+        "orthogonal_axis_angular_rmse_deg": 5.537252412420437
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 145,
+        "total_line_length_m": 867.1434598774576,
+        "direction_concentration": 0.9797503950363833,
+        "dominant_axis_mod_90_deg": 6.0849797736160065,
+        "orthogonal_axis_angular_rmse_deg": 2.9545800576378656
+      },
+      "proposed": {
+        "line_count": 139,
+        "total_line_length_m": 584.0724696244911,
+        "direction_concentration": 0.9352800078222139,
+        "dominant_axis_mod_90_deg": 15.446719022219384,
+        "orthogonal_axis_angular_rmse_deg": 5.463215267057426
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 38,
+        "total_line_length_m": 243.948754068537,
+        "direction_concentration": 0.9914415485905004,
+        "dominant_axis_mod_90_deg": 6.821004140750039,
+        "orthogonal_axis_angular_rmse_deg": 1.9148468423584948
+      },
+      "proposed": {
+        "line_count": 29,
+        "total_line_length_m": 156.86634753254543,
+        "direction_concentration": 0.9650204291026075,
+        "dominant_axis_mod_90_deg": 16.201176413146875,
+        "orthogonal_axis_angular_rmse_deg": 3.830495211621394
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 61,
+        "total_line_length_m": 471.3843150087338,
+        "direction_concentration": 0.9945302750543793,
+        "dominant_axis_mod_90_deg": 6.9182451357560195,
+        "orthogonal_axis_angular_rmse_deg": 1.5254071569854142
+      },
+      "proposed": {
+        "line_count": 38,
+        "total_line_length_m": 215.78065086919918,
+        "direction_concentration": 0.9618981270716246,
+        "dominant_axis_mod_90_deg": 15.884227411725435,
+        "orthogonal_axis_angular_rmse_deg": 3.989670328846539
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 78,
+        "total_line_length_m": 590.575427208592,
+        "direction_concentration": 0.9912130957415453,
+        "dominant_axis_mod_90_deg": 6.559126026370062,
+        "orthogonal_axis_angular_rmse_deg": 1.9221655618268296
+      },
+      "proposed": {
+        "line_count": 50,
+        "total_line_length_m": 273.072012748795,
+        "direction_concentration": 0.9419552319428551,
+        "dominant_axis_mod_90_deg": 15.900741705296364,
+        "orthogonal_axis_angular_rmse_deg": 5.390709770501941
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 89,
+        "total_line_length_m": 743.5693129343376,
+        "direction_concentration": 0.9876193293460799,
+        "dominant_axis_mod_90_deg": 6.391573440992392,
+        "orthogonal_axis_angular_rmse_deg": 2.287558395523475
+      },
+      "proposed": {
+        "line_count": 76,
+        "total_line_length_m": 447.34415381978494,
+        "direction_concentration": 0.9395953315517365,
+        "dominant_axis_mod_90_deg": 15.632016546874704,
+        "orthogonal_axis_angular_rmse_deg": 5.337341504166264
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 25,
+        "total_line_length_m": 204.7258116313708,
+        "direction_concentration": 0.9904459835733903,
+        "dominant_axis_mod_90_deg": 6.851226296250471,
+        "orthogonal_axis_angular_rmse_deg": 2.0263350043121364
+      },
+      "proposed": {
+        "line_count": 19,
+        "total_line_length_m": 122.11025944001202,
+        "direction_concentration": 0.9714958609757885,
+        "dominant_axis_mod_90_deg": 16.668691058050317,
+        "orthogonal_axis_angular_rmse_deg": 3.4572093994521675
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 46,
+        "total_line_length_m": 428.15004644940046,
+        "direction_concentration": 0.9941983479892168,
+        "dominant_axis_mod_90_deg": 7.013972290625801,
+        "orthogonal_axis_angular_rmse_deg": 1.5729960023344112
+      },
+      "proposed": {
+        "line_count": 23,
+        "total_line_length_m": 153.9066684843917,
+        "direction_concentration": 0.9709931720560253,
+        "dominant_axis_mod_90_deg": 16.481080618840235,
+        "orthogonal_axis_angular_rmse_deg": 3.483141671196152
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 58,
+        "total_line_length_m": 512.6156244397108,
+        "direction_concentration": 0.994061294129739,
+        "dominant_axis_mod_90_deg": 6.827048459749203,
+        "orthogonal_axis_angular_rmse_deg": 1.585137385169057
+      },
+      "proposed": {
+        "line_count": 27,
+        "total_line_length_m": 195.95891827886678,
+        "direction_concentration": 0.9588255296130728,
+        "dominant_axis_mod_90_deg": 15.995378240086113,
+        "orthogonal_axis_angular_rmse_deg": 4.159403890431771
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 69,
+        "total_line_length_m": 653.811486148259,
+        "direction_concentration": 0.9908163890069689,
+        "dominant_axis_mod_90_deg": 6.6174687464961055,
+        "orthogonal_axis_angular_rmse_deg": 1.974012038040912
+      },
+      "proposed": {
+        "line_count": 52,
+        "total_line_length_m": 352.94906453001875,
+        "direction_concentration": 0.9379701223187236,
+        "dominant_axis_mod_90_deg": 15.49343388260468,
+        "orthogonal_axis_angular_rmse_deg": 5.4688190006344595
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 17,
+        "total_line_length_m": 170.20379869461567,
+        "direction_concentration": 0.9991202398026631,
+        "dominant_axis_mod_90_deg": 7.206629770315337,
+        "orthogonal_axis_angular_rmse_deg": 0.6009978686900141
+      },
+      "proposed": {
+        "line_count": 8,
+        "total_line_length_m": 70.15356438211835,
+        "direction_concentration": 0.985435536048456,
+        "dominant_axis_mod_90_deg": 17.375677027055588,
+        "orthogonal_axis_angular_rmse_deg": 2.4661206657147825
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 29,
+        "total_line_length_m": 347.0860583235199,
+        "direction_concentration": 0.9989479997421984,
+        "dominant_axis_mod_90_deg": 7.300372844567382,
+        "orthogonal_axis_angular_rmse_deg": 0.6573550927041515
+      },
+      "proposed": {
+        "line_count": 12,
+        "total_line_length_m": 102.17406823075294,
+        "direction_concentration": 0.9805934184261708,
+        "dominant_axis_mod_90_deg": 17.014691321333874,
+        "orthogonal_axis_angular_rmse_deg": 2.8477403471026665
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 36,
+        "total_line_length_m": 410.9435143881433,
+        "direction_concentration": 0.9984108102075478,
+        "dominant_axis_mod_90_deg": 7.045701028776702,
+        "orthogonal_axis_angular_rmse_deg": 0.8078243649807544
+      },
+      "proposed": {
+        "line_count": 17,
+        "total_line_length_m": 148.52320974868954,
+        "direction_concentration": 0.9522995897619823,
+        "dominant_axis_mod_90_deg": 15.634423535505453,
+        "orthogonal_axis_angular_rmse_deg": 4.473367314762467
+      }
+    },
+    {
+      "threshold": 20,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 40,
+        "total_line_length_m": 526.5093750671327,
+        "direction_concentration": 0.9917915329880064,
+        "dominant_axis_mod_90_deg": 6.755344001195997,
+        "orthogonal_axis_angular_rmse_deg": 1.8699425092119162
+      },
+      "proposed": {
+        "line_count": 24,
+        "total_line_length_m": 225.84286273841835,
+        "direction_concentration": 0.9552130607695202,
+        "dominant_axis_mod_90_deg": 15.723639323954082,
+        "orthogonal_axis_angular_rmse_deg": 4.330575876233326
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 193,
+        "total_line_length_m": 503.6423848640802,
+        "direction_concentration": 0.9780342305439385,
+        "dominant_axis_mod_90_deg": 5.737840277330858,
+        "orthogonal_axis_angular_rmse_deg": 3.0471088637944854
+      },
+      "proposed": {
+        "line_count": 151,
+        "total_line_length_m": 354.66345016642106,
+        "direction_concentration": 0.939039144250302,
+        "dominant_axis_mod_90_deg": 15.34174160788515,
+        "orthogonal_axis_angular_rmse_deg": 5.196613546896513
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 218,
+        "total_line_length_m": 722.5541116976403,
+        "direction_concentration": 0.9792872005563974,
+        "dominant_axis_mod_90_deg": 5.877157566325948,
+        "orthogonal_axis_angular_rmse_deg": 2.9500597194855973
+      },
+      "proposed": {
+        "line_count": 197,
+        "total_line_length_m": 480.2769967244982,
+        "direction_concentration": 0.9256504023892403,
+        "dominant_axis_mod_90_deg": 14.76015622586774,
+        "orthogonal_axis_angular_rmse_deg": 6.038739516680795
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 225,
+        "total_line_length_m": 834.4530629983042,
+        "direction_concentration": 0.968711820318265,
+        "dominant_axis_mod_90_deg": 5.732373034158599,
+        "orthogonal_axis_angular_rmse_deg": 4.024384905381746
+      },
+      "proposed": {
+        "line_count": 231,
+        "total_line_length_m": 600.1913110070362,
+        "direction_concentration": 0.9144704415395882,
+        "dominant_axis_mod_90_deg": 15.037959560336105,
+        "orthogonal_axis_angular_rmse_deg": 6.796507637615924
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 224,
+        "total_line_length_m": 944.2147827346413,
+        "direction_concentration": 0.9686060176471349,
+        "dominant_axis_mod_90_deg": 5.78839847992559,
+        "orthogonal_axis_angular_rmse_deg": 3.793518721038662
+      },
+      "proposed": {
+        "line_count": 242,
+        "total_line_length_m": 720.1865846720742,
+        "direction_concentration": 0.8992643256536865,
+        "dominant_axis_mod_90_deg": 14.9155677528554,
+        "orthogonal_axis_angular_rmse_deg": 7.418765671021476
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 75,
+        "total_line_length_m": 335.20610805052365,
+        "direction_concentration": 0.9870703897329339,
+        "dominant_axis_mod_90_deg": 6.413390377546744,
+        "orthogonal_axis_angular_rmse_deg": 2.3366788942390464
+      },
+      "proposed": {
+        "line_count": 40,
+        "total_line_length_m": 165.5051013592194,
+        "direction_concentration": 0.9608674444283468,
+        "dominant_axis_mod_90_deg": 15.479231380095792,
+        "orthogonal_axis_angular_rmse_deg": 4.042421440226827
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 114,
+        "total_line_length_m": 580.0320643605356,
+        "direction_concentration": 0.9891359327038574,
+        "dominant_axis_mod_90_deg": 6.436761254272679,
+        "orthogonal_axis_angular_rmse_deg": 2.1407112801848407
+      },
+      "proposed": {
+        "line_count": 74,
+        "total_line_length_m": 288.9314485976244,
+        "direction_concentration": 0.9570219908189493,
+        "dominant_axis_mod_90_deg": 15.502000343116197,
+        "orthogonal_axis_angular_rmse_deg": 4.266018669260671
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 130,
+        "total_line_length_m": 705.0376197297063,
+        "direction_concentration": 0.9856842280863508,
+        "dominant_axis_mod_90_deg": 6.168751993850639,
+        "orthogonal_axis_angular_rmse_deg": 2.454543521191124
+      },
+      "proposed": {
+        "line_count": 101,
+        "total_line_length_m": 406.49466920205134,
+        "direction_concentration": 0.9445355555306907,
+        "dominant_axis_mod_90_deg": 15.118613621759428,
+        "orthogonal_axis_angular_rmse_deg": 5.078383944703011
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 145,
+        "total_line_length_m": 849.9556798909769,
+        "direction_concentration": 0.9829613268580598,
+        "dominant_axis_mod_90_deg": 6.169112673648212,
+        "orthogonal_axis_angular_rmse_deg": 2.6843447647257497
+      },
+      "proposed": {
+        "line_count": 140,
+        "total_line_length_m": 581.0144744708927,
+        "direction_concentration": 0.9227472489882271,
+        "dominant_axis_mod_90_deg": 15.49714792852362,
+        "orthogonal_axis_angular_rmse_deg": 6.235632043892883
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 40,
+        "total_line_length_m": 251.34375952061285,
+        "direction_concentration": 0.9952358890452445,
+        "dominant_axis_mod_90_deg": 6.808539091936941,
+        "orthogonal_axis_angular_rmse_deg": 1.413146896105243
+      },
+      "proposed": {
+        "line_count": 22,
+        "total_line_length_m": 123.38600839530375,
+        "direction_concentration": 0.9655878027452034,
+        "dominant_axis_mod_90_deg": 15.966047946451681,
+        "orthogonal_axis_angular_rmse_deg": 3.7908625009620778
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 64,
+        "total_line_length_m": 457.43011805785875,
+        "direction_concentration": 0.9889618549912925,
+        "dominant_axis_mod_90_deg": 6.601683162560327,
+        "orthogonal_axis_angular_rmse_deg": 2.1737328654421586
+      },
+      "proposed": {
+        "line_count": 36,
+        "total_line_length_m": 202.09776167646208,
+        "direction_concentration": 0.9680480764969656,
+        "dominant_axis_mod_90_deg": 16.13001097990605,
+        "orthogonal_axis_angular_rmse_deg": 3.655380850609686
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 73,
+        "total_line_length_m": 543.6045755513783,
+        "direction_concentration": 0.9893706733213684,
+        "dominant_axis_mod_90_deg": 6.516705795875808,
+        "orthogonal_axis_angular_rmse_deg": 2.1264237892659485
+      },
+      "proposed": {
+        "line_count": 49,
+        "total_line_length_m": 278.3705931620117,
+        "direction_concentration": 0.9388547340044114,
+        "dominant_axis_mod_90_deg": 15.855458946138377,
+        "orthogonal_axis_angular_rmse_deg": 5.570766184039218
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 90,
+        "total_line_length_m": 711.6455028391174,
+        "direction_concentration": 0.986753753915066,
+        "dominant_axis_mod_90_deg": 6.326165403301742,
+        "orthogonal_axis_angular_rmse_deg": 2.363400141119268
+      },
+      "proposed": {
+        "line_count": 69,
+        "total_line_length_m": 401.2514197231068,
+        "direction_concentration": 0.9397024355204002,
+        "dominant_axis_mod_90_deg": 15.235192038107058,
+        "orthogonal_axis_angular_rmse_deg": 5.301023436380865
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 26,
+        "total_line_length_m": 205.05800648211093,
+        "direction_concentration": 0.9982840501401392,
+        "dominant_axis_mod_90_deg": 7.0183214553988815,
+        "orthogonal_axis_angular_rmse_deg": 0.8398039946861391
+      },
+      "proposed": {
+        "line_count": 14,
+        "total_line_length_m": 97.88622266118999,
+        "direction_concentration": 0.9754690444319579,
+        "dominant_axis_mod_90_deg": 16.350936770672615,
+        "orthogonal_axis_angular_rmse_deg": 3.196642752268643
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 43,
+        "total_line_length_m": 382.99787084282303,
+        "direction_concentration": 0.99808674772199,
+        "dominant_axis_mod_90_deg": 6.997716715426912,
+        "orthogonal_axis_angular_rmse_deg": 0.8867761278504023
+      },
+      "proposed": {
+        "line_count": 24,
+        "total_line_length_m": 163.5521133132804,
+        "direction_concentration": 0.967568377937517,
+        "dominant_axis_mod_90_deg": 16.30190739966797,
+        "orthogonal_axis_angular_rmse_deg": 3.68705867523416
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 54,
+        "total_line_length_m": 482.23586428112935,
+        "direction_concentration": 0.9909764660175219,
+        "dominant_axis_mod_90_deg": 6.6859726302388935,
+        "orthogonal_axis_angular_rmse_deg": 1.965912684730777
+      },
+      "proposed": {
+        "line_count": 31,
+        "total_line_length_m": 211.62295259264886,
+        "direction_concentration": 0.9633989409889935,
+        "dominant_axis_mod_90_deg": 15.962904988489774,
+        "orthogonal_axis_angular_rmse_deg": 3.9131043249216875
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 64,
+        "total_line_length_m": 632.9388613623446,
+        "direction_concentration": 0.9898080413851091,
+        "dominant_axis_mod_90_deg": 6.570315689329802,
+        "orthogonal_axis_angular_rmse_deg": 2.08005075247374
+      },
+      "proposed": {
+        "line_count": 45,
+        "total_line_length_m": 312.42123810740804,
+        "direction_concentration": 0.9587942057263019,
+        "dominant_axis_mod_90_deg": 15.568578034416639,
+        "orthogonal_axis_angular_rmse_deg": 4.145716406990875
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 15,
+        "total_line_length_m": 156.51991775529942,
+        "direction_concentration": 0.9993801778270834,
+        "dominant_axis_mod_90_deg": 7.286337385576751,
+        "orthogonal_axis_angular_rmse_deg": 0.5044494997867587
+      },
+      "proposed": {
+        "line_count": 7,
+        "total_line_length_m": 64.48795783950368,
+        "direction_concentration": 0.9868877037217543,
+        "dominant_axis_mod_90_deg": 17.081785248137084,
+        "orthogonal_axis_angular_rmse_deg": 2.340228754281187
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 27,
+        "total_line_length_m": 320.9351612987955,
+        "direction_concentration": 0.9990377964741329,
+        "dominant_axis_mod_90_deg": 7.250499653886524,
+        "orthogonal_axis_angular_rmse_deg": 0.6287496791314635
+      },
+      "proposed": {
+        "line_count": 13,
+        "total_line_length_m": 111.57729192089366,
+        "direction_concentration": 0.9614751461519462,
+        "dominant_axis_mod_90_deg": 16.05351661719771,
+        "orthogonal_axis_angular_rmse_deg": 4.01863635634626
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 28,
+        "total_line_length_m": 361.68425724662285,
+        "direction_concentration": 0.99816828963129,
+        "dominant_axis_mod_90_deg": 6.997101823812663,
+        "orthogonal_axis_angular_rmse_deg": 0.8676340378836339
+      },
+      "proposed": {
+        "line_count": 16,
+        "total_line_length_m": 139.90275444104552,
+        "direction_concentration": 0.9628608386315171,
+        "dominant_axis_mod_90_deg": 16.010901147260494,
+        "orthogonal_axis_angular_rmse_deg": 3.942318635913713
+      }
+    },
+    {
+      "threshold": 25,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 34,
+        "total_line_length_m": 470.3110478666743,
+        "direction_concentration": 0.9922115574821737,
+        "dominant_axis_mod_90_deg": 6.838299164370176,
+        "orthogonal_axis_angular_rmse_deg": 1.822924231013811
+      },
+      "proposed": {
+        "line_count": 20,
+        "total_line_length_m": 198.59244608191253,
+        "direction_concentration": 0.9595853048468174,
+        "dominant_axis_mod_90_deg": 15.917857697447442,
+        "orthogonal_axis_angular_rmse_deg": 4.114946881045225
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 195,
+        "total_line_length_m": 493.9177139076375,
+        "direction_concentration": 0.9804767667292544,
+        "dominant_axis_mod_90_deg": 5.80738017893917,
+        "orthogonal_axis_angular_rmse_deg": 2.893364212434874
+      },
+      "proposed": {
+        "line_count": 141,
+        "total_line_length_m": 340.4748060906515,
+        "direction_concentration": 0.9517674369956839,
+        "dominant_axis_mod_90_deg": 15.355323802140749,
+        "orthogonal_axis_angular_rmse_deg": 4.6324917349066705
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 213,
+        "total_line_length_m": 738.1609677255975,
+        "direction_concentration": 0.9730527713454058,
+        "dominant_axis_mod_90_deg": 5.7831434533162875,
+        "orthogonal_axis_angular_rmse_deg": 3.6657419416785273
+      },
+      "proposed": {
+        "line_count": 185,
+        "total_line_length_m": 467.5423977183309,
+        "direction_concentration": 0.9334892825156583,
+        "dominant_axis_mod_90_deg": 15.327565253257731,
+        "orthogonal_axis_angular_rmse_deg": 5.813197857277347
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 206,
+        "total_line_length_m": 806.9841563281994,
+        "direction_concentration": 0.972957894860986,
+        "dominant_axis_mod_90_deg": 5.821798160675847,
+        "orthogonal_axis_angular_rmse_deg": 3.6603448366618694
+      },
+      "proposed": {
+        "line_count": 212,
+        "total_line_length_m": 571.5284135633648,
+        "direction_concentration": 0.9139181629568005,
+        "dominant_axis_mod_90_deg": 15.152522478553276,
+        "orthogonal_axis_angular_rmse_deg": 6.920184582194094
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 218,
+        "total_line_length_m": 924.5108867638111,
+        "direction_concentration": 0.9699092996051163,
+        "dominant_axis_mod_90_deg": 5.508630470243052,
+        "orthogonal_axis_angular_rmse_deg": 3.5830707721617503
+      },
+      "proposed": {
+        "line_count": 213,
+        "total_line_length_m": 661.1737686017892,
+        "direction_concentration": 0.9039286176563534,
+        "dominant_axis_mod_90_deg": 15.150333759830511,
+        "orthogonal_axis_angular_rmse_deg": 7.390432424598174
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 85,
+        "total_line_length_m": 358.92384952323596,
+        "direction_concentration": 0.9866413252096408,
+        "dominant_axis_mod_90_deg": 6.2560385167076715,
+        "orthogonal_axis_angular_rmse_deg": 2.375204060846896
+      },
+      "proposed": {
+        "line_count": 47,
+        "total_line_length_m": 204.52870836829422,
+        "direction_concentration": 0.9696768749066779,
+        "dominant_axis_mod_90_deg": 16.280335831546363,
+        "orthogonal_axis_angular_rmse_deg": 3.5619668368287023
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 124,
+        "total_line_length_m": 611.460514435221,
+        "direction_concentration": 0.9857854422822283,
+        "dominant_axis_mod_90_deg": 6.3012602806106015,
+        "orthogonal_axis_angular_rmse_deg": 2.4638309724866403
+      },
+      "proposed": {
+        "line_count": 73,
+        "total_line_length_m": 297.85760691977214,
+        "direction_concentration": 0.9451331077908517,
+        "dominant_axis_mod_90_deg": 15.379665284894715,
+        "orthogonal_axis_angular_rmse_deg": 5.067803291039039
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 131,
+        "total_line_length_m": 709.989132971346,
+        "direction_concentration": 0.9864807805798724,
+        "dominant_axis_mod_90_deg": 6.455146852291507,
+        "orthogonal_axis_angular_rmse_deg": 2.3976169389096182
+      },
+      "proposed": {
+        "line_count": 94,
+        "total_line_length_m": 380.4837402993989,
+        "direction_concentration": 0.9386023315809428,
+        "dominant_axis_mod_90_deg": 15.47501791190936,
+        "orthogonal_axis_angular_rmse_deg": 5.3752515520147615
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 134,
+        "total_line_length_m": 812.6118750733204,
+        "direction_concentration": 0.9834463487072999,
+        "dominant_axis_mod_90_deg": 6.1354488001833865,
+        "orthogonal_axis_angular_rmse_deg": 2.6492323881509536
+      },
+      "proposed": {
+        "line_count": 127,
+        "total_line_length_m": 547.9731411176919,
+        "direction_concentration": 0.9419476645384006,
+        "dominant_axis_mod_90_deg": 15.334916979369943,
+        "orthogonal_axis_angular_rmse_deg": 5.118493379757575
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 44,
+        "total_line_length_m": 251.6991728110596,
+        "direction_concentration": 0.9868916627014113,
+        "dominant_axis_mod_90_deg": 6.36983863411639,
+        "orthogonal_axis_angular_rmse_deg": 2.3626472155421254
+      },
+      "proposed": {
+        "line_count": 24,
+        "total_line_length_m": 143.98079182161808,
+        "direction_concentration": 0.9708889957314288,
+        "dominant_axis_mod_90_deg": 16.550594766358827,
+        "orthogonal_axis_angular_rmse_deg": 3.4962477792751043
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 71,
+        "total_line_length_m": 480.15428130818975,
+        "direction_concentration": 0.9916413906599552,
+        "dominant_axis_mod_90_deg": 6.584760054908559,
+        "orthogonal_axis_angular_rmse_deg": 1.8856224065827958
+      },
+      "proposed": {
+        "line_count": 32,
+        "total_line_length_m": 202.68494869414022,
+        "direction_concentration": 0.9615304835178052,
+        "dominant_axis_mod_90_deg": 15.753396157244028,
+        "orthogonal_axis_angular_rmse_deg": 4.007506943652753
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 76,
+        "total_line_length_m": 561.5645615038816,
+        "direction_concentration": 0.9896173204571153,
+        "dominant_axis_mod_90_deg": 6.5097877881074115,
+        "orthogonal_axis_angular_rmse_deg": 2.103335619855535
+      },
+      "proposed": {
+        "line_count": 47,
+        "total_line_length_m": 272.63697769883925,
+        "direction_concentration": 0.9414961109748746,
+        "dominant_axis_mod_90_deg": 15.585598448180304,
+        "orthogonal_axis_angular_rmse_deg": 5.357434792203848
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 90,
+        "total_line_length_m": 710.366583876671,
+        "direction_concentration": 0.9859929333610046,
+        "dominant_axis_mod_90_deg": 6.2149882575144595,
+        "orthogonal_axis_angular_rmse_deg": 2.4397160609163677
+      },
+      "proposed": {
+        "line_count": 79,
+        "total_line_length_m": 445.3998722057009,
+        "direction_concentration": 0.9354901620884113,
+        "dominant_axis_mod_90_deg": 15.436642106718718,
+        "orthogonal_axis_angular_rmse_deg": 5.549891548651255
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 23,
+        "total_line_length_m": 184.01017850015538,
+        "direction_concentration": 0.9979983842688721,
+        "dominant_axis_mod_90_deg": 7.040663535782281,
+        "orthogonal_axis_angular_rmse_deg": 0.9069215572106963
+      },
+      "proposed": {
+        "line_count": 19,
+        "total_line_length_m": 128.39031688233908,
+        "direction_concentration": 0.9774013682808015,
+        "dominant_axis_mod_90_deg": 16.819491950715708,
+        "orthogonal_axis_angular_rmse_deg": 3.0795949348794185
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 43,
+        "total_line_length_m": 392.4510961375857,
+        "direction_concentration": 0.9986187783885349,
+        "dominant_axis_mod_90_deg": 6.930826166936084,
+        "orthogonal_axis_angular_rmse_deg": 0.75349802020299
+      },
+      "proposed": {
+        "line_count": 26,
+        "total_line_length_m": 183.60282014620225,
+        "direction_concentration": 0.9595883930987706,
+        "dominant_axis_mod_90_deg": 15.76299168169812,
+        "orthogonal_axis_angular_rmse_deg": 4.111378797602771
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 54,
+        "total_line_length_m": 493.6371499953017,
+        "direction_concentration": 0.9911993149182864,
+        "dominant_axis_mod_90_deg": 6.6615031285785475,
+        "orthogonal_axis_angular_rmse_deg": 1.9441299148201772
+      },
+      "proposed": {
+        "line_count": 32,
+        "total_line_length_m": 220.54777075499945,
+        "direction_concentration": 0.9617659902053075,
+        "dominant_axis_mod_90_deg": 15.862110305033683,
+        "orthogonal_axis_angular_rmse_deg": 3.999854045408563
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 60,
+        "total_line_length_m": 600.6853768903601,
+        "direction_concentration": 0.989486862228119,
+        "dominant_axis_mod_90_deg": 6.501847289464425,
+        "orthogonal_axis_angular_rmse_deg": 2.123051604142781
+      },
+      "proposed": {
+        "line_count": 49,
+        "total_line_length_m": 333.93959818546546,
+        "direction_concentration": 0.961188310620782,
+        "dominant_axis_mod_90_deg": 15.519704338008088,
+        "orthogonal_axis_angular_rmse_deg": 4.022058225626113
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 9,
+        "total_line_length_m": 105.36978867165914,
+        "direction_concentration": 0.9987134350699196,
+        "dominant_axis_mod_90_deg": 7.115298739238887,
+        "orthogonal_axis_angular_rmse_deg": 0.7269328010400427
+      },
+      "proposed": {
+        "line_count": 9,
+        "total_line_length_m": 83.7665221692456,
+        "direction_concentration": 0.9862174239221401,
+        "dominant_axis_mod_90_deg": 17.224191429658923,
+        "orthogonal_axis_angular_rmse_deg": 2.39728167663939
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 26,
+        "total_line_length_m": 317.13076742740316,
+        "direction_concentration": 0.9994396505306932,
+        "dominant_axis_mod_90_deg": 7.15522254366528,
+        "orthogonal_axis_angular_rmse_deg": 0.4796600988151255
+      },
+      "proposed": {
+        "line_count": 13,
+        "total_line_length_m": 121.28402838751873,
+        "direction_concentration": 0.950341960386857,
+        "dominant_axis_mod_90_deg": 14.838834479693402,
+        "orthogonal_axis_angular_rmse_deg": 4.549185292906335
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 32,
+        "total_line_length_m": 391.5892313803596,
+        "direction_concentration": 0.9932232207821872,
+        "dominant_axis_mod_90_deg": 6.836715348074022,
+        "orthogonal_axis_angular_rmse_deg": 1.7072421213873383
+      },
+      "proposed": {
+        "line_count": 15,
+        "total_line_length_m": 137.07034798225445,
+        "direction_concentration": 0.9537700939581939,
+        "dominant_axis_mod_90_deg": 15.159995822173759,
+        "orthogonal_axis_angular_rmse_deg": 4.392345141873696
+      }
+    },
+    {
+      "threshold": 30,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 39,
+        "total_line_length_m": 509.156953221626,
+        "direction_concentration": 0.9944523529973615,
+        "dominant_axis_mod_90_deg": 6.809302629903502,
+        "orthogonal_axis_angular_rmse_deg": 1.5437162618916702
+      },
+      "proposed": {
+        "line_count": 21,
+        "total_line_length_m": 201.36815084404512,
+        "direction_concentration": 0.9562989760135304,
+        "dominant_axis_mod_90_deg": 15.88370961058899,
+        "orthogonal_axis_angular_rmse_deg": 4.2771897920972215
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 210,
+        "total_line_length_m": 514.7970053565958,
+        "direction_concentration": 0.9757644509763697,
+        "dominant_axis_mod_90_deg": 5.580293727940487,
+        "orthogonal_axis_angular_rmse_deg": 3.2142558671147055
+      },
+      "proposed": {
+        "line_count": 137,
+        "total_line_length_m": 333.26250752198376,
+        "direction_concentration": 0.9530181450606332,
+        "dominant_axis_mod_90_deg": 15.06245860560153,
+        "orthogonal_axis_angular_rmse_deg": 4.449804143008177
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 189,
+        "total_line_length_m": 680.3302421105476,
+        "direction_concentration": 0.9741940298646079,
+        "dominant_axis_mod_90_deg": 5.705554245728955,
+        "orthogonal_axis_angular_rmse_deg": 3.302027698398293
+      },
+      "proposed": {
+        "line_count": 156,
+        "total_line_length_m": 436.6321201785431,
+        "direction_concentration": 0.9531192313508875,
+        "dominant_axis_mod_90_deg": 15.18306442139852,
+        "orthogonal_axis_angular_rmse_deg": 4.726742500678775
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 177,
+        "total_line_length_m": 744.9519684611148,
+        "direction_concentration": 0.9754652644500361,
+        "dominant_axis_mod_90_deg": 5.861078158493341,
+        "orthogonal_axis_angular_rmse_deg": 3.2219715647080927
+      },
+      "proposed": {
+        "line_count": 159,
+        "total_line_length_m": 511.73458905314897,
+        "direction_concentration": 0.9438633553689659,
+        "dominant_axis_mod_90_deg": 15.07330768182138,
+        "orthogonal_axis_angular_rmse_deg": 5.151748983545516
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 188,
+        "total_line_length_m": 880.1239693524961,
+        "direction_concentration": 0.9709317692114201,
+        "dominant_axis_mod_90_deg": 5.58065632841672,
+        "orthogonal_axis_angular_rmse_deg": 3.529797378428599
+      },
+      "proposed": {
+        "line_count": 172,
+        "total_line_length_m": 595.6119386467436,
+        "direction_concentration": 0.9363568976919995,
+        "dominant_axis_mod_90_deg": 15.461304261638158,
+        "orthogonal_axis_angular_rmse_deg": 5.730130570402977
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 101,
+        "total_line_length_m": 370.41268300021505,
+        "direction_concentration": 0.9916699970783708,
+        "dominant_axis_mod_90_deg": 6.356240133181921,
+        "orthogonal_axis_angular_rmse_deg": 1.8675402713462887
+      },
+      "proposed": {
+        "line_count": 50,
+        "total_line_length_m": 203.28789806716574,
+        "direction_concentration": 0.960776931998476,
+        "dominant_axis_mod_90_deg": 15.721541145071855,
+        "orthogonal_axis_angular_rmse_deg": 4.048968629706058
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 110,
+        "total_line_length_m": 579.6506306693932,
+        "direction_concentration": 0.9891936002912585,
+        "dominant_axis_mod_90_deg": 6.543980070565065,
+        "orthogonal_axis_angular_rmse_deg": 2.133613661731356
+      },
+      "proposed": {
+        "line_count": 81,
+        "total_line_length_m": 314.0369205792233,
+        "direction_concentration": 0.9610451373084471,
+        "dominant_axis_mod_90_deg": 15.525655415859559,
+        "orthogonal_axis_angular_rmse_deg": 4.029443370402267
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 112,
+        "total_line_length_m": 659.33670383432,
+        "direction_concentration": 0.9838808137060427,
+        "dominant_axis_mod_90_deg": 6.193472939753473,
+        "orthogonal_axis_angular_rmse_deg": 2.606953612598257
+      },
+      "proposed": {
+        "line_count": 98,
+        "total_line_length_m": 399.97115929503667,
+        "direction_concentration": 0.9601852936762507,
+        "dominant_axis_mod_90_deg": 15.966245414742477,
+        "orthogonal_axis_angular_rmse_deg": 4.083117798435685
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 138,
+        "total_line_length_m": 814.4749858331514,
+        "direction_concentration": 0.9735801179657225,
+        "dominant_axis_mod_90_deg": 5.991919756611313,
+        "orthogonal_axis_angular_rmse_deg": 3.3887451709975087
+      },
+      "proposed": {
+        "line_count": 111,
+        "total_line_length_m": 528.0236031327091,
+        "direction_concentration": 0.9386247605639776,
+        "dominant_axis_mod_90_deg": 15.760973661481444,
+        "orthogonal_axis_angular_rmse_deg": 5.349745990610359
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 49,
+        "total_line_length_m": 252.5359589954578,
+        "direction_concentration": 0.9915089316449907,
+        "dominant_axis_mod_90_deg": 6.767993833717855,
+        "orthogonal_axis_angular_rmse_deg": 1.898790106428719
+      },
+      "proposed": {
+        "line_count": 26,
+        "total_line_length_m": 151.6864006067937,
+        "direction_concentration": 0.9747352139316399,
+        "dominant_axis_mod_90_deg": 16.62160807210328,
+        "orthogonal_axis_angular_rmse_deg": 3.2530759866992836
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 70,
+        "total_line_length_m": 465.61184728717234,
+        "direction_concentration": 0.9932739389097681,
+        "dominant_axis_mod_90_deg": 6.8000484578768905,
+        "orthogonal_axis_angular_rmse_deg": 1.6833059801725652
+      },
+      "proposed": {
+        "line_count": 39,
+        "total_line_length_m": 221.49364631830127,
+        "direction_concentration": 0.9620060718210134,
+        "dominant_axis_mod_90_deg": 15.767578791678458,
+        "orthogonal_axis_angular_rmse_deg": 3.979611525316958
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 76,
+        "total_line_length_m": 597.0764017433195,
+        "direction_concentration": 0.987950603497771,
+        "dominant_axis_mod_90_deg": 6.424678133794904,
+        "orthogonal_axis_angular_rmse_deg": 2.262130557019399
+      },
+      "proposed": {
+        "line_count": 50,
+        "total_line_length_m": 285.24945611750223,
+        "direction_concentration": 0.9621667872489688,
+        "dominant_axis_mod_90_deg": 15.97879459152448,
+        "orthogonal_axis_angular_rmse_deg": 3.9776157713054094
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 82,
+        "total_line_length_m": 669.5102104929118,
+        "direction_concentration": 0.9869938048215181,
+        "dominant_axis_mod_90_deg": 6.376827038265259,
+        "orthogonal_axis_angular_rmse_deg": 2.3462880100013828
+      },
+      "proposed": {
+        "line_count": 74,
+        "total_line_length_m": 438.5516322024425,
+        "direction_concentration": 0.9586129125459912,
+        "dominant_axis_mod_90_deg": 15.945089002847283,
+        "orthogonal_axis_angular_rmse_deg": 4.159628959189386
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 29,
+        "total_line_length_m": 191.84890323492831,
+        "direction_concentration": 0.9986027036316966,
+        "dominant_axis_mod_90_deg": 7.127362437128268,
+        "orthogonal_axis_angular_rmse_deg": 0.7578318912468155
+      },
+      "proposed": {
+        "line_count": 16,
+        "total_line_length_m": 112.03954683979265,
+        "direction_concentration": 0.9715897169742571,
+        "dominant_axis_mod_90_deg": 16.520005678526676,
+        "orthogonal_axis_angular_rmse_deg": 3.4502161151578754
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 49,
+        "total_line_length_m": 412.4889175965757,
+        "direction_concentration": 0.9942288082924212,
+        "dominant_axis_mod_90_deg": 7.0266244541534455,
+        "orthogonal_axis_angular_rmse_deg": 1.563510321222884
+      },
+      "proposed": {
+        "line_count": 25,
+        "total_line_length_m": 171.95832889879577,
+        "direction_concentration": 0.9664023895247743,
+        "dominant_axis_mod_90_deg": 16.108953138862898,
+        "orthogonal_axis_angular_rmse_deg": 3.7469306351457083
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 57,
+        "total_line_length_m": 524.155122218007,
+        "direction_concentration": 0.9943135673298839,
+        "dominant_axis_mod_90_deg": 6.791259374220222,
+        "orthogonal_axis_angular_rmse_deg": 1.5517425121471162
+      },
+      "proposed": {
+        "line_count": 30,
+        "total_line_length_m": 216.90169907400278,
+        "direction_concentration": 0.9676985970331836,
+        "dominant_axis_mod_90_deg": 16.314741026269317,
+        "orthogonal_axis_angular_rmse_deg": 3.6756672109706594
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 65,
+        "total_line_length_m": 622.7421754414867,
+        "direction_concentration": 0.9915968949283257,
+        "dominant_axis_mod_90_deg": 6.684470528371966,
+        "orthogonal_axis_angular_rmse_deg": 1.8968191653837343
+      },
+      "proposed": {
+        "line_count": 45,
+        "total_line_length_m": 328.27263319410145,
+        "direction_concentration": 0.9629800719974502,
+        "dominant_axis_mod_90_deg": 15.964881877810713,
+        "orthogonal_axis_angular_rmse_deg": 3.928251347415097
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 13,
+        "total_line_length_m": 108.11073961747107,
+        "direction_concentration": 0.9997199608450901,
+        "dominant_axis_mod_90_deg": 7.226928548657826,
+        "orthogonal_axis_angular_rmse_deg": 0.33900824559306897
+      },
+      "proposed": {
+        "line_count": 9,
+        "total_line_length_m": 78.1372324054944,
+        "direction_concentration": 0.9689023386053419,
+        "dominant_axis_mod_90_deg": 16.483575976284225,
+        "orthogonal_axis_angular_rmse_deg": 3.610740045144131
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 28,
+        "total_line_length_m": 311.67847432021796,
+        "direction_concentration": 0.9986327856138854,
+        "dominant_axis_mod_90_deg": 7.337431945792905,
+        "orthogonal_axis_angular_rmse_deg": 0.7494376673936836
+      },
+      "proposed": {
+        "line_count": 14,
+        "total_line_length_m": 120.57221085446055,
+        "direction_concentration": 0.9710281065178034,
+        "dominant_axis_mod_90_deg": 16.287553151911606,
+        "orthogonal_axis_angular_rmse_deg": 3.4808824850451847
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 40,
+        "total_line_length_m": 433.5922641068828,
+        "direction_concentration": 0.9931907917761325,
+        "dominant_axis_mod_90_deg": 6.875743421209133,
+        "orthogonal_axis_angular_rmse_deg": 1.7054346603994508
+      },
+      "proposed": {
+        "line_count": 17,
+        "total_line_length_m": 151.80075710525475,
+        "direction_concentration": 0.9748111245877931,
+        "dominant_axis_mod_90_deg": 16.769096318390215,
+        "orthogonal_axis_angular_rmse_deg": 3.2504921001756544
+      }
+    },
+    {
+      "threshold": 40,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 45,
+        "total_line_length_m": 544.057695252165,
+        "direction_concentration": 0.9944088971646403,
+        "dominant_axis_mod_90_deg": 6.889402814713719,
+        "orthogonal_axis_angular_rmse_deg": 1.5454493919635766
+      },
+      "proposed": {
+        "line_count": 21,
+        "total_line_length_m": 205.25704961482725,
+        "direction_concentration": 0.96715482996812,
+        "dominant_axis_mod_90_deg": 16.30315975715263,
+        "orthogonal_axis_angular_rmse_deg": 3.7072817726185527
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 177,
+        "total_line_length_m": 487.4286421373512,
+        "direction_concentration": 0.9796030711031976,
+        "dominant_axis_mod_90_deg": 5.77833526274349,
+        "orthogonal_axis_angular_rmse_deg": 2.955286141843013
+      },
+      "proposed": {
+        "line_count": 117,
+        "total_line_length_m": 302.77317198610916,
+        "direction_concentration": 0.9557431042941357,
+        "dominant_axis_mod_90_deg": 15.259826752466248,
+        "orthogonal_axis_angular_rmse_deg": 4.296344669076343
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 153,
+        "total_line_length_m": 657.1133211374124,
+        "direction_concentration": 0.9816755929894688,
+        "dominant_axis_mod_90_deg": 6.114196156882038,
+        "orthogonal_axis_angular_rmse_deg": 2.782342423370924
+      },
+      "proposed": {
+        "line_count": 128,
+        "total_line_length_m": 377.73119625133876,
+        "direction_concentration": 0.9492411212673639,
+        "dominant_axis_mod_90_deg": 14.879706998476625,
+        "orthogonal_axis_angular_rmse_deg": 4.60379347661447
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 152,
+        "total_line_length_m": 735.7624870074034,
+        "direction_concentration": 0.9749746756433749,
+        "dominant_axis_mod_90_deg": 5.709801660337116,
+        "orthogonal_axis_angular_rmse_deg": 3.2641084031363814
+      },
+      "proposed": {
+        "line_count": 119,
+        "total_line_length_m": 436.23002793738266,
+        "direction_concentration": 0.9499118918169902,
+        "dominant_axis_mod_90_deg": 14.920316450076587,
+        "orthogonal_axis_angular_rmse_deg": 4.574524433649218
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 20,
+      "min_line_length_m": 1.000000014902,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 143,
+        "total_line_length_m": 805.3802879982777,
+        "direction_concentration": 0.9731651585601447,
+        "dominant_axis_mod_90_deg": 5.767426950458266,
+        "orthogonal_axis_angular_rmse_deg": 3.3897549540645517
+      },
+      "proposed": {
+        "line_count": 121,
+        "total_line_length_m": 501.1678304093204,
+        "direction_concentration": 0.9461444681673278,
+        "dominant_axis_mod_90_deg": 14.903557186793915,
+        "orthogonal_axis_angular_rmse_deg": 4.7512040171622445
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 86,
+        "total_line_length_m": 351.38033044919155,
+        "direction_concentration": 0.9871404257419925,
+        "dominant_axis_mod_90_deg": 6.359009458248378,
+        "orthogonal_axis_angular_rmse_deg": 2.3338912533957377
+      },
+      "proposed": {
+        "line_count": 54,
+        "total_line_length_m": 210.28206025236483,
+        "direction_concentration": 0.9576756897273452,
+        "dominant_axis_mod_90_deg": 15.55502812089274,
+        "orthogonal_axis_angular_rmse_deg": 4.2107602592470315
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 105,
+        "total_line_length_m": 581.9589045189854,
+        "direction_concentration": 0.9893457529037318,
+        "dominant_axis_mod_90_deg": 6.498065803800361,
+        "orthogonal_axis_angular_rmse_deg": 2.118800626401887
+      },
+      "proposed": {
+        "line_count": 68,
+        "total_line_length_m": 295.33864649432286,
+        "direction_concentration": 0.9526468162535962,
+        "dominant_axis_mod_90_deg": 14.996936507971418,
+        "orthogonal_axis_angular_rmse_deg": 4.44639231765678
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 117,
+        "total_line_length_m": 684.9510611779695,
+        "direction_concentration": 0.9843375658154149,
+        "dominant_axis_mod_90_deg": 6.201839647119957,
+        "orthogonal_axis_angular_rmse_deg": 2.5678817474137428
+      },
+      "proposed": {
+        "line_count": 84,
+        "total_line_length_m": 378.8115141340416,
+        "direction_concentration": 0.9524929962139586,
+        "dominant_axis_mod_90_deg": 15.239499486504057,
+        "orthogonal_axis_angular_rmse_deg": 4.4591382319424655
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 40,
+      "min_line_length_m": 2.000000029804,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 114,
+        "total_line_length_m": 758.7786272020741,
+        "direction_concentration": 0.981315559989442,
+        "dominant_axis_mod_90_deg": 6.0874893501313565,
+        "orthogonal_axis_angular_rmse_deg": 2.8268722053289985
+      },
+      "proposed": {
+        "line_count": 90,
+        "total_line_length_m": 481.0844533052178,
+        "direction_concentration": 0.9532160704630263,
+        "dominant_axis_mod_90_deg": 15.25133663898211,
+        "orthogonal_axis_angular_rmse_deg": 4.42038543576067
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 42,
+        "total_line_length_m": 247.3326875319648,
+        "direction_concentration": 0.9939936614879359,
+        "dominant_axis_mod_90_deg": 6.810895969343371,
+        "orthogonal_axis_angular_rmse_deg": 1.6012011859844677
+      },
+      "proposed": {
+        "line_count": 28,
+        "total_line_length_m": 152.97907255242762,
+        "direction_concentration": 0.965667079769208,
+        "dominant_axis_mod_90_deg": 16.308401214792763,
+        "orthogonal_axis_angular_rmse_deg": 3.795323557625943
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 72,
+        "total_line_length_m": 512.2847618378755,
+        "direction_concentration": 0.9896002106829339,
+        "dominant_axis_mod_90_deg": 6.5746909263626785,
+        "orthogonal_axis_angular_rmse_deg": 2.0983835564714304
+      },
+      "proposed": {
+        "line_count": 41,
+        "total_line_length_m": 231.71086411816782,
+        "direction_concentration": 0.9543614692610574,
+        "dominant_axis_mod_90_deg": 15.26829853067625,
+        "orthogonal_axis_angular_rmse_deg": 4.3657261112573424
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 71,
+        "total_line_length_m": 578.6677265190269,
+        "direction_concentration": 0.9874809584745287,
+        "dominant_axis_mod_90_deg": 6.560426268589059,
+        "orthogonal_axis_angular_rmse_deg": 2.3049414887204547
+      },
+      "proposed": {
+        "line_count": 51,
+        "total_line_length_m": 290.9079329974539,
+        "direction_concentration": 0.9577324924082863,
+        "dominant_axis_mod_90_deg": 15.618023215434683,
+        "orthogonal_axis_angular_rmse_deg": 4.203876412554051
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 60,
+      "min_line_length_m": 3.000000044706,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 78,
+        "total_line_length_m": 691.287688130095,
+        "direction_concentration": 0.9869107135566499,
+        "dominant_axis_mod_90_deg": 6.468287903527245,
+        "orthogonal_axis_angular_rmse_deg": 2.3527865693858003
+      },
+      "proposed": {
+        "line_count": 63,
+        "total_line_length_m": 402.88642378521945,
+        "direction_concentration": 0.9550022883269692,
+        "dominant_axis_mod_90_deg": 15.351413410687812,
+        "orthogonal_axis_angular_rmse_deg": 4.3313080062058384
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 28,
+        "total_line_length_m": 196.40570817045372,
+        "direction_concentration": 0.9992639380085568,
+        "dominant_axis_mod_90_deg": 7.078173031848746,
+        "orthogonal_axis_angular_rmse_deg": 0.5497432516426578
+      },
+      "proposed": {
+        "line_count": 18,
+        "total_line_length_m": 115.5765252613605,
+        "direction_concentration": 0.9681616545241398,
+        "dominant_axis_mod_90_deg": 16.18764380887409,
+        "orthogonal_axis_angular_rmse_deg": 3.650483526623011
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 46,
+        "total_line_length_m": 423.73234459372037,
+        "direction_concentration": 0.9952721985010637,
+        "dominant_axis_mod_90_deg": 6.837808714370082,
+        "orthogonal_axis_angular_rmse_deg": 1.4173662630728896
+      },
+      "proposed": {
+        "line_count": 24,
+        "total_line_length_m": 168.04071167212265,
+        "direction_concentration": 0.9540094947531409,
+        "dominant_axis_mod_90_deg": 15.185924244059363,
+        "orthogonal_axis_angular_rmse_deg": 4.38508308698192
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 48,
+        "total_line_length_m": 497.35575414174485,
+        "direction_concentration": 0.989945500297863,
+        "dominant_axis_mod_90_deg": 6.664817004478354,
+        "orthogonal_axis_angular_rmse_deg": 2.0720541506099663
+      },
+      "proposed": {
+        "line_count": 34,
+        "total_line_length_m": 234.27727077072745,
+        "direction_concentration": 0.956934495195937,
+        "dominant_axis_mod_90_deg": 15.65081948812267,
+        "orthogonal_axis_angular_rmse_deg": 4.247688577345095
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 80,
+      "min_line_length_m": 4.000000059608,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 56,
+        "total_line_length_m": 599.214484680464,
+        "direction_concentration": 0.9882885061864674,
+        "dominant_axis_mod_90_deg": 6.707913749926999,
+        "orthogonal_axis_angular_rmse_deg": 2.237246132631536
+      },
+      "proposed": {
+        "line_count": 48,
+        "total_line_length_m": 338.9475132473122,
+        "direction_concentration": 0.9567214953789701,
+        "dominant_axis_mod_90_deg": 15.51085548664035,
+        "orthogonal_axis_angular_rmse_deg": 4.251141293476545
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 3,
+      "baseline": {
+        "line_count": 13,
+        "total_line_length_m": 123.31285332329873,
+        "direction_concentration": 0.9995192609208661,
+        "dominant_axis_mod_90_deg": 7.1511034647953995,
+        "orthogonal_axis_angular_rmse_deg": 0.4443048995210207
+      },
+      "proposed": {
+        "line_count": 10,
+        "total_line_length_m": 83.95148072282875,
+        "direction_concentration": 0.9867996844982736,
+        "dominant_axis_mod_90_deg": 17.292936026050825,
+        "orthogonal_axis_angular_rmse_deg": 2.3494945814945445
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 6,
+      "baseline": {
+        "line_count": 27,
+        "total_line_length_m": 336.659723694736,
+        "direction_concentration": 0.9986036155359024,
+        "dominant_axis_mod_90_deg": 7.098999507034368,
+        "orthogonal_axis_angular_rmse_deg": 0.7574074224698142
+      },
+      "proposed": {
+        "line_count": 16,
+        "total_line_length_m": 133.8205715157738,
+        "direction_concentration": 0.9523041655289882,
+        "dominant_axis_mod_90_deg": 15.100423388353724,
+        "orthogonal_axis_angular_rmse_deg": 4.465549761902488
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 10,
+      "baseline": {
+        "line_count": 31,
+        "total_line_length_m": 412.16394536656406,
+        "direction_concentration": 0.9925008453348702,
+        "dominant_axis_mod_90_deg": 6.839289227735588,
+        "orthogonal_axis_angular_rmse_deg": 1.793911063805685
+      },
+      "proposed": {
+        "line_count": 20,
+        "total_line_length_m": 166.8159854057321,
+        "direction_concentration": 0.9554049458524269,
+        "dominant_axis_mod_90_deg": 15.298806941240892,
+        "orthogonal_axis_angular_rmse_deg": 4.318430188486222
+      }
+    },
+    {
+      "threshold": 50,
+      "min_line_length_px": 120,
+      "min_line_length_m": 6.000000089412,
+      "max_gap_px": 15,
+      "baseline": {
+        "line_count": 33,
+        "total_line_length_m": 474.4690007519929,
+        "direction_concentration": 0.9933575063759766,
+        "dominant_axis_mod_90_deg": 6.898180804035654,
+        "orthogonal_axis_angular_rmse_deg": 1.6883572186858955
+      },
+      "proposed": {
+        "line_count": 22,
+        "total_line_length_m": 217.62253272802715,
+        "direction_concentration": 0.9597835147928105,
+        "dominant_axis_mod_90_deg": 15.983099420712193,
+        "orthogonal_axis_angular_rmse_deg": 4.108232771359488
+      }
+    }
+  ],
+  "limitations": [
+    "Corridor02 has no continuous reference pose in the bag.",
+    "These are orientation-free map-structure proxies, not ATE/RPE.",
+    "No ArUco pose is reported because the bag has no camera_info, marker size, or surveyed marker layout."
+  ]
+}

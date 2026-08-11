@@ -1,0 +1,15 @@
+experiment=submap_insertion_gate_preflight
+dataset=M3DGR_Corridor02
+config=cartographer_m3dgr_mid360_clean_baseline.lua
+bag=/home/slam/slam_ws/bags/Corridor02/Corridor02.bag
+bag_sha256=f6ac8ab3e82fa80bab74f20eaeb437bbe68cb2e2e0f4c90ba25248d724743452
+play_duration_sec=10
+playback_rate=1.0
+input_topics=/livox/mid360/lidar,/odom
+imu_used=false
+avia_used=false
+gate_min_information=10.0
+gate_bad_scan_count=2
+gate_good_scan_count=2
+gate_max_consecutive_blocked_scans=20
+git_head=78f77a66ff5c4bc9ebb7a66950b491ace8b30a19

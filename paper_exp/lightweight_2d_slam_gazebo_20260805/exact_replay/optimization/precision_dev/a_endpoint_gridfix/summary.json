@@ -1,0 +1,52 @@
+{
+  "algorithm": "dev_endpoint_gridfix",
+  "associated_samples": 705,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/exact_replay/optimization/precision_dev/a_endpoint_gridfix/trajectory.csv",
+  "estimate_messages": 705,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "final_diagnostics": {
+    "coarse_score": "0.959571",
+    "correspondences": "180",
+    "dropped_scans": "0",
+    "keyframes": "160",
+    "loop_candidates_rejected": "4",
+    "loop_constraints": "2",
+    "loop_searches_completed": "6",
+    "loop_searches_skipped": "0",
+    "loop_worker_busy": "false",
+    "map_build_seconds": "0.0220481",
+    "map_rebuild_failures": "0",
+    "map_worker_busy": "false",
+    "optimizer_last_seconds": "0.00141734",
+    "optimizer_pose_version": "10",
+    "optimizer_running": "false",
+    "pose_graph_constraints": "320",
+    "processing_ms": "13.9649",
+    "residual_rms_m": "0.0384453",
+    "scan_quality": "0.885446",
+    "submaps": "4"
+  },
+  "max_association_delta_s": 0.07999999999992724,
+  "processing_ms": {
+    "maximum": 37.0667,
+    "mean": 15.590549914893616,
+    "p95": 29.756,
+    "samples": 705
+  },
+  "translation_error_m": {
+    "final": 0.037126239913285355,
+    "maximum": 0.0647856719124131,
+    "mean": 0.03162284603227211,
+    "p95": 0.04429005194670438,
+    "rmse": 0.03254861462497741
+  },
+  "truth_messages": 7057,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.004324938942419032,
+    "maximum": 0.0727511011482842,
+    "mean": 0.013812125891507456,
+    "p95": 0.055603818792023585,
+    "rmse": 0.023111893673270188
+  }
+}

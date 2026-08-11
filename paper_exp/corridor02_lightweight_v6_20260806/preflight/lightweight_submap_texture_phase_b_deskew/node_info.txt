@@ -1,0 +1,64 @@
+--------------------------------------------------------------------------------
+Node [/lightweight_2d_slam]
+Publications: 
+ * /lightweight_slam/local_path [nav_msgs/Path]
+ * /lightweight_slam/loop_edges [geometry_msgs/PoseArray]
+ * /lightweight_slam/path [nav_msgs/Path]
+ * /lightweight_slam/submap_path [nav_msgs/Path]
+ * /local_occupancy_grid [nav_msgs/OccupancyGrid]
+ * /map [nav_msgs/OccupancyGrid]
+ * /rosout [rosgraph_msgs/Log]
+ * /slam_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /tf [tf2_msgs/TFMessage]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /scan [sensor_msgs/LaserScan]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /dynamic_map
+ * /lightweight_2d_slam/get_loggers
+ * /lightweight_2d_slam/set_logger_level
+
+
+contacting node http://ubuntu:40037/ ...
+Pid: 16550
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (51225 - 127.0.0.1:59618) [12]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /lightweight_2d_slam
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /tf
+    * to: /lightweight_2d_slam (http://ubuntu:40037/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ubuntu:42419/ ...
+Pid: 16516
+Connections:
+ * topic: /rosout
+    * to: /lightweight_2d_slam (http://ubuntu:40037/)
+    * direction: inbound (59618 - ubuntu:51225) [13]
+    * transport: TCPROS
+

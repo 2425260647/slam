@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/corridor_repeat01_pointcloud_off_realtime_20260811/map.pgm
+resolution: 0.050000
+origin: [-1.945375, -7.987116, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

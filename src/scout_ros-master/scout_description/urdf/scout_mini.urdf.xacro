@@ -4,6 +4,7 @@
 
     <xacro:arg name="robot_namespace" default="/" />
     <xacro:arg name="urdf_extras" default="empty.urdf" />
+    <xacro:arg name="wheel_axis_multiplier" default="1.0" />
 
     <xacro:include filename="$(find scout_description)/urdf/scout_mini_wheel.xacro" />
 
@@ -21,6 +22,8 @@
 
     <xacro:property name="wheel_length" value="0.8e-01" />
     <xacro:property name="wheel_radius" value="1.600e-01" />
+    <xacro:property name="wheel_axis_multiplier"
+                    value="${float('$(arg wheel_axis_multiplier)')}" />
 
     <!-- Base link -->
     <link name="base_link">
@@ -60,16 +63,20 @@
     <!-- Scout wheel macros -->
     <!-- wheel labeled from 0 to 3, conter-clockwise, starting from front right wheel -->
     <!-- motor 1 and 2 (left side) are mechanically installed in a reversed direction -->
-    <xacro:scout_mini_wheel wheel_prefix="front_right" axis_xyz="0 0 1">
+    <xacro:scout_mini_wheel wheel_prefix="front_right"
+                            axis_xyz="0 0 ${wheel_axis_multiplier}">
         <origin xyz="${wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="1.57 0 0" />
     </xacro:scout_mini_wheel>
-    <xacro:scout_mini_wheel wheel_prefix="front_left">
+    <xacro:scout_mini_wheel wheel_prefix="front_left"
+                            axis_xyz="0 0 ${-wheel_axis_multiplier}">
         <origin xyz="${wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="-1.57 0 0" />
     </xacro:scout_mini_wheel>
-    <xacro:scout_mini_wheel wheel_prefix="rear_left">
+    <xacro:scout_mini_wheel wheel_prefix="rear_left"
+                            axis_xyz="0 0 ${-wheel_axis_multiplier}">
         <origin xyz="${-wheelbase/2} ${track/2} ${wheel_vertical_offset}" rpy="-1.57 0 0" />
     </xacro:scout_mini_wheel>
-    <xacro:scout_mini_wheel wheel_prefix="rear_right" axis_xyz="0 0 1">
+    <xacro:scout_mini_wheel wheel_prefix="rear_right"
+                            axis_xyz="0 0 ${wheel_axis_multiplier}">
         <origin xyz="${-wheelbase/2} ${-track/2} ${wheel_vertical_offset}" rpy="1.57 0 0" />
     </xacro:scout_mini_wheel>
 

@@ -1,0 +1,68 @@
+{
+  "cartographer_clean": {
+    "free_cells": 265975,
+    "height_px": 1431,
+    "known_cells": 283937,
+    "largest_component_cells": 1794,
+    "largest_component_ratio": 0.09987751920721523,
+    "map_area_m2": 7534.215000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/full/cartographer_clean",
+    "occupied_cells": 17962,
+    "occupied_components_8_connected": 666,
+    "occupied_pca_length_ratio": 1.2761612656956656,
+    "occupied_ratio_known": 0.06326051201498924,
+    "occupied_ratio_total": 0.005960143160236335,
+    "origin": [
+      -34.452219,
+      -33.027966,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 2729749,
+    "width_px": 2106
+  },
+  "lightweight_sep250_verified_loop_smooth_fixed": {
+    "free_cells": 204212,
+    "height_px": 1311,
+    "known_cells": 214269,
+    "largest_component_cells": 962,
+    "largest_component_ratio": 0.09565476782340658,
+    "map_area_m2": 4309.9125,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_sep250_verified_loop_smooth_fixed",
+    "occupied_cells": 10057,
+    "occupied_components_8_connected": 1626,
+    "occupied_pca_length_ratio": 1.2751300589198127,
+    "occupied_ratio_known": 0.046936327700227286,
+    "occupied_ratio_total": 0.005833645114604995,
+    "origin": [
+      -22.78026,
+      -27.884006,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1509696,
+    "width_px": 1315
+  },
+  "lightweight_sep250_verified_loop_smooth_fixed_sensor_model": {
+    "free_cells": 28621,
+    "height_px": 1312,
+    "known_cells": 39421,
+    "largest_component_cells": 1078,
+    "largest_component_ratio": 0.09981481481481481,
+    "map_area_m2": 4309.920000000001,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_sep250_verified_loop_smooth_fixed_sensor_model",
+    "occupied_cells": 10800,
+    "occupied_components_8_connected": 753,
+    "occupied_pca_length_ratio": 1.3385531361405456,
+    "occupied_ratio_known": 0.27396565282463664,
+    "occupied_ratio_total": 0.006264617440694955,
+    "origin": [
+      -22.810978,
+      -27.881019,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1684547,
+    "width_px": 1314
+  }
+}

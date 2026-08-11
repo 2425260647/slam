@@ -1,0 +1,24 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+
+  <node pkg="my_navigation" type="livox_deskewed_laserscan"
+        name="corridor02_livox_deskewed_scan" output="screen">
+    <param name="input_topic" value="/livox/mid360/lidar"/>
+    <param name="odom_topic" value="/odom"/>
+    <param name="output_topic" value="/scan"/>
+    <param name="output_frame" value="base_footprint"/>
+    <param name="min_height" value="0.20"/>
+    <param name="max_height" value="0.60"/>
+    <param name="range_min" value="0.30"/>
+    <param name="range_max" value="30.0"/>
+    <param name="filter_isolated_returns" value="true"/>
+  </node>
+
+  <include file="$(dirname)/slam_local_grid.launch">
+    <arg name="configuration_directory" value="$(dirname)"/>
+    <arg name="configuration_basename" value="corridor02_clean.lua"/>
+    <arg name="scan_topic" value="/scan"/>
+    <arg name="odom_topic" value="/odom"/>
+    <arg name="base_frame" value="base_footprint"/>
+  </include>
+</launch>

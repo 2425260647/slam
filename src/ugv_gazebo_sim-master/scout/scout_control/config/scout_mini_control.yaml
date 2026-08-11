@@ -18,7 +18,8 @@ scout_mini_velocity_controller:
   base_frame_id: base_link
 
   wheel_separation: 0.416503
-  wheel_radius: 0.16
+  # wheel.dae bounds show an approximately 0.08 m physical radius.
+  wheel_radius: 0.08
 
   # Cartographer publishes the map/odom/base_link TF chain in mapping mode.
   enable_odom_tf: false
@@ -26,7 +27,9 @@ scout_mini_velocity_controller:
   estimate_velocity_from_position: false
 
   # Wheel separation and radius multipliers
-  wheel_separation_multiplier:  1.0 # default: 1.0
+  # Four-wheel skid steering needs an effective separation larger than the
+  # geometric track. Calibrated against Gazebo base_link yaw on 2026-08-05.
+  wheel_separation_multiplier:  2.29
   wheel_radius_multiplier    : 1.0  # default: 1.0
 
   # Velocity and acceleration limits

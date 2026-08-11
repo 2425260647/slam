@@ -1,0 +1,5 @@
+/cartographer_clean
+/cartographer_clean_occupancy_grid
+/rosout
+/static_transform_publisher_1785937452484480993
+/tf_pose_publisher

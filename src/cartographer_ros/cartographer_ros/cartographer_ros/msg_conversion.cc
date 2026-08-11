@@ -41,6 +41,7 @@
 #include "sensor_msgs/LaserScan.h"
 #include "sensor_msgs/MultiEchoLaserScan.h"
 #include "sensor_msgs/PointCloud2.h"
+#include "sensor_msgs/point_cloud2_iterator.h"
 
 namespace {
 
@@ -84,6 +85,57 @@ using ::cartographer::sensor::PointCloudWithIntensities;
 using ::cartographer::transform::Rigid3d;
 using ::cartographer_ros_msgs::LandmarkEntry;
 using ::cartographer_ros_msgs::LandmarkList;
+
+bool PointCloud2HasField(const sensor_msgs::PointCloud2& pc2,
+                         const std::string& field_name);
+
+template <typename TimeType>
+PointCloudWithIntensities ToTimedPointCloudWithIterators(
+    const sensor_msgs::PointCloud2& msg) {
+  PointCloudWithIntensities point_cloud;
+  const bool has_intensity = PointCloud2HasField(msg, "intensity");
+  sensor_msgs::PointCloud2ConstIterator<float> iter_x(msg, "x");
+  sensor_msgs::PointCloud2ConstIterator<float> iter_y(msg, "y");
+  sensor_msgs::PointCloud2ConstIterator<float> iter_z(msg, "z");
+  sensor_msgs::PointCloud2ConstIterator<TimeType> iter_time(msg, "time");
+  const double header_seconds = msg.header.stamp.toSec();
+
+  const size_t point_count = static_cast<size_t>(msg.width) * msg.height;
+  point_cloud.points.reserve(point_count);
+  point_cloud.intensities.reserve(point_count);
+  if (has_intensity) {
+    sensor_msgs::PointCloud2ConstIterator<float> iter_intensity(msg,
+                                                                  "intensity");
+    for (size_t i = 0; i < point_count;
+         ++i, ++iter_x, ++iter_y, ++iter_z, ++iter_time, ++iter_intensity) {
+      const double raw_time = static_cast<double>(*iter_time);
+      const double normalized_time =
+          (std::abs(raw_time) > 1.e6 &&
+           std::abs(raw_time - header_seconds) < 10.)
+              ? raw_time - header_seconds
+              : raw_time;
+      point_cloud.points.push_back({
+          Eigen::Vector3f{*iter_x, *iter_y, *iter_z},
+          static_cast<float>(normalized_time)});
+      point_cloud.intensities.push_back(*iter_intensity);
+    }
+  } else {
+    for (size_t i = 0; i < point_count;
+         ++i, ++iter_x, ++iter_y, ++iter_z, ++iter_time) {
+      const double raw_time = static_cast<double>(*iter_time);
+      const double normalized_time =
+          (std::abs(raw_time) > 1.e6 &&
+           std::abs(raw_time - header_seconds) < 10.)
+              ? raw_time - header_seconds
+              : raw_time;
+      point_cloud.points.push_back({
+          Eigen::Vector3f{*iter_x, *iter_y, *iter_z},
+          static_cast<float>(normalized_time)});
+      point_cloud.intensities.push_back(1.f);
+    }
+  }
+  return point_cloud;
+}
 
 sensor_msgs::PointCloud2 PreparePointCloud2Message(const int64_t timestamp,
                                                    const std::string& frame_id,
@@ -165,6 +217,18 @@ LaserScanToPointCloudWithIntensities(const LaserMessageType& msg) {
   }
   ::cartographer::common::Time timestamp = FromRos(msg.header.stamp);
   if (!point_cloud.points.empty()) {
+    // A few recorded Velodyne drivers store absolute UNIX seconds in the
+    // per-point `time` field, although Cartographer expects offsets relative
+    // to the PointCloud2 header. Detect that representation without changing
+    // ordinary relative-time clouds.
+    const double header_seconds = msg.header.stamp.toSec();
+    const double raw_last_time = point_cloud.points.back().time;
+    if (std::abs(raw_last_time) > 1.e6 &&
+        std::abs(raw_last_time - header_seconds) < 10.) {
+      for (auto& point : point_cloud.points) {
+        point.time -= static_cast<float>(header_seconds);
+      }
+    }
     const double duration = point_cloud.points.back().time;
     timestamp += cartographer::common::FromSeconds(duration);
     for (auto& point : point_cloud.points) {
@@ -216,9 +280,25 @@ std::tuple<::cartographer::sensor::PointCloudWithIntensities,
            ::cartographer::common::Time>
 ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
   PointCloudWithIntensities point_cloud;
-  // We check for intensity field here to avoid run-time warnings if we pass in
-  // a PointCloud2 without intensity.
-  if (PointCloud2HasField(msg, "intensity")) {
+  const sensor_msgs::PointField* time_field = nullptr;
+  for (const auto& field : msg.fields) {
+    if (field.name == "time") {
+      time_field = &field;
+      break;
+    }
+  }
+  // Some Velodyne drivers publish per-point time as FLOAT64, while the PCL
+  // PointXYZIT adapter only accepts FLOAT32. Read both representations
+  // directly from PointCloud2 so motion compensation is not silently lost.
+  if (time_field != nullptr &&
+      (time_field->datatype == sensor_msgs::PointField::FLOAT32 ||
+       time_field->datatype == sensor_msgs::PointField::FLOAT64)) {
+    if (time_field->datatype == sensor_msgs::PointField::FLOAT64) {
+      point_cloud = ToTimedPointCloudWithIterators<double>(msg);
+    } else {
+      point_cloud = ToTimedPointCloudWithIterators<float>(msg);
+    }
+  } else if (PointCloud2HasField(msg, "intensity")) {
     if (PointCloud2HasField(msg, "time")) {
       pcl::PointCloud<PointXYZIT> pcl_point_cloud;
       pcl::fromROSMsg(msg, pcl_point_cloud);
@@ -266,6 +346,17 @@ ToPointCloudWithIntensities(const sensor_msgs::PointCloud2& msg) {
   }
   ::cartographer::common::Time timestamp = FromRos(msg.header.stamp);
   if (!point_cloud.points.empty()) {
+    // Velodyne recordings may store absolute UNIX seconds in the per-point
+    // time field. Cartographer expects offsets relative to the PointCloud2
+    // header, so normalize before using the final point as the cloud time.
+    const double header_seconds = msg.header.stamp.toSec();
+    const double raw_last_time = point_cloud.points.back().time;
+    if (std::abs(raw_last_time) > 1.e6 &&
+        std::abs(raw_last_time - header_seconds) < 10.) {
+      for (auto& point : point_cloud.points) {
+        point.time -= static_cast<float>(header_seconds);
+      }
+    }
     const double duration = point_cloud.points.back().time;
     timestamp += cartographer::common::FromSeconds(duration);
     for (auto& point : point_cloud.points) {

@@ -1,0 +1,137 @@
+--------------------------------------------------------------------------------
+Node [/cartographer_clean]
+Publications: 
+ * /consistency_anomaly_time [std_msgs/Float64]
+ * /consistency_anomaly_trigger_count [std_msgs/UInt32]
+ * /constraint_list [visualization_msgs/MarkerArray]
+ * /correlative_candidate_count [std_msgs/UInt32]
+ * /correlative_candidate_offset [geometry_msgs/Vector3]
+ * /correlative_candidate_on_boundary [std_msgs/Bool]
+ * /correlative_candidate_pose [geometry_msgs/PoseStamped]
+ * /correlative_candidate_search_time_ms [std_msgs/Float64]
+ * /correlative_candidate_submap_num_range_data [std_msgs/UInt32]
+ * /correlative_expanded_map_score [std_msgs/Float64]
+ * /correlative_fixed_map_score [std_msgs/Float64]
+ * /correlative_oad_accepted [std_msgs/Bool]
+ * /correlative_oad_confirmation_count [std_msgs/UInt32]
+ * /correlative_oad_peak_distinct [std_msgs/Bool]
+ * /correlative_oad_search_levels [std_msgs/UInt32]
+ * /correlative_oad_timed_out [std_msgs/Bool]
+ * /correlative_oad_triggered [std_msgs/Bool]
+ * /correlative_peak_margin [std_msgs/Float64]
+ * /correlative_second_peak_score [std_msgs/Float64]
+ * /correlative_second_peak_valid [std_msgs/Bool]
+ * /degeneracy_direction [geometry_msgs/Vector3]
+ * /degeneracy_metric [std_msgs/Float32]
+ * /landmark_poses_list [visualization_msgs/MarkerArray]
+ * /lidar_observability_condition_number [std_msgs/Float64]
+ * /lidar_observability_min_information [std_msgs/Float64]
+ * /lidar_observability_weak_direction [geometry_msgs/Vector3]
+ * /lidar_observability_yaw_information [std_msgs/Float64]
+ * /odom_min_weight_scale [std_msgs/Float32]
+ * /odom_weight_scale [std_msgs/Float32]
+ * /rosout [rosgraph_msgs/Log]
+ * /scan_matched_points2 [sensor_msgs/PointCloud2]
+ * /slip_lidar_reliability [std_msgs/Float32]
+ * /slip_metric [std_msgs/Float32]
+ * /slip_state [std_msgs/Bool]
+ * /submap_insertion_gate_bad_scan_count [std_msgs/UInt32]
+ * /submap_insertion_gate_blocked [std_msgs/Bool]
+ * /submap_insertion_gate_forced_insertion [std_msgs/Bool]
+ * /submap_insertion_gate_good_scan_count [std_msgs/UInt32]
+ * /submap_list [cartographer_ros_msgs/SubmapList]
+ * /tf [tf2_msgs/TFMessage]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+ * /trajectory_node_list [visualization_msgs/MarkerArray]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /scan [sensor_msgs/LaserScan]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /cartographer_clean/get_loggers
+ * /cartographer_clean/set_logger_level
+ * /finish_trajectory
+ * /get_trajectory_states
+ * /read_metrics
+ * /start_trajectory
+ * /submap_query
+ * /trajectory_query
+ * /write_state
+
+
+contacting node http://ubuntu:35295/ ...
+Pid: 18855
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (44965 - 127.0.0.1:46974) [15]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /cartographer_clean
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /submap_list
+    * to: /cartographer_occupancy_grid
+    * direction: outbound (44965 - 127.0.0.1:46972) [14]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /cartographer_clean (http://ubuntu:35295/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+
+--------------------------------------------------------------------------------
+Node [/cartographer_occupancy_grid]
+Publications: 
+ * /map [nav_msgs/OccupancyGrid]
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /submap_list [cartographer_ros_msgs/SubmapList]
+
+Services: 
+ * /cartographer_occupancy_grid/get_loggers
+ * /cartographer_occupancy_grid/set_logger_level
+
+
+contacting node http://ubuntu:36377/ ...
+Pid: 18856
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (49299 - 127.0.0.1:58314) [14]
+    * transport: TCPROS
+ * topic: /submap_list
+    * to: /cartographer_clean (http://ubuntu:35295/)
+    * direction: inbound (46972 - ubuntu:44965) [13]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ubuntu:44807/ ...
+Pid: 18822
+Connections:
+ * topic: /rosout
+    * to: /cartographer_occupancy_grid (http://ubuntu:36377/)
+    * direction: inbound (58314 - ubuntu:49299) [14]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /cartographer_clean (http://ubuntu:35295/)
+    * direction: inbound (46974 - ubuntu:44965) [15]
+    * transport: TCPROS
+

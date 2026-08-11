@@ -1,0 +1,83 @@
+{
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/exact_replay/capture_reference.csv",
+  "final_diagnostics": {
+    "coarse_score": "0.959683",
+    "correspondences": "182",
+    "dropped_scans": "0",
+    "keyframes": "160",
+    "loop_candidates_rejected": "0",
+    "loop_constraints": "0",
+    "loop_searches_completed": "0",
+    "loop_searches_skipped": "0",
+    "loop_worker_busy": "false",
+    "optimizer_last_seconds": "0.00106709",
+    "optimizer_running": "false",
+    "pose_graph_constraints": "318",
+    "processing_ms": "16.1533",
+    "residual_rms_m": "0.0455046",
+    "submaps": "4"
+  },
+  "final_error_vs_gazebo": {
+    "odom": {
+      "translation_m": 0.2647842507251162,
+      "yaw_rad": 0.7050042733659889
+    },
+    "slam": {
+      "translation_m": 0.034713956368956383,
+      "yaw_rad": 0.016635797313381717
+    }
+  },
+  "final_relative_pose": {
+    "gazebo": {
+      "closure_distance_m": 0.2359352948593602,
+      "x_m": 0.22189024926983958,
+      "y_m": -0.08018840713807517,
+      "yaw_rad": 0.6825782519812527
+    },
+    "odom": {
+      "closure_distance_m": 0.0292203275749692,
+      "x_m": -0.028760583761547862,
+      "y_m": 0.005162980271460971,
+      "yaw_rad": -0.022426021384736303
+    },
+    "slam": {
+      "closure_distance_m": 0.23957568068807675,
+      "x_m": 0.23473088003745396,
+      "y_m": -0.04793663248495565,
+      "yaw_rad": 0.6659424546678709
+    }
+  },
+  "processing_ms": {
+    "maximum": 29.1501,
+    "mean": 15.83859707920792,
+    "p95": 22.0639,
+    "samples": 404
+  },
+  "samples": 732,
+  "trajectory_error_vs_gazebo": {
+    "odom": {
+      "translation_m": {
+        "maximum": 0.2648615859759821,
+        "p95": 0.26353762865707225,
+        "rmse": 0.15192332570570108
+      },
+      "yaw_rad": {
+        "maximum": 0.7305052220093222,
+        "p95": 0.7130254966425,
+        "rmse": 0.39566745316213003
+      }
+    },
+    "slam": {
+      "translation_m": {
+        "maximum": 0.05482182700688672,
+        "p95": 0.04747705196060927,
+        "rmse": 0.03138320140689953
+      },
+      "yaw_rad": {
+        "maximum": 0.09607555897906382,
+        "p95": 0.06604650726436234,
+        "rmse": 0.030318645276200394
+      }
+    }
+  }
+}

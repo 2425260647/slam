@@ -1,0 +1,36 @@
+corridor02_custommsg_to_pointcloud2:
+  input_topic: /livox/mid360/lidar
+  output_topic: /velodyne_points
+corridor02_livox_deskewed_scan:
+  filter_isolated_returns: true
+  input_topic: /livox/mid360/lidar
+  max_height: 0.6
+  min_height: 0.2
+  odom_topic: /odom
+  output_frame: base_footprint
+  output_topic: /scan
+  range_max: 30.0
+  range_min: 0.3
+local_grid_mapper:
+  base_frame: base_footprint
+  map_frame: map
+  map_output_topic: /local_occupancy_grid_map
+  map_size: 5.0
+  max_range: 5.0
+  obstacle_dilation_cells: 1
+  output_topic: /local_occupancy_grid
+  publish_map_frame_grid: true
+  resolution: 0.05
+  scan_topic: /scan
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_ubuntu__36125: http://ubuntu:36125/
+    host_ubuntu__45949: http://ubuntu:45949/
+rosversion: '1.17.4
+
+  '
+run_id: 2ef7da7a-9533-11f1-b8a2-59a8600949a1
+use_sim_time: true

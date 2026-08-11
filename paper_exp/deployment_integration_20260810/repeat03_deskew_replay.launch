@@ -1,0 +1,26 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+
+  <node pkg="my_navigation" type="velodyne_deskewed_laserscan"
+        name="velodyne_deskewed_laserscan" output="screen">
+    <param name="input_topic" value="/velodyne_points"/>
+    <param name="odom_topic" value="/odom"/>
+    <param name="output_topic" value="/scan"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="output_frame" value="laser_link"/>
+    <param name="ring_min" value="8"/>
+    <param name="ring_max" value="9"/>
+    <param name="filter_isolated_returns" value="true"/>
+    <param name="isolation_window_bins" value="2"/>
+    <param name="isolation_max_distance" value="0.30"/>
+    <param name="minimum_valid_bins" value="60"/>
+  </node>
+
+  <include file="$(dirname)/slam_local_grid.launch">
+    <arg name="configuration_directory" value="$(dirname)"/>
+    <arg name="configuration_basename" value="repeat03_clean.lua"/>
+    <arg name="scan_topic" value="/scan"/>
+    <arg name="odom_topic" value="/odom"/>
+    <arg name="base_frame" value="base_link"/>
+  </include>
+</launch>

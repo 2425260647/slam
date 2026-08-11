@@ -1,30 +1,22 @@
 <launch>
-  <arg name="rviz" default="true"/>
   <arg name="enable_monitor" default="true"/>
   <arg name="cloud_topic" default="/velodyne_points"/>
-  <arg name="projected_scan_topic" default="/scan_projected"/>
   <arg name="scan_topic" default="/scan"/>
   <arg name="odom_topic" default="/odom"/>
   <arg name="target_frame" default="laser_link"/>
-  <!-- Current sensor center is 0.57 m above ground. Keep the same absolute
-       projection band used by the previous 0.405 m installation. -->
   <arg name="min_height" default="-0.515"/>
   <arg name="max_height" default="1.435"/>
   <arg name="range_min" default="0.30"/>
   <arg name="range_max" default="30.0"/>
-  <arg name="scan_quality_gate_enabled" default="true"/>
-  <arg name="scan_quality_min_valid_ranges" default="250"/>
-  <arg name="scan_quality_sector_count" default="8"/>
-  <arg name="scan_quality_min_active_sectors" default="2"/>
-  <arg name="scan_quality_min_ranges_per_sector" default="10"/>
   <arg name="cartographer_config_dir" default="$(find my_navigation)/config"/>
   <arg name="cartographer_config" default="cartographer_scout_2d.lua"/>
 
-  <!-- Real robot mapping stack. Start Scout base and lidar driver separately. -->
+  <!-- Start the Scout base and LiDAR driver separately. This launch owns only
+       point-cloud projection, mapping/localization and occupancy grids. -->
   <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
         name="real_cloud_to_scan" output="screen">
     <remap from="cloud_in" to="$(arg cloud_topic)"/>
-    <remap from="scan" to="$(arg projected_scan_topic)"/>
+    <remap from="scan" to="$(arg scan_topic)"/>
     <param name="target_frame" value="$(arg target_frame)"/>
     <param name="transform_tolerance" value="0.05"/>
     <param name="min_height" value="$(arg min_height)"/>
@@ -37,22 +29,6 @@
     <param name="range_max" value="$(arg range_max)"/>
     <param name="use_inf" value="true"/>
     <param name="inf_epsilon" value="1.0"/>
-  </node>
-
-  <!-- [Innovation 1] Prevent sparse, one-sided projected scans from causing
-       false local scan-matcher rotations in corridor openings. -->
-  <node pkg="my_navigation" type="scan_quality_gate"
-        name="scan_quality_gate" output="screen">
-    <param name="input_topic" value="$(arg projected_scan_topic)"/>
-    <param name="output_topic" value="$(arg scan_topic)"/>
-    <param name="enabled" value="$(arg scan_quality_gate_enabled)"/>
-    <param name="min_valid_ranges"
-           value="$(arg scan_quality_min_valid_ranges)"/>
-    <param name="sector_count" value="$(arg scan_quality_sector_count)"/>
-    <param name="min_active_sectors"
-           value="$(arg scan_quality_min_active_sectors)"/>
-    <param name="min_ranges_per_sector"
-           value="$(arg scan_quality_min_ranges_per_sector)"/>
   </node>
 
   <node name="cartographer_node" pkg="cartographer_ros"
@@ -82,8 +58,9 @@
     <param name="obstacle_dilation_cells" value="1"/>
   </node>
 
-  <node if="$(arg enable_monitor)" pkg="my_navigation" type="mapping_health_monitor"
-        name="mapping_health_monitor" output="screen">
+  <node if="$(arg enable_monitor)" pkg="my_navigation"
+        type="mapping_health_monitor" name="mapping_health_monitor"
+        output="screen">
     <param name="scan_topic" value="$(arg scan_topic)"/>
     <param name="map_topic" value="/map"/>
     <param name="local_grid_topic" value="/local_occupancy_grid"/>
@@ -91,10 +68,9 @@
     <param name="base_frame" value="base_link"/>
     <param name="report_period" value="2.0"/>
     <param name="scan_min_hz" value="5.0"/>
+    <!-- Enable only during a deliberate stationary test. -->
+    <param name="enable_static_jitter_check" value="false"/>
     <param name="static_jitter_warn_m" value="0.08"/>
     <param name="static_yaw_warn_rad" value="0.08"/>
   </node>
-
-  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
-        args="-d $(find my_navigation)/rviz/mapping_local_grid.rviz"/>
 </launch>

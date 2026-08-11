@@ -16,8 +16,10 @@
 
 #include "cartographer/mapping/internal/2d/local_trajectory_builder_2d.h"
 
+#include <cmath>
 #include <limits>
 #include <memory>
+#include <vector>
 
 #include "absl/memory/memory.h"
 #include "cartographer/metrics/family_factory.h"
@@ -34,6 +36,58 @@ static auto* kRealTimeCorrelativeScanMatcherScoreMetric =
 static auto* kCeresScanMatcherCostMetric = metrics::Histogram::Null();
 static auto* kScanMatcherResidualDistanceMetric = metrics::Histogram::Null();
 static auto* kScanMatcherResidualAngleMetric = metrics::Histogram::Null();
+
+// A multi-ring point cloud can contain several returns at nearly the same
+// azimuth. In a 2D probability grid, inserting all of them makes walls thick
+// and can create parallel ghost walls. Keep only the nearest valid return in
+// each angular bin for map insertion. The scan matcher still receives the
+// dense/adaptive cloud above this stage.
+sensor::PointCloud KeepNearestReturnPerAngle(
+    const sensor::PointCloud& returns, const Eigen::Vector3f& origin,
+    const float angular_resolution) {
+  if (!(angular_resolution > 0.f) || !std::isfinite(angular_resolution)) {
+    return returns;
+  }
+  constexpr float kTwoPi = 6.2831853071795864769f;
+  const int bin_count = static_cast<int>(
+      std::ceil(kTwoPi / angular_resolution));
+  if (bin_count <= 0 || bin_count > 100000) {
+    return returns;
+  }
+
+  const float infinity = std::numeric_limits<float>::infinity();
+  std::vector<float> nearest_ranges(bin_count, infinity);
+  std::vector<int> nearest_indices(bin_count, -1);
+  for (int index = 0; index < static_cast<int>(returns.size()); ++index) {
+    const Eigen::Vector3f delta = returns[index].position - origin;
+    const float range = std::hypot(delta.x(), delta.y());
+    if (!(range > 0.f) || !std::isfinite(range)) {
+      continue;
+    }
+    float angle = std::atan2(delta.y(), delta.x());
+    if (angle < 0.f) {
+      angle += kTwoPi;
+    }
+    int bin = static_cast<int>(angle / angular_resolution);
+    if (bin >= bin_count) {
+      bin = bin_count - 1;
+    }
+    if (range < nearest_ranges[bin]) {
+      nearest_ranges[bin] = range;
+      nearest_indices[bin] = index;
+    }
+  }
+
+  sensor::PointCloud filtered;
+  // Preserve the original angular traversal order as much as possible. This
+  // is useful for diagnostics and keeps insertion deterministic.
+  for (const int index : nearest_indices) {
+    if (index >= 0) {
+      filtered.push_back(returns[index]);
+    }
+  }
+  return filtered;
+}
 
 LocalTrajectoryBuilder2D::LocalTrajectoryBuilder2D(
     const proto::LocalTrajectoryBuilderOptions2D& options,
@@ -268,10 +322,23 @@ LocalTrajectoryBuilder2D::AddAccumulatedRangeData(
       transform::Embed3D(*pose_estimate_2d) * gravity_alignment;
   extrapolator_->AddPose(time, pose_estimate);
 
+  // Keep the dense/adaptive cloud for scan matching, but use a separate,
+  // slightly coarser cloud for map insertion. This reduces repeated endpoint
+  // hits caused by scan noise without weakening the front-end pose estimate.
+  sensor::RangeData range_data_for_insertion = gravity_aligned_range_data;
+  range_data_for_insertion.returns = sensor::VoxelFilter(
+      gravity_aligned_range_data.returns,
+      options_.submap_insertion_voxel_filter_size());
+  if (options_.submap_insertion_polar_filter_enabled()) {
+    range_data_for_insertion.returns = KeepNearestReturnPerAngle(
+        range_data_for_insertion.returns, range_data_for_insertion.origin,
+        options_.submap_insertion_polar_angular_resolution());
+  }
+
   // 用校正后的位姿把本批激光点变到 local frame。注意：submap 插入使用的是
   // 已匹配后的点云，不是原始外推位姿下的点云，因此局部地图会跟随匹配结果变稳。
   sensor::RangeData range_data_in_local =
-      TransformRangeData(gravity_aligned_range_data,
+      TransformRangeData(range_data_for_insertion,
                          transform::Embed3D(pose_estimate_2d->cast<float>()));
   std::unique_ptr<InsertionResult> insertion_result = InsertIntoSubmap(
       time, range_data_in_local, filtered_gravity_aligned_point_cloud,

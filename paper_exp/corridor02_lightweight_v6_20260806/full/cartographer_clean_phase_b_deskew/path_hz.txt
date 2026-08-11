@@ -1,0 +1,15 @@
+WARNING: topic [/lightweight_slam/path] does not appear to be published yet
+Traceback (most recent call last):
+  File "/opt/ros/noetic/bin/rostopic", line 35, in <module>
+    rostopic.rostopicmain()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rostopic/__init__.py", line 2132, in rostopicmain
+    _rostopic_cmd_hz(argv)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rostopic/__init__.py", line 1523, in _rostopic_cmd_hz
+    _rostopic_hz(topics, window_size=window_size, filter_expr=filter_expr,
+  File "/opt/ros/noetic/lib/python3/dist-packages/rostopic/__init__.py", line 315, in _rostopic_hz
+    rospy.Subscriber(real_topic, rospy.AnyMsg, rt.callback_hz, callback_args=topic, tcp_nodelay=tcp_nodelay)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 563, in __init__
+    super(Subscriber, self).__init__(name, data_class, Registration.SUB)
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/topics.py", line 131, in __init__
+    raise ValueError("topic name is not a non-empty string")
+ValueError: topic name is not a non-empty string

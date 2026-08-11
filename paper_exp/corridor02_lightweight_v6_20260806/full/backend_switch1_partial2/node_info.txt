@@ -1,0 +1,215 @@
+--------------------------------------------------------------------------------
+Node [/lightweight_2d_slam]
+Publications: 
+ * /lightweight_slam/path [nav_msgs/Path]
+ * /local_occupancy_grid [nav_msgs/OccupancyGrid]
+ * /map [nav_msgs/OccupancyGrid]
+ * /rosout [rosgraph_msgs/Log]
+ * /slam_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /tf [tf2_msgs/TFMessage]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /scan [sensor_msgs/LaserScan]
+ * /tf [tf2_msgs/TFMessage]
+ * /tf_static [tf2_msgs/TFMessage]
+
+Services: 
+ * /dynamic_map
+ * /lightweight_2d_slam/get_loggers
+ * /lightweight_2d_slam/set_logger_level
+
+
+contacting node http://ubuntu:45065/ ...
+Pid: 79218
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (39303 - 127.0.0.1:42222) [18]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /lightweight_2d_slam
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /tracked_pose
+    * to: /rostopic_78868_1786006048300
+    * direction: outbound (39303 - 127.0.0.1:42220) [17]
+    * transport: TCPROS
+ * topic: /tracked_pose
+    * to: /record_1786006048304926960
+    * direction: outbound (39303 - 127.0.0.1:42238) [11]
+    * transport: TCPROS
+ * topic: /slam_diagnostics
+    * to: /record_1786006048304926960
+    * direction: outbound (39303 - 127.0.0.1:42248) [12]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound (49594 - ubuntu:50131) [10]
+    * transport: TCPROS
+ * topic: /tf
+    * to: /lightweight_2d_slam (http://ubuntu:45065/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+ * topic: /odom
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound (49598 - ubuntu:50131) [19]
+    * transport: TCPROS
+ * topic: /scan
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound (49608 - ubuntu:50131) [20]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/play_1786006050433094157]
+Publications: 
+ * /clock [rosgraph_msgs/Clock]
+ * /odom [nav_msgs/Odometry]
+ * /rosout [rosgraph_msgs/Log]
+ * /scan [sensor_msgs/LaserScan]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+
+Services: 
+ * /play_1786006050433094157/get_loggers
+ * /play_1786006050433094157/pause_playback
+ * /play_1786006050433094157/set_logger_level
+
+
+contacting node http://ubuntu:34655/ ...
+Pid: 78935
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (50131 - 127.0.0.1:53424) [18]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /play_1786006050433094157
+    * direction: outbound
+    * transport: INTRAPROCESS
+ * topic: /clock
+    * to: /rostopic_78868_1786006048300
+    * direction: outbound (50131 - 127.0.0.1:53410) [17]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /record_1786006048304926960
+    * direction: outbound (50131 - 127.0.0.1:53438) [11]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /lightweight_2d_slam
+    * direction: outbound (50131 - 127.0.0.1:49594) [12]
+    * transport: TCPROS
+ * topic: /scan
+    * to: /lightweight_2d_slam
+    * direction: outbound (50131 - 127.0.0.1:49608) [15]
+    * transport: TCPROS
+ * topic: /odom
+    * to: /lightweight_2d_slam
+    * direction: outbound (50131 - 127.0.0.1:49598) [13]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound
+    * transport: INTRAPROCESS
+
+--------------------------------------------------------------------------------
+Node [/record_1786006048304926960]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /slam_diagnostics [diagnostic_msgs/DiagnosticArray]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Services: 
+ * /record_1786006048304926960/get_loggers
+ * /record_1786006048304926960/set_logger_level
+
+
+contacting node http://ubuntu:38933/ ...
+Pid: 78886
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (35317 - 127.0.0.1:47232) [10]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound (53438 - ubuntu:50131) [15]
+    * transport: TCPROS
+ * topic: /slam_diagnostics
+    * to: /lightweight_2d_slam (http://ubuntu:45065/)
+    * direction: inbound (42248 - ubuntu:39303) [18]
+    * transport: TCPROS
+ * topic: /tracked_pose
+    * to: /lightweight_2d_slam (http://ubuntu:45065/)
+    * direction: inbound (42238 - ubuntu:39303) [17]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/rosout]
+Publications: 
+ * /rosout_agg [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /rosout [rosgraph_msgs/Log]
+
+Services: 
+ * /rosout/get_loggers
+ * /rosout/set_logger_level
+
+
+contacting node http://ubuntu:46081/ ...
+Pid: 78803
+Connections:
+ * topic: /rosout
+    * to: /record_1786006048304926960 (http://ubuntu:38933/)
+    * direction: inbound (47232 - ubuntu:35317) [17]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /rostopic_78868_1786006048300 (http://ubuntu:34891/)
+    * direction: inbound (47224 - ubuntu:40327) [14]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound (53424 - ubuntu:50131) [18]
+    * transport: TCPROS
+ * topic: /rosout
+    * to: /lightweight_2d_slam (http://ubuntu:45065/)
+    * direction: inbound (42222 - ubuntu:39303) [16]
+    * transport: TCPROS
+
+--------------------------------------------------------------------------------
+Node [/rostopic_78868_1786006048300]
+Publications: 
+ * /rosout [rosgraph_msgs/Log]
+
+Subscriptions: 
+ * /clock [rosgraph_msgs/Clock]
+ * /tracked_pose [geometry_msgs/PoseStamped]
+
+Services: 
+ * /rostopic_78868_1786006048300/get_loggers
+ * /rostopic_78868_1786006048300/set_logger_level
+
+
+contacting node http://ubuntu:34891/ ...
+Pid: 78868
+Connections:
+ * topic: /rosout
+    * to: /rosout
+    * direction: outbound (40327 - 127.0.0.1:47224) [9]
+    * transport: TCPROS
+ * topic: /clock
+    * to: /play_1786006050433094157 (http://ubuntu:34655/)
+    * direction: inbound
+    * transport: TCPROS
+ * topic: /tracked_pose
+    * to: /lightweight_2d_slam (http://ubuntu:45065/)
+    * direction: inbound
+    * transport: TCPROS
+

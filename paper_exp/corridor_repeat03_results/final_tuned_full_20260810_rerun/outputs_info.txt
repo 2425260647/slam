@@ -1,0 +1,21 @@
+path:         /home/slam/slam_ws/paper_exp/corridor_repeat03_results/final_tuned_full_20260810_rerun/outputs.bag
+version:      2.0
+duration:     9:38s (578s)
+start:        Jul 24 2026 11:50:17.81 (1784865017.81)
+end:          Jul 24 2026 11:59:56.62 (1784865596.62)
+size:         291.1 MB
+messages:     109132
+compression:  lz4 [939/939 chunks; 23.97%]
+uncompressed:   1.2 GB @   2.1 MB/s
+compressed:   289.3 MB @ 511.9 KB/s (23.97%)
+types:        nav_msgs/OccupancyGrid         [3381f2d731d4076ec5c71b0759edbe4e]
+              sensor_msgs/LaserScan          [90c7ef2dc6895d81024acba2ac42f369]
+              tf2_msgs/TFMessage             [94810edda583a504dfda3829e70d7eec]
+              visualization_msgs/MarkerArray [d155b9ce5188fbaf89745847fd5882d7]
+topics:       /constraint_list             1181 msgs    : visualization_msgs/MarkerArray
+              /local_occupancy_grid        5785 msgs    : nav_msgs/OccupancyGrid        
+              /local_occupancy_grid_map    5784 msgs    : nav_msgs/OccupancyGrid        
+              /map                          588 msgs    : nav_msgs/OccupancyGrid        
+              /scan                        5785 msgs    : sensor_msgs/LaserScan         
+              /tf                         90005 msgs    : tf2_msgs/TFMessage             (2 connections)
+              /tf_static                      4 msgs    : tf2_msgs/TFMessage

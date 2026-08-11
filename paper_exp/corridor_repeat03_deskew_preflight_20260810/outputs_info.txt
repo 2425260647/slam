@@ -1,0 +1,1 @@
+ERROR reading /home/slam/slam_ws/paper_exp/corridor_repeat03_deskew_preflight_20260810/outputs.bag: [Errno 2] No such file or directory: '/home/slam/slam_ws/paper_exp/corridor_repeat03_deskew_preflight_20260810/outputs.bag'

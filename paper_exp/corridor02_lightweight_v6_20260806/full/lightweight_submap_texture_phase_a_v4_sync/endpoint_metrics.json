@@ -1,0 +1,24 @@
+{
+  "estimator_duration_sec": 293.3004810810089,
+  "ground_truth": "/home/slam/slam_ws/bags/Corridor02/GTCorridor02.txt",
+  "ground_truth_duration_sec": 293.0,
+  "limitations": [
+    "The ArUco file provides one start-to-end transform, not continuous ground truth.",
+    "The SE(2) projection is a diagnostic proxy and is not an official M3DGR metric.",
+    "Neither result is continuous ATE or RPE."
+  ],
+  "non_official_se2_projection": {
+    "estimated_yaw_rad": -0.4511849862609114,
+    "reference_yaw_rad": 0.021718901479797135,
+    "translation_error_m": 0.4895501027019657,
+    "yaw_error_rad": 0.4729038877407086
+  },
+  "official_aruco_endpoint": {
+    "combined_rmse": 0.7421862786355745,
+    "rotation_matrix_frobenius_error": 0.924257936496924,
+    "translation_error_m": 0.497421562874282
+  },
+  "sample_count": 2934,
+  "tracking_rate_percent": 100.0,
+  "trajectory": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_submap_texture_phase_a_v4_sync/tracked_pose.csv"
+}

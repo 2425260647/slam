@@ -1,0 +1,3 @@
+/lightweight_2d_slam
+/rosout
+/static_transform_publisher_1785936326434059815

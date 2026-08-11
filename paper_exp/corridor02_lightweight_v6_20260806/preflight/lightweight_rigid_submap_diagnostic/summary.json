@@ -1,0 +1,144 @@
+{
+  "algorithm": "lightweight_rigid_submap_diagnostic",
+  "diagnostics": {
+    "coarse_score": {
+      "maximum": 0.861496,
+      "mean": 0.7022853255813953,
+      "p95": 0.818031
+    },
+    "correspondences": {
+      "maximum": 201.0,
+      "mean": 131.3654485049834,
+      "p95": 176.0
+    },
+    "final_values": {
+      "coarse_score": "0.697332",
+      "correspondences": "157",
+      "dropped_scans": "2",
+      "frozen_submaps": "2",
+      "global_correction_blend_progress": "1",
+      "global_correction_blending": "false",
+      "keyframes": "121",
+      "loop_anisotropic_candidates": "0",
+      "loop_anisotropic_constraints": "0",
+      "loop_candidates_evaluated": "0",
+      "loop_candidates_rejected": "0",
+      "loop_consensus_accepts": "0",
+      "loop_constraints": "0",
+      "loop_last_consensus_support": "0",
+      "loop_low_observability_rejections": "0",
+      "loop_minimum_switch": "1",
+      "loop_reject_ambiguity": "0",
+      "loop_reject_confirmation": "0",
+      "loop_reject_consensus": "0",
+      "loop_reject_correction": "0",
+      "loop_reject_match": "0",
+      "loop_reject_no_candidate": "0",
+      "loop_reject_rms": "0",
+      "loop_reject_score": "0",
+      "loop_searches_completed": "0",
+      "loop_searches_skipped": "0",
+      "loop_sequence_rejections": "0",
+      "loop_suppressed_constraints": "0",
+      "loop_worker_busy": "false",
+      "map_build_seconds": "0.0122547",
+      "map_rebuild_failures": "0",
+      "map_worker_busy": "false",
+      "oad_expanded": "false",
+      "oad_search_window_m": "0.15",
+      "oad_triggered": "false",
+      "optimizer_last_seconds": "0",
+      "optimizer_pose_version": "0",
+      "optimizer_running": "false",
+      "pose_graph_constraints": "120",
+      "processing_ms": "9.87917",
+      "residual_rms_m": "0.0362188",
+      "scan_quality": "0.836248",
+      "score_margin": "inf",
+      "submaps": "3",
+      "translation_observability": "0.102852"
+    },
+    "messages": 301,
+    "processing_ms": {
+      "maximum": 15.8187,
+      "mean": 4.871884219269103,
+      "p95": 9.06899
+    },
+    "residual_rms_m": {
+      "maximum": 0.0674539,
+      "mean": 0.035939279069767446,
+      "p95": 0.0536385
+    },
+    "scan_quality": {
+      "maximum": 0.911879,
+      "mean": 0.8344631827242524,
+      "p95": 0.891334
+    },
+    "status_counts": {
+      "odometry_fallback": 1,
+      "tracking": 299,
+      "waiting_for_synchronized_input": 1
+    }
+  },
+  "input_bag": "/home/slam/slam_ws/paper_exp/corridor02_lightweight_v6_20260806/common_inputs.bag",
+  "input_counts": {
+    "/odom": 5867,
+    "/scan": 2934
+  },
+  "map": {
+    "free_cells": 51303,
+    "height_px": 1187,
+    "known_cells": 52384,
+    "occupied_cells": 1081,
+    "occupied_ratio_known": 0.020636072083078803,
+    "origin": [
+      -23.179921,
+      -23.467868,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 1053900,
+    "width_px": 932
+  },
+  "metric_boundary": "Start/end closure and map statistics are no-ground-truth engineering proxies, not ATE or RPE.",
+  "mode": "preflight",
+  "odometry_proxy": {
+    "duration_sec": 293.29788303375244,
+    "messages": 5867,
+    "path_length_m": 229.9138663475029,
+    "start_end_translation_m": 27.19682513401294,
+    "start_end_yaw_rad": 0.264954741801126
+  },
+  "output_counts": {
+    "/lightweight_slam/local_path": 58,
+    "/lightweight_slam/path": 58,
+    "/lightweight_slam/submap_path": 58,
+    "/slam_diagnostics": 301,
+    "/tf": 598,
+    "/tracked_pose": 299
+  },
+  "runtime": {
+    "play_wall_duration_sec": 30.79
+  },
+  "trajectory_proxy": {
+    "end_pose": [
+      -0.9228105681147594,
+      15.223962577482562,
+      1.5787298906860072
+    ],
+    "maximum_pose_step_m": 0.2200755922328816,
+    "path_length_m": 17.699323996134883,
+    "pose_caller_id": null,
+    "pose_duration_sec": 29.881718397140503,
+    "pose_messages": 299,
+    "start_end_translation_m": 15.25190532049074,
+    "start_end_yaw_rad": 1.5787298906860072,
+    "start_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "truth_available": false,
+  "truth_used_for_slam": false
+}

@@ -1,0 +1,17 @@
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_ubuntu__38551: http://ubuntu:38551/
+    host_ubuntu__39437: http://ubuntu:39437/
+rosversion: '1.17.4
+
+  '
+run_id: bd7ae4e0-90d3-11f1-96a8-d1184dae2d3c
+tf_pose_publisher:
+  base_frame: base_link
+  map_frame: map
+  output_topic: /tracked_pose
+  publish_rate: 20.0
+use_sim_time: true

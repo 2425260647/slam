@@ -1,0 +1,10 @@
+WARNING: may be using simulated time
+subscribed to [/scan]
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages

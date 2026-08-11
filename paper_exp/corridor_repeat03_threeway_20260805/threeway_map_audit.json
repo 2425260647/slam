@@ -1,0 +1,68 @@
+{
+  "cartographer": {
+    "free_cells": 67460,
+    "height_px": 354,
+    "known_cells": 76801,
+    "largest_component_cells": 1571,
+    "largest_component_ratio": 0.16818327802162508,
+    "map_area_m2": 1430.16,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/full/cartographer",
+    "occupied_cells": 9341,
+    "occupied_components_8_connected": 111,
+    "occupied_pca_length_ratio": 9.997011610540042,
+    "occupied_ratio_known": 0.12162602049452481,
+    "occupied_ratio_total": 0.016328592605023215,
+    "origin": [
+      -2.099349,
+      -8.686073,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 495263,
+    "width_px": 1616
+  },
+  "gmapping": {
+    "free_cells": 95842,
+    "height_px": 1184,
+    "known_cells": 106434,
+    "largest_component_cells": 2054,
+    "largest_component_ratio": 0.19391993957703926,
+    "map_area_m2": 8619.520000000002,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/full/gmapping",
+    "occupied_cells": 10592,
+    "occupied_components_8_connected": 436,
+    "occupied_pca_length_ratio": 5.889826194127933,
+    "occupied_ratio_known": 0.09951707161245467,
+    "occupied_ratio_total": 0.003072096822096822,
+    "origin": [
+      -30.0,
+      -30.0,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 3341374,
+    "width_px": 2912
+  },
+  "lightweight": {
+    "free_cells": 70383,
+    "height_px": 368,
+    "known_cells": 76500,
+    "largest_component_cells": 507,
+    "largest_component_ratio": 0.08288376655223148,
+    "map_area_m2": 1326.6400000000003,
+    "map_dir": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/full/lightweight",
+    "occupied_cells": 6117,
+    "occupied_components_8_connected": 552,
+    "occupied_pca_length_ratio": 4.299734804934602,
+    "occupied_ratio_known": 0.0799607843137255,
+    "occupied_ratio_total": 0.011527241753603087,
+    "origin": [
+      -14.664174,
+      -8.681611,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 454156,
+    "width_px": 1442
+  }
+}

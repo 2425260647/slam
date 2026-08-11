@@ -1,0 +1,5 @@
+/gmapping
+/gmapping_odom_to_tf
+/gmapping_tracked_pose
+/rosout
+/static_transform_publisher_1785936608698760550

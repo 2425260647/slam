@@ -1,0 +1,212 @@
+{
+  "diagnostics_bag": "/home/slam/slam_ws/paper_exp/corridor_new_optimized_20260731/final/diagnostics.bag",
+  "counts": {
+    "/constraint_list": 2593,
+    "/tf": 53412,
+    "/odom": 24352,
+    "/scan": 4643,
+    "/tracked_pose": 24189,
+    "/scan_matched_points2": 4638,
+    "/degeneracy_metric": 19089,
+    "/degeneracy_direction": 19089,
+    "/map": 1246,
+    "/slip_metric": 23449,
+    "/slip_state": 23449,
+    "/odom_weight_scale": 23449,
+    "/slip_lidar_reliability": 23449,
+    "/consistency_anomaly_trigger_count": 23449,
+    "/odom_min_weight_scale": 23449,
+    "/consistency_anomaly_time": 18994
+  },
+  "topic_times": {
+    "/constraint_list": {
+      "first": 1784003077.981975,
+      "last": 1784003565.0253975,
+      "duration": 487.04342246055603
+    },
+    "/tf": {
+      "first": 1784003077.981975,
+      "last": 1784003565.0253975,
+      "duration": 487.04342246055603
+    },
+    "/odom": {
+      "first": 1784003077.985662,
+      "last": 1784003565.0140538,
+      "duration": 487.02839183807373
+    },
+    "/scan": {
+      "first": 1784003078.0701857,
+      "last": 1784003564.9716058,
+      "duration": 486.90142011642456
+    },
+    "/tracked_pose": {
+      "first": 1784003078.0919378,
+      "last": 1784003565.0253975,
+      "duration": 486.93345975875854
+    },
+    "/scan_matched_points2": {
+      "first": 1784003078.0919378,
+      "last": 1784003565.0253975,
+      "duration": 486.93345975875854
+    },
+    "/degeneracy_metric": {
+      "first": 1784003078.212279,
+      "last": 1784003565.0253975,
+      "duration": 486.8131184577942
+    },
+    "/degeneracy_direction": {
+      "first": 1784003078.212279,
+      "last": 1784003565.0253975,
+      "duration": 486.8131184577942
+    },
+    "/map": {
+      "first": 1784003078.6576216,
+      "last": 1784003565.0253975,
+      "duration": 486.3677759170532
+    },
+    "/slip_metric": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/slip_state": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/odom_weight_scale": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/slip_lidar_reliability": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/consistency_anomaly_trigger_count": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/odom_min_weight_scale": {
+      "first": 1784003093.811533,
+      "last": 1784003565.0253975,
+      "duration": 471.21386456489563
+    },
+    "/consistency_anomaly_time": {
+      "first": 1784003182.9029794,
+      "last": 1784003565.0253975,
+      "duration": 382.1224181652069
+    }
+  },
+  "rates_hz": {
+    "/constraint_list": 5.321907412084838,
+    "/tf": 109.66373332826515,
+    "/odom": 49.99913846520918,
+    "/scan": 9.533757364868718,
+    "/tracked_pose": 49.674138252859976,
+    "/scan_matched_points2": 9.522861711530995,
+    "/degeneracy_metric": 39.210118372467186,
+    "/degeneracy_direction": 39.210118372467186,
+    "/map": 2.5597912971362775,
+    "/slip_metric": 49.76084483772811,
+    "/slip_state": 49.76084483772811,
+    "/odom_weight_scale": 49.76084483772811,
+    "/slip_lidar_reliability": 49.76084483772811,
+    "/consistency_anomaly_trigger_count": 49.76084483772811,
+    "/odom_min_weight_scale": 49.76084483772811,
+    "/consistency_anomaly_time": 49.70396683658733
+  },
+  "degeneracy_metric": {
+    "count": 19089,
+    "min": 0.03147332742810249,
+    "max": 0.999903678894043,
+    "mean": 0.14000628773583393,
+    "last": 0.08861250430345535
+  },
+  "slip_metric": {
+    "count": 23449,
+    "min": 0.0008689711103215814,
+    "max": 0.05703006684780121,
+    "mean": 0.014413513115860914,
+    "last": 0.027519600465893745
+  },
+  "slip_state_true_count": 0,
+  "slip_state_count": 23449,
+  "slip_state_true_ratio": 0.0,
+  "odom_weight_scale": {
+    "count": 23449,
+    "min": 0.7934024930000305,
+    "max": 1.0,
+    "mean": 0.9936461854786287,
+    "last": 1.0
+  },
+  "odom_min_weight_scale": {
+    "count": 23449,
+    "min": 0.5058898329734802,
+    "max": 1.0,
+    "mean": 0.801999597937025,
+    "last": 0.5058898329734802
+  },
+  "slip_lidar_reliability": {
+    "count": 23449,
+    "min": 0.46283191442489624,
+    "max": 0.8998941779136658,
+    "mean": 0.795472995523878,
+    "last": 0.74798583984375
+  },
+  "consistency_anomaly_trigger_count": {
+    "count": 23449,
+    "min": 0.0,
+    "max": 6.0,
+    "mean": 2.6320525395539254,
+    "last": 6.0
+  },
+  "map": {
+    "width": 1545,
+    "height": 783,
+    "resolution": 0.05000000074505806,
+    "span_x_m": 77.2500011511147,
+    "span_y_m": 39.15000058338046,
+    "total_cells": 1209735,
+    "known_cells": 50576,
+    "free_cells": 35534,
+    "occupied_cells": 15042,
+    "unknown_cells": 1103714,
+    "known_area_m2": 126.44000376820567,
+    "free_area_m2": 88.83500264748933,
+    "occupied_area_m2": 37.605001120716345,
+    "known_ratio": 0.04180750329617643,
+    "free_ratio": 0.029373375160675685,
+    "occupied_ratio": 0.01243412813550075,
+    "origin_xy": [
+      -1.401682472229004,
+      -27.572180175781252
+    ]
+  },
+  "tracked_pose": {
+    "count": 24189,
+    "start_time": 1784003078.0919378,
+    "end_time": 1784003565.0253975,
+    "duration_sec": 486.93345975875854,
+    "path_length_m": 168.256865974528,
+    "start_pose_xy_yaw": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "end_pose_xy_yaw": [
+      26.296500922370004,
+      -25.880554760613812,
+      -1.7219978719499214
+    ],
+    "start_end_displacement_m": 36.89592220662517
+  },
+  "height_interpretation": {
+    "base_link_to_base_footprint_z_m": -0.23479,
+    "base_link_to_laser_link_z_m": 0.17,
+    "base_footprint_to_laser_link_z_m": 0.40479,
+    "note": "If lidar height means height above base_footprint/ground, the formal run already matches approximately 0.4 m."
+  }
+}

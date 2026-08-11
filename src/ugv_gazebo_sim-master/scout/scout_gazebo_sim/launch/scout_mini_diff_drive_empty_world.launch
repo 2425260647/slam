@@ -7,6 +7,7 @@
   <arg name="y" default="0.0"/>
   <arg name="z" default="0.05"/>
   <arg name="yaw" default="0.0"/>
+  <arg name="spawn_unpause" default="true"/>
 
   <param name="/use_sim_time" value="true"/>
 
@@ -25,5 +26,6 @@
     <arg name="y" value="$(arg y)"/>
     <arg name="z" value="$(arg z)"/>
     <arg name="yaw" value="$(arg yaw)"/>
+    <arg name="unpause" value="$(arg spawn_unpause)"/>
   </include>
 </launch>

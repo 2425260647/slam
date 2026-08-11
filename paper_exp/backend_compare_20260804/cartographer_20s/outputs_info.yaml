@@ -1,0 +1,32 @@
+path: paper_exp/backend_compare_20260804/cartographer_20s/outputs.bag
+version: 2.0
+duration: 18.752367
+start: 1737472023.483573
+end: 1737472042.235940
+size: 6014620
+messages: 2044
+indexed: True
+compression: none
+types:
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 22
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 376
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 178
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 1468
+

@@ -1,0 +1,7 @@
+image: /home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/optimization/likelihood_refinement_no_free/map.pgm
+resolution: 0.050000
+origin: [-11.563700, -11.378767, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

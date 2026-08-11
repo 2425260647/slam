@@ -1,0 +1,27 @@
+path:         /home/slam/slam_ws/paper_exp/corridor02_results/full_clean_20260810/topics.bag
+version:      2.0
+duration:     1:50s (110s)
+start:        Jan 21 2025 23:07:02.24 (1737472022.24)
+end:          Jan 21 2025 23:08:52.72 (1737472132.72)
+size:         96.4 MB
+messages:     34996
+compression:  lz4 [409/409 chunks; 19.35%]
+uncompressed: 494.5 MB @   4.5 MB/s
+compressed:    95.7 MB @ 887.0 KB/s (19.35%)
+types:        cartographer_ros_msgs/SubmapList [73b1e412208f0787050395996f6143db]
+              nav_msgs/OccupancyGrid           [3381f2d731d4076ec5c71b0759edbe4e]
+              nav_msgs/Odometry                [cd5e73d190d741a2f92e81eda573aca7]
+              sensor_msgs/LaserScan            [90c7ef2dc6895d81024acba2ac42f369]
+              sensor_msgs/PointCloud2          [1158d486dd51d683ce2f1be655c3c181]
+              tf2_msgs/TFMessage               [94810edda583a504dfda3829e70d7eec]
+              visualization_msgs/MarkerArray   [d155b9ce5188fbaf89745847fd5882d7]
+topics:       /constraint_list              235 msgs    : visualization_msgs/MarkerArray  
+              /local_occupancy_grid        2925 msgs    : nav_msgs/OccupancyGrid          
+              /local_occupancy_grid_map    2923 msgs    : nav_msgs/OccupancyGrid          
+              /map                          116 msgs    : nav_msgs/OccupancyGrid          
+              /odom                        8077 msgs    : nav_msgs/Odometry                (2 connections)
+              /scan                        2929 msgs    : sensor_msgs/LaserScan           
+              /scan_matched_points2        2346 msgs    : sensor_msgs/PointCloud2         
+              /submap_list                  391 msgs    : cartographer_ros_msgs/SubmapList
+              /tf                         11137 msgs    : tf2_msgs/TFMessage              
+              /trajectory_node_list        3917 msgs    : visualization_msgs/MarkerArray

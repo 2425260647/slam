@@ -1,0 +1,53 @@
+{
+  "algorithm": "lightweight",
+  "input_bag": "/home/slam/slam_ws/paper_exp/corridor_repeat03_threeway_20260805/common_inputs.bag",
+  "input_counts": {
+    "/odom": 28940,
+    "/scan": 5788
+  },
+  "map": {
+    "free_cells": 4687,
+    "height_px": 214,
+    "known_cells": 5180,
+    "occupied_cells": 493,
+    "occupied_ratio_known": 0.09517374517374518,
+    "origin": [
+      -1.984004,
+      -8.681611,
+      0.0
+    ],
+    "resolution_m": 0.05,
+    "unknown_cells": 54098,
+    "width_px": 277
+  },
+  "metric_boundary": "Start/end closure and map statistics are no-ground-truth engineering proxies, not ATE or RPE.",
+  "mode": "preflight",
+  "output_counts": {
+    "/slam_diagnostics": 300,
+    "/tracked_pose": 300
+  },
+  "runtime": {
+    "play_wall_duration_sec": 30.97
+  },
+  "trajectory_proxy": {
+    "diagnostic_messages": 300,
+    "end_pose": [
+      4.786078814388932,
+      -0.0156547609138124,
+      -0.04075351304404646
+    ],
+    "maximum_pose_step_m": 0.09648975820286301,
+    "path_length_m": 5.507813803027664,
+    "pose_duration_sec": 29.907925367355347,
+    "pose_messages": 300,
+    "start_end_translation_m": 4.786104416859481,
+    "start_end_yaw_rad": 0.04075351304404646,
+    "start_pose": [
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "truth_available": false,
+  "truth_used_for_slam": false
+}

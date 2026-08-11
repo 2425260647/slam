@@ -1,0 +1,17 @@
+path:         /home/slam/slam_ws/paper_exp/corridor_repeat03_deskew_20260811/outputs.bag
+version:      2.0
+duration:     9:38s (578s)
+start:        Jul 24 2026 11:50:17.81 (1784865017.81)
+end:          Jul 24 2026 11:59:56.63 (1784865596.63)
+size:         17.6 MB
+messages:     57100
+compression:  lz4 [229/229 chunks; 8.29%]
+uncompressed: 203.1 MB @ 359.2 KB/s
+compressed:    16.8 MB @  29.8 KB/s (8.29%)
+types:        nav_msgs/OccupancyGrid [3381f2d731d4076ec5c71b0759edbe4e]
+              tf2_msgs/TFMessage     [94810edda583a504dfda3829e70d7eec]
+topics:       /local_occupancy_grid        5675 msgs    : nav_msgs/OccupancyGrid
+              /local_occupancy_grid_map    5674 msgs    : nav_msgs/OccupancyGrid
+              /map                          138 msgs    : nav_msgs/OccupancyGrid
+              /tf                         45609 msgs    : tf2_msgs/TFMessage     (2 connections)
+              /tf_static                      4 msgs    : tf2_msgs/TFMessage

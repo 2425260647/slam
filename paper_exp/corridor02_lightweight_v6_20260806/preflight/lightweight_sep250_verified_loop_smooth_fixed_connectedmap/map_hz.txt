@@ -1,0 +1,71 @@
+WARNING: may be using simulated time
+subscribed to [/map]
+no new messages
+no new messages
+no new messages
+average rate: 2.002
+	min: 0.499s max: 0.499s std dev: 0.00000s window: 2
+average rate: 1.993
+	min: 0.499s max: 0.504s std dev: 0.00187s window: 4
+average rate: 1.997
+	min: 0.498s max: 0.504s std dev: 0.00205s window: 6
+average rate: 2.002
+	min: 0.493s max: 0.504s std dev: 0.00319s window: 8
+average rate: 1.998
+	min: 0.493s max: 0.509s std dev: 0.00421s window: 10
+average rate: 1.999
+	min: 0.493s max: 0.509s std dev: 0.00389s window: 12
+average rate: 2.000
+	min: 0.493s max: 0.509s std dev: 0.00362s window: 14
+average rate: 1.999
+	min: 0.493s max: 0.509s std dev: 0.00340s window: 16
+average rate: 1.999
+	min: 0.493s max: 0.509s std dev: 0.00324s window: 18
+average rate: 2.000
+	min: 0.493s max: 0.509s std dev: 0.00320s window: 20
+average rate: 2.000
+	min: 0.493s max: 0.509s std dev: 0.00327s window: 20
+average rate: 2.000
+	min: 0.493s max: 0.509s std dev: 0.00314s window: 20
+average rate: 2.000
+	min: 0.493s max: 0.509s std dev: 0.00319s window: 20
+average rate: 2.001
+	min: 0.492s max: 0.502s std dev: 0.00251s window: 20
+average rate: 2.000
+	min: 0.492s max: 0.502s std dev: 0.00254s window: 20
+average rate: 1.997
+	min: 0.492s max: 0.512s std dev: 0.00370s window: 20
+average rate: 1.999
+	min: 0.492s max: 0.512s std dev: 0.00417s window: 20
+average rate: 2.001
+	min: 0.492s max: 0.512s std dev: 0.00457s window: 20
+average rate: 2.001
+	min: 0.490s max: 0.512s std dev: 0.00571s window: 20
+average rate: 2.000
+	min: 0.489s max: 0.514s std dev: 0.00693s window: 20
+average rate: 1.999
+	min: 0.489s max: 0.514s std dev: 0.00780s window: 20
+average rate: 2.000
+	min: 0.489s max: 0.514s std dev: 0.00778s window: 20
+average rate: 1.996
+	min: 0.489s max: 0.514s std dev: 0.00812s window: 20
+average rate: 1.996
+	min: 0.489s max: 0.514s std dev: 0.00814s window: 20
+average rate: 1.999
+	min: 0.480s max: 0.514s std dev: 0.00944s window: 20
+average rate: 2.002
+	min: 0.480s max: 0.514s std dev: 0.00900s window: 20
+average rate: 2.001
+	min: 0.480s max: 0.518s std dev: 0.01079s window: 20
+average rate: 1.998
+	min: 0.480s max: 0.518s std dev: 0.01112s window: 20
+average rate: 2.001
+	min: 0.480s max: 0.518s std dev: 0.01075s window: 20
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages
+no new messages

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source /opt/ros/noetic/setup.bash
+source /home/slam/slam_ws/cartographer_runtime_ws/install_isolated/setup.bash
+source /home/slam/slam_ws/planning_runtime_ws/devel/setup.bash
+source /home/slam/slam_ws/navigation_runtime_ws/devel/setup.bash
+export ROS_PACKAGE_PATH=/home/slam/slam_ws/cartographer_runtime_ws/install_isolated/share:/home/slam/slam_ws/navigation_runtime_ws/src:/home/slam/slam_ws/planning_runtime_ws/src:/home/slam/slam_ws/install_isolated/share:/opt/ros/noetic/share
+export CMAKE_PREFIX_PATH=/home/slam/slam_ws/cartographer_runtime_ws/install_isolated:/home/slam/slam_ws/navigation_runtime_ws/devel:/home/slam/slam_ws/planning_runtime_ws/devel:/home/slam/slam_ws/install_isolated:/opt/ros/noetic
+export LD_LIBRARY_PATH=/home/slam/slam_ws/cartographer_runtime_ws/install_isolated/lib:/home/slam/slam_ws/navigation_runtime_ws/devel/lib:/home/slam/slam_ws/planning_runtime_ws/devel/lib:/home/slam/slam_ws/install_isolated/lib:${LD_LIBRARY_PATH:-}
+export PATH=/home/slam/slam_ws/cartographer_runtime_ws/install_isolated/bin:/home/slam/slam_ws/navigation_runtime_ws/devel/bin:${PATH}

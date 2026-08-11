@@ -1,0 +1,56 @@
+gmapping:
+  angularUpdate: 0.05
+  astep: 0.05
+  base_frame: base_link
+  delta: 0.05
+  iterations: 5
+  kernelSize: 1
+  lasamplerange: 0.005
+  lasamplestep: 0.005
+  linearUpdate: 0.1
+  llsamplerange: 0.01
+  llsamplestep: 0.01
+  lsigma: 0.075
+  lskip: 0
+  lstep: 0.05
+  map_frame: map
+  map_update_interval: 1.0
+  maxRange: 25.0
+  maxUrange: 24.5
+  odom_frame: odom
+  ogain: 3.0
+  particles: 50
+  resampleThreshold: 0.5
+  sigma: 0.05
+  srr: 0.1
+  srt: 0.2
+  str: 0.1
+  stt: 0.2
+  temporalUpdate: 0.5
+  throttle_scans: 1
+  transform_publish_period: 0.05
+  xmax: 30.0
+  xmin: -30.0
+  ymax: 30.0
+  ymin: -30.0
+gmapping_odom_to_tf:
+  child_frame: base_link
+  odom_topic: /scout_mini_velocity_controller/odom
+  parent_frame: odom
+gmapping_tracked_pose:
+  base_frame: base_link
+  map_frame: map
+  output_topic: /tracked_pose
+  publish_rate: 20.0
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_ubuntu__36941: http://ubuntu:36941/
+    host_ubuntu__45903: http://ubuntu:45903/
+rosversion: '1.17.4
+
+  '
+run_id: c684ff32-90d1-11f1-96a8-d1184dae2d3c
+use_sim_time: true

@@ -1,0 +1,38 @@
+path: paper_exp/gmapping_preflight/run_20s_map/outputs.bag
+version: 2.0
+duration: 19.977331
+start: 1737472022.259907
+end: 1737472042.237239
+size: 14716514
+messages: 1406
+indexed: True
+compression: none
+types:
+    - type: nav_msgs/MapMetaData
+      md5: 10cfc8a2818024d3248802c00c95f11b
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 8
+    - topic: /map_metadata
+      type: nav_msgs/MapMetaData
+      messages: 8
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 400
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 198
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 792
+      connections: 2
+

@@ -1,0 +1,39 @@
+<launch>
+  <param name="/use_sim_time" value="true"/>
+  <arg name="configuration_basename"
+       default="corridor02_pointcloud_polar.lua"/>
+
+  <node pkg="my_navigation" type="livox_custommsg_to_pointcloud2"
+        name="corridor02_custommsg_to_pointcloud2" output="screen">
+    <param name="input_topic" value="/livox/mid360/lidar"/>
+    <param name="output_topic" value="/velodyne_points"/>
+  </node>
+
+  <node pkg="tf2_ros" type="static_transform_publisher"
+        name="corridor02_base_to_mid360"
+        args="-0.063742232981 1.003639208011 0.417493046931
+              -0.014813385023 0.255990978057 -0.028832269454 0.966135540706
+              base_footprint livox_frame"/>
+
+  <node pkg="my_navigation" type="livox_deskewed_laserscan"
+        name="corridor02_livox_deskewed_scan" output="screen">
+    <param name="input_topic" value="/livox/mid360/lidar"/>
+    <param name="odom_topic" value="/odom"/>
+    <param name="output_topic" value="/scan"/>
+    <param name="output_frame" value="base_footprint"/>
+    <param name="min_height" value="0.20"/>
+    <param name="max_height" value="0.60"/>
+    <param name="range_min" value="0.30"/>
+    <param name="range_max" value="30.0"/>
+    <param name="filter_isolated_returns" value="true"/>
+  </node>
+
+  <include file="$(dirname)/slam_local_grid_pointcloud.launch">
+    <arg name="configuration_directory" value="$(dirname)"/>
+    <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+    <arg name="scan_topic" value="/scan"/>
+    <arg name="pointcloud_topic" value="/velodyne_points"/>
+    <arg name="odom_topic" value="/odom"/>
+    <arg name="base_frame" value="base_footprint"/>
+  </include>
+</launch>

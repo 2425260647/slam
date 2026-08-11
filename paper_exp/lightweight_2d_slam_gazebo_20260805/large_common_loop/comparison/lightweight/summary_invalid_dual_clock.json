@@ -1,0 +1,24 @@
+{
+  "algorithm": "lightweight",
+  "associated_samples": 1930,
+  "csv": "/home/slam/slam_ws/paper_exp/lightweight_2d_slam_gazebo_20260805/large_common_loop/comparison/lightweight/trajectory.csv",
+  "estimate_messages": 1930,
+  "evaluation_mode": "online_pose_start_aligned_se2",
+  "max_association_delta_s": 0.07000000000016371,
+  "translation_error_m": {
+    "final": 0.09470862760423276,
+    "maximum": 0.2306412303511974,
+    "mean": 0.11807582228440257,
+    "p95": 0.18774567085453173,
+    "rmse": 0.12776875969383944
+  },
+  "truth_messages": 19315,
+  "truth_used_for_slam": false,
+  "yaw_error_rad": {
+    "final": 0.008252019931501896,
+    "maximum": 0.12783613649593045,
+    "mean": 0.011716979280044683,
+    "p95": 0.07763489173926552,
+    "rmse": 0.025421915938718575
+  }
+}

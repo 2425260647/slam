@@ -1,0 +1,24 @@
+{
+  "free_cells": 287283,
+  "height_px": 1373,
+  "known_cells": 300168,
+  "largest_component_cells": 1116,
+  "largest_component_ratio": 0.08661233993015134,
+  "map_area_m2": 7218.547500000001,
+  "mean_lateral_spread_m": 41.59898282781237,
+  "median_lateral_spread_m": 54.60836652855582,
+  "occupied_cells": 12885,
+  "occupied_components": 551,
+  "occupied_longitudinal_bins": 82,
+  "occupied_ratio_known": 0.042925961461581515,
+  "origin": [
+    -34.319775,
+    -30.325507,
+    0.0
+  ],
+  "pca_lateral_width_p90_m": 59.79387574292144,
+  "pca_long_length_p90_m": 72.17017528818218,
+  "resolution_m": 0.05,
+  "unknown_cells": 2587251,
+  "width_px": 2103
+}

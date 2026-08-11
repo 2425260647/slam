@@ -1,0 +1,118 @@
+{
+  "keyframes": 1402,
+  "local": {
+    "heading_p95_median_deg": 14.826205159287344,
+    "heading_p95_worst_deg": 68.74732710940461,
+    "residual_p95_median_m": 0.5497833545203392,
+    "residual_p95_worst_m": 1.7042220050895773,
+    "segments": 5
+  },
+  "local_segments": [
+    {
+      "end_index": 202,
+      "heading_p95_deg": 68.74732710940461,
+      "length_m": 28.204938234007425,
+      "p95_residual_m": 0.6594393754186484,
+      "point_count": 203,
+      "start_index": 0
+    },
+    {
+      "end_index": 559,
+      "heading_p95_deg": 7.616545262816953,
+      "length_m": 61.21095011227112,
+      "p95_residual_m": 0.5497833545203392,
+      "point_count": 358,
+      "start_index": 202
+    },
+    {
+      "end_index": 854,
+      "heading_p95_deg": 14.826205159287344,
+      "length_m": 48.9941168751223,
+      "p95_residual_m": 0.3136908713709568,
+      "point_count": 296,
+      "start_index": 559
+    },
+    {
+      "end_index": 1193,
+      "heading_p95_deg": 7.76775202176398,
+      "length_m": 54.532516751410405,
+      "p95_residual_m": 0.41258196428774374,
+      "point_count": 340,
+      "start_index": 854
+    },
+    {
+      "end_index": 1348,
+      "heading_p95_deg": 53.633729694253816,
+      "length_m": 21.700612026794158,
+      "p95_residual_m": 1.7042220050895773,
+      "point_count": 156,
+      "start_index": 1193
+    }
+  ],
+  "metric_boundary": "Path self-consistency diagnostic without continuous truth; not ATE/RPE.",
+  "nonrigid_deformation_after_se2_alignment": {
+    "maximum_m": 4.318553768620073,
+    "median_m": 1.4858061766003958,
+    "p95_m": 4.038332362347427
+  },
+  "optimized": {
+    "heading_p95_median_deg": 14.029260274647257,
+    "heading_p95_worst_deg": 68.32868704225722,
+    "residual_p95_median_m": 0.6316387260039993,
+    "residual_p95_worst_m": 1.714331236334874,
+    "segments": 5
+  },
+  "optimized_segments": [
+    {
+      "end_index": 202,
+      "heading_p95_deg": 68.32868704225722,
+      "length_m": 28.177998512078926,
+      "p95_residual_m": 0.6342326613279132,
+      "point_count": 203,
+      "start_index": 0
+    },
+    {
+      "end_index": 559,
+      "heading_p95_deg": 6.352067546704866,
+      "length_m": 61.224140004300494,
+      "p95_residual_m": 0.3419725959363484,
+      "point_count": 358,
+      "start_index": 202
+    },
+    {
+      "end_index": 854,
+      "heading_p95_deg": 14.029260274647257,
+      "length_m": 49.01736577609492,
+      "p95_residual_m": 0.36261956742546836,
+      "point_count": 296,
+      "start_index": 559
+    },
+    {
+      "end_index": 1193,
+      "heading_p95_deg": 8.236251629782995,
+      "length_m": 54.52573421820628,
+      "p95_residual_m": 0.6316387260039993,
+      "point_count": 340,
+      "start_index": 854
+    },
+    {
+      "end_index": 1348,
+      "heading_p95_deg": 53.765914583186714,
+      "length_m": 21.691050295887678,
+      "p95_residual_m": 1.714331236334874,
+      "point_count": 156,
+      "start_index": 1193
+    }
+  ],
+  "rdp_boundaries": [
+    0,
+    202,
+    559,
+    854,
+    1193,
+    1348,
+    1401
+  ],
+  "rdp_epsilon_m": 3.0,
+  "submap_anchors": 57
+}

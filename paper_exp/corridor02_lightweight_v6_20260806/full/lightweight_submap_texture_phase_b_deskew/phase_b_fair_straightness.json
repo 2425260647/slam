@@ -1,0 +1,563 @@
+{
+  "cartographer_phase_b_deskew": {
+    "detected_walls": 12,
+    "dominant_axis_deg": 6.669453830377517,
+    "hough_long_lines": 61,
+    "longest_hough_line_m": 49.75319085244685,
+    "map_prefix": "paper_exp/corridor02_lightweight_v6_20260806/full/cartographer_clean_phase_b_deskew/map",
+    "metric_boundary": "Structural map proxy with fixed extraction parameters; not surveyed wall truth and not ATE/RPE.",
+    "parallel_pairs": [
+      {
+        "mean_spacing_m": 2.4150453893154946,
+        "overlap_m": 40.036668420501016,
+        "spacing_std_m": 0.06105737746994685
+      },
+      {
+        "mean_spacing_m": 2.3492990771057745,
+        "overlap_m": 8.088436293305556,
+        "spacing_std_m": 0.041570024091635155
+      },
+      {
+        "mean_spacing_m": 2.401195980410508,
+        "overlap_m": 37.31870226883449,
+        "spacing_std_m": 0.0012625221727553153
+      },
+      {
+        "mean_spacing_m": 2.3990944106763883,
+        "overlap_m": 11.373117745612717,
+        "spacing_std_m": 0.1171212282632905
+      },
+      {
+        "mean_spacing_m": 2.419500342851194,
+        "overlap_m": 28.127491340113945,
+        "spacing_std_m": 0.11664060957651125
+      },
+      {
+        "mean_spacing_m": 2.354536142145534,
+        "overlap_m": 7.0661682765373826,
+        "spacing_std_m": 0.03657097839722396
+      }
+    ],
+    "parallel_spacing_std_median_m": 0.051313700780791005,
+    "parallel_spacing_std_worst_m": 0.1171212282632905,
+    "segment_heading_p95_median_deg": 1.6860779069508207,
+    "segment_heading_p95_worst_deg": 4.639116033516726,
+    "wall_p95_residual_median_m": 0.08046222282941051,
+    "wall_p95_residual_worst_m": 0.22670970552220943,
+    "walls": [
+      {
+        "axis": 0,
+        "fit_intercept": 58.68044050220558,
+        "fit_slope": 0.0037828228130448996,
+        "heading_p95_deg": 1.9499074393315092,
+        "inlier_count": 1827,
+        "length_m": 50.203690873889705,
+        "longitudinal_max": 85.24660023286711,
+        "longitudinal_min": 35.042909358977404,
+        "p95_residual_m": 0.15652428469581633,
+        "point_count": 1838
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 4.127165684403327,
+        "fit_slope": 0.01875465468679714,
+        "heading_p95_deg": 1.290206920994539,
+        "inlier_count": 1124,
+        "length_m": 41.49868862716298,
+        "longitudinal_max": 83.66899769683212,
+        "longitudinal_min": 42.170309069669145,
+        "p95_residual_m": 0.07262730667705981,
+        "point_count": 1151
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 55.92910660788695,
+        "fit_slope": 0.008938386888388107,
+        "heading_p95_deg": 1.1776782735696836,
+        "inlier_count": 1343,
+        "length_m": 41.11621480986598,
+        "longitudinal_max": 86.32614662223207,
+        "longitudinal_min": 45.209931812366094,
+        "p95_residual_m": 0.0882971389817612,
+        "point_count": 1406
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 6.521380540544737,
+        "fit_slope": 0.018868803568868858,
+        "heading_p95_deg": 1.3077660941954485,
+        "inlier_count": 980,
+        "length_m": 37.31870226883449,
+        "longitudinal_max": 79.81741192656409,
+        "longitudinal_min": 42.4987096577296,
+        "p95_residual_m": 0.061331453130895976,
+        "point_count": 1071
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -92.2016592389134,
+        "fit_slope": -0.004212848661919572,
+        "heading_p95_deg": 3.808962443882761,
+        "inlier_count": 1111,
+        "length_m": 35.39411583411648,
+        "longitudinal_max": 44.406164293888686,
+        "longitudinal_min": 9.012048459772206,
+        "p95_residual_m": 0.20707841441180364,
+        "point_count": 1111
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -95.0422525489718,
+        "fit_slope": 0.009665180391323774,
+        "heading_p95_deg": 1.4946904221808865,
+        "inlier_count": 1154,
+        "length_m": 29.808784416514808,
+        "longitudinal_max": 46.08745737028955,
+        "longitudinal_min": 16.27867295377474,
+        "p95_residual_m": 0.06810693932337414,
+        "point_count": 1159
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 60.97438277619135,
+        "fit_slope": -0.023876534808019673,
+        "heading_p95_deg": 3.5142966728012643,
+        "inlier_count": 1113,
+        "length_m": 23.210800412225723,
+        "longitudinal_max": 98.16382928884508,
+        "longitudinal_min": 74.95302887661936,
+        "p95_residual_m": 0.22670970552220943,
+        "point_count": 1113
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -92.52063075082698,
+        "fit_slope": 0.01451469247172221,
+        "heading_p95_deg": 1.323778904003863,
+        "inlier_count": 312,
+        "length_m": 8.576040443035623,
+        "longitudinal_max": 56.17476544755965,
+        "longitudinal_min": 47.59872500452403,
+        "p95_residual_m": 0.06650944983601548,
+        "point_count": 312
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -29.658759220085212,
+        "fit_slope": -0.02838537960212211,
+        "heading_p95_deg": 1.0967045923945993,
+        "inlier_count": 272,
+        "length_m": 8.48572937698782,
+        "longitudinal_max": 27.008799507639655,
+        "longitudinal_min": 18.523070130651835,
+        "p95_residual_m": 0.06325706037452292,
+        "point_count": 304
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 57.00029169222167,
+        "fit_slope": -0.012141146188636653,
+        "heading_p95_deg": 1.8774653917207549,
+        "inlier_count": 259,
+        "length_m": 8.088436293305556,
+        "longitudinal_max": 46.0657937382159,
+        "longitudinal_min": 37.977357444910346,
+        "p95_residual_m": 0.07056904348016103,
+        "point_count": 261
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 60.0015304914768,
+        "fit_slope": -0.03968795906561771,
+        "heading_p95_deg": 4.639116033516726,
+        "inlier_count": 272,
+        "length_m": 7.0661682765373826,
+        "longitudinal_max": 90.91824533062808,
+        "longitudinal_min": 83.8520770540907,
+        "p95_residual_m": 0.1933908238123138,
+        "point_count": 272
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -38.92357458844207,
+        "fit_slope": 0.026346211558811006,
+        "heading_p95_deg": 2.920076801442881,
+        "inlier_count": 313,
+        "length_m": 5.941371845488394,
+        "longitudinal_max": 33.55734706703599,
+        "longitudinal_min": 27.615975221547597,
+        "p95_residual_m": 0.13324209238010382,
+        "point_count": 320
+      }
+    ]
+  },
+  "phase_a_v4_sync": {
+    "detected_walls": 12,
+    "dominant_axis_deg": 4.575279084207121,
+    "hough_long_lines": 56,
+    "longest_hough_line_m": 24.250000000000004,
+    "map_prefix": "paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_submap_texture_phase_a_v4_sync/map",
+    "metric_boundary": "Structural map proxy with fixed extraction parameters; not surveyed wall truth and not ATE/RPE.",
+    "parallel_pairs": [
+      {
+        "mean_spacing_m": 2.458936912220747,
+        "overlap_m": 16.138450363300805,
+        "spacing_std_m": 0.14593321244139015
+      },
+      {
+        "mean_spacing_m": 2.231982962107111,
+        "overlap_m": 8.293493335156555,
+        "spacing_std_m": 0.1353170840676673
+      },
+      {
+        "mean_spacing_m": 2.365249882259654,
+        "overlap_m": 13.969302409056837,
+        "spacing_std_m": 0.11361060885195248
+      },
+      {
+        "mean_spacing_m": 2.379457293295621,
+        "overlap_m": 8.179867307275977,
+        "spacing_std_m": 0.04159065806088179
+      },
+      {
+        "mean_spacing_m": 2.406865723525973,
+        "overlap_m": 8.179867307275977,
+        "spacing_std_m": 0.01773056552751378
+      },
+      {
+        "mean_spacing_m": 2.375126691862382,
+        "overlap_m": 11.210251330710772,
+        "spacing_std_m": 0.06327284196086982
+      }
+    ],
+    "parallel_spacing_std_median_m": 0.08844172540641115,
+    "parallel_spacing_std_worst_m": 0.14593321244139015,
+    "segment_heading_p95_median_deg": 1.884090111422665,
+    "segment_heading_p95_worst_deg": 12.330377991823449,
+    "wall_p95_residual_median_m": 0.07141655051064716,
+    "wall_p95_residual_worst_m": 0.2869932353584317,
+    "walls": [
+      {
+        "axis": 0,
+        "fit_intercept": 64.38291828412021,
+        "fit_slope": 9.489568401214305e-05,
+        "heading_p95_deg": 2.9413005344635823,
+        "inlier_count": 1393,
+        "length_m": 41.52333458526113,
+        "longitudinal_max": 82.92061406006827,
+        "longitudinal_min": 41.39727947480714,
+        "p95_residual_m": 0.2869932353584317,
+        "point_count": 1393
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 12.612368411246074,
+        "fit_slope": -0.011389883354827593,
+        "heading_p95_deg": 1.826458430739591,
+        "inlier_count": 1500,
+        "length_m": 39.1369502575783,
+        "longitudinal_max": 77.76781411415894,
+        "longitudinal_min": 38.63086385658064,
+        "p95_residual_m": 0.1725303788309685,
+        "point_count": 1507
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 11.5800546539004,
+        "fit_slope": 0.011079929653521765,
+        "heading_p95_deg": 1.416228010043601,
+        "inlier_count": 1003,
+        "length_m": 24.60539636030705,
+        "longitudinal_max": 49.272866176793165,
+        "longitudinal_min": 24.667469816486115,
+        "p95_residual_m": 0.0726334924355946,
+        "point_count": 1020
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -85.1324467447888,
+        "fit_slope": 0.022316987655815076,
+        "heading_p95_deg": 12.330377991823449,
+        "inlier_count": 703,
+        "length_m": 18.957446946711347,
+        "longitudinal_max": 38.506972675585224,
+        "longitudinal_min": 19.549525728873878,
+        "p95_residual_m": 0.23283339398819433,
+        "point_count": 706
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -88.09932247421203,
+        "fit_slope": 0.04030227089468212,
+        "heading_p95_deg": 1.9417217921057388,
+        "inlier_count": 580,
+        "length_m": 17.151217520772907,
+        "longitudinal_max": 44.44793886564736,
+        "longitudinal_min": 27.296721344874452,
+        "p95_residual_m": 0.08212563443498906,
+        "point_count": 591
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 16.834100550049772,
+        "fit_slope": -0.03761762142460318,
+        "heading_p95_deg": 1.5377686300309135,
+        "inlier_count": 442,
+        "length_m": 16.307884865112044,
+        "longitudinal_max": 80.10639657021414,
+        "longitudinal_min": 63.7985117051021,
+        "p95_residual_m": 0.06809708527877927,
+        "point_count": 442
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 59.797655633085014,
+        "fit_slope": 0.029627835048042596,
+        "heading_p95_deg": 1.5346619755650965,
+        "inlier_count": 566,
+        "length_m": 16.138450363300805,
+        "longitudinal_max": 80.0676711407478,
+        "longitudinal_min": 63.929220777447,
+        "p95_residual_m": 0.07019960858569974,
+        "point_count": 566
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -30.30945042236986,
+        "fit_slope": 0.037958866732132945,
+        "heading_p95_deg": 3.10550663241077,
+        "inlier_count": 594,
+        "length_m": 14.136846701944226,
+        "longitudinal_max": 45.76909394176939,
+        "longitudinal_min": 31.632247239825166,
+        "p95_residual_m": 0.11133301335017659,
+        "point_count": 603
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 65.76343029295295,
+        "fit_slope": -0.02780235035398061,
+        "heading_p95_deg": 1.95894075669935,
+        "inlier_count": 447,
+        "length_m": 11.066637691411032,
+        "longitudinal_max": 59.108679968227555,
+        "longitudinal_min": 48.042042276816524,
+        "p95_residual_m": 0.06942967361382131,
+        "point_count": 447
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -83.3060600680696,
+        "fit_slope": -0.0060509982263819645,
+        "heading_p95_deg": 1.9934615673410276,
+        "inlier_count": 384,
+        "length_m": 9.122851584004366,
+        "longitudinal_max": 61.467626945009705,
+        "longitudinal_min": 52.34477536100534,
+        "p95_residual_m": 0.06808688558590244,
+        "point_count": 385
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 64.46654266595394,
+        "fit_slope": -0.05045854826268455,
+        "heading_p95_deg": 1.6973529882497362,
+        "inlier_count": 203,
+        "length_m": 8.293493335156555,
+        "longitudinal_max": 49.951882048313266,
+        "longitudinal_min": 41.65838871315671,
+        "p95_residual_m": 0.05778228541564084,
+        "point_count": 230
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 14.287277293106234,
+        "fit_slope": 0.004363910194788692,
+        "heading_p95_deg": 0.7269133705490471,
+        "inlier_count": 225,
+        "length_m": 8.179867307275977,
+        "longitudinal_max": 48.81239426076086,
+        "longitudinal_min": 40.632526953484884,
+        "p95_residual_m": 0.057156880464728124,
+        "point_count": 225
+      }
+    ]
+  },
+  "phase_b_deskew": {
+    "detected_walls": 12,
+    "dominant_axis_deg": 4.073073531609487,
+    "hough_long_lines": 62,
+    "longest_hough_line_m": 48.539725998402595,
+    "map_prefix": "paper_exp/corridor02_lightweight_v6_20260806/full/lightweight_submap_texture_phase_b_deskew/map",
+    "metric_boundary": "Structural map proxy with fixed extraction parameters; not surveyed wall truth and not ATE/RPE.",
+    "parallel_pairs": [
+      {
+        "mean_spacing_m": 2.4220722997873185,
+        "overlap_m": 49.342245450186496,
+        "spacing_std_m": 0.017903318393505195
+      },
+      {
+        "mean_spacing_m": 2.4451401937121378,
+        "overlap_m": 27.422364204366758,
+        "spacing_std_m": 0.13356304527945576
+      },
+      {
+        "mean_spacing_m": 2.3895337778536287,
+        "overlap_m": 22.09714568468875,
+        "spacing_std_m": 0.017089229856578195
+      }
+    ],
+    "parallel_spacing_std_median_m": 0.017903318393505195,
+    "parallel_spacing_std_worst_m": 0.13356304527945576,
+    "segment_heading_p95_median_deg": 1.59572917052447,
+    "segment_heading_p95_worst_deg": 3.595822500315703,
+    "wall_p95_residual_median_m": 0.07459298842844565,
+    "wall_p95_residual_worst_m": 0.3007734096574709,
+    "walls": [
+      {
+        "axis": 0,
+        "fit_intercept": 11.725474724799493,
+        "fit_slope": -0.008157529921179235,
+        "heading_p95_deg": 1.6599488620503162,
+        "inlier_count": 2468,
+        "length_m": 61.72852997616886,
+        "longitudinal_max": 85.04875173560188,
+        "longitudinal_min": 23.32022175943302,
+        "p95_residual_m": 0.09659064697008289,
+        "point_count": 2479
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 14.215902571624035,
+        "fit_slope": -0.009389551177619158,
+        "heading_p95_deg": 1.1122657502924418,
+        "inlier_count": 1639,
+        "length_m": 49.342245450186496,
+        "longitudinal_max": 80.15356402220596,
+        "longitudinal_min": 30.811318572019463,
+        "p95_residual_m": 0.07628112066179095,
+        "point_count": 1672
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 63.77534728245995,
+        "fit_slope": 0.0020491949245640016,
+        "heading_p95_deg": 3.595822500315703,
+        "inlier_count": 1372,
+        "length_m": 35.54513756959218,
+        "longitudinal_max": 72.49761836532659,
+        "longitudinal_min": 36.95248079573441,
+        "p95_residual_m": 0.3007734096574709,
+        "point_count": 1372
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 60.37316275250865,
+        "fit_slope": 0.01832921455281949,
+        "heading_p95_deg": 2.343774178836133,
+        "inlier_count": 944,
+        "length_m": 27.953678789186526,
+        "longitudinal_max": 73.02893295014636,
+        "longitudinal_min": 45.07525416095983,
+        "p95_residual_m": 0.17451177222490022,
+        "point_count": 944
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -83.68246971935918,
+        "fit_slope": 0.024252198626845075,
+        "heading_p95_deg": 2.16424988619296,
+        "inlier_count": 939,
+        "length_m": 24.35211710239094,
+        "longitudinal_max": 51.46912247007025,
+        "longitudinal_min": 27.11700536767931,
+        "p95_residual_m": 0.10982367157204317,
+        "point_count": 939
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -81.39165060879135,
+        "fit_slope": 0.026817170782035372,
+        "heading_p95_deg": 1.4514054086375283,
+        "inlier_count": 771,
+        "length_m": 22.09714568468875,
+        "longitudinal_max": 49.534241034122616,
+        "longitudinal_min": 27.437095349433864,
+        "p95_residual_m": 0.08933156166002476,
+        "point_count": 771
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 64.12710830440702,
+        "fit_slope": -0.06320213673026939,
+        "heading_p95_deg": 1.814398287035002,
+        "inlier_count": 357,
+        "length_m": 10.48413417327297,
+        "longitudinal_max": 40.23040106659327,
+        "longitudinal_min": 29.746266893320296,
+        "p95_residual_m": 0.0628297437211728,
+        "point_count": 357
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -81.66255941189578,
+        "fit_slope": 0.04513461413037343,
+        "heading_p95_deg": 1.5192166984861588,
+        "inlier_count": 354,
+        "length_m": 10.20604686122549,
+        "longitudinal_max": 25.34239937528857,
+        "longitudinal_min": 15.136352514063079,
+        "p95_residual_m": 0.07290485619510036,
+        "point_count": 380
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -79.32790196846001,
+        "fit_slope": -0.00865359024859128,
+        "heading_p95_deg": 1.0818830060664264,
+        "inlier_count": 392,
+        "length_m": 9.112530229784625,
+        "longitudinal_max": 61.5286387191083,
+        "longitudinal_min": 52.416108489323676,
+        "p95_residual_m": 0.06538508020314565,
+        "point_count": 392
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 67.11265801505229,
+        "fit_slope": -0.08076771956395179,
+        "heading_p95_deg": 1.6379499559314408,
+        "inlier_count": 271,
+        "length_m": 7.627126757347106,
+        "longitudinal_max": 33.41144712515546,
+        "longitudinal_min": 25.784320367808355,
+        "p95_residual_m": 0.06826494399244609,
+        "point_count": 303
+      },
+      {
+        "axis": 0,
+        "fit_intercept": 13.428908863618533,
+        "fit_slope": 0.015891813136489862,
+        "heading_p95_deg": 1.5535083851174993,
+        "inlier_count": 147,
+        "length_m": 6.675821128312798,
+        "longitudinal_max": 26.899860300656613,
+        "longitudinal_min": 20.224039172343815,
+        "p95_residual_m": 0.061061458685690774,
+        "point_count": 156
+      },
+      {
+        "axis": 1,
+        "fit_intercept": -18.25070071714778,
+        "fit_slope": 0.036473738696537736,
+        "heading_p95_deg": 1.1978435004199588,
+        "inlier_count": 270,
+        "length_m": 6.629498848824845,
+        "longitudinal_max": 29.8063985071569,
+        "longitudinal_min": 23.176899658332054,
+        "p95_residual_m": 0.05754453993752015,
+        "point_count": 275
+      }
+    ]
+  }
+}

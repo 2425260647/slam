@@ -1,0 +1,12 @@
+include "cartographer_m3dgr_mid360_clean_baseline.lua"
+
+-- Read-only feasibility diagnostic. The expanded candidate is published for
+-- offline comparison only and never replaces the production scan-match pose.
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_enabled = true
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_linear_search_window = 1.0
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_angular_search_window = math.rad(3.)
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_sampling_interval = 5
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_min_translation_separation = 0.20
+TRAJECTORY_BUILDER_2D.real_time_correlative_scan_matcher.candidate_diagnostic_min_angular_separation = math.rad(2.)
+
+return options
