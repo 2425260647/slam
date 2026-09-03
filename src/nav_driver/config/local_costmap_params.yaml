@@ -1,0 +1,42 @@
+TebLocalPlannerROS:
+  footprint_model:
+    type: "polygon"
+    vertices: [[-0.32, -0.285], [-0.32, 0.285], [0.32, 0.285], [0.32, -0.285]]
+  max_vel_x: 0.25
+  # Must stay above TEB penalty_epsilon. The production arbiter bounds normal
+  # reverse output and the safety topic retains priority.
+  max_vel_x_backwards: 0.15
+  max_vel_theta: 0.5
+  acc_lim_x: 0.4
+  acc_lim_theta: 0.8
+
+  # 轨迹优化
+  min_obstacle_dist: 0.10
+  inflation_dist: 0.30
+  include_costmap_obstacles: true
+  costmap_obstacles_behind_robot_dist: 1.0
+  obstacle_poses_affected: 30
+  include_dynamic_obstacles: true
+  dynamic_obstacle_inflation_dist: 0.40
+  costmap_converter_plugin: "costmap_converter::CostmapToDynamicObstacles"
+  costmap_converter_spin_thread: true
+  costmap_converter_rate: 5.0
+  weight_kinematics_nh: 2000.0
+  weight_kinematics_forward_drive: 10.0
+  max_number_classes: 3
+  selection_cost_hysteresis: 0.95
+  switching_blocking_period: 1.0
+
+  # 目标容忍
+  xy_goal_tolerance: 0.15
+  yaw_goal_tolerance: 0.35
+  free_goal_vel: false
+
+  # 规划器行为
+  dt_ref: 0.25
+  dt_hysteresis: 0.08
+  global_plan_overwrite_orientation: true
+  global_plan_viapoint_sep: -1
+  max_global_plan_lookahead_dist: 3.0
+  force_reinit_new_goal_dist: 0.5
+  feasibility_check_no_poses: 4

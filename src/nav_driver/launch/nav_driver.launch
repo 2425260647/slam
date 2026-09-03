@@ -1,0 +1,311 @@
+<launch>
+    <arg name="cmd_vel_topic" default="/cmd_vel"/>
+    <arg name="safety_stop_topic" default="/navigation_driver/safety_stop"/>
+    <arg name="move_base_cmd_vel_topic" default="/move_base/cmd_vel"/>
+    <arg name="navigation_cmd_vel_topic" default="/navigation_driver/cmd_vel"/>
+    <arg name="odom_topic" default="/odom"/>
+    <arg name="object_topic" default="/object_detected"/>
+    <arg name="object_direction_topic" default="/object_direction"/>
+    <arg name="object_area_topic" default="/object_area"/>
+    <arg name="enable_visual_servo" default="true"/>
+    <arg name="visual_sync_tolerance" default="0.20"/>
+    <arg name="emergency_escape_max_attempts" default="1"/>
+    <arg name="emergency_front_observation_duration" default="1.0"/>
+    <arg name="publish_camera_tf" default="true"/>
+    <arg name="camera_tf_x" default="0.32"/>
+    <arg name="camera_tf_y" default="0.0"/>
+    <arg name="camera_tf_z" default="0.30"/>
+    <arg name="camera_tf_yaw" default="0.0"/>
+    <arg name="camera_tf_pitch" default="0.0"/>
+    <arg name="camera_tf_roll" default="0.0"/>
+    <!-- The corridor-tested configuration permits bounded TEB reverse. Set
+         false when the platform has no rear obstacle protection. -->
+    <arg name="allow_move_base_reverse" default="true"/>
+    <arg name="use_sim_time" default="false"/>
+    <!-- Direct invocation of this launch is the common real-robot path.
+         Simulation passes true explicitly from nav_driver-test.launch. -->
+    <param name="/use_sim_time" value="$(arg use_sim_time)"/>
+    <!-- 摄像头静态坐标变换 -->
+    <node if="$(arg publish_camera_tf)" pkg="tf2_ros" type="static_transform_publisher" name="camera_broadcaster"
+          args="$(arg camera_tf_x) $(arg camera_tf_y) $(arg camera_tf_z) $(arg camera_tf_yaw) $(arg camera_tf_pitch) $(arg camera_tf_roll) base_link camera_link" />
+
+    <!-- move_base 核心配置 -->
+    <node pkg="move_base" type="move_base" name="move_base" output="screen">
+        <remap from="cmd_vel" to="$(arg move_base_cmd_vel_topic)"/>
+        <!-- 全局规划器：GlobalPlanner 优化 -->
+        <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+        <param name="safety_stop_topic" value="$(arg safety_stop_topic)"/>
+        <!-- Frontier goals and their approach cells are selected from
+             connected known-free space by navigation_driver. Keep the global
+             planner out of unknown cells; an unseen obstacle must never be
+             treated as traversable merely to rescue a marginal frontier. -->
+        <param name="GlobalPlanner/use_dijkstra" value="true"/>
+        <!-- Frontier goals are deliberately adjacent to unknown cells, but
+             navigation_driver snaps the command to connected known-free
+             space. Unknown cells remain blocked in GlobalPlanner. -->
+        <param name="GlobalPlanner/allow_unknown" value="false"/>
+        <param name="GlobalPlanner/use_grid_path" value="false"/>
+        <param name="GlobalPlanner/use_quadratic" value="true"/>
+        <param name="GlobalPlanner/default_tolerance" value="0.25"/>
+        <param name="GlobalPlanner/neutral_cost" value="50"/>
+        <param name="GlobalPlanner/lethal_cost" value="253"/>
+        <param name="GlobalPlanner/orientation_mode" value="0"/>
+
+        <!-- 局部规划器：TEB -->
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+        <!-- Replan at 1 Hz while the Cartographer map grows. The 5 Hz
+             controller remains responsive to the local costmap. -->
+        <param name="planner_frequency" value="1.0"/>
+        <param name="controller_frequency" value="5.0"/>
+
+        <!-- TEB 参数 -->
+        <param name="TebLocalPlannerROS/max_vel_x" value="0.25"/>
+        <!-- TEB requires this bound to remain above penalty_epsilon.  Normal
+             reverse is bounded by the arbiter and retained for the
+             corridor-tested maneuver; safety_stop still has priority. -->
+        <param name="TebLocalPlannerROS/max_vel_x_backwards" value="0.15"/>
+        <param name="TebLocalPlannerROS/max_vel_theta" value="0.5"/>
+        <param name="TebLocalPlannerROS/acc_lim_x" value="0.4"/>
+        <param name="TebLocalPlannerROS/acc_lim_theta" value="0.8"/>
+        <!-- Moderate clearance tuning for the 0.64 x 0.57 m Scout footprint;
+             TEB still performs the final polygon collision check. -->
+        <param name="TebLocalPlannerROS/min_obstacle_dist" value="0.08"/>
+        <param name="TebLocalPlannerROS/inflation_dist" value="0.20"/>
+        <param name="TebLocalPlannerROS/weight_obstacle" value="40.0"/>
+        <param name="TebLocalPlannerROS/weight_inflation" value="0.15"/>
+        <param name="TebLocalPlannerROS/weight_kinematics_nh" value="1200.0"/>
+        <param name="TebLocalPlannerROS/weight_kinematics_forward_drive" value="10.0"/>
+        <param name="TebLocalPlannerROS/weight_optimaltime" value="1.0"/>
+        <param name="TebLocalPlannerROS/dt_ref" value="0.25"/>
+        <param name="TebLocalPlannerROS/dt_hysteresis" value="0.08"/>
+        <param name="TebLocalPlannerROS/max_global_plan_lookahead_dist" value="3.5"/>
+        <param name="TebLocalPlannerROS/xy_goal_tolerance" value="0.20"/>
+        <param name="TebLocalPlannerROS/yaw_goal_tolerance" value="0.35"/>
+        <param name="TebLocalPlannerROS/transform_tolerance" value="1.0"/>
+        <param name="TebLocalPlannerROS/feasibility_check_no_poses" value="4"/>
+        <param name="TebLocalPlannerROS/oscillation_recovery" value="true"/>
+        <param name="TebLocalPlannerROS/max_number_classes" value="3"/>
+        <param name="TebLocalPlannerROS/selection_cost_hysteresis" value="0.95"/>
+        <param name="TebLocalPlannerROS/switching_blocking_period" value="1.0"/>
+        <param name="TebLocalPlannerROS/include_costmap_obstacles" value="true"/>
+        <param name="TebLocalPlannerROS/include_dynamic_obstacles" value="true"/>
+        <param name="TebLocalPlannerROS/dynamic_obstacle_inflation_dist" value="0.40"/>
+        <param name="TebLocalPlannerROS/costmap_obstacles_behind_robot_dist" value="1.0"/>
+        <param name="TebLocalPlannerROS/obstacle_poses_affected" value="30"/>
+        <!-- Convert local costmap clusters into tracked obstacle polygons so
+             moving people/vehicles are represented with velocity estimates,
+             instead of relying only on a static inflated laser layer. -->
+        <param name="TebLocalPlannerROS/costmap_converter_plugin"
+               value="costmap_converter::CostmapToDynamicObstacles"/>
+        <param name="TebLocalPlannerROS/costmap_converter_spin_thread" value="true"/>
+        <param name="TebLocalPlannerROS/costmap_converter_rate" value="5.0"/>
+        <rosparam param="TebLocalPlannerROS/footprint_model/type">"polygon"</rosparam>
+        <rosparam param="TebLocalPlannerROS/footprint_model/vertices">
+          [[-0.32, -0.285], [-0.32, 0.285], [0.32, 0.285], [0.32, -0.285]]
+        </rosparam>
+
+        <!-- navigation_driver owns the single bounded recovery state machine. -->
+        <param name="recovery_behavior_enabled" value="false"/>
+
+        <!-- 全局代价地图 -->
+        <param name="global_costmap/global_frame" value="map"/>
+        <param name="global_costmap/robot_base_frame" value="base_link"/>
+        <param name="global_costmap/rolling_window" value="false"/>
+        <param name="global_costmap/width" value="200.0"/>
+        <param name="global_costmap/height" value="200.0"/>
+        <param name="global_costmap/resolution" value="0.05"/>
+        <param name="global_costmap/transform_tolerance" value="0.5"/>
+        <!-- The global map is allowed to grow; update it at map publication
+             rate so resize work cannot starve the 5 Hz local controller. -->
+        <param name="global_costmap/update_frequency" value="1.0"/>
+        <param name="global_costmap/publish_frequency" value="1.0"/>
+
+        <rosparam param="global_costmap/plugins">
+          [
+            {name: static_layer,   type: "costmap_2d::StaticLayer"},
+            {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"},
+            {name: inflation_layer,type: "costmap_2d::InflationLayer"}
+          ]
+        </rosparam>
+        <param name="global_costmap/static_layer/map_topic" value="/map"/>
+        <param name="global_costmap/static_layer/track_unknown_space" value="true"/>
+        <!-- Match navigation_driver's conservative free-cell cutoff. Values
+             50..64 are uncertain returns (often glass/sparse projection) and
+             must not become traversable free cells in the global costmap. -->
+        <param name="global_costmap/static_layer/lethal_cost_threshold" value="50"/>
+        <param name="global_costmap/static_layer/trinary_costmap" value="true"/>
+        <param name="global_costmap/obstacle_layer/observation_sources" value="laser_scan"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/data_type" value="LaserScan"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/topic" value="/scan"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/marking" value="true"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/clearing" value="true"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/obstacle_range" value="3.0"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/raytrace_range" value="4.0"/>
+        <param name="global_costmap/obstacle_layer/laser_scan/observation_persistence" value="0.5"/>
+        <param name="global_costmap/inflation_layer/inflation_radius" value="0.20"/>
+        <param name="global_costmap/footprint_padding" value="0.01"/>
+
+        <!-- XmlRpc array: costmap_2d converts this to its runtime polygon. -->
+        <!-- Costmap2D's dynamic-reconfigure footprint field is a string.
+             Supplying that type directly avoids the startup empty-footprint
+             race that reports an infinite inscribed radius to TEB. -->
+        <param name="global_costmap/footprint"
+               value="[[-0.32, -0.285], [-0.32, 0.285], [0.32, 0.285], [0.32, -0.285]]"/>
+        <!-- Fallback used only if dynamic_reconfigure starts before the
+             polygon parameter is parsed. It prevents an empty footprint
+             from producing an infinite inscribed radius. -->
+        <param name="global_costmap/robot_radius" value="0.33"/>
+
+        <!-- 局部代价地图 -->
+        <param name="local_costmap/global_frame" value="odom"/>
+        <param name="local_costmap/robot_base_frame" value="base_link"/>
+        <param name="local_costmap/rolling_window" value="true"/>
+        <param name="local_costmap/width" value="6.0"/>
+        <param name="local_costmap/height" value="6.0"/>
+        <param name="local_costmap/resolution" value="0.05"/>
+        <param name="local_costmap/transform_tolerance" value="0.5"/>
+        <param name="local_costmap/update_frequency" value="5.0"/>
+        <param name="local_costmap/publish_frequency" value="5.0"/>
+
+        <rosparam param="local_costmap/plugins">
+          [
+            {name: obstacle_layer, type: "costmap_2d::ObstacleLayer"},
+            {name: inflation_layer,type: "costmap_2d::InflationLayer"}
+          ]
+        </rosparam>
+
+        <param name="local_costmap/obstacle_layer/observation_sources" value="laser_scan"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/data_type" value="LaserScan"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/topic" value="/scan"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/marking" value="true"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/clearing" value="true"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/obstacle_range" value="3.0"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/raytrace_range" value="4.0"/>
+        <param name="local_costmap/obstacle_layer/laser_scan/observation_persistence" value="0.35"/>
+        <param name="local_costmap/inflation_layer/inflation_radius" value="0.20"/>
+        <param name="local_costmap/footprint_padding" value="0.01"/>
+
+        <param name="local_costmap/footprint"
+               value="[[-0.32, -0.285], [-0.32, 0.285], [0.32, 0.285], [0.32, -0.285]]"/>
+        <param name="local_costmap/robot_radius" value="0.33"/>
+    </node>
+
+    <!-- 导航驱动节点 -->
+    <node pkg="nav_driver" type="navigation_driver" name="navigation_driver" output="screen">
+        <param name="odom_topic" value="$(arg odom_topic)"/>
+        <param name="cmd_vel_topic" value="$(arg navigation_cmd_vel_topic)"/>
+        <param name="object_topic" value="$(arg object_topic)"/>
+        <param name="object_direction_topic" value="$(arg object_direction_topic)"/>
+        <param name="object_area_topic" value="$(arg object_area_topic)"/>
+        <param name="enable_visual_servo" value="$(arg enable_visual_servo)"/>
+        <param name="visual_area_stop_threshold" value="0.033"/>
+        <param name="visual_stop_confirmations" value="5"/>
+        <param name="visual_detection_timeout" value="0.50"/>
+        <param name="visual_angle_gain" value="1.8"/>
+        <param name="visual_angle_sign" value="-1.0"/>
+        <param name="visual_max_linear_speed" value="0.12"/>
+        <param name="visual_max_angular_speed" value="0.50"/>
+        <param name="visual_align_angle_deg" value="12.0"/>
+        <param name="visual_min_front_clearance" value="0.53"/>
+        <param name="visual_sync_tolerance" value="$(arg visual_sync_tolerance)"/>
+        <param name="exploration_frequency" value="1.5"/>
+        <param name="goal_timeout" value="30.0"/>
+        <param name="max_search_range" value="6.0"/>
+        <param name="extended_search_range" value="8.0"/>
+        <param name="camera_offset_x" value="0.32"/>
+        <param name="stop_distance" value="1.0"/>
+        <param name="object_timeout" value="5.0"/>
+        <param name="frontier_min_dist" value="0.8"/>
+        <param name="fov_horizontal" value="70.0"/>
+        <param name="fov_range" value="1.5"/>
+        <param name="fail_backoff_time" value="2.0"/>
+        <param name="emergency_stop_dist" value="0.45"/>
+        <!-- Must be above the real laser range_min (typically 0.30-0.35 m),
+             otherwise the hard-stop branch can never observe a return. -->
+        <param name="emergency_stop_hard_dist" value="0.40"/>
+        <param name="emergency_clear_margin" value="0.08"/>
+        <param name="emergency_range_floor_margin" value="0.02"/>
+        <param name="emergency_min_near_points" value="3"/>
+        <param name="emergency_min_cluster_points" value="3"/>
+        <param name="emergency_stop_confirm_scans" value="2"/>
+        <!-- Hard returns (including range-floor/glass multipath) must still
+             persist across frames; the normal safety stop remains enabled. -->
+        <param name="emergency_hard_confirm_scans" value="2"/>
+        <param name="emergency_clear_confirm_scans" value="3"/>
+        <!-- If a confirmed obstacle remains in front, one guarded reverse
+             recovery is attempted after this delay when the rear scan is clear. -->
+        <param name="emergency_escape_delay" value="2.0"/>
+        <!-- Bound repeated recovery attempts.  The default one attempt is
+             deliberate for glass/multipath returns: unresolved obstacles stay
+             stopped instead of causing an endless reverse loop. -->
+        <param name="emergency_escape_max_attempts" value="$(arg emergency_escape_max_attempts)"/>
+        <param name="emergency_front_observation_duration" value="$(arg emergency_front_observation_duration)"/>
+        <param name="rotate_speed" value="0.4"/>
+        <param name="max_rotate_angle_deg" value="180"/>
+        <param name="start_delay" value="10.0"/>
+        <param name="min_goal_switch_interval" value="3.0"/>
+        <!-- TEB dynamic-reconfigure is intentionally rate-limited; changing
+             this every scan rebuilds the optimizer and causes command jitter. -->
+        <param name="vel_update_interval" value="2.0"/>
+        <param name="vel_change_threshold" value="0.03"/>
+        <param name="progress_check_interval" value="4.0"/>
+        <param name="min_progress_dist" value="0.1"/>
+        <param name="min_progress_yaw" value="0.15"/>
+        <param name="progress_grace_period" value="8.0"/>
+        <param name="progress_confirmations" value="2"/>
+        <param name="corridor_heading_weight" value="1.0"/>
+        <!-- 稳定性参数 -->
+        <param name="map_stable_time" value="1.0"/>
+        <param name="max_consecutive_failures" value="3"/>
+        <param name="planning_retry_interval" value="2.0"/>
+        <param name="frontier_clearance" value="0.25"/>
+        <!-- Candidate endpoints remain on footprint-eroded known-free cells.
+             This radius only searches along unobstructed free rays for an
+             internal unknown cell or Cartographer's cropped map edge. -->
+        <param name="frontier_unknown_search_radius" value="0.60"/>
+        <param name="frontier_search_timeout" value="0.20"/>
+        <param name="frontier_max_raw_candidates" value="4000"/>
+        <param name="frontier_cluster_radius" value="0.40"/>
+        <param name="camera_coverage_radius" value="1.50"/>
+        <param name="camera_coverage_angle_deg" value="70.0"/>
+        <param name="camera_record_distance" value="0.20"/>
+        <param name="camera_record_yaw_deg" value="10.0"/>
+        <param name="min_unsearched_novelty" value="0.25"/>
+        <param name="rotation_clearance" value="0.45"/>
+        <param name="escape_backoff_duration" value="1.5"/>
+        <param name="max_autonomous_speed" value="0.25"/>
+        <param name="no_frontier_retry_interval" value="1.0"/>
+        <param name="max_no_frontier_rotations" value="1"/>
+        <param name="free_cell_threshold" value="49"/>
+        <param name="occupied_cell_threshold" value="65"/>
+        <param name="frontier_failure_ttl" value="120.0"/>
+        <param name="bridge_failure_ttl" value="60.0"/>
+        <param name="stall_failure_ttl" value="45.0"/>
+        <param name="safety_stop_topic" value="$(arg safety_stop_topic)"/>
+        <param name="scan_timeout" value="0.50"/>
+        <param name="scan_tf_max_age" value="0.25"/>
+        <param name="scan_min_valid_count" value="3"/>
+        <param name="diagnostic_log_period" value="15.0"/>
+    </node>
+
+    <!-- Single writer for the physical base command topic. navigation_driver
+         owns bounded recovery commands; move_base owns normal TEB output. -->
+    <node pkg="nav_driver" type="cmd_vel_arbiter" name="cmd_vel_arbiter" output="screen">
+        <param name="move_base_cmd_vel_topic" value="$(arg move_base_cmd_vel_topic)"/>
+        <param name="navigation_cmd_vel_topic" value="$(arg navigation_cmd_vel_topic)"/>
+        <param name="output_cmd_vel_topic" value="$(arg cmd_vel_topic)"/>
+        <param name="safety_stop_topic" value="$(arg safety_stop_topic)"/>
+        <param name="move_base_timeout" value="0.75"/>
+        <!-- Keep a bounded recovery command alive for one timer cycle without
+             allowing stale motion. -->
+        <param name="navigation_timeout" value="1.20"/>
+        <param name="safety_timeout" value="1.50"/>
+        <param name="publish_frequency" value="30.0"/>
+        <param name="max_linear_x" value="0.60"/>
+        <param name="max_linear_y" value="0.60"/>
+        <param name="max_angular_z" value="1.20"/>
+        <!-- Match the previously corridor-tested behavior.  The arbiter still
+             sanitizes and bounds the command; safety_stop remains authoritative. -->
+        <param name="allow_move_base_reverse" value="$(arg allow_move_base_reverse)"/>
+    </node>
+</launch>

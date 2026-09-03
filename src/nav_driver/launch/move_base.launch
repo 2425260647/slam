@@ -1,0 +1,11 @@
+<launch>
+  <!-- Standalone move_base entry point. The production entry point is
+       nav_driver.launch, which adds the navigation_driver state machine. -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find nav_driver)/config/move_base_params.yaml.yaml" command="load" />
+    <rosparam file="$(find nav_driver)/config/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_driver)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_driver)/config/costmap_common_params.yaml" ns="global_costmap" command="load" />
+    <rosparam file="$(find nav_driver)/config/costmap_common_params.yaml" ns="local_costmap" command="load" />
+  </node>
+</launch>

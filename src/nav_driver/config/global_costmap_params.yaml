@@ -1,0 +1,7 @@
+GlobalPlanner:
+  allow_unknown: true          # Frontier 入口位于已知/未知边界
+  use_dijkstra: true
+  use_grid_path: false
+  use_quadratic: true
+  old_navfn_behavior: false
+  default_tolerance: 0.25

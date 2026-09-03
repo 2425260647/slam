@@ -31,7 +31,14 @@ target_link_libraries(mapping_health_monitor
   ${catkin_LIBRARIES}
 )
 
-install(TARGETS local_grid_mapper mapping_health_monitor
+add_executable(cartographer_scan_adapter
+  src/cartographer_scan_adapter.cpp
+)
+target_link_libraries(cartographer_scan_adapter
+  ${catkin_LIBRARIES}
+)
+
+install(TARGETS local_grid_mapper mapping_health_monitor cartographer_scan_adapter
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

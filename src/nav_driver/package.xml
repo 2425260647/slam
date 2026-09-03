@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>nav_driver</name>
+  <version>3.7.3</version>
+  <description>Navigation driver with exploration and object approach</description>
+  <maintainer email="user@todo.todo">user</maintainer>
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>dynamic_reconfigure</depend>
+  <exec_depend>teb_local_planner</exec_depend>
+  <!-- The launch file loads this plugin by class name at runtime. -->
+  <exec_depend>costmap_converter</exec_depend>
+  <depend>roscpp</depend>
+  <depend>actionlib</depend>
+  <depend>move_base_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>tf2</depend>
+  <depend>std_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>std_srvs</depend>
+</package>
