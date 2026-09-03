@@ -1,0 +1,23 @@
+<launch>
+  <!-- Complete autonomous stack for a real Scout Mini. The chassis driver,
+       lidar driver and base_link -> laser_link TF are expected from bringup;
+       this file owns sensing, Cartographer, local mapping and navigation. -->
+  <arg name="enable_monitor" default="true"/>
+  <arg name="rviz" default="false"/>
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <arg name="safety_stop_topic" default="/navigation_driver/safety_stop"/>
+  <arg name="publish_camera_tf" default="true"/>
+
+  <include file="$(find my_navigation)/launch/real_scout_mapping_local_grid.launch">
+    <arg name="enable_monitor" value="$(arg enable_monitor)"/>
+  </include>
+
+  <include file="$(find nav_driver)/launch/nav_driver.launch">
+    <arg name="cmd_vel_topic" value="$(arg cmd_vel_topic)"/>
+    <arg name="safety_stop_topic" value="$(arg safety_stop_topic)"/>
+    <arg name="publish_camera_tf" value="$(arg publish_camera_tf)"/>
+  </include>
+
+  <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find nav_driver)/rviz/nav_driver_sim.rviz"/>
+</launch>

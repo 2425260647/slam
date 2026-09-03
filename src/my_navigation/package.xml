@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>my_navigation</name>
-  <version>0.0.0</version>
+  <version>3.4.1</version>
   <description>Cartographer 2D mapping and robot-centered local grid mapping for Scout Mini.</description>
 
   <maintainer email="slam@todo.todo">slam</maintainer>
@@ -19,6 +19,9 @@
 
   <exec_depend>cartographer_ros</exec_depend>
   <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>nav_driver</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>roslaunch</exec_depend>
 
   <export>
   </export>

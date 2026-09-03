@@ -12,7 +12,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf2_ros
   tf2_geometry_msgs
+  tf
   dynamic_reconfigure
+  teb_local_planner
   std_srvs
 )
 
@@ -29,7 +31,9 @@ catkin_package(
     std_msgs
     tf2_ros
     tf2_geometry_msgs
+    tf
     dynamic_reconfigure
+    teb_local_planner
     std_srvs
 )
 
@@ -49,5 +53,7 @@ target_link_libraries(cmd_vel_arbiter ${catkin_LIBRARIES})
 
 install(TARGETS navigation_driver sim_env cmd_vel_arbiter
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-install(DIRECTORY launch config include/
+install(DIRECTORY launch config rviz
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+install(DIRECTORY include/nav_driver/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
