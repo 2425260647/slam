@@ -1,8 +1,7 @@
 # Experiment aggregate
 
 This report aggregates the JSON summaries in the listed run directories.
-Real Scout corridor bags have no continuous external truth; this report
-does not contain ATE/RPE claims for those bags.
+Gazebo runs include continuous model-state truth; ATE/RPE are computed from the recorded truth.
 
 | Case | Runs | Scan messages (mean) | Selection fraction (mean) | ATE RMSE (mean, m) | 1 s RPE RMSE (mean, m) |
 | --- | ---: | ---: | ---: | ---: | ---: |

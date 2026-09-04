@@ -1,5 +1,5 @@
 {
-  "ground_truth_note": "Real Scout corridor bags have no continuous external truth; ATE/RPE are intentionally unavailable.",
+  "ground_truth_note": "Gazebo runs include continuous model-state truth; ATE/RPE are computed from recorded truth.",
   "groups": {
     "C0": {
       "accuracy_metrics_allowed": true,
