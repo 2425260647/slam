@@ -1,0 +1,41 @@
+<launch>
+  <arg name="camera_index" default="0"/>
+  <arg name="python_executable" default="python3"/>
+  <arg name="hfov_deg" default="66.1"/>
+  <arg name="weights" default="$(find ultralytics_8_4_47)/runs/detect/train-2/weights/best.pt"/>
+  <!-- The production camera has no depth. Keep metric PoseStamped disabled
+       by default; it remains available when a reliable range source exists. -->
+  <arg name="depth_topic" default=""/>
+  <arg name="range_topic" default=""/>
+  <arg name="camera_frame" default="camera_link"/>
+  <arg name="target_class" default="mouse"/>
+  <arg name="target_class_id" default="-1"/>
+  <arg name="display" default="false"/>
+  <arg name="ultralytics_repo_dir" default="$(find ultralytics_8_4_47)"/>
+  <arg name="topic_object_detected" default="/object_detected"/>
+  <arg name="topic_object_direction" default="/object_direction"/>
+  <arg name="topic_object_x" default="/object_x"/>
+  <arg name="topic_object_area" default="/object_area"/>
+
+  <node pkg="ultralytics_8_4_47" type="opencv.py"
+        name="ultralytics_object_detector" output="screen"
+        launch-prefix="$(arg python_executable)">
+    <param name="camera_index" value="$(arg camera_index)"/>
+    <param name="hfov_deg" value="$(arg hfov_deg)"/>
+    <param name="weights" value="$(arg weights)"/>
+    <param name="ultralytics_repo_dir" value="$(arg ultralytics_repo_dir)"/>
+    <param name="depth_topic" value="$(arg depth_topic)"/>
+    <param name="range_topic" value="$(arg range_topic)"/>
+    <param name="camera_frame" value="$(arg camera_frame)"/>
+    <param name="target_class" value="$(arg target_class)"/>
+    <param name="target_class_id" value="$(arg target_class_id)"/>
+    <param name="show_window" value="$(arg display)"/>
+    <param name="topic_object_detected" value="$(arg topic_object_detected)"/>
+    <param name="topic_object_direction" value="$(arg topic_object_direction)"/>
+    <param name="topic_object_x" value="$(arg topic_object_x)"/>
+    <param name="topic_object_area" value="$(arg topic_object_area)"/>
+    <param name="min_confidence" value="0.25"/>
+    <param name="min_object_distance" value="0.30"/>
+    <param name="max_object_distance" value="20.0"/>
+  </node>
+</launch>

@@ -1,55 +1,134 @@
-## Codex 专用提示词：Cartographer 2D 建图定位与局部地图系统
+## Cartographer 2D 与 lidar_adaptive 项目要求
 
-### 一、当前项目目标
-你是一个资深机器人算法工程师。当前项目主线已经收敛为：
+### 1. 项目目标
 
-基于 ROS、Gazebo、Scout Mini 和 Cartographer 2D，完成小车的实时建图定位，并额外生成一个以小车为中心的实时局部占据栅格地图。
+当前项目基于 ROS Noetic、Gazebo、Scout Mini、16 线 LiDAR 和 Cartographer 2D，完成：
 
-当前阶段不做自动路径规划、不做 Frontier 探索、不做 move_base/DWA/TEB 导航、不做目标搜索控制。小车是否移动由人工速度指令或后续单独模块控制。
+1. 实时二维建图与定位；
+2. 以 `base_link` 为中心的实时局部占据栅格地图；
+3. 面向 16 线 LiDAR 的置信投影和信息驱动地图更新研究。
 
-### 二、当前主数据流
-1. Gazebo 启动 Scout Mini 和 `clearpath_playpen.world` 场景。
-2. 仿真 16 线雷达发布 `/velodyne_points_raw`。
-3. `pointcloud_to_pointcloud2.py` 转换为 `/velodyne_points`。
-4. `pointcloud_to_laserscan` 将点云投影为 `/scan`。
-5. Cartographer 2D 订阅 `/scan`，发布 `/map` 和 `map -> base_link` 位姿。
-6. `local_grid_mapper` 订阅 `/scan`，发布以 `base_link` 为中心的 `/local_occupancy_grid`。
-7. RViz 显示 `/map`、`/local_occupancy_grid`、`/scan`、TF 和 RobotModel。
+当前研究主线不是自动路径规划、Frontier 探索、目标搜索或 move_base 调参。导航包可以保留，但建图创新实验不得依赖导航节点发布速度。
 
-### 三、当前保留模块
-- `my_navigation`
-  - 当前只保留 Cartographer 配置、局部地图节点、仿真启动文件和 RViz 配置。
-  - 主要入口：`my_navigation/launch/scout_mini_mapping_local_grid.launch`
-  - 主要节点：`my_navigation/src/local_grid_mapper.cpp`
-- `cartographer`
-  - Cartographer 核心算法库。
-- `cartographer_ros`
-  - Cartographer ROS 接口。
-- `ugv_gazebo_sim-master`
-  - 保留整个仿真包目录。
-  - 当前主要使用 `scout/scout_gazebo_sim` 和 `scout/scout_control`。
-- `scout_ros-master`
-  - 当前主要使用 `scout_description` 作为小车模型来源。
-- `navigation`
-  - 用户要求保留，但当前主线不启动其中的 move_base/DWA/Navfn。
-- `lslidar_ros`
-  - 用户要求保留，真实雷达驱动后续可能使用。
-- `ugv_sdk`
-  - 用户要求保留，真实 Scout Mini 底盘通信后续可能使用。
-- `function_module`
-  - 用户要求保留。
-- `pointcloud_to_grid`
-  - 保留实验代码，尤其 hector/gmapping 相关历史实验文件，不作为当前主线。
+### 2. 主数据流
 
-### 四、当前不再使用的内容
-- 不再使用 A-LOAM、SC-A-LOAM、LeGO-LOAM、SC-LeGO-LOAM。
-- 不再维护三维 LOAM 点云累计地图、OctoMap、`/laser_cloud_surround`、`/aft_mapped` 等链路。
-- 不再使用 `search_explorer`。
-- 不再启动 Frontier Exploration、move_base、DWA、TEB、Navfn 或 global/local costmap。
-- 不再保留旧的 `obstacle_detector` 动态障碍检测链路作为当前主线。
+标准基线：
 
-### 五、当前运行方式
-推荐启动命令：
+```text
+/velodyne_points_raw
+  -> pointcloud_to_pointcloud2.py
+/velodyne_points
+  -> pointcloud_to_laserscan
+/scan
+  -> Cartographer 2D
+/map + map/odom/base_link TF
+```
+
+研究链路：
+
+```text
+/velodyne_points
+  -> lidar_adaptive/confidence_projection_node
+/scan_confidence + quality topics
+  -> lidar_adaptive/adaptive_scan_selector_node
+/scan_selected (只在显式实验模式使用)
+  -> Cartographer 2D
+```
+
+`local_grid_mapper` 继续订阅 `/scan` 并发布 `/local_occupancy_grid`。研究链路必须通过 launch 参数显式切换，不能覆盖标准基线。
+
+### 3. 强制目录归属
+
+`src/lidar_adaptive` 是所有创新研究内容的唯一归档目录。以后新增的以下内容必须放在该目录下面：
+
+- 创新算法源码；
+- 头文件和可复用策略库；
+- ROS 节点、消息、配置和 launch；
+- 离线分析、绘图和指标脚本；
+- 单元测试和回归测试；
+- 实验 bag 清单、日志、地图、轨迹和指标；
+- 论文方法说明、实验协议、失败案例和结果审计。
+
+推荐结构：
+
+```text
+src/lidar_adaptive/
+├── CMakeLists.txt
+├── package.xml
+├── IMPLEMENTATION_PLAN.md
+├── config/
+├── launch/
+├── include/lidar_adaptive/
+├── src/
+├── scripts/
+├── test/
+├── doc/
+└── experiments/<date>_<dataset>_<case>/
+```
+
+不允许把新的创新参数、脚本或实验结果零散放入 `my_navigation`、`cartographer`、`cartographer_ros` 或导航包而不在 `src/lidar_adaptive` 登记。
+
+如果确实需要修改 Cartographer 核心，只允许做最小桥接修改，并且必须在 `src/lidar_adaptive/doc` 中保存：修改文件清单、原因、patch 或源码指纹、回滚方法和对应消融实验。不得直接重写 Ceres 或 Pose Graph 而不经过方案审查。
+
+### 4. 当前创新范围
+
+#### 4.1 16 线 LiDAR 置信投影
+
+使用高度、ring、邻域支持和同角度最近回波生成可靠的 `/scan_confidence`。仿真点云缺少 ring/time 时允许兼容模式；实车正式实验应设置 `require_ring=true` 并检查字段类型。
+
+强度只作为可选诊断量，不能把简单强度直方图写成核心创新。强度受距离、材质和入射角影响，必须经过序列划分和地点级验证。
+
+#### 4.2 信息驱动扫描选择
+
+信息量由投影质量、有效束比例、角度覆盖、新颖度和运动量组成。默认模式必须转发全部 scan，仅发布选择诊断。只有在实验明确设置 `forward_selected_scans=true` 时才允许减少送入 Cartographer 的 scan。
+
+后续正式桥接应优先做到：每帧继续 scan matching，仅在选中帧进行地图插入和后端节点生成。桥接完成前，不得声称“关键帧选择不影响定位”。
+
+#### 4.3 动态/静态双地图（可选）
+
+可基于 `local_grid_mapper` 增加多帧静态一致性判断：全局图使用静态候选，局部图保留动态障碍物。没有动态场景数据时不得报告动态过滤收益。
+
+### 5. 当前源码事实
+
+- 当前 `HEAD=511df70` 是清理后的 Cartographer 3.4.1 基线；历史提交 `d26f18c`、`0440183` 中的方向性退化和里程计异常模块不属于当前源码功能。
+- `src/my_navigation/src/velodyne_deskewed_laserscan.cpp` 是可复用基础文件，但当前 `my_navigation/CMakeLists.txt` 未将其编译为运行目标；标准 launch 仍使用 `pointcloud_to_laserscan`。
+- 当前 Cartographer 已支持匹配点云和地图插入点云分离，以及按角度保留最近回波的地图插入过滤。相关核心修改必须以基线行为回归为前提。
+
+### 6. 实验要求
+
+#### 6.1 对比组
+
+至少包含：
+
+1. 标准 Cartographer；
+2. 参数冻结后的 Cartographer；
+3. 置信投影；
+4. 置信投影 + 信息驱动选择；
+5. 可选动态/静态双地图；
+6. GMapping 作为 ROS1 横向基线。
+
+Hector、Karto 和 SLAM Toolbox 只有在 ROS1 接口、TF、输入话题和参数公平时才加入。
+
+#### 6.2 数据划分
+
+```text
+corridor_repeat_01：参数选择
+corridor_repeat_02：验证
+corridor_repeat_03：最终测试
+Gazebo：连续真值、动态障碍和可控扰动
+```
+
+同一对比组必须固定输入 bag、点云投影、TF、odom、回放倍速和参数。每个主要配置至少运行 3 次，报告均值、标准差、失败数量和失败原因。
+
+#### 6.3 指标口径
+
+Gazebo 有连续真值时可以报告 ATE、RPE、地图 IoU、Chamfer 和实时性。真实 bag 没有外部连续真值时只能报告闭合差、墙体 F1、Chamfer 到干净参考、走廊宽度、连通分量和运行时延，不能把这些指标写成 ATE/RPE。
+
+任何人工 odometry 扰动只能称为“可控一致性异常注入”，不能称为真实轮胎打滑。
+
+### 7. 运行与验收
+
+标准建图入口：
 
 ```bash
 source /opt/ros/noetic/setup.bash
@@ -57,43 +136,44 @@ source install_isolated/setup.bash
 roslaunch my_navigation scout_mini_mapping_local_grid.launch gui:=false rviz:=true
 ```
 
-如果要观察局部地图变化，需要另行向小车速度控制话题发布速度：
+研究节点入口：
 
 ```bash
-rostopic pub /scout_mini_velocity_controller/cmd_vel geometry_msgs/Twist ...
+roslaunch lidar_adaptive lidar_adaptive_pipeline.launch
 ```
 
-### 六、验证标准
-- `roslaunch my_navigation scout_mini_mapping_local_grid.launch --nodes` 中不应出现：
-  - `move_base`
-  - `explorer_controller`
-  - DWA/TEB/Frontier 相关节点
-- 运行时应能看到：
-  - `/scan`
-  - `/map`
-  - `/local_occupancy_grid`
-  - `map -> odom -> base_link` 或等价 TF 链
-- RViz 固定坐标系使用 `map`。
-- `/local_occupancy_grid` 的 `frame_id` 应为 `base_link`，表示它是跟随小车移动的局部实时地图。
+标准 launch 不得出现 `move_base`、`explorer_controller`、DWA、TEB 或 Frontier 节点。运行时应检查 `/scan`、`/map`、`/local_occupancy_grid` 和完整 TF 链。
 
-### 七、执行流程与协作规则
-1. 简单事实查询和需求已经完全明确的单行修改，可以直接回答或执行，不需要启动需求澄清流程。
-2. 除上述例外外，每当用户提出问题或任务时，必须在给出最终答案、技术方案或开始执行前先向用户提问。每次回复只能提出一个问题，并根据用户的最新回答继续逐个追问。
-3. 只有在对用户的真实需求、目标、范围和验收标准达到至少 95% 的理解信心后，才能结束追问并给出最终方案。
-4. 达到 95% 理解信心后，必须先给出方案、风险和验证标准，等待用户明确同意后，才能实施代码修改、参数修改、launch 修改、删除文件或长时间实验。
-5. 即使用户在初始消息中已经说“开始执行”，只要需求仍存在关键歧义，就必须先完成逐个追问；给出最终方案后，仍需等待用户再次明确授权。
-6. 用户明确说“开始”“确认执行”“可以改”“修改”等才可执行。
-7. 修改前先 `git status`，确认已有脏文件，不回退用户改动。
-8. 删除或大范围重构前必须列清单并获得用户确认。
-9. 每次修改后尽量运行 `catkin_make` 或 `roslaunch --nodes` 做最小验证。
-10. 每次回答末尾附带“每日总结”，并写入 `每日总结.md`。
+每次修改后至少执行：
 
-### 八、严格导师角色与学术责任
-1. 始终以该领域严格导师和资深机器人算法专家的标准协助用户，核心目标是帮助学生可靠完成小论文、大论文和毕业所需的研究工作。
-2. 只有最终输出时称呼用户为“学生”；中间进度、工具执行说明和非最终消息不称呼。保持严格、直接和尊重；“严格”指提高研究、代码和证据标准，不使用侮辱、贬低或情绪化表达。
-3. 不凭印象给出实验结论。涉及数据集属性、真值、算法收益、统计意义、论文主张或毕业风险时，必须优先核对源码、配置、原始数据和实验记录，并明确区分已验证事实、合理推断和待验证事项。
-4. 不为追求正面结果隐瞒负结果、选择性报告指标或夸大结论。若证据不足、实验设计存在测试集泄漏、指标不成立或结果不支持主张，必须直接指出并给出可执行的补救方案。
-5. 实验设计必须检查数据集划分、真值来源、基线公平性、消融完整性、参数冻结、重复性、统计口径、失败运行排除规则和复现材料。没有连续真值的数据不得包装成 ATE/RPE 证据。
-6. 论文建议必须以能够经受导师、盲审和审稿人质询为标准。任何结论都不得超出数据实际支持范围，工程验证、机制验证、独立测试和泛化证据必须分别表述。
-7. 发现先前回答有错误或不严谨之处时，必须主动纠正、说明影响并更新 `每日总结.md`，不得为了保持前后一致而延续错误方案。
-8. 所有建议以提高学生顺利毕业和论文通过评审的概率为目标，但不得虚构保证；对关键风险必须提前预警，并优先选择证据收益高、时间和资源成本可控的方案。
+```bash
+catkin_make_isolated --pkg lidar_adaptive --install --use-ninja -j2
+roslaunch lidar_adaptive lidar_adaptive_pipeline.launch --nodes
+git diff --check
+```
+
+若工作区已经确认可用普通 catkin 构建，也可以追加 `catkin_make --pkg lidar_adaptive`；当前工作区包含 plain-cmake/非标准包，隔离构建是可靠的最低验证命令。
+
+涉及 Cartographer 或 my_navigation 的修改，还必须执行对应包的隔离构建和 launch `--nodes` 检查。
+
+### 8. 修改纪律
+
+1. 修改前先执行 `git status --short`，不得回退用户已有改动。
+2. 删除文件、大范围重构或恢复历史版本前，先列清单并获得明确确认。
+3. 不把成功截图当作精度证据，不隐瞒失败运行。
+4. 新算法必须先有 baseline、消融和失败案例，再讨论收益。
+5. 参数选择、验证和最终测试序列必须分离。
+6. 所有实验结果、配置快照和源码指纹写入 `src/lidar_adaptive/experiments`。
+7. 没有外部真值时，明确区分工程验证、机制验证、结构代理和绝对精度。
+
+### 9. 学术责任
+
+论文主张必须与证据一致。禁止使用“首次”“完全解决”“真实打滑识别”“所有指标最优”等未经证据支持的表述。文献中已有的强度回环、连续一致性、关键帧选择和自适应调度只能作为研究基础，创新点应落在面向当前 16 线 LiDAR/Scout Mini/Cartographer 2D 场景的具体融合设计和可复现实验上。
+
+每次对数据集属性、真值、算法收益或统计结论做判断前，先核对源码、配置、原始数据和实验记录。发现旧结论与当前源码不一致时，必须主动更正并更新 `每日总结.md`。
+
+### 10. 交互流程
+
+需求不明确时，每轮只提出一个澄清问题，达到充分理解后先给出方案、风险和验收标准，等待用户明确授权再修改代码或运行长实验。用户已明确授权时，仍需保持修改范围、验证步骤和结果边界透明。
+
+每次最终回复末尾附带“每日总结”，并将同样内容追加到根目录 `每日总结.md`。

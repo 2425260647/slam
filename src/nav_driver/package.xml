@@ -29,4 +29,5 @@
   <exec_depend>costmap_converter</exec_depend>
   <exec_depend>rviz</exec_depend>
   <exec_depend>roslaunch</exec_depend>
+  <exec_depend>ultralytics_8_4_47</exec_depend>
 </package>

@@ -11,6 +11,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
+  sensor_msgs
+  cv_bridge
+  tf2_ros
+  tf2_geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -103,9 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES function_module
-#  CATKIN_DEPENDS roscpp rospy std_msgs
+  CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs sensor_msgs cv_bridge tf2_ros tf2_geometry_msgs
 #  DEPENDS system_lib
 )
 
@@ -150,6 +153,11 @@ include_directories(
 #   ${catkin_LIBRARIES}
 # )
 
+install(PROGRAMS
+  scripts/object_detection_pub.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
 #############
 ## Install ##
 #############
@@ -167,6 +175,10 @@ include_directories(
 catkin_install_python(PROGRAMS
   scripts/object_detection_pub.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
 ## Mark executables for installation

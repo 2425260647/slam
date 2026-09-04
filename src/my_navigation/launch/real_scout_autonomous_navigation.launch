@@ -7,6 +7,11 @@
   <arg name="cmd_vel_topic" default="/cmd_vel"/>
   <arg name="safety_stop_topic" default="/navigation_driver/safety_stop"/>
   <arg name="publish_camera_tf" default="true"/>
+  <arg name="enable_object_detection" default="false"/>
+  <arg name="camera_index" default="0"/>
+  <arg name="object_detection_python" default="python3"/>
+  <arg name="object_detection_weights" default="$(find ultralytics_8_4_47)/runs/detect/train-2/weights/best.pt"/>
+  <arg name="object_detection_display" default="false"/>
 
   <include file="$(find my_navigation)/launch/real_scout_mapping_local_grid.launch">
     <arg name="enable_monitor" value="$(arg enable_monitor)"/>
@@ -16,6 +21,12 @@
     <arg name="cmd_vel_topic" value="$(arg cmd_vel_topic)"/>
     <arg name="safety_stop_topic" value="$(arg safety_stop_topic)"/>
     <arg name="publish_camera_tf" value="$(arg publish_camera_tf)"/>
+    <arg name="enable_visual_servo" value="$(arg enable_object_detection)"/>
+    <arg name="enable_object_detection" value="$(arg enable_object_detection)"/>
+    <arg name="camera_index" value="$(arg camera_index)"/>
+    <arg name="object_detection_python" value="$(arg object_detection_python)"/>
+    <arg name="object_detection_weights" value="$(arg object_detection_weights)"/>
+    <arg name="object_detection_display" value="$(arg object_detection_display)"/>
   </include>
 
   <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"

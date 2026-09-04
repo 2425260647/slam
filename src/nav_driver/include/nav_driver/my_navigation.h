@@ -11,6 +11,7 @@
 #include <nav_msgs/Odometry.h>
 #include <sensor_msgs/LaserScan.h>
 #include <std_msgs/Bool.h>
+#include <std_msgs/Float32.h>
 #include <tf2_ros/transform_listener.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf/transform_datatypes.h>
@@ -35,12 +36,15 @@ private:
 
   // 回调
   void objectCallback(const geometry_msgs::PoseStampedConstPtr& msg);
+  void visualDirectionCallback(const std_msgs::Float32ConstPtr& msg);
+  void visualAreaCallback(const std_msgs::Float32ConstPtr& msg);
   void mapCallback(const nav_msgs::OccupancyGridConstPtr& msg);
   void laserCallback(const sensor_msgs::LaserScanConstPtr& msg);
   void odomCallback(const nav_msgs::OdometryConstPtr& msg);
   void globalFootprintCallback(const geometry_msgs::PolygonStampedConstPtr& msg);
   void localFootprintCallback(const geometry_msgs::PolygonStampedConstPtr& msg);
   void timerCallback(const ros::TimerEvent& event);
+  void visualControlTimerCallback(const ros::TimerEvent& event);
   void safetyHeartbeatCallback(const ros::TimerEvent& event);
   void doneCallback(const actionlib::SimpleClientGoalState& state,
                     const move_base_msgs::MoveBaseResultConstPtr& result,
@@ -99,12 +103,15 @@ private:
   // ROS 接口
   ros::NodeHandle nh_;
   ros::Subscriber object_sub_;
+  ros::Subscriber visual_direction_sub_;
+  ros::Subscriber visual_area_sub_;
   ros::Subscriber map_sub_;
   ros::Subscriber laser_sub_;
   ros::Subscriber odom_sub_;
   ros::Subscriber global_footprint_sub_;
   ros::Subscriber local_footprint_sub_;
   ros::Timer      explore_timer_;
+  ros::Timer      visual_timer_;
   ros::Timer      safety_heartbeat_timer_;
 
   actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> ac_;
@@ -123,6 +130,18 @@ private:
   geometry_msgs::Pose last_known_object_pose_;
   bool      has_last_known_object_pose_;
 
+  // 无深度视觉伺服状态。Float32 没有 header，时间戳使用 ROS 接收时间。
+  bool   visual_control_active_;
+  double visual_direction_deg_;
+  double visual_area_ratio_;
+  ros::Time last_visual_direction_time_;
+  ros::Time last_visual_area_time_;
+  ros::Time last_visual_seen_time_;
+  std::uint64_t visual_area_sequence_;
+  std::uint64_t visual_processed_area_sequence_;
+  int    visual_area_confirmations_;
+  double visual_search_sign_;
+
   // 地图稳定性
   int  last_map_width_;
   int  last_map_height_;
@@ -133,6 +152,20 @@ private:
   std::string cmd_vel_topic_;
   double stop_distance_;
   double object_timeout_;
+  bool   enable_visual_servo_;
+  double visual_detection_timeout_;
+  double visual_sync_tolerance_;
+  double visual_angle_gain_;
+  double visual_angle_sign_;
+  double visual_max_linear_speed_;
+  double visual_max_angular_speed_;
+  double visual_align_angle_deg_;
+  double visual_area_stop_threshold_;
+  int    visual_stop_required_;
+  double visual_min_front_clearance_;
+  double visual_search_speed_;
+  double visual_loss_stop_timeout_;
+  double visual_loss_recovery_timeout_;
   double exploration_frequency_;
   double frontier_min_dist_;
   double fov_horizontal_;

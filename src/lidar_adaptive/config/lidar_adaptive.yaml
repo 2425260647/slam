@@ -1,0 +1,26 @@
+# Conservative defaults.  The selector forwards every scan unless an
+# experiment explicitly sets forward_selected_scans=true.
+projection:
+  ring_min: 0
+  ring_max: 255
+  require_ring: false
+  min_height: -0.60
+  max_height: 1.50
+  stable_min_height: -0.10
+  stable_max_height: 0.80
+  range_min: 0.30
+  range_max: 50.0
+  neighbor_window_bins: 2
+  neighbor_distance: 0.30
+  ring_consistency_distance: 0.15
+  min_valid_bins: 60
+  filter_isolated: true
+
+selector:
+  forward_selected_scans: false
+  min_quality: 0.20
+  selection_score: 0.46
+  novelty_range_threshold: 0.25
+  min_motion_distance: 0.05
+  min_motion_angle: 0.015
+  max_skip_seconds: 1.0

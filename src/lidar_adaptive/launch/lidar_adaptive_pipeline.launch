@@ -1,0 +1,48 @@
+<launch>
+  <arg name="cloud_topic" default="/velodyne_points"/>
+  <arg name="scan_topic" default="/scan"/>
+  <arg name="confidence_scan_topic" default="/scan_confidence"/>
+  <arg name="selector_output_topic" default="/scan_selected"/>
+  <arg name="odom_topic" default="/odom"/>
+  <arg name="forward_selected_scans" default="false"/>
+  <arg name="ring_min" default="0"/>
+  <arg name="ring_max" default="255"/>
+  <arg name="require_ring" default="false"/>
+  <arg name="min_height" default="-0.60"/>
+  <arg name="max_height" default="1.50"/>
+  <arg name="stable_min_height" default="-0.10"/>
+  <arg name="stable_max_height" default="0.80"/>
+  <arg name="range_min" default="0.30"/>
+  <arg name="range_max" default="50.0"/>
+  <arg name="enable_selector" default="true"/>
+
+  <node pkg="lidar_adaptive" type="confidence_projection_node"
+        name="lidar_confidence_projection" output="screen">
+    <rosparam command="load" file="$(find lidar_adaptive)/config/projection.yaml"/>
+    <param name="input_topic" value="$(arg cloud_topic)"/>
+    <param name="output_topic" value="$(arg confidence_scan_topic)"/>
+    <param name="ring_min" value="$(arg ring_min)"/>
+    <param name="ring_max" value="$(arg ring_max)"/>
+    <param name="require_ring" value="$(arg require_ring)"/>
+    <param name="min_height" value="$(arg min_height)"/>
+    <param name="max_height" value="$(arg max_height)"/>
+    <param name="stable_min_height" value="$(arg stable_min_height)"/>
+    <param name="stable_max_height" value="$(arg stable_max_height)"/>
+    <param name="range_min" value="$(arg range_min)"/>
+    <param name="range_max" value="$(arg range_max)"/>
+  </node>
+
+  <node if="$(arg enable_selector)" pkg="lidar_adaptive"
+        type="adaptive_scan_selector_node" name="adaptive_scan_selector"
+        output="screen">
+    <rosparam command="load" file="$(find lidar_adaptive)/config/selector.yaml"/>
+    <param name="scan_topic" value="$(arg confidence_scan_topic)"/>
+    <param name="output_topic" value="$(arg selector_output_topic)"/>
+    <param name="odom_topic" value="$(arg odom_topic)"/>
+    <param name="forward_selected_scans" value="$(arg forward_selected_scans)"/>
+  </node>
+
+  <!-- This launch intentionally does not start Cartographer.  The selected
+       scan topic can be remapped into a dedicated experiment launch after
+       projection and selector diagnostics have been verified. -->
+</launch>

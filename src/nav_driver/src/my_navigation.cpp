@@ -12,7 +12,7 @@
 #include <queue>
 #include <boost/bind.hpp>
 
-const std::string NavigationDriver::VERSION = "3.4.1-autonomous-navigation";
+const std::string NavigationDriver::VERSION = "3.4.1-visual-servo";
 
 NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
   : nh_(nh)
@@ -23,6 +23,16 @@ NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
   , task_finished_(false)
   , last_object_time_(ros::Time(0))
   , has_last_known_object_pose_(false)
+  , visual_control_active_(false)
+  , visual_direction_deg_(0.0)
+  , visual_area_ratio_(0.0)
+  , last_visual_direction_time_(ros::Time(0))
+  , last_visual_area_time_(ros::Time(0))
+  , last_visual_seen_time_(ros::Time(0))
+  , visual_area_sequence_(0)
+  , visual_processed_area_sequence_(0)
+  , visual_area_confirmations_(0)
+  , visual_search_sign_(1.0)
   , last_map_width_(0)
   , last_map_height_(0)
   , last_map_change_time_(ros::Time(0))
@@ -106,6 +116,20 @@ NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
   nh_.param<std::string>("cmd_vel_topic", cmd_vel_topic_, "/cmd_vel");
   nh_.param("stop_distance", stop_distance_, 1.0);
   nh_.param("object_timeout", object_timeout_, 5.0);
+  nh_.param("enable_visual_servo", enable_visual_servo_, false);
+  nh_.param("visual_detection_timeout", visual_detection_timeout_, 0.5);
+  nh_.param("visual_sync_tolerance", visual_sync_tolerance_, 0.20);
+  nh_.param("visual_angle_gain", visual_angle_gain_, 1.8);
+  nh_.param("visual_angle_sign", visual_angle_sign_, -1.0);
+  nh_.param("visual_max_linear_speed", visual_max_linear_speed_, 0.12);
+  nh_.param("visual_max_angular_speed", visual_max_angular_speed_, 0.50);
+  nh_.param("visual_align_angle_deg", visual_align_angle_deg_, 12.0);
+  nh_.param("visual_area_stop_threshold", visual_area_stop_threshold_, 0.033);
+  nh_.param("visual_stop_confirmations", visual_stop_required_, 5);
+  nh_.param("visual_min_front_clearance", visual_min_front_clearance_, 0.53);
+  nh_.param("visual_search_speed", visual_search_speed_, 0.25);
+  nh_.param("visual_loss_stop_timeout", visual_loss_stop_timeout_, 0.5);
+  nh_.param("visual_loss_recovery_timeout", visual_loss_recovery_timeout_, 2.0);
   nh_.param("exploration_frequency", exploration_frequency_, 1.0);
   nh_.param("frontier_min_dist", frontier_min_dist_, 0.5);
   nh_.param("fov_horizontal", fov_horizontal_, 70.0);
@@ -200,6 +224,25 @@ NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
   emergency_stop_confirm_scans_ = std::max(1, emergency_stop_confirm_scans_);
   emergency_clear_confirm_scans_ = std::max(1, emergency_clear_confirm_scans_);
 
+  visual_detection_timeout_ = std::max(0.10, visual_detection_timeout_);
+  visual_sync_tolerance_ = std::max(0.02, visual_sync_tolerance_);
+  visual_angle_gain_ = std::max(0.1, visual_angle_gain_);
+  visual_angle_sign_ = visual_angle_sign_ >= 0.0 ? 1.0 : -1.0;
+  visual_max_linear_speed_ = std::max(0.02,
+                                      std::min(visual_max_linear_speed_, 0.20));
+  visual_max_angular_speed_ = std::max(0.10,
+                                       std::min(visual_max_angular_speed_, 0.80));
+  visual_align_angle_deg_ = std::max(2.0, std::min(visual_align_angle_deg_, 45.0));
+  visual_area_stop_threshold_ = std::max(0.001,
+                                          std::min(visual_area_stop_threshold_, 0.50));
+  visual_stop_required_ = std::max(1, std::min(visual_stop_required_, 20));
+  visual_min_front_clearance_ = std::max(emergency_stop_dist_,
+                                         visual_min_front_clearance_);
+  visual_search_speed_ = std::max(0.05, std::min(visual_search_speed_, 0.40));
+  visual_loss_stop_timeout_ = std::max(0.10, visual_loss_stop_timeout_);
+  visual_loss_recovery_timeout_ = std::max(visual_loss_stop_timeout_,
+                                            visual_loss_recovery_timeout_);
+
   max_rotate_angle_ = max_rotate_angle_ * M_PI / 180.0;
   node_start_time_ = ros::Time::now();
   last_goal_switch_time_ = node_start_time_;
@@ -212,6 +255,10 @@ NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
   tf_buffer_.setUsingDedicatedThread(true);
 
   object_sub_ = nh_.subscribe("/object_detected", 1, &NavigationDriver::objectCallback, this);
+  visual_direction_sub_ = nh_.subscribe(
+      "/object_direction", 1, &NavigationDriver::visualDirectionCallback, this);
+  visual_area_sub_ = nh_.subscribe(
+      "/object_area", 1, &NavigationDriver::visualAreaCallback, this);
   map_sub_ = nh_.subscribe("/map", 1, &NavigationDriver::mapCallback, this);
   laser_sub_ = nh_.subscribe("/scan", 1, &NavigationDriver::laserCallback, this);
   odom_sub_ = nh_.subscribe("/odom", 10, &NavigationDriver::odomCallback, this);
@@ -240,10 +287,19 @@ NavigationDriver::NavigationDriver(ros::NodeHandle& nh)
 
   explore_timer_ = nh_.createTimer(ros::Duration(1.0 / exploration_frequency_),
                                    &NavigationDriver::timerCallback, this, false, true);
+  visual_timer_ = nh_.createTimer(ros::Duration(0.05),
+                                  &NavigationDriver::visualControlTimerCallback,
+                                  this, false, true);
   ROS_INFO("Navigation driver initialized (emergency stop at %.2f m, start delay %.1f s).",
            emergency_stop_dist_, start_delay_);
   ROS_INFO("[CONFIG] Topics: map=/map scan=/scan odom=/odom cmd_vel=%s safety_stop=%s action=/move_base",
            cmd_vel_topic_.c_str(), safety_stop_topic_.c_str());
+  ROS_INFO("[CONFIG] Visual servo: enabled=%s direction=/object_direction area=/object_area stop=%.3f confirmations=%d timeout=%.2f s sync=%.2f s gain=%.2f sign=%.1f max_speed=%.2f m/s max_yaw=%.2f rad/s align=%.1f deg search=%.2f rad/s recovery=%.2f s.",
+           enable_visual_servo_ ? "true" : "false", visual_area_stop_threshold_,
+           visual_stop_required_, visual_detection_timeout_, visual_sync_tolerance_,
+           visual_angle_gain_, visual_angle_sign_, visual_max_linear_speed_,
+           visual_max_angular_speed_, visual_align_angle_deg_, visual_search_speed_,
+           visual_loss_recovery_timeout_);
   ROS_INFO("[CONFIG] Frames: global=map local=odom base=base_link; scan FOV=%.1f deg; object_fov_range=%.2f m.",
            fov_horizontal_, fov_range_);
   ROS_INFO("[CONFIG] Laser emergency FOV is base_link [%.1f,%.1f] deg; laser zero is transformed through base_link<-laser_link. confirm=%d clear=%d hard_stop=%.2f m near_points=%d cluster_points=%d floor_margin=%.3f m.",
@@ -725,6 +781,178 @@ void NavigationDriver::objectCallback(const geometry_msgs::PoseStampedConstPtr& 
   {
     ROS_WARN_THROTTLE(5.0, "[TF] Object transform failed: %s", ex.what());
   }
+}
+
+void NavigationDriver::visualDirectionCallback(const std_msgs::Float32ConstPtr& msg)
+{
+  if (!std::isfinite(msg->data)) return;
+  std::lock_guard<std::mutex> lock(data_mutex_);
+  visual_direction_deg_ = std::max(-90.0, std::min(90.0, static_cast<double>(msg->data)));
+  last_visual_direction_time_ = ros::Time::now();
+  if (std::fabs(visual_direction_deg_) > 1.0)
+  {
+    // Image-right is positive bearing.  visual_angle_sign_ maps that bearing
+    // into the robot yaw command (normally -1 for REP-103 base_link yaw).
+    visual_search_sign_ = visual_angle_sign_ *
+        (visual_direction_deg_ > 0.0 ? 1.0 : -1.0);
+  }
+}
+
+void NavigationDriver::visualAreaCallback(const std_msgs::Float32ConstPtr& msg)
+{
+  if (!std::isfinite(msg->data)) return;
+  std::lock_guard<std::mutex> lock(data_mutex_);
+  visual_area_ratio_ = std::max(0.0, std::min(1.0, static_cast<double>(msg->data)));
+  last_visual_area_time_ = ros::Time::now();
+  ++visual_area_sequence_;
+}
+
+void NavigationDriver::visualControlTimerCallback(const ros::TimerEvent&)
+{
+  if (!enable_visual_servo_) return;
+
+  std::lock_guard<std::mutex> lock(data_mutex_);
+  const ros::Time now = ros::Time::now();
+  if (task_finished_ || emergency_stopped_)
+  {
+    if (visual_control_active_)
+    {
+      visual_control_active_ = false;
+      visual_area_confirmations_ = 0;
+    }
+    return;
+  }
+
+  if ((now - node_start_time_).toSec() < start_delay_)
+    return;
+
+  const double direction_age = last_visual_direction_time_.isZero()
+      ? -1.0 : (now - last_visual_direction_time_).toSec();
+  const double area_age = last_visual_area_time_.isZero()
+      ? -1.0 : (now - last_visual_area_time_).toSec();
+  const double pair_skew = (!last_visual_direction_time_.isZero() &&
+                            !last_visual_area_time_.isZero())
+      ? std::fabs((last_visual_direction_time_ - last_visual_area_time_).toSec())
+      : -1.0;
+  const bool visual_pair_fresh = direction_age >= 0.0 &&
+      area_age >= 0.0 && direction_age <= visual_detection_timeout_ &&
+      area_age <= visual_detection_timeout_ &&
+      pair_skew <= visual_sync_tolerance_;
+
+  if (visual_pair_fresh)
+  {
+    if (!visual_control_active_)
+    {
+      visual_control_active_ = true;
+      visual_area_confirmations_ = 0;
+      visual_processed_area_sequence_ = 0;
+      object_found_ = false;
+      has_last_known_object_pose_ = false;
+      cancelActiveGoal();
+      has_last_goal_ = false;
+      current_goal_is_object_ = false;
+      stopSmartRotation();
+      stopEscapeBackoff();
+      stopDirectDrive();
+      ROS_INFO("[VISUAL] Engaged: mouse bearing=%.2f deg area=%.4f; move_base exploration paused.",
+               visual_direction_deg_, visual_area_ratio_);
+    }
+    last_visual_seen_time_ = now;
+
+    // Count each detector frame once.  The 20 Hz control timer may run more
+    // frequently than the camera, so counting timer ticks would falsely
+    // complete the target after a fraction of a second.
+    if (visual_area_sequence_ != visual_processed_area_sequence_)
+    {
+      if (visual_area_ratio_ >= visual_area_stop_threshold_)
+        ++visual_area_confirmations_;
+      else
+        visual_area_confirmations_ = 0;
+      visual_processed_area_sequence_ = visual_area_sequence_;
+    }
+
+    if (visual_area_confirmations_ >= visual_stop_required_)
+    {
+      task_finished_ = true;
+      visual_control_active_ = false;
+      visual_area_confirmations_ = 0;
+      cancelActiveGoal();
+      has_last_goal_ = false;
+      current_goal_is_object_ = false;
+      geometry_msgs::Twist stop;
+      publishCmdVel(stop);
+      ROS_INFO("[VISUAL] Mouse found: area=%.4f reached threshold %.4f for %d frames; task completed.",
+               visual_area_ratio_, visual_area_stop_threshold_, visual_stop_required_);
+      return;
+    }
+
+    const bool scan_fresh = has_scan_ && !last_scan_received_time_.isZero() &&
+        (now - last_scan_received_time_).toSec() <= scan_timeout_ &&
+        (last_scan_tf_status_ == "ok" || last_scan_tf_status_ == "latest") &&
+        last_scan_valid_count_ >= scan_min_valid_count_;
+    if (!scan_fresh)
+    {
+      publishCmdVel(geometry_msgs::Twist());
+      ROS_WARN_THROTTLE(2.0, "[VISUAL] Scan is not usable; holding zero while visual target is tracked.");
+      return;
+    }
+
+    geometry_msgs::Twist cmd;
+    const double angle_rad = visual_direction_deg_ * M_PI / 180.0;
+    if (std::fabs(visual_direction_deg_) > visual_align_angle_deg_)
+    {
+      cmd.angular.z = visual_angle_sign_ * visual_angle_gain_ * angle_rad;
+      cmd.angular.z = std::max(-visual_max_angular_speed_,
+                               std::min(visual_max_angular_speed_, cmd.angular.z));
+    }
+    else if (last_center_min_distance_ >= visual_min_front_clearance_)
+    {
+      const double approach_fraction = std::max(
+          0.0, std::min(1.0, 1.0 - visual_area_ratio_ /
+                                     visual_area_stop_threshold_));
+      cmd.linear.x = std::max(0.02, visual_max_linear_speed_ * approach_fraction);
+    }
+    else
+    {
+      // The laser remains authoritative even when the visual target is clear:
+      // no forward command is allowed without a central, fresh clearance.
+      ROS_WARN_THROTTLE(2.0,
+          "[VISUAL] Front clearance %.2f m below %.2f m; holding zero.",
+          last_center_min_distance_, visual_min_front_clearance_);
+    }
+    publishCmdVel(cmd);
+    return;
+  }
+
+  if (!visual_control_active_)
+    return;
+
+  const double lost_age = last_visual_seen_time_.isZero()
+      ? std::numeric_limits<double>::infinity()
+      : (now - last_visual_seen_time_).toSec();
+  if (lost_age >= visual_loss_recovery_timeout_)
+  {
+    visual_control_active_ = false;
+    visual_area_confirmations_ = 0;
+    visual_processed_area_sequence_ = visual_area_sequence_;
+    geometry_msgs::Twist stop;
+    publishCmdVel(stop);
+    requestPlanning();
+    ROS_WARN("[VISUAL] Mouse lost for %.2f s; leaving visual control and resuming Frontier exploration.",
+             lost_age);
+    return;
+  }
+
+  // Do not continue the last forward command during a visual dropout.  After
+  // the short stop window, search in the last observed bearing direction only
+  // when the existing all-around laser clearance test allows rotation.
+  geometry_msgs::Twist recovery_cmd;
+  if (lost_age >= visual_loss_stop_timeout_ && hasRotationClearance())
+    recovery_cmd.angular.z = visual_search_sign_ * visual_search_speed_;
+  publishCmdVel(recovery_cmd);
+  ROS_WARN_THROTTLE(1.0,
+      "[VISUAL] Mouse temporarily lost for %.2f s; forward motion inhibited%s.",
+      lost_age, recovery_cmd.angular.z == 0.0 ? "; rotation blocked by laser clearance" : "; protected search rotation");
 }
 
 void NavigationDriver::mapCallback(const nav_msgs::OccupancyGridConstPtr& msg)
@@ -1215,6 +1443,17 @@ void NavigationDriver::logDiagnosticSnapshot(const ros::Time& now)
            odom_stamp_age, last_odom_twist_.linear.x, last_odom_twist_.angular.z,
            last_scan_tf_status_.c_str(), last_scan_tf_x_, last_scan_tf_y_,
            last_scan_tf_yaw_ * 180.0 / M_PI, last_scan_tf_age_);
+  const double visual_direction_age = last_visual_direction_time_.isZero()
+      ? -1.0 : (now - last_visual_direction_time_).toSec();
+  const double visual_area_age = last_visual_area_time_.isZero()
+      ? -1.0 : (now - last_visual_area_time_).toSec();
+  ROS_INFO("[VISUAL_STATE] enabled=%s active=%s bearing=%.2fdeg area=%.4f direction_age=%.2fs area_age=%.2fs confirmations=%d/%d last_seen_age=%.2fs",
+           enable_visual_servo_ ? "true" : "false",
+           visual_control_active_ ? "true" : "false", visual_direction_deg_,
+           visual_area_ratio_, visual_direction_age, visual_area_age,
+           visual_area_confirmations_, visual_stop_required_,
+           last_visual_seen_time_.isZero() ? -1.0 :
+               (now - last_visual_seen_time_).toSec());
 }
 
 void NavigationDriver::cancelActiveGoal()
@@ -1419,6 +1658,12 @@ void NavigationDriver::timerCallback(const ros::TimerEvent&)
     return;
 
   if ((now - node_start_time_).toSec() < start_delay_)
+    return;
+
+  // The high-rate visual timer owns cmd_vel while a mouse track is active.
+  // Keep Frontier/move_base bookkeeping paused so the exploration timer cannot
+  // publish a competing command or send a replacement goal.
+  if (visual_control_active_)
     return;
 
   if (object_found_ && (now - last_object_time_).toSec() > object_timeout_)

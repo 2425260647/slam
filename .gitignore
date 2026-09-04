@@ -20,6 +20,14 @@ src/worlds.zip
 src/navigation/
 src/ugv_sdk/
 
+# The ROS detector uses the bundled Ultralytics Python package.  Training
+# datasets, extra checkpoints and the unrelated nested OpenNI checkout are
+# local development assets, not part of the deployable baseline.
+src/ultralytics_8_4_47/OpenNI_SDK/
+src/ultralytics_8_4_47/datasets/
+src/ultralytics_8_4_47/runs/
+src/ultralytics_8_4_47/*.pt
+
 # Keep only the Scout Mini simulation pieces used by this project.
 src/ugv_gazebo_sim-master/autokit/
 src/ugv_gazebo_sim-master/bunker/

@@ -1,0 +1,75 @@
+<launch>
+  <!-- Research entry point. With start_sim=false, an external driver or bag
+       must provide /velodyne_points, /odom and the corresponding TF tree. -->
+  <arg name="start_sim" default="false"/>
+  <arg name="gui" default="false"/>
+  <arg name="rviz" default="false"/>
+  <arg name="world_name" default="$(find scout_gazebo_sim)/worlds/clearpath_playpen.world"/>
+  <arg name="odom_topic" default="/scout_mini_velocity_controller/odom"/>
+  <arg name="cloud_topic" default="/velodyne_points"/>
+  <arg name="forward_selected_scans" default="false"/>
+  <arg name="cartographer_config_dir" default="$(find my_navigation)/config"/>
+  <arg name="cartographer_config" default="cartographer_scout_2d.lua"/>
+
+  <include if="$(arg start_sim)"
+           file="$(find scout_gazebo_sim)/launch/scout_mini_diff_drive_empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <node if="$(arg start_sim)" pkg="scout_gazebo_sim"
+        type="pointcloud_to_pointcloud2.py" name="adaptive_cloud_converter"
+        output="screen">
+    <param name="input" value="/velodyne_points_raw"/>
+    <param name="output" value="$(arg cloud_topic)"/>
+  </node>
+
+  <node pkg="lidar_adaptive" type="confidence_projection_node"
+        name="lidar_confidence_projection" output="screen">
+    <param name="input_topic" value="$(arg cloud_topic)"/>
+    <param name="output_topic" value="/scan_confidence"/>
+    <rosparam command="load" file="$(find lidar_adaptive)/config/projection.yaml"/>
+  </node>
+
+  <node pkg="lidar_adaptive" type="adaptive_scan_selector_node"
+        name="adaptive_scan_selector" output="screen">
+    <param name="scan_topic" value="/scan_confidence"/>
+    <param name="output_topic" value="/scan_selected"/>
+    <param name="odom_topic" value="$(arg odom_topic)"/>
+    <param name="forward_selected_scans" value="$(arg forward_selected_scans)"/>
+    <rosparam command="load" file="$(find lidar_adaptive)/config/selector.yaml"/>
+  </node>
+
+  <!-- In the default mode the selector forwards every scan. In selection
+       mode it forwards only selected scans; this is explicitly an external
+       scan-thinning experiment, not the internal Cartographer bridge. -->
+  <node name="adaptive_cartographer_node" pkg="cartographer_ros"
+        type="cartographer_node" output="screen"
+        args="-configuration_directory $(arg cartographer_config_dir)
+              -configuration_basename $(arg cartographer_config)">
+    <remap from="scan" to="/scan_selected"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+  </node>
+
+  <node name="adaptive_occupancy_grid_node" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" output="screen"
+        args="-resolution 0.05 -publish_period_sec 2.0"/>
+
+  <node pkg="my_navigation" type="local_grid_mapper"
+        name="adaptive_local_grid_mapper" output="screen">
+    <param name="scan_topic" value="/scan_selected"/>
+    <param name="output_topic" value="/local_occupancy_grid"/>
+    <param name="map_output_topic" value="/local_occupancy_grid_map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="map_frame" value="map"/>
+    <param name="publish_map_frame_grid" value="true"/>
+    <param name="map_size" value="5.0"/>
+    <param name="resolution" value="0.05"/>
+    <param name="max_range" value="5.0"/>
+    <param name="tf_timeout" value="0.10"/>
+    <param name="obstacle_dilation_cells" value="1"/>
+  </node>
+
+  <node if="$(arg rviz)" name="adaptive_rviz" pkg="rviz" type="rviz"
+        args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz"/>
+</launch>

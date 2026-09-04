@@ -1,0 +1,5 @@
+<launch>
+  <test test-name="lidar_adaptive_launch_structure"
+        pkg="lidar_adaptive" type="test_launch_structure.py"
+        time-limit="30.0"/>
+</launch>

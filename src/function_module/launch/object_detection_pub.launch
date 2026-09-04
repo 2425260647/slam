@@ -1,20 +1,38 @@
 <launch>
-  <!-- Publishes /object_direction (deg) and /object_x (pixel center-x) -->
+  <!-- Publishes bearing/pixel diagnostics and, when metric depth/range is
+       available, /object_detected as geometry_msgs/PoseStamped. -->
+
+  <arg name="camera_index" default="0"/>
+  <arg name="hfov_deg" default="66.1"/>
+  <arg name="depth_topic" default="/camera/depth/image_raw"/>
+  <arg name="range_topic" default="/object_range"/>
+  <arg name="camera_frame" default="camera_link"/>
+  <arg name="topic_object_detected" default="/object_detected"/>
+  <arg name="weights" default=""/>
 
   <node pkg="function_module" type="object_detection_pub.py" name="object_detection_pub" output="screen">
-    <param name="camera_index" value="0" />
-    <param name="hfov_deg" value="66.1" />
+    <param name="camera_index" value="$(arg camera_index)" />
+    <param name="hfov_deg" value="$(arg hfov_deg)" />
 
     <!-- Optional overrides:
          ultralytics_repo_dir: ultralytics source tree (if not pip-installed)
          weights:              YOLO weights path
-         If omitted, the node defaults to <ws>/src/ultralytics-8.4.47/... based on its own location.
+         If omitted, the node defaults to <ws>/src/ultralytics_8_4_47/... based on its own location.
     -->
-    <!-- <param name="ultralytics_repo_dir" value="/abs/path/to/ultralytics-8.4.47" /> -->
-    <!-- <param name="weights" value="/abs/path/to/best.pt" /> -->
+    <!-- <param name="ultralytics_repo_dir" value="/abs/path/to/ultralytics_8_4_47" /> -->
+    <param if="$(eval arg('weights') != '')" name="weights" value="$(arg weights)" />
 
     <param name="rate" value="15.0" />
+    <param name="min_confidence" value="0.25" />
     <param name="topic_object_direction" value="/object_direction" />
     <param name="topic_object_x" value="/object_x" />
+    <param name="topic_object_detected" value="$(arg topic_object_detected)" />
+    <param name="depth_topic" value="$(arg depth_topic)" />
+    <param name="range_topic" value="$(arg range_topic)" />
+    <param name="camera_frame" value="$(arg camera_frame)" />
+    <param name="depth_scale" value="0.001" />
+    <param name="depth_timeout" value="0.30" />
+    <param name="min_object_distance" value="0.30" />
+    <param name="max_object_distance" value="20.0" />
   </node>
 </launch>
