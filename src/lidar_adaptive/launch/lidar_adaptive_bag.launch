@@ -1,0 +1,86 @@
+<launch>
+  <!-- Reproducible external-bag entry point for C0/C1/C2. The bag player is
+       intentionally kept outside this file so the input path and playback
+       rate are recorded explicitly in each experiment manifest. -->
+  <arg name="use_confidence" default="true"/>
+  <arg name="use_baseline_projection" default="false"/>
+  <arg name="forward_selected_scans" default="false"/>
+  <arg name="require_ring" default="true"/>
+  <arg name="cloud_topic" default="/velodyne_points"/>
+  <arg name="odom_topic" default="/odom"/>
+  <arg name="cartographer_scan_topic" default="/scan_selected"/>
+  <arg name="cartographer_config_dir" default="$(find my_navigation)/config"/>
+  <arg name="cartographer_config" default="cartographer_scout_2d.lua"/>
+  <arg name="rviz" default="false"/>
+
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- C0 reference projection. Parameters mirror the total-system baseline. -->
+  <node if="$(arg use_baseline_projection)"
+        pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node"
+        name="bag_cloud_to_scan" output="screen">
+    <remap from="cloud_in" to="$(arg cloud_topic)"/>
+    <remap from="scan" to="/scan"/>
+    <param name="target_frame" value="laser_link"/>
+    <param name="transform_tolerance" value="0.05"/>
+    <param name="min_height" value="-0.35"/>
+    <param name="max_height" value="1.60"/>
+    <param name="angle_min" value="-3.141592653589793"/>
+    <param name="angle_max" value="3.141592653589793"/>
+    <param name="angle_increment" value="0.0043633231"/>
+    <param name="scan_time" value="0.1"/>
+    <param name="range_min" value="0.30"/>
+    <param name="range_max" value="30.0"/>
+  </node>
+
+  <!-- C1/C2 research projection and selector. -->
+  <node if="$(arg use_confidence)"
+        pkg="lidar_adaptive" type="confidence_projection_node"
+        name="bag_lidar_confidence_projection" output="screen">
+    <rosparam command="load" file="$(find lidar_adaptive)/config/projection.yaml"/>
+    <param name="input_topic" value="$(arg cloud_topic)"/>
+    <param name="output_topic" value="/scan_confidence"/>
+    <param name="range_max" value="30.0"/>
+    <param name="require_ring" value="$(arg require_ring)"/>
+  </node>
+
+  <node if="$(arg use_confidence)"
+        pkg="lidar_adaptive" type="adaptive_scan_selector_node"
+        name="bag_adaptive_scan_selector" output="screen">
+    <rosparam command="load" file="$(find lidar_adaptive)/config/selector.yaml"/>
+    <param name="scan_topic" value="/scan_confidence"/>
+    <param name="output_topic" value="/scan_selected"/>
+    <param name="odom_topic" value="$(arg odom_topic)"/>
+    <param name="forward_selected_scans" value="$(arg forward_selected_scans)"/>
+  </node>
+
+  <node name="bag_cartographer_node" pkg="cartographer_ros"
+        type="cartographer_node" output="screen"
+        args="-configuration_directory $(arg cartographer_config_dir)
+              -configuration_basename $(arg cartographer_config)">
+    <remap from="scan" to="$(arg cartographer_scan_topic)"/>
+    <remap from="odom" to="$(arg odom_topic)"/>
+  </node>
+
+  <node name="bag_cartographer_occupancy_grid_node" pkg="cartographer_ros"
+        type="cartographer_occupancy_grid_node" output="screen"
+        args="-resolution 0.05 -publish_period_sec 2.0"/>
+
+  <node name="bag_local_grid_mapper" pkg="my_navigation"
+        type="local_grid_mapper" output="screen">
+    <param name="scan_topic" value="$(arg cartographer_scan_topic)"/>
+    <param name="output_topic" value="/local_occupancy_grid"/>
+    <param name="map_output_topic" value="/local_occupancy_grid_map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="map_frame" value="map"/>
+    <param name="publish_map_frame_grid" value="true"/>
+    <param name="map_size" value="5.0"/>
+    <param name="resolution" value="0.05"/>
+    <param name="max_range" value="5.0"/>
+    <param name="tf_timeout" value="0.10"/>
+    <param name="obstacle_dilation_cells" value="1"/>
+  </node>
+
+  <node if="$(arg rviz)" name="bag_rviz" pkg="rviz" type="rviz"
+        args="-d $(find cartographer_ros)/configuration_files/demo_2d.rviz"/>
+</launch>

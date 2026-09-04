@@ -1,0 +1,27 @@
+{
+  "accuracy_metrics_allowed": false,
+  "bag": "src/lidar_adaptive/experiments/20260904_corridor_repeat_01_formal_c1/topics/run.bag",
+  "ground_truth_available": false,
+  "information_score_mean": 0.7627437751559861,
+  "message_counts": {
+    "/keyframe_selected": 599,
+    "/lidar_projection_processing_ms": 599,
+    "/lidar_scan_quality": 599,
+    "/lidar_selector_processing_ms": 599,
+    "/scan_confidence": 599,
+    "/scan_selected": 599,
+    "/scan_selection": 599,
+    "/velodyne_points": 599
+  },
+  "projection_processing_ms_mean": 1.9168064146487662,
+  "projection_quality_mean": 0.9517356457813754,
+  "quality_mean": 0.9517356457813754,
+  "quality_sync_fraction": 1.0,
+  "quality_sync_messages": 599,
+  "selected_messages": 377,
+  "selection_fraction": 0.6293823038397329,
+  "selection_messages": 599,
+  "selection_stamp_end": 1784863740.930684,
+  "selection_stamp_start": 1784863681.131614,
+  "selector_processing_ms_mean": 0.06308631389362983
+}

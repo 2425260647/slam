@@ -1,0 +1,80 @@
+path: src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_smoke/topics/gazebo_smoke_fixed.bag
+version: 2.0
+duration: 7.405000
+start: 1.177000
+end: 8.582000
+size: 12948493
+messages: 18006
+indexed: True
+compression: lz4
+uncompressed: 31724760
+compressed: 12666152
+types:
+    - type: gazebo_msgs/ModelStates
+      md5: 48c080191eb15c41858319b4d8a609c2
+    - type: lidar_adaptive/ScanQuality
+      md5: 1d9d9e0c22c00786c093cfeb36c1412d
+    - type: lidar_adaptive/ScanSelection
+      md5: ec14fe31d944b5dd78a4895be47d8afd
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: std_msgs/Bool
+      md5: 8b94c1b53db61fb6aed406028ad6332a
+    - type: std_msgs/Float32
+      md5: 73fcbf46b49191e672908e50842a83d4
+    - type: tf/tfMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 7416
+    - topic: /gazebo/model_states
+      type: gazebo_msgs/ModelStates
+      messages: 7397
+    - topic: /keyframe_selected
+      type: std_msgs/Bool
+      messages: 74
+    - topic: /lidar_information_score
+      type: std_msgs/Float32
+      messages: 74
+    - topic: /lidar_quality_sync_ok
+      type: std_msgs/Bool
+      messages: 74
+    - topic: /lidar_scan_quality
+      type: lidar_adaptive/ScanQuality
+      messages: 74
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 11
+    - topic: /scan_confidence
+      type: sensor_msgs/LaserScan
+      messages: 74
+    - topic: /scan_selected
+      type: sensor_msgs/LaserScan
+      messages: 74
+    - topic: /scan_selection
+      type: lidar_adaptive/ScanSelection
+      messages: 74
+    - topic: /scout_mini_velocity_controller/odom
+      type: nav_msgs/Odometry
+      messages: 370
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 2219
+      connections: 3
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 1
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 74

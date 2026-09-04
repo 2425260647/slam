@@ -1,0 +1,36 @@
+path: src/lidar_adaptive/experiments/20260904_corridor_repeat_01_smoke_c0/topics/derived_15s.bag
+version: 2.0
+duration: 14.983720
+start: 1784863681.026852
+end: 1784863696.010572
+size: 50142041
+messages: 2527
+indexed: True
+compression: lz4
+uncompressed: 93934791
+compressed: 50066005
+types:
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 726
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 748
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 900
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 4
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 149

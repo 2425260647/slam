@@ -1,0 +1,38 @@
+path: bags/corridor_repeat_02.bag
+version: 2.0
+duration: 555.383431
+start: 1784864340.550881
+end: 1784864895.934312
+size: 1329514528
+messages: 94418
+indexed: True
+compression: lz4
+uncompressed: 2429168857
+compressed: 1327240667
+types:
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: scout_msgs/ScoutStatus
+      md5: fe7c152a612083fcabc7d3de8ac6a67a
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 27769
+    - topic: /scout_status
+      type: scout_msgs/ScoutStatus
+      messages: 27769
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 33323
+      connections: 2
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 4
+      connections: 4
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 5553

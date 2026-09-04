@@ -33,7 +33,27 @@ roslaunch lidar_adaptive lidar_adaptive_cartographer.launch
 roslaunch lidar_adaptive lidar_adaptive_cartographer.launch start_sim:=true gui:=false rviz:=true
 ```
 
+使用带电梯间的退化走廊场景：
+
+```bash
+roslaunch lidar_adaptive lidar_adaptive_cartographer.launch \\
+  start_sim:=true \\
+  world_name:=$(find lidar_adaptive)/worlds/corridor_elevator.world \\
+  gui:=false rviz:=true
+```
+
+记录研究话题和 Gazebo 真值：
+
+```bash
+rosrun lidar_adaptive record_lidar_experiment.sh \\
+  src/lidar_adaptive/experiments/$(date +%Y%m%d_%H%M%S)_gazebo_corridor/run.bag 120
+```
+
 默认 `forward_selected_scans=false`，选择器只发布诊断并转发每一帧扫描。只有在明确的 C2 扫描抽帧实验中才设置为 `true`。这时结果应标注为外部 scan-thinning 实验，不能写成“每帧 scan matching、仅关键帧地图插入”。
+
+选择器会短暂缓存 LaserScan，等待带相同时间戳的 `ScanQuality`；正常运行时可从
+`/scan_selection.quality_synchronized` 统计同步比例。超过 `pending_timeout_sec` 后才会
+回退到该帧有效束比例，回退帧必须在实验日志中单独统计。
 
 ## 研究记录
 

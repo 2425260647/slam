@@ -1,0 +1,47 @@
+path: src/lidar_adaptive/experiments/20260904_corridor_repeat_01_smoke_c0/topics/derived_15s_fixed.bag
+version: 2.0
+duration: 14.996719
+start: 1784863681.026852
+end: 1784863696.023571
+size: 50892932
+messages: 3390
+indexed: True
+compression: lz4
+uncompressed: 94992068
+compressed: 50789894
+types:
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 726
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 4
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 748
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 149
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 1610
+      connections: 2
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 4
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 149

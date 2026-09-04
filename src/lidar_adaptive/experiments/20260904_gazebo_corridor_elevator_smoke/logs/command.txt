@@ -1,0 +1,2 @@
+roslaunch lidar_adaptive lidar_adaptive_cartographer.launch start_sim:=true world_name:=/home/slam/slam_ws/src/lidar_adaptive/worlds/corridor_elevator.world gui:=false rviz:=false
+rostopic pub -r 10 /scout_mini_velocity_controller/cmd_vel geometry_msgs/Twist {linear: {x: 0.35}, angular: {z: 0.0}}

@@ -22,7 +22,11 @@ src/lidar_adaptive/experiments/<date>_<dataset>_<case>/
 - 点云投影参数和 Cartographer Lua 快照；
 - Git commit、源码指纹和构建环境；
 - `/scan_confidence`、`/lidar_scan_quality`、`/lidar_information_score`；
-- `/keyframe_selected`、`/map`、TF 和运行日志；
+- `/keyframe_selected`、`/scan_selection`、`/map`、TF 和运行日志；
+- Gazebo 使用 `/scout_mini_velocity_controller/odom`，真实 bag 使用 `/odom`；实际录制
+  的话题名必须写入 manifest，不能把两个话题名混用；
+- 选择器缓存参数（`quality_sync_tolerance`、`pending_timeout_sec`、`max_pending_scans`）
+  及 `/scan_selection` 的时间戳同步率；
 - 运行期输入/输出计数、丢帧、最大队列长度和处理时间；
 - 地图 PGM/YAML、轨迹 CSV 和指标 JSON；
 - 失败运行以及失败原因，不得只保留成功样本。

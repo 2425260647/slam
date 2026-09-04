@@ -1,0 +1,12 @@
+forward_selected_scans: false
+min_quality: 0.20
+selection_score: 0.76
+novelty_range_threshold: 0.25
+min_motion_distance: 0.05
+min_motion_angle: 0.015
+max_skip_seconds: 1.0
+quality_sync_tolerance: 0.05
+quality_sync_topic: /lidar_quality_sync_ok
+selection_detail_topic: /scan_selection
+pending_timeout_sec: 0.20
+max_pending_scans: 20

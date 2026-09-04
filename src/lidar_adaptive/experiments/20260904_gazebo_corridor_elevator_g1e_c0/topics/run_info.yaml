@@ -1,0 +1,59 @@
+path: src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c0/topics/run.bag
+version: 2.0
+duration: 18.844000
+start: 0.687000
+end: 19.531000
+size: 70984268
+messages: 44848
+indexed: True
+compression: lz4
+uncompressed: 119511709
+compressed: 70323164
+types:
+    - type: gazebo_msgs/ModelStates
+      md5: 48c080191eb15c41858319b4d8a609c2
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: sensor_msgs/PointCloud
+      md5: d8e9c3f5afbdd8a130fd1d2763945fca
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: tf/tfMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 18845
+    - topic: /gazebo/model_states
+      type: gazebo_msgs/ModelStates
+      messages: 18839
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 32
+    - topic: /scan
+      type: sensor_msgs/LaserScan
+      messages: 189
+    - topic: /scout_mini_velocity_controller/odom
+      type: nav_msgs/Odometry
+      messages: 942
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 5622
+      connections: 3
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 1
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 189
+    - topic: /velodyne_points_raw
+      type: sensor_msgs/PointCloud
+      messages: 189

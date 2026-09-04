@@ -1,0 +1,19 @@
+{
+  "accuracy_metrics_allowed": false,
+  "bag": "src/lidar_adaptive/experiments/20260904_corridor_repeat_01_smoke_c0/topics/derived_15s_fixed.bag",
+  "ground_truth_available": false,
+  "information_score_mean": null,
+  "message_counts": {
+    "/scan": 149,
+    "/velodyne_points": 149
+  },
+  "projection_quality_mean": null,
+  "quality_mean": null,
+  "quality_sync_fraction": null,
+  "quality_sync_messages": 0,
+  "selected_messages": 0,
+  "selection_fraction": null,
+  "selection_messages": 0,
+  "selection_stamp_end": null,
+  "selection_stamp_start": null
+}

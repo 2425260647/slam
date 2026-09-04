@@ -1,0 +1,29 @@
+{
+  "accuracy_metrics_allowed": true,
+  "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1_r2_c2/topics/run.bag",
+  "ground_truth_available": true,
+  "information_score_mean": 0.7589081780330554,
+  "message_counts": {
+    "/gazebo/model_states": 18464,
+    "/keyframe_selected": 185,
+    "/lidar_projection_processing_ms": 185,
+    "/lidar_scan_quality": 185,
+    "/lidar_selector_processing_ms": 185,
+    "/scan_confidence": 185,
+    "/scan_selected": 93,
+    "/scan_selection": 185,
+    "/scout_mini_velocity_controller/odom": 923,
+    "/velodyne_points": 185
+  },
+  "projection_processing_ms_mean": 1.2219706474123775,
+  "projection_quality_mean": 0.9260394006162076,
+  "quality_mean": 0.9260394006162076,
+  "quality_sync_fraction": 1.0,
+  "quality_sync_messages": 185,
+  "selected_messages": 93,
+  "selection_fraction": 0.5027027027027027,
+  "selection_messages": 185,
+  "selection_stamp_end": 19.077,
+  "selection_stamp_start": 0.676,
+  "selector_processing_ms_mean": 0.07323981616142634
+}

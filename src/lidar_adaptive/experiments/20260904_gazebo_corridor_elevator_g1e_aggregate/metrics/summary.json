@@ -1,0 +1,794 @@
+{
+  "ground_truth_note": "Gazebo runs include continuous model-state truth; ATE/RPE are computed from recorded truth.",
+  "groups": {
+    "C0": {
+      "accuracy_metrics_allowed": true,
+      "cartographer_scan_messages": {
+        "count": 3,
+        "max": 193.0,
+        "mean": 189.66666666666666,
+        "min": 187.0,
+        "std": 3.0550504633038935
+      },
+      "ground_truth_available": true,
+      "input_messages": {
+        "count": 3,
+        "max": 193.0,
+        "mean": 189.66666666666666,
+        "min": 187.0,
+        "std": 3.0550504633038935
+      },
+      "metrics": {
+        "information_score_mean": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        },
+        "projection_processing_ms_mean": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        },
+        "projection_quality_mean": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        },
+        "quality_sync_fraction": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        },
+        "selection_fraction": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        },
+        "selector_processing_ms_mean": {
+          "count": 0,
+          "max": null,
+          "mean": null,
+          "min": null,
+          "std": null
+        }
+      },
+      "run_count": 3,
+      "runs": [
+        "20260904_gazebo_corridor_elevator_g1e_c0",
+        "20260904_gazebo_corridor_elevator_g1e_r2_c0",
+        "20260904_gazebo_corridor_elevator_g1e_r3_c0"
+      ],
+      "selected_messages": {
+        "count": 3,
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "std": 0.0
+      },
+      "trajectory_metrics": {
+        "ate_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.001532198690263382,
+          "mean": 0.0009897988416229678,
+          "min": 0.0006822864228903477,
+          "std": 0.0004711335204634773
+        },
+        "ate_translation_p95": {
+          "count": 3,
+          "max": 0.07689277786881259,
+          "mean": 0.07245329680306867,
+          "min": 0.06815961098037064,
+          "std": 0.004368408539161121
+        },
+        "ate_translation_rmse": {
+          "count": 3,
+          "max": 0.05045571324650118,
+          "mean": 0.04648845612615237,
+          "min": 0.04161173226940517,
+          "std": 0.0044915862664843
+        },
+        "rpe_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.0011038450975456152,
+          "mean": 0.0010394565927977586,
+          "min": 0.0009573162156731477,
+          "std": 7.48600363034865e-05
+        },
+        "rpe_translation_rmse": {
+          "count": 3,
+          "max": 0.018986463110131413,
+          "mean": 0.01797244496428376,
+          "min": 0.016228172268705206,
+          "std": 0.00151723296564039
+        }
+      }
+    },
+    "C1": {
+      "accuracy_metrics_allowed": true,
+      "cartographer_scan_messages": {
+        "count": 3,
+        "max": 186.0,
+        "mean": 184.0,
+        "min": 183.0,
+        "std": 1.7320508075688772
+      },
+      "ground_truth_available": true,
+      "input_messages": {
+        "count": 3,
+        "max": 186.0,
+        "mean": 184.0,
+        "min": 183.0,
+        "std": 1.7320508075688772
+      },
+      "metrics": {
+        "information_score_mean": {
+          "count": 3,
+          "max": 0.7552188817531832,
+          "mean": 0.7547560352749996,
+          "min": 0.7541937251560024,
+          "std": 0.0005197655953107668
+        },
+        "projection_processing_ms_mean": {
+          "count": 3,
+          "max": 1.1828616873814108,
+          "mean": 1.1792416457452128,
+          "min": 1.1744019418466287,
+          "std": 0.004359759816094624
+        },
+        "projection_quality_mean": {
+          "count": 3,
+          "max": 0.9170763873925774,
+          "mean": 0.916602606447738,
+          "min": 0.9160048447020067,
+          "std": 0.0005464241609512047
+        },
+        "quality_sync_fraction": {
+          "count": 3,
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "selection_fraction": {
+          "count": 3,
+          "max": 0.32786885245901637,
+          "mean": 0.3097714319290205,
+          "min": 0.2896174863387978,
+          "std": 0.019208428462741477
+        },
+        "selector_processing_ms_mean": {
+          "count": 3,
+          "max": 0.07981860098210189,
+          "mean": 0.07865118365392253,
+          "min": 0.07800069867923695,
+          "std": 0.0010132159144313124
+        }
+      },
+      "run_count": 3,
+      "runs": [
+        "20260904_gazebo_corridor_elevator_g1e_c1",
+        "20260904_gazebo_corridor_elevator_g1e_r2_c1",
+        "20260904_gazebo_corridor_elevator_g1e_r3_c1"
+      ],
+      "selected_messages": {
+        "count": 3,
+        "max": 60.0,
+        "mean": 57.0,
+        "min": 53.0,
+        "std": 3.605551275463989
+      },
+      "trajectory_metrics": {
+        "ate_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.0015461253108402318,
+          "mean": 0.0012781100414561016,
+          "min": 0.0011377446901359542,
+          "std": 0.00023219508829432398
+        },
+        "ate_translation_p95": {
+          "count": 3,
+          "max": 0.08530591765302861,
+          "mean": 0.08091116340502173,
+          "min": 0.07705222551670238,
+          "std": 0.00415285237503032
+        },
+        "ate_translation_rmse": {
+          "count": 3,
+          "max": 0.06614465967638039,
+          "mean": 0.06247265880044279,
+          "min": 0.059646423108925956,
+          "std": 0.0033306543924631715
+        },
+        "rpe_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.0016182123113505924,
+          "mean": 0.0015913328889997271,
+          "min": 0.001550512393282933,
+          "std": 3.593862645591244e-05
+        },
+        "rpe_translation_rmse": {
+          "count": 3,
+          "max": 0.018953401156079217,
+          "mean": 0.018557717987021556,
+          "min": 0.018351049098371233,
+          "std": 0.00034278535412804494
+        }
+      }
+    },
+    "C2": {
+      "accuracy_metrics_allowed": true,
+      "cartographer_scan_messages": {
+        "count": 3,
+        "max": 56.0,
+        "mean": 53.333333333333336,
+        "min": 49.0,
+        "std": 3.7859388972001824
+      },
+      "ground_truth_available": true,
+      "input_messages": {
+        "count": 3,
+        "max": 185.0,
+        "mean": 178.66666666666666,
+        "min": 168.0,
+        "std": 9.291573243177568
+      },
+      "metrics": {
+        "information_score_mean": {
+          "count": 3,
+          "max": 0.7548726154934793,
+          "mean": 0.7547249668789163,
+          "min": 0.7545907548955969,
+          "std": 0.00014140988810558959
+        },
+        "projection_processing_ms_mean": {
+          "count": 3,
+          "max": 1.2164314378585135,
+          "mean": 1.198115024497428,
+          "min": 1.171826018661749,
+          "std": 0.023347002559305673
+        },
+        "projection_quality_mean": {
+          "count": 3,
+          "max": 0.9166563941481335,
+          "mean": 0.9164591361793413,
+          "min": 0.9162268755691392,
+          "std": 0.00021688808428445064
+        },
+        "quality_sync_fraction": {
+          "count": 3,
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "std": 0.0
+        },
+        "selection_fraction": {
+          "count": 3,
+          "max": 0.30601092896174864,
+          "mean": 0.29832496430857086,
+          "min": 0.2916666666666667,
+          "std": 0.007227139116695653
+        },
+        "selector_processing_ms_mean": {
+          "count": 3,
+          "max": 0.08234760111996106,
+          "mean": 0.07634818141344292,
+          "min": 0.07147472679533594,
+          "std": 0.005523196271635985
+        }
+      },
+      "run_count": 3,
+      "runs": [
+        "20260904_gazebo_corridor_elevator_g1e_c2",
+        "20260904_gazebo_corridor_elevator_g1e_r2_c2",
+        "20260904_gazebo_corridor_elevator_g1e_r3_c2"
+      ],
+      "selected_messages": {
+        "count": 3,
+        "max": 56.0,
+        "mean": 53.333333333333336,
+        "min": 49.0,
+        "std": 3.7859388972001824
+      },
+      "trajectory_metrics": {
+        "ate_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.002370363480629832,
+          "mean": 0.00209252652923531,
+          "min": 0.0019450949973805647,
+          "std": 0.000240764409320173
+        },
+        "ate_translation_p95": {
+          "count": 3,
+          "max": 0.30715226218354763,
+          "mean": 0.2882156052495863,
+          "min": 0.252341913521544,
+          "std": 0.03108361209422952
+        },
+        "ate_translation_rmse": {
+          "count": 3,
+          "max": 0.15097864949623457,
+          "mean": 0.14532997614546878,
+          "min": 0.13459715824120644,
+          "std": 0.009299177830070636
+        },
+        "rpe_rotation_rmse_rad": {
+          "count": 3,
+          "max": 0.0029409603545369036,
+          "mean": 0.002723286498691481,
+          "min": 0.002569627910861183,
+          "std": 0.00019376638468999652
+        },
+        "rpe_translation_rmse": {
+          "count": 3,
+          "max": 0.09984713843478188,
+          "mean": 0.09172783529588756,
+          "min": 0.08718990655399761,
+          "std": 0.0070477699770653875
+        }
+      }
+    }
+  },
+  "relative_to_C0": {
+    "C1": {
+      "ate_rotation_rmse_rad": 0.29128261997194455,
+      "ate_translation_p95": 0.11673542785695354,
+      "ate_translation_rmse": 0.34383165211843647,
+      "rpe_rotation_rmse_rad": 0.5309276982086967,
+      "rpe_translation_rmse": 0.032565019612016896
+    },
+    "C2": {
+      "ate_rotation_rmse_rad": 1.1140927239359117,
+      "ate_translation_p95": 2.977950182625496,
+      "ate_translation_rmse": 2.1261519150280512,
+      "rpe_rotation_rmse_rad": 1.619913633297178,
+      "rpe_translation_rmse": 4.103803933086247
+    }
+  },
+  "runs": [
+    {
+      "case": "C0",
+      "name": "20260904_gazebo_corridor_elevator_g1e_c0",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c0",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c0/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": null,
+        "message_counts": {
+          "/gazebo/model_states": 18839,
+          "/scan": 189,
+          "/scout_mini_velocity_controller/odom": 942,
+          "/velodyne_points": 189
+        },
+        "projection_processing_ms_mean": null,
+        "projection_quality_mean": null,
+        "quality_mean": null,
+        "quality_sync_fraction": null,
+        "quality_sync_messages": 0,
+        "selected_messages": 0,
+        "selection_fraction": null,
+        "selection_messages": 0,
+        "selection_stamp_end": null,
+        "selection_stamp_start": null,
+        "selector_processing_ms_mean": null
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0007549114117151735,
+        "ate_translation_p95": 0.06815961098037064,
+        "ate_translation_rmse": 0.04161173226940517,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c0/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 18822,
+        "rpe_rotation_rmse_rad": 0.0011038450975456152,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.016228172268705206,
+        "truth_samples": 18839,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C1",
+      "name": "20260904_gazebo_corridor_elevator_g1e_c1",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c1",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c1/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.7541937251560024,
+        "message_counts": {
+          "/gazebo/model_states": 18252,
+          "/keyframe_selected": 183,
+          "/lidar_projection_processing_ms": 183,
+          "/lidar_scan_quality": 183,
+          "/lidar_selector_processing_ms": 183,
+          "/scan_confidence": 183,
+          "/scan_selected": 183,
+          "/scan_selection": 183,
+          "/scout_mini_velocity_controller/odom": 912,
+          "/velodyne_points": 183
+        },
+        "projection_processing_ms_mean": 1.1744019418466287,
+        "projection_quality_mean": 0.9160048447020067,
+        "quality_mean": 0.9160048447020067,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 183,
+        "selected_messages": 53,
+        "selection_fraction": 0.2896174863387978,
+        "selection_messages": 183,
+        "selection_stamp_end": 19.018,
+        "selection_stamp_start": 0.813,
+        "selector_processing_ms_mean": 0.07981860098210189
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0011377446901359542,
+        "ate_translation_p95": 0.08037534704533422,
+        "ate_translation_rmse": 0.06162689361602203,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c1/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 18238,
+        "rpe_rotation_rmse_rad": 0.0016052739623656559,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.018368703706614215,
+        "truth_samples": 18252,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C2",
+      "name": "20260904_gazebo_corridor_elevator_g1e_c2",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c2",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c2/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.7547115302476727,
+        "message_counts": {
+          "/gazebo/model_states": 18332,
+          "/keyframe_selected": 183,
+          "/lidar_projection_processing_ms": 183,
+          "/lidar_scan_quality": 183,
+          "/lidar_selector_processing_ms": 183,
+          "/scan_confidence": 183,
+          "/scan_selected": 56,
+          "/scan_selection": 183,
+          "/scout_mini_velocity_controller/odom": 917,
+          "/velodyne_points": 183
+        },
+        "projection_processing_ms_mean": 1.171826018661749,
+        "projection_quality_mean": 0.9166563941481335,
+        "quality_mean": 0.9166563941481335,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 183,
+        "selected_messages": 56,
+        "selection_fraction": 0.30601092896174864,
+        "selection_messages": 183,
+        "selection_stamp_end": 18.897,
+        "selection_stamp_start": 0.697,
+        "selector_processing_ms_mean": 0.07147472679533594
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.002370363480629832,
+        "ate_translation_p95": 0.252341913521544,
+        "ate_translation_rmse": 0.13459715824120644,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_c2/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 17683,
+        "rpe_rotation_rmse_rad": 0.002569627910861183,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.08814646089888319,
+        "truth_samples": 18332,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C0",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r2_c0",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c0",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c0/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": null,
+        "message_counts": {
+          "/gazebo/model_states": 18724,
+          "/scan": 187,
+          "/scout_mini_velocity_controller/odom": 936,
+          "/velodyne_points": 187
+        },
+        "projection_processing_ms_mean": null,
+        "projection_quality_mean": null,
+        "quality_mean": null,
+        "quality_sync_fraction": null,
+        "quality_sync_messages": 0,
+        "selected_messages": 0,
+        "selection_fraction": null,
+        "selection_messages": 0,
+        "selection_stamp_end": null,
+        "selection_stamp_start": null,
+        "selector_processing_ms_mean": null
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.001532198690263382,
+        "ate_translation_p95": 0.07689277786881259,
+        "ate_translation_rmse": 0.05045571324650118,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c0/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 18707,
+        "rpe_rotation_rmse_rad": 0.0010572084651745129,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.018986463110131413,
+        "truth_samples": 18724,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C1",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r2_c1",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c1",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c1/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.754855498915813,
+        "message_counts": {
+          "/gazebo/model_states": 18286,
+          "/keyframe_selected": 183,
+          "/lidar_projection_processing_ms": 183,
+          "/lidar_scan_quality": 183,
+          "/lidar_selector_processing_ms": 183,
+          "/scan_confidence": 183,
+          "/scan_selected": 183,
+          "/scan_selection": 183,
+          "/scout_mini_velocity_controller/odom": 914,
+          "/velodyne_points": 183
+        },
+        "projection_processing_ms_mean": 1.1828616873814108,
+        "projection_quality_mean": 0.9167265872486302,
+        "quality_mean": 0.9167265872486302,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 183,
+        "selected_messages": 60,
+        "selection_fraction": 0.32786885245901637,
+        "selection_messages": 183,
+        "selection_stamp_end": 18.892,
+        "selection_stamp_start": 0.692,
+        "selector_processing_ms_mean": 0.07813425130042874
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0011504601233921186,
+        "ate_translation_p95": 0.08530591765302861,
+        "ate_translation_rmse": 0.06614465967638039,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c1/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 18275,
+        "rpe_rotation_rmse_rad": 0.0016182123113505924,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.018953401156079217,
+        "truth_samples": 18286,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C2",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r2_c2",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c2",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c2/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.7545907548955969,
+        "message_counts": {
+          "/gazebo/model_states": 18530,
+          "/keyframe_selected": 185,
+          "/lidar_projection_processing_ms": 185,
+          "/lidar_scan_quality": 185,
+          "/lidar_selector_processing_ms": 185,
+          "/scan_confidence": 185,
+          "/scan_selected": 55,
+          "/scan_selection": 185,
+          "/scout_mini_velocity_controller/odom": 927,
+          "/velodyne_points": 185
+        },
+        "projection_processing_ms_mean": 1.2060876169720212,
+        "projection_quality_mean": 0.9164941388207513,
+        "quality_mean": 0.9164941388207513,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 185,
+        "selected_messages": 55,
+        "selection_fraction": 0.2972972972972973,
+        "selection_messages": 185,
+        "selection_stamp_end": 19.189,
+        "selection_stamp_start": 0.786,
+        "selector_processing_ms_mean": 0.07522221632503175
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.001962121109695534,
+        "ate_translation_p95": 0.30715226218354763,
+        "ate_translation_rmse": 0.15041412069896531,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r2_c2/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 17869,
+        "rpe_rotation_rmse_rad": 0.0026592712306763564,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.08718990655399761,
+        "truth_samples": 18530,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C0",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r3_c0",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c0",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c0/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": null,
+        "message_counts": {
+          "/gazebo/model_states": 19336,
+          "/scan": 193,
+          "/scout_mini_velocity_controller/odom": 967,
+          "/velodyne_points": 193
+        },
+        "projection_processing_ms_mean": null,
+        "projection_quality_mean": null,
+        "quality_mean": null,
+        "quality_sync_fraction": null,
+        "quality_sync_messages": 0,
+        "selected_messages": 0,
+        "selection_fraction": null,
+        "selection_messages": 0,
+        "selection_stamp_end": null,
+        "selection_stamp_start": null,
+        "selector_processing_ms_mean": null
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0006822864228903477,
+        "ate_translation_p95": 0.07230750156002276,
+        "ate_translation_rmse": 0.047397922862550755,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c0/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 19321,
+        "rpe_rotation_rmse_rad": 0.0009573162156731477,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.01870269951401466,
+        "truth_samples": 19336,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C1",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r3_c1",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c1",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c1/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.7552188817531832,
+        "message_counts": {
+          "/gazebo/model_states": 18572,
+          "/keyframe_selected": 186,
+          "/lidar_projection_processing_ms": 186,
+          "/lidar_scan_quality": 186,
+          "/lidar_selector_processing_ms": 186,
+          "/scan_confidence": 186,
+          "/scan_selected": 186,
+          "/scan_selection": 186,
+          "/scout_mini_velocity_controller/odom": 929,
+          "/velodyne_points": 186
+        },
+        "projection_processing_ms_mean": 1.1804613080075992,
+        "projection_quality_mean": 0.9170763873925774,
+        "quality_mean": 0.9170763873925774,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 186,
+        "selected_messages": 58,
+        "selection_fraction": 0.3118279569892473,
+        "selection_messages": 186,
+        "selection_stamp_end": 19.18,
+        "selection_stamp_start": 0.677,
+        "selector_processing_ms_mean": 0.07800069867923695
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0015461253108402318,
+        "ate_translation_p95": 0.07705222551670238,
+        "ate_translation_rmse": 0.059646423108925956,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c1/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 18561,
+        "rpe_rotation_rmse_rad": 0.001550512393282933,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.018351049098371233,
+        "truth_samples": 18572,
+        "truth_source": "/gazebo/model_states"
+      }
+    },
+    {
+      "case": "C2",
+      "name": "20260904_gazebo_corridor_elevator_g1e_r3_c2",
+      "run": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c2",
+      "status": "ok",
+      "summary": {
+        "accuracy_metrics_allowed": true,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c2/topics/run.bag",
+        "ground_truth_available": true,
+        "information_score_mean": 0.7548726154934793,
+        "message_counts": {
+          "/gazebo/model_states": 16776,
+          "/keyframe_selected": 168,
+          "/lidar_projection_processing_ms": 168,
+          "/lidar_scan_quality": 168,
+          "/lidar_selector_processing_ms": 168,
+          "/scan_confidence": 168,
+          "/scan_selected": 49,
+          "/scan_selection": 168,
+          "/scout_mini_velocity_controller/odom": 839,
+          "/velodyne_points": 168
+        },
+        "projection_processing_ms_mean": 1.2164314378585135,
+        "projection_quality_mean": 0.9162268755691392,
+        "quality_mean": 0.9162268755691392,
+        "quality_sync_fraction": 1.0,
+        "quality_sync_messages": 168,
+        "selected_messages": 49,
+        "selection_fraction": 0.2916666666666667,
+        "selection_messages": 168,
+        "selection_stamp_end": 17.307,
+        "selection_stamp_start": 0.606,
+        "selector_processing_ms_mean": 0.08234760111996106
+      },
+      "trajectory": {
+        "ate_rotation_rmse_rad": 0.0019450949973805647,
+        "ate_translation_p95": 0.3051526400436672,
+        "ate_translation_rmse": 0.15097864949623457,
+        "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c2/topics/run.bag",
+        "estimate_source": "/tf map->odom->base_link",
+        "ground_truth_available": true,
+        "model": "scout_mini",
+        "paired_samples": 16162,
+        "rpe_rotation_rmse_rad": 0.0029409603545369036,
+        "rpe_seconds": 1.0,
+        "rpe_translation_rmse": 0.09984713843478188,
+        "truth_samples": 16776,
+        "truth_source": "/gazebo/model_states"
+      }
+    }
+  ],
+  "runs_missing_summary": 0,
+  "runs_requested": 9,
+  "runs_valid": 9
+}

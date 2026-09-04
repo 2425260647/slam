@@ -1,0 +1,7 @@
+std_msgs/Header header
+float32 quality
+float32 valid_ratio
+uint32 valid_bins
+uint32 candidate_bins
+float32 support_ratio
+float32 mean_height_confidence

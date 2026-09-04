@@ -7,6 +7,7 @@
 #include <vector>
 
 #include <ros/ros.h>
+#include <lidar_adaptive/ScanQuality.h>
 #include <sensor_msgs/LaserScan.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <sensor_msgs/PointField.h>
@@ -86,6 +87,8 @@ class ConfidenceProjectionNode {
     private_nh_.param("input_topic", input_topic_, std::string("/velodyne_points"));
     private_nh_.param("output_topic", output_topic_, std::string("/scan_confidence"));
     private_nh_.param("quality_topic", quality_topic_, std::string("/lidar_scan_quality"));
+    private_nh_.param("processing_time_topic", processing_time_topic_,
+                      std::string("/lidar_projection_processing_ms"));
     private_nh_.param("valid_ratio_topic", valid_ratio_topic_, std::string("/lidar_valid_beam_ratio"));
     private_nh_.param("valid_bins_topic", valid_bins_topic_, std::string("/lidar_valid_beams"));
     private_nh_.param("ring_min", ring_min_, 0);
@@ -118,7 +121,9 @@ class ConfidenceProjectionNode {
     min_valid_bins_ = std::max(1, min_valid_bins_);
 
     scan_pub_ = nh_.advertise<sensor_msgs::LaserScan>(output_topic_, 5);
-    quality_pub_ = nh_.advertise<std_msgs::Float32>(quality_topic_, 5);
+    quality_pub_ = nh_.advertise<lidar_adaptive::ScanQuality>(quality_topic_, 5);
+    processing_time_pub_ = nh_.advertise<std_msgs::Float32>(
+        processing_time_topic_, 5);
     valid_ratio_pub_ = nh_.advertise<std_msgs::Float32>(valid_ratio_topic_, 5);
     valid_bins_pub_ = nh_.advertise<std_msgs::UInt32>(valid_bins_topic_, 5);
     cloud_sub_ = nh_.subscribe(input_topic_, 5,
@@ -134,6 +139,7 @@ class ConfidenceProjectionNode {
 
  private:
   void CloudCallback(const sensor_msgs::PointCloud2::ConstPtr& cloud) {
+    const ros::WallTime processing_start = ros::WallTime::now();
     const FieldInfo x = FindField(*cloud, "x");
     const FieldInfo y = FindField(*cloud, "y");
     const FieldInfo z = FindField(*cloud, "z");
@@ -262,8 +268,14 @@ class ConfidenceProjectionNode {
     const float quality = 0.50f * valid_ratio +
                           0.20f * support_ratio + 0.30f * mean_confidence;
 
-    std_msgs::Float32 quality_msg;
-    quality_msg.data = quality;
+    lidar_adaptive::ScanQuality quality_msg;
+    quality_msg.header = cloud->header;
+    quality_msg.quality = quality;
+    quality_msg.valid_ratio = valid_ratio;
+    quality_msg.valid_bins = static_cast<uint32_t>(valid_bins);
+    quality_msg.candidate_bins = static_cast<uint32_t>(candidate_bins);
+    quality_msg.support_ratio = support_ratio;
+    quality_msg.mean_height_confidence = mean_confidence;
     quality_pub_.publish(quality_msg);
     std_msgs::Float32 ratio_msg;
     ratio_msg.data = valid_ratio;
@@ -297,6 +309,10 @@ class ConfidenceProjectionNode {
       }
     }
     scan_pub_.publish(scan);
+    std_msgs::Float32 processing_time_msg;
+    processing_time_msg.data = static_cast<float>(
+        (ros::WallTime::now() - processing_start).toSec() * 1000.0);
+    processing_time_pub_.publish(processing_time_msg);
   }
 
   ros::NodeHandle nh_;
@@ -306,12 +322,14 @@ class ConfidenceProjectionNode {
   ros::Publisher quality_pub_;
   ros::Publisher valid_ratio_pub_;
   ros::Publisher valid_bins_pub_;
+  ros::Publisher processing_time_pub_;
 
   std::string input_topic_;
   std::string output_topic_;
   std::string quality_topic_;
   std::string valid_ratio_topic_;
   std::string valid_bins_topic_;
+  std::string processing_time_topic_;
   int ring_min_ = 0;
   int ring_max_ = 255;
   bool require_ring_ = false;

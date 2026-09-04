@@ -1,0 +1,3 @@
+roslaunch lidar_adaptive lidar_adaptive_cartographer.launch start_sim:=true world_name:=/home/slam/slam_ws/src/lidar_adaptive/worlds/corridor_elevator.world gui:=false rviz:=false
+rosbag record --lz4 -O topics/gazebo_smoke_fixed.bag /clock /velodyne_points /scan_confidence /scan_selected /lidar_scan_quality /scan_selection /lidar_quality_sync_ok /lidar_information_score /keyframe_selected /scout_mini_velocity_controller/odom /tf /tf_static /map /gazebo/model_states
+rostopic pub -r 10 /scout_mini_velocity_controller/cmd_vel geometry_msgs/Twist {linear: {x: 0.35}, angular: {z: 0.0}}

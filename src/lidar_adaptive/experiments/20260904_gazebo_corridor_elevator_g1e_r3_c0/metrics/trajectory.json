@@ -1,0 +1,15 @@
+{
+  "ate_rotation_rmse_rad": 0.0006822864228903477,
+  "ate_translation_p95": 0.07230750156002276,
+  "ate_translation_rmse": 0.047397922862550755,
+  "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1e_r3_c0/topics/run.bag",
+  "estimate_source": "/tf map->odom->base_link",
+  "ground_truth_available": true,
+  "model": "scout_mini",
+  "paired_samples": 19321,
+  "rpe_rotation_rmse_rad": 0.0009573162156731477,
+  "rpe_seconds": 1.0,
+  "rpe_translation_rmse": 0.01870269951401466,
+  "truth_samples": 19336,
+  "truth_source": "/gazebo/model_states"
+}

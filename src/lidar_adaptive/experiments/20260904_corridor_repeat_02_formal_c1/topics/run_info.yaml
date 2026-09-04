@@ -1,0 +1,87 @@
+path: src/lidar_adaptive/experiments/20260904_corridor_repeat_02_formal_c1/topics/run.bag
+version: 2.0
+duration: 59.985499
+start: 1784864340.550881
+end: 1784864400.536381
+size: 191761674
+messages: 25306
+indexed: True
+compression: lz4
+uncompressed: 353226185
+compressed: 191083174
+types:
+    - type: lidar_adaptive/ScanQuality
+      md5: 1d9d9e0c22c00786c093cfeb36c1412d
+    - type: lidar_adaptive/ScanSelection
+      md5: ec14fe31d944b5dd78a4895be47d8afd
+    - type: nav_msgs/OccupancyGrid
+      md5: 3381f2d731d4076ec5c71b0759edbe4e
+    - type: nav_msgs/Odometry
+      md5: cd5e73d190d741a2f92e81eda573aca7
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: sensor_msgs/PointCloud2
+      md5: 1158d486dd51d683ce2f1be655c3c181
+    - type: std_msgs/Bool
+      md5: 8b94c1b53db61fb6aed406028ad6332a
+    - type: std_msgs/Float32
+      md5: 73fcbf46b49191e672908e50842a83d4
+    - type: std_msgs/UInt32
+      md5: 304a39449588c7f8ce2df6e8001c5fce
+    - type: tf2_msgs/TFMessage
+      md5: 94810edda583a504dfda3829e70d7eec
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 5748
+    - topic: /keyframe_selected
+      type: std_msgs/Bool
+      messages: 600
+    - topic: /lidar_information_score
+      type: std_msgs/Float32
+      messages: 600
+    - topic: /lidar_projection_processing_ms
+      type: std_msgs/Float32
+      messages: 600
+    - topic: /lidar_quality_sync_ok
+      type: std_msgs/Bool
+      messages: 600
+    - topic: /lidar_scan_quality
+      type: lidar_adaptive/ScanQuality
+      messages: 600
+    - topic: /lidar_selector_processing_ms
+      type: std_msgs/Float32
+      messages: 600
+    - topic: /lidar_valid_beam_ratio
+      type: std_msgs/Float32
+      messages: 600
+    - topic: /lidar_valid_beams
+      type: std_msgs/UInt32
+      messages: 600
+    - topic: /map
+      type: nav_msgs/OccupancyGrid
+      messages: 31
+    - topic: /odom
+      type: nav_msgs/Odometry
+      messages: 2999
+    - topic: /scan_confidence
+      type: sensor_msgs/LaserScan
+      messages: 600
+    - topic: /scan_selected
+      type: sensor_msgs/LaserScan
+      messages: 600
+    - topic: /scan_selection
+      type: lidar_adaptive/ScanSelection
+      messages: 600
+    - topic: /tf
+      type: tf2_msgs/TFMessage
+      messages: 9324
+      connections: 2
+    - topic: /tf_static
+      type: tf2_msgs/TFMessage
+      messages: 4
+    - topic: /velodyne_points
+      type: sensor_msgs/PointCloud2
+      messages: 600

@@ -1,0 +1,44 @@
+path: src/lidar_adaptive/experiments/20260904_corridor_repeat_01_smoke_c1/topics/timing_5s.bag
+version: 2.0
+duration: 4.995729
+start: 1784863681.026852
+end: 1784863686.022581
+size: 205310
+messages: 544
+indexed: True
+compression: lz4
+uncompressed: 610376
+compressed: 186270
+types:
+    - type: lidar_adaptive/ScanQuality
+      md5: 1d9d9e0c22c00786c093cfeb36c1412d
+    - type: lidar_adaptive/ScanSelection
+      md5: ec14fe31d944b5dd78a4895be47d8afd
+    - type: rosgraph_msgs/Clock
+      md5: a9c97c1d230cfc112e270351a944ee47
+    - type: sensor_msgs/LaserScan
+      md5: 90c7ef2dc6895d81024acba2ac42f369
+    - type: std_msgs/Float32
+      md5: 73fcbf46b49191e672908e50842a83d4
+topics:
+    - topic: /clock
+      type: rosgraph_msgs/Clock
+      messages: 250
+    - topic: /lidar_projection_processing_ms
+      type: std_msgs/Float32
+      messages: 49
+    - topic: /lidar_scan_quality
+      type: lidar_adaptive/ScanQuality
+      messages: 49
+    - topic: /lidar_selector_processing_ms
+      type: std_msgs/Float32
+      messages: 49
+    - topic: /scan_confidence
+      type: sensor_msgs/LaserScan
+      messages: 49
+    - topic: /scan_selected
+      type: sensor_msgs/LaserScan
+      messages: 49
+    - topic: /scan_selection
+      type: lidar_adaptive/ScanSelection
+      messages: 49

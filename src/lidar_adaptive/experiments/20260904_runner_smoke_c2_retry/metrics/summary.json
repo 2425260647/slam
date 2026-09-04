@@ -1,0 +1,27 @@
+{
+  "accuracy_metrics_allowed": false,
+  "bag": "src/lidar_adaptive/experiments/20260904_runner_smoke_c2_retry/topics/run.bag",
+  "ground_truth_available": false,
+  "information_score_mean": 0.7561309264630688,
+  "message_counts": {
+    "/keyframe_selected": 49,
+    "/lidar_projection_processing_ms": 49,
+    "/lidar_scan_quality": 49,
+    "/lidar_selector_processing_ms": 49,
+    "/scan_confidence": 49,
+    "/scan_selected": 6,
+    "/scan_selection": 49,
+    "/velodyne_points": 49
+  },
+  "projection_processing_ms_mean": 1.9547974625412299,
+  "projection_quality_mean": 0.9569144455754027,
+  "quality_mean": 0.9569144455754027,
+  "quality_sync_fraction": 1.0,
+  "quality_sync_messages": 49,
+  "selected_messages": 6,
+  "selection_fraction": 0.12244897959183673,
+  "selection_messages": 49,
+  "selection_stamp_end": 1784863685.931355,
+  "selection_stamp_start": 1784863681.131614,
+  "selector_processing_ms_mean": 0.059424102002260636
+}

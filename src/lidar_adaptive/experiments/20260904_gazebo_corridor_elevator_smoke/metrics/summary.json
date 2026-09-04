@@ -1,0 +1,24 @@
+{
+  "accuracy_metrics_allowed": true,
+  "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_smoke/topics/gazebo_smoke.bag",
+  "ground_truth_available": true,
+  "information_score_mean": 0.7530691077311834,
+  "message_counts": {
+    "/gazebo/model_states": 5988,
+    "/keyframe_selected": 60,
+    "/lidar_scan_quality": 60,
+    "/scan_confidence": 60,
+    "/scan_selected": 60,
+    "/scan_selection": 60,
+    "/velodyne_points": 60
+  },
+  "projection_quality_mean": 0.9139276613791784,
+  "quality_mean": 0.9139276613791784,
+  "quality_sync_fraction": 1.0,
+  "quality_sync_messages": 60,
+  "selected_messages": 20,
+  "selection_fraction": 0.3333333333333333,
+  "selection_messages": 60,
+  "selection_stamp_end": 36.971,
+  "selection_stamp_start": 31.071
+}

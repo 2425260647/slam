@@ -1,0 +1,2 @@
+roslaunch lidar_adaptive lidar_adaptive_bag.launch use_confidence:=true forward_selected_scans:=false require_ring:=true
+rosbag play --clock -r 2.0 --duration=15 bags/corridor_repeat_01.bag

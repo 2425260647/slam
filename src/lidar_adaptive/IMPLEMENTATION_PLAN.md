@@ -10,7 +10,7 @@
 
 ## 2. 当前代码状态
 
-当前工作区 `HEAD=511df70` 是清理后的 Cartographer 3.4.1 基线。历史的方向性退化融合和里程计异常动态调权代码不在当前源码中，历史提交和实验报告不能视为当前二进制功能。
+当前工作区 `HEAD=f09bfec`，固定标签为总项目 `baseline-1.0`。历史的方向性退化融合和里程计异常动态调权代码不在当前源码中，历史提交和实验报告不能视为当前二进制功能；本目录的创新修改仍需在独立研究提交中记录。
 
 仓库中已有的基础能力：
 
@@ -26,6 +26,8 @@
 4. `launch/lidar_adaptive_cartographer.launch`：将研究输出接入 Cartographer 2D、占据栅格和局部地图；`start_sim:=true` 时可同时启动 Scout Mini Gazebo 数据源。
 
 节点参数快照分为 `config/projection.yaml` 和 `config/selector.yaml`，避免将带有 `projection`/`selector` 顶层键的组合 YAML 误加载到 ROS 私有参数空间。`config/lidar_adaptive.yaml` 保留为论文和实验总览快照。
+
+投影节点通过 `lidar_adaptive/ScanQuality` 发布带原始点云时间戳的质量消息，选择器按 `quality_sync_tolerance` 匹配；匹配失败时只使用当前 LaserScan 的有效束比例，并发布 `/lidar_quality_sync_ok=false`，避免静默沿用上一帧质量。
 
 ## 3. 系统数据流
 
@@ -54,6 +56,12 @@ Cartographer 2D (实验 launch 中显式 remap)
 
 - `forward_selected_scans=false`：每帧都转发，只发布选择诊断，适合默认运行和定位稳定性验证。
 - `forward_selected_scans=true`：只转发被选择的扫描，适合对比“扫描选择对地图和实时性的影响”。该模式暂时属于外部扫描选择实验，不宣称等价于 Cartographer 内部只插入关键帧。
+
+选择器对 scan 做不超过 `pending_timeout_sec` 的短暂缓存，以等待同时间戳的
+`ScanQuality` 到达；超时或缓存达到 `max_pending_scans` 时才使用当前 scan 的有效束比例
+回退。这样可以避免两个 ROS 话题连接到达顺序不同造成的伪不同步，同时保证输入异常时
+不会无限积压。`/scan_selection` 是带 header 的逐帧审计消息，正式实验应优先使用它统计
+同步率和选择率，`/keyframe_selected` 仅保留为兼容诊断话题。
 
 ## 4. 创新点一：16 线高度/线号/邻域置信投影
 
@@ -131,6 +139,11 @@ I_t = 0.35 * Q_projection
     + 0.05 * Q_motion
 ```
 
+`selection_score` 是需要在 `corridor_repeat_01` 参数选择序列上冻结的阈值。当前默认值
+`0.76` 仅作为起始配置：它高于静态高质量重复帧的典型分数，同时保留首帧、新颖区域和
+`max_skip_seconds` 强制帧。正式论文结果必须记录阈值扫描范围、冻结值和验证序列结果，
+不能把该默认值直接当作最优参数。
+
 当前版本中 `Q_coverage` 使用有效角度覆盖率近似，`Q_novelty` 使用相邻扫描的距离变化比例近似。后续接入 Cartographer 局部栅格后，可把 `Q_novelty` 替换为“落入未知或状态变化栅格的端点比例”。
 
 ### 5.2 选择规则
@@ -174,6 +187,8 @@ src/lidar_adaptive/
 ├── config/selector.yaml
 ├── launch/lidar_adaptive_pipeline.launch
 ├── launch/lidar_adaptive_cartographer.launch
+├── msg/ScanQuality.msg
+├── worlds/corridor_elevator.world
 ├── include/lidar_adaptive/       # 后续可复用策略头文件
 ├── src/
 │   ├── confidence_projection_node.cpp

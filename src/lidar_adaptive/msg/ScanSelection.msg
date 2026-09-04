@@ -1,0 +1,5 @@
+std_msgs/Header header
+bool selected
+float32 information_score
+float32 projection_quality
+bool quality_synchronized

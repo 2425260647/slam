@@ -1,0 +1,23 @@
+{
+  "accuracy_metrics_allowed": false,
+  "bag": "src/lidar_adaptive/experiments/20260904_corridor_repeat_01_smoke_c1/topics/derived_15s_threshold76.bag",
+  "ground_truth_available": false,
+  "information_score_mean": 0.7538006877739157,
+  "message_counts": {
+    "/keyframe_selected": 149,
+    "/lidar_scan_quality": 149,
+    "/scan_confidence": 149,
+    "/scan_selected": 149,
+    "/scan_selection": 149,
+    "/velodyne_points": 149
+  },
+  "projection_quality_mean": 0.9563552449213578,
+  "quality_mean": 0.9563552449213578,
+  "quality_sync_fraction": 1.0,
+  "quality_sync_messages": 149,
+  "selected_messages": 16,
+  "selection_fraction": 0.10738255033557047,
+  "selection_messages": 149,
+  "selection_stamp_end": 1784863695.931258,
+  "selection_stamp_start": 1784863681.131614
+}

@@ -1,0 +1,23 @@
+{
+  "accuracy_metrics_allowed": true,
+  "bag": "src/lidar_adaptive/experiments/20260904_gazebo_corridor_elevator_g1_r3_c0/topics/run.bag",
+  "ground_truth_available": true,
+  "information_score_mean": null,
+  "message_counts": {
+    "/gazebo/model_states": 18774,
+    "/scan": 188,
+    "/scout_mini_velocity_controller/odom": 939,
+    "/velodyne_points": 188
+  },
+  "projection_processing_ms_mean": null,
+  "projection_quality_mean": null,
+  "quality_mean": null,
+  "quality_sync_fraction": null,
+  "quality_sync_messages": 0,
+  "selected_messages": 0,
+  "selection_fraction": null,
+  "selection_messages": 0,
+  "selection_stamp_end": null,
+  "selection_stamp_start": null,
+  "selector_processing_ms_mean": null
+}

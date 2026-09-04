@@ -1,0 +1,2 @@
+roslaunch lidar_adaptive lidar_adaptive_bag.launch use_confidence:=false use_baseline_projection:=true cartographer_scan_topic:=/scan
+rosbag play --clock -r 1.0 --duration=60 bags/corridor_repeat_02.bag
